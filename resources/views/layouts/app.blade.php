@@ -30,7 +30,7 @@
     <div id="app">
         <header class="bg-gray-900 py-3 sticky top-0 z-10">
             <div class="container mx-auto md:flex justify-between items-center px-6">
-                <div class="text-center ml6 pb-4 md:pb-0">
+                <div class="text-center ml6 sm:pb-4 md:pb-0">
                     <a href="{{ url('/') }}" class="text-4xl text-gray-300 letters font-logo uppercase font-semibold">
                         KATH meeting room
                     </a> 
