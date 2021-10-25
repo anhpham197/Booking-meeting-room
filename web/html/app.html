@@ -17,37 +17,33 @@
     .footer-main-cl{
         background-color: #D9CAB3;
     }
+
+    .background{
+        background-image: url("anh1.jpg");
+        height: 600px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+    }
+    .btn_position{
+        position: absolute;
+        top: 360px;
+        left: 290px;
+    }
+
+
   </style>
 </head>
 
 <body>
-    <div class="carousel slide" data-ride="carousel" > 
-          
-        <div class="carousel-inner">
-          <div class="carousel-item active text-center ">
-            <img src="anh1.jpg" style="width: 60%; height: auto;" alt="" >
-            <div class="carousel-caption">
-              <button class="btn btn-success">Đăng nhập</button>
-            </div>
-          </div>
-          <div class="carousel-item text-center  ">
-            <img src="anh2.jpg" style="width: 60%; height: auto;" alt="" >
-            <div class="carousel-caption">
-              <button class="btn btn-success">Đăng nhập</button>
-            </div>
-          </div>
-          <div class="carousel-item text-center ">
-            <img src="anh3.jpg" style="width: 60%; height: auto;" alt="" >
-            <div class="carousel-caption ">
-              <button class="btn btn-success">Đăng nhập</button>
-            </div>
-          </div>
-      </div>
+    <div class="background">
+        <button class="btn btn_position btn-success">BOOKING NOW</button>
     </div>
 
-    <footer class="page-footer bg-dark pt-3 pb-5">
+    <footer class="page-footer bg-dark pt-3 pb-5" >
     
-      <div class="container text-center text-md-left mt-5">
+      <div class="container text-center text-md-left mt-5" >
           <div class="row">
               <div class="col-md-3 mx-auto mb-4">
                   <h6 class="text-uppercase font-weight-bold"> product</h6>
@@ -96,26 +92,26 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 <script>
-    var slideIndex = 0;
-    showSlides();
+    // var slideIndex = 0;
+    // showSlides();
     
-    function showSlides() {
-      var i;
-      var slides = document.getElementsByClassName("carousel-item");
-      var next = document.getElementsByClassName("carousel-control-next-icon");
-      var prev = document.getElementsByClassName("carousel-control-prev-icon");
-      for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";  
-      }
-      slideIndex++;
-      if (next.clicked == true){ slideIndex++ }
-      console.log(next.clicked);
-      if (prev.clicked == true){ slideIndex-- }
-      if (slideIndex < 0) {slideIndex = slides.length}
-      if (slideIndex > slides.length) {slideIndex = 1}    
-      slides[slideIndex-1].style.display = "block";  
-      setTimeout(showSlides, 3000); 
-    }
+    // function showSlides() {
+    //   var i;
+    //   var slides = document.getElementsByClassName("carousel-item");
+    //   var next = document.getElementsByClassName("carousel-control-next-icon");
+    //   var prev = document.getElementsByClassName("carousel-control-prev-icon");
+    //   for (i = 0; i < slides.length; i++) {
+    //     slides[i].style.display = "none";  
+    //   }
+    //   slideIndex++;
+    //   if (next.clicked == true){ slideIndex++ }
+    //   console.log(next.clicked);
+    //   if (prev.clicked == true){ slideIndex-- }
+    //   if (slideIndex < 0) {slideIndex = slides.length}
+    //   if (slideIndex > slides.length) {slideIndex = 1}    
+    //   slides[slideIndex-1].style.display = "block";  
+    //   setInterval(showSlides, 5000); 
+    // }
     
     $(document).ready(function () {
       $('#sidebarCollapse').on('click', function () {
