@@ -18,8 +18,8 @@ Route::get('/', function () {
 });
 Route::get('/booking', function () {
     return view('booking/main');
-});
+})->name('booking');
 Auth::routes();
 
-Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

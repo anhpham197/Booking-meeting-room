@@ -1,6 +1,6 @@
 <nav id="sidebar">
     <div class="sidebar-header">
-        <h3 class="uppercase">Booking</h3>
+        <h3 class="uppe">Booking</h3>
     </div>
     <ul class="lisst-unstyled components">
        
