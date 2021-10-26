@@ -1,6 +1,6 @@
 <nav id="sidebar">
     <div class="sidebar-header">
-        <h3 class="uppe">Booking</h3>
+        <h3 class="uppercase">Booking</h3>
     </div>
     <ul class="lisst-unstyled components">
        
@@ -10,10 +10,10 @@
             
            <ul class="collapse list-unstyled subnav" id="homeSubmenu" >
               <li>
-                  <a href="" class="text-white hover:no-underline">Chỉnh sửa thông tin cá nhân</a>
+                  <a href="{{ route('edit_profile') }}" class="text-white hover:no-underline">Chỉnh sửa thông tin cá nhân</a>
               </li>
               <li>
-                  <a href="" class="text-white hover:no-underline">Thay đổi mật khẩu</a>
+                  <a href="{{ route('change_password') }}" class="text-white hover:no-underline">Thay đổi mật khẩu</a>
               </li>
 
           </ul>

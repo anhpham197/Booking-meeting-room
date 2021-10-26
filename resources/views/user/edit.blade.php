@@ -15,10 +15,10 @@
                 </div>
             </nav>
 
-            <section class="row form-full">
+            <section class="row">
                 <div class="col-12">
                     <form autocomplete="on" action="" method="post">
-                        <div class="card form-full">
+                        <div class="card">
                             <div class="card-header text-center">
                                 <b>Thông tin cá nhân</b>
                             </div>
