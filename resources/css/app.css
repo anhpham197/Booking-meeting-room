@@ -100,12 +100,23 @@ ul ul a{
 
 #content{
 	width: 100%;
-	min-height: 100vh;
 	transition: all 0.3s;
 }
 
 header {
     background-color: #343a40;
+}
+
+.form-group + .form-group{
+    margin-top: 12px;
+}
+
+.form-gender + .form-gender{
+    margin-left: 20px;
+}
+
+.form-full {
+	height: 100vh;
 }
 
 

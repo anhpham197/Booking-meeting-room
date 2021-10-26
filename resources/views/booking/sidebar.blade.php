@@ -6,14 +6,14 @@
        
         <li>
            <i class="fas fa-home"></i>
-           <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle text-white hover:no-underline">Home</a>
+           <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle text-white hover:no-underline">Thông tin cá nhân</a>
             
            <ul class="collapse list-unstyled subnav" id="homeSubmenu" >
               <li>
-                  <a href="#" class="text-white hover:no-underline">Home 1</a>
+                  <a href="" class="text-white hover:no-underline">Chỉnh sửa thông tin cá nhân</a>
               </li>
               <li>
-                  <a href="#" class="text-white hover:no-underline">Home 2</a>
+                  <a href="" class="text-white hover:no-underline">Thay đổi mật khẩu</a>
               </li>
 
           </ul>

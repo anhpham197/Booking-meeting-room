@@ -23,3 +23,10 @@ Auth::routes();
 
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/edit_profile', function () {
+    return view('user.edit');
+})->name('edit_profile');
+
+Route::get('/change_password', function () {
+    return view('user.change_password');
+})->name('change_password');
