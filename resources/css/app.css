@@ -80,7 +80,6 @@ a:focus{
 }
 
 #sidebar ul li:hover a  {
-
     font-size: 40px;
     cursor: pointer;
 }
@@ -103,6 +102,10 @@ ul ul a{
 	width: 100%;
 	min-height: 100vh;
 	transition: all 0.3s;
+}
+
+header {
+    background-color: #343a40;
 }
 
 

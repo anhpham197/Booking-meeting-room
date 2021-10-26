@@ -20,7 +20,10 @@
     <!-- Font -->
     <link href="https://fonts.googleapis.com/css2?family=Jacques+Francois+Shadow&family=Londrina+Shadow&display=swap" rel="stylesheet">
 
+    <!-- Icon FontAwesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+
+    <!-- Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -28,23 +31,23 @@
 </head>
 <body class="bg-gray-100 h-screen antialiased leading-none font-sans">
     <div id="app">
-        <header class="bg-gray-900 py-3 sticky top-0 z-10">
-            <div class="container mx-auto md:flex justify-between items-center px-6">
+        <header class=" py-3 sticky top-0 z-10">
+            <div class="px-16 mx-auto md:flex justify-between items-center">
                 <div class="text-center ml6 sm:pb-4 md:pb-0">
                     <a href="{{ url('/') }}" class="text-4xl text-gray-300 letters font-logo uppercase font-semibold">
                         KATH meeting room
                     </a> 
                 </div>
                 <nav class="space-x-4 text-sm sm:text-base text-center">
-                    <a class="hover:font-bold hover:no-underline hover:text-gray-300 uppercase text-gray-300 font-medium" href="#">Booking</a>
+                    <a class="hover:font-bold hover:no-underline hover:text-gray-300 uppercase text-gray-300" href="{{ route('booking') }}">Booking</a>
 
                     @guest
-                        <a class="hover:font-bold hover:no-underline hover:text-gray-300 uppercase text-gray-300 font-medium" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a class="hover:font-bold hover:no-underline hover:text-gray-300 uppercase text-gray-300" href="{{ route('login') }}">{{ __('Login') }}</a>
                         @if (Route::has('register'))
-                            <a class="hover:font-bold hover:no-underline hover:text-gray-300 uppercase text-gray-300 font-medium" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="hover:font-bold hover:no-underline hover:text-gray-300 uppercase text-gray-300" href="{{ route('register') }}">{{ __('Register') }}</a>
                         @endif
                     @else
-                        <span>{{ Auth::user()->name }}</span>
+                        <span class="text-gray-300 font-medium">{{ Auth::user()->name }}</span>
 
                         <a href="{{ route('logout') }}"
                            class="hover:font-bold hover:no-underline hover:text-gray-300 uppercase text-gray-300"
