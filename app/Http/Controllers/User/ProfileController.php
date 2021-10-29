@@ -22,11 +22,13 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
-        return view('index');
+
+    public function edit($id) {
+        return view('user.edit')
+            ->with('user', User::where('id', $id)->first());
     }
 
-    public function update(Request $request, $slug) {
+    public function update(Request $request) {
         $request->validate([
             'name'=>'required',
             'phone'=>'required',

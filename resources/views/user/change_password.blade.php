@@ -46,7 +46,7 @@
                     </div>
 
                     <div class="text-center pb-5">
-                        <button type="submit" class="py-3 px-3 bg-blue-400 hover:bg-blue-500 rounded-xl shadow-sm text-base font-medium">Cập nhật</button>
+                        <button type="submit" class="py-3 px-3 bg-blue-500 hover:bg-blue-600 rounded-xl shadow-sm text-base text-white uppercase">Cập nhật</button>
                     </div>
                 </form>
             </section>

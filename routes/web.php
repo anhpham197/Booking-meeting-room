@@ -16,9 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 });
-Route::get('/booking', function () {
+
+Route::get('/booking', [\App\Http\Controllers\HomeController::class, 'show'])->name('show_booking');
+/* Route::get('/booking', function () {
     return view('booking/main');
-})->name('booking');
+})->name('booking'); */
 Auth::routes();
 
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');

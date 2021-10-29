@@ -17,7 +17,7 @@
 
             <section class="row">
                 <div class="col-12">
-                    <form autocomplete="on" action="" method="post">
+                    <form autocomplete="on" action="" method="post" enctype="multipart/form-data">
                         <div class="card">
                             <div class="card-header text-center">
                                 <b>Thông tin cá nhân</b>
@@ -53,7 +53,14 @@
                                 </div>  
                                 <div class="form-group">
                                     <label for="company">Công ty <span class="text-red-600">*</span></label>
-                                    <input type="text" class="form-control" name="company" id="company">
+                                    <input type="text" class="form-control" name="company" id="company" list="list_company">
+                                    <datalist id="list_company">
+                                        <option value="Anh"></option>                        
+                                        <option value="Chinh"></option>                        
+                                        <option value="Anhhhhhh"></option>                        
+                                        <option value="Chinhhh"></option>                        
+                                    </datalist>
+                    
                                 </div>
                             </div>            
                             <div class="card-footer" style="text-align: center;">
