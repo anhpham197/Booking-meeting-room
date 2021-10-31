@@ -39,7 +39,7 @@
                     </a> 
                 </div>
                 <nav class="space-x-4 text-sm sm:text-base text-center">
-                    <a class="hover:font-bold hover:no-underline hover:text-gray-300 uppercase text-gray-300" href="{{ route('booking') }}">Booking</a>
+                    <a class="hover:font-bold hover:no-underline hover:text-gray-300 uppercase text-gray-300" href="{{ route('show_booking') }}">Booking</a>
 
                     @guest
                         <a class="hover:font-bold hover:no-underline hover:text-gray-300 uppercase text-gray-300" href="{{ route('login') }}">{{ __('Login') }}</a>
