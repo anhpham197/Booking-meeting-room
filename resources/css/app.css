@@ -20,6 +20,11 @@
     letter-spacing: 0.5rem;
 }
 
+.font-logo:hover {
+	color: #D9CAB3;
+	text-decoration: wavy;
+}
+
 .footer-main-cl{
 	background-color: #D9CAB3;
 }
@@ -33,10 +38,10 @@ a:focus{
 } */
 
 
-/* Side Bar*/
+/* Sidebar*/
 
 #sidebar.active {
-    margin-left: -250px;
+    margin-left: -300px;
 }
 .wrapper{
 	display: flex;
@@ -45,8 +50,8 @@ a:focus{
 }
 
 #sidebar{
-	min-width: 250px;
-	max-width: 250px;
+	min-width: 300px;
+	max-width: 300px;
 	background: #6d9886;
 	color: #fff;
 	transition: all 0.3s;
@@ -73,19 +78,20 @@ a:focus{
 	font-size: 1.1em;
 	display: block;
 }
+
 #sidebar ul li a{
 	padding: 10px;
 	font-size: 1.2em;
 	display: inline-block;
 }
 
-#sidebar ul li:hover a  {
-    font-size: 40px;
+#sidebar ul li:hover a {
     cursor: pointer;
-}
-.subnav li:hover a{
-    animation: modalFadeIn ease 1s;
-    
+} 
+
+.subnav li:hover a {
+    /* animation: modalFadeIn ease 0.1s; */
+    font-weight: 400;
 }
 
 a[data-toggle="collapse"]{
@@ -100,7 +106,6 @@ ul ul a{
 
 #content{
 	width: 100%;
-	min-height: 100vh;
 	transition: all 0.3s;
 }
 
@@ -108,6 +113,15 @@ header {
     background-color: #343a40;
 }
 
+
+/* Edit profile */
+.form-group + .form-group{
+    margin-top: 12px;
+}
+
+.form-gender + .form-gender{
+    margin-left: 20px;
+}
 
 @media (max-width: 768px) {
     #sidebar {
