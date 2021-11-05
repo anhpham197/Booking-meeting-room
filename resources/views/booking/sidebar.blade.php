@@ -8,29 +8,32 @@
            <i class="fas fa-home"></i>
            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle text-white hover:no-underline">Thông tin cá nhân</a>
             
-           <ul class="collapse list-unstyled subnav" id="homeSubmenu" >
+           <ul class="collapse list-unstyled subnav" id="homeSubmenu">
               <li>
-                  <a href="{{ route('edit_profile') }}" class="text-white hover:no-underline">Chỉnh sửa thông tin cá nhân</a>
+                  <?php
+                    $user = Auth::user();
+                  ?>
+                  <a href="{{ route('kath.edit', $user->id) }}" class="text-white hover:no-underline">Chỉnh sửa thông tin cá nhân</a>
               </li>
               <li>
-                  <a href="{{ route('change_password') }}" class="text-white hover:no-underline">Thay đổi mật khẩu</a>
+                  <a href="{{ route('kath.index') }}" class="text-white hover:no-underline">Thay đổi mật khẩu</a>
               </li>
 
           </ul>
         </li>
         <li>
            <i class="fas fa-chevron-circle-down"></i>
-           <a href="#" class="text-white hover:no-underline">About</a>
+           <a href="#" class="text-white hover:no-underline">Danh sách công ty</a>
         </li>
         <li>
             <i class="far fa-file-alt"></i>
-            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle text-white hover:no-underline">Pages</a>
+            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle text-white hover:no-underline">Hệ thống phòng họp</a>
             <ul class="collapse list-unstyled subnav" id="pageSubmenu" >
                 <li >
-                    <a href="#" class="text-white hover:no-underline">Page 1</a>
+                    <a href="#" class="text-white hover:no-underline">Danh sách các phòng</a>
                 </li>
                 <li>
-                    <a href="#" class="text-white hover:no-underline">Page 2</a>
+                    <a href="#" class="text-white hover:no-underline">Đánh giá phòng họp</a>
                 </li>
             </ul>
         </li>
@@ -42,6 +45,7 @@
            <i class="fas fa-mail-bulk"></i>
            <a href="#" class="text-white hover:no-underline">Contact </a>
       </li>
-
     </ul>
+
+    <div class="text-center bottom-0">PHIÊN BẢN : {{ env('APP_STATIC_VERSION') }}</div>
 </nav>
