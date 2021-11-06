@@ -17,7 +17,7 @@ a:focus{
 /* Side Bar*/
 
 #sidebar.active {
-    margin-left: -250px;
+    margin-left: -300px;
 }
 .wrapper{
 	display: flex;
@@ -26,8 +26,8 @@ a:focus{
 }
 
 #sidebar{
-	min-width: 250px;
-	max-width: 250px;
+	min-width: 300px;
+	max-width: 300px;
 	background: #6d9886;
 	color: #fff;
 	transition: all 0.3s;
@@ -60,10 +60,9 @@ a:focus{
 	display: inline-block;
 }
 
-#sidebar ul li:hover a  {
+#sidebar ul li:hover> a  {
 
-    font-size: 40px;
-    cursor: pointer;
+    color: aqua;
 }
 .subnav li:hover a{
     animation: modalFadeIn ease 1s;
@@ -84,8 +83,14 @@ ul ul a{
 	width: 100%;
 	min-height: 100vh;
 	transition: all 0.3s;
+	position: relative;
 }
-
+.table-idea{
+	position: sticky;
+	top: 0;
+	background-color: #D9CAB3;
+	
+}
 
 @media (max-width: 768px) {
     #sidebar {
