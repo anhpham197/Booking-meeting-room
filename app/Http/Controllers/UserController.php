@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -20,7 +22,7 @@ class UserController extends Controller
 
     public function index()
     {
-        return view('user.edit');
+        //
     }
 
     /**
@@ -65,7 +67,8 @@ class UserController extends Controller
     {
         $user = User::query()->where('id', $id)->first();
         return view('user.edit', [
-            'user' => $user
+            'user' => $user,
+            'company' => $user->company->name
         ]);
     }
 
@@ -80,20 +83,23 @@ class UserController extends Controller
     {
         $request->validate([
             'name'=>'required',
-            'phone'=>'required',
-            'email'=>'required',
-            'company'=>'required'
+            'phone'=>'required|numeric',
+            'email'=>'required|email',
         ]);
 
-        User::where('id', $id)->update([
-            'name' => $request->name,
+        /* $company = Company::firstOrCreate([
+            'name' => $request->company
+        ]); */ 
+
+        $user = User::where('id', $id)->update([
+            'name' => $request->name, 
             'gender' => $request->gender,
             'phone' => $request->phone,
             'email' => $request->email,
-            'date_of_birth' => $request->date_of_birth,
-            'company' => $request->company
+            'date_of_birth' => $request->date_of_birth
         ]);
-        return redirect()->route('kath.index');
+
+        return redirect()->route('kath.edit', Auth::user()->id);
     }
 
     /**
@@ -106,6 +112,7 @@ class UserController extends Controller
     {
         //
     }
+
 
     public function changePassword(Request $request, $id) {
         $request->validate([

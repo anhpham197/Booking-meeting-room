@@ -1,6 +1,6 @@
 <nav id="sidebar">
     <div class="sidebar-header">
-        <h3 class="uppercase">Booking</h3>
+        <img src="{{asset('img/Kath.png')}}" alt="Logo KATH">
     </div>
     <ul class="lisst-unstyled components">
        
@@ -16,7 +16,7 @@
                   <a href="{{ route('kath.edit', $user->id) }}" class="text-white hover:no-underline">Chỉnh sửa thông tin cá nhân</a>
               </li>
               <li>
-                  <a href="{{ route('kath.index') }}" class="text-white hover:no-underline">Thay đổi mật khẩu</a>
+                  <a href="{{ route('password') }}" class="text-white hover:no-underline">Thay đổi mật khẩu</a>
               </li>
 
           </ul>
@@ -48,4 +48,13 @@
     </ul>
 
     <div class="text-center bottom-0">PHIÊN BẢN : {{ env('APP_STATIC_VERSION') }}</div>
+
+    
+    <script>
+        $(document).ready(function () {
+                    $('#sidebarCollapse').on('click', function () {
+                        $('#sidebar').toggleClass('active');
+                    });
+                });
+    </script>
 </nav>
