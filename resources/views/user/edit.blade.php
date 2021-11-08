@@ -17,7 +17,13 @@
 
             <section class="row">
                 <div class="col-12">
-                    <form autocomplete="on" action="" method="post" enctype="multipart/form-data">
+                    <form autocomplete="on" 
+                        action="{{route('kath.update', ['id' => Auth::user()->id])}}" 
+                        method="POST" 
+                        enctype="multipart/form-data">
+                        @method('PUT')
+                        @csrf
+
                         <div class="card">
                             <div class="card-header text-center">
                                 <b>Thông tin cá nhân</b>
@@ -25,46 +31,60 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="username">Họ tên <span class="text-red-600">*</span></label>
-                                    <input type="text" class="form-control" name="username" id="username" aria-describedby="usernameHid" placeholder="">
+                                    <input type="text" class="form-control" name="name" id="name" value="{{ $user->name }}">
+                                    @error('name')
+                                        <span class="text-red-600">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="form-group flex gap-4">
                                     <label for="gender">Giới tính</label><br>
                                     <div>
-                                        <input type="radio" name="gender" id="male" value="Nam"> Nam
+                                        <input type="radio" name="gender" id="male" value="Nam" @if (!empty($user->gender) && $user->gender == 'Nam') 
+                                            checked
+                                        @endif> Nam
                                     </div>
                                     <div>
-                                        <input type="radio" name="gender" id="female" value="Nữ"> Nữ
+                                        <input type="radio" name="gender" id="female" value="Nữ" @if (!empty($user->gender) && $user->gender == 'Nữ')
+                                            checked
+                                        @endif> Nữ
                                     </div>
                                     <div>
-                                        <input type="radio" name="gender" id="other" value="Khác"> Khác
+                                        <input type="radio" name="gender" id="other" value="Khác" @if (!empty($user->gender) && $user->gender == 'Khác')
+                                            checked
+                                        @endif> Khác
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="date">Ngày sinh</label>
-                                    <input type="date" class="form-control" name="date" id="date" aria-describedby="dateHid" placeholder="">
+                                    <input type="date" class="form-control" name="date_of_birth" id="date_of_birth" @if (!empty($user->date_of_birth)) value="{{ $user->date_of_birth }}" @endif>
                                 </div>                           
                                 <div class="form-group">
                                     <label for="telephone">Số điện thoại <span class="text-red-600">*</span></label>
-                                    <input type="tel" class="form-control" name="telephone" id="telephone" aria-describedby="telephoneHid" placeholder="">
+                                    <input type="tel" class="form-control" name="phone" id="phone" @if (!empty($user->phone)) value="{{ $user->phone}}" @endif>
+                                    @error('phone')
+                                        <span class="text-red-600">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email <span class="text-red-600">*</span></label>
-                                    <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHid" placeholder="">
-                                </div>  
+                                    <input type="email" class="form-control" name="email" id="email" value="{{ $user->email }}">
+                                    @error('email')
+                                        <span class="text-red-600">{{ $message }}</span>
+                                    @enderror
+                                </div>
                                 <div class="form-group">
                                     <label for="company">Công ty <span class="text-red-600">*</span></label>
-                                    <input type="text" class="form-control" name="company" id="company" list="list_company">
-                                    <datalist id="list_company">
-                                        <option value="Anh"></option>                        
-                                        <option value="Chinh"></option>                        
-                                        <option value="Anhhhhhh"></option>                        
-                                        <option value="Chinhhh"></option>                        
-                                    </datalist>
-                    
+                                    {{-- <select name="company" id="company-select" class="form-control">
+                                        <option value="">Chọn</option>
+                                        @foreach ($companies as $company)
+                                            <option value="{{ $company->id }}" {{ $user->company_id == $company->id ? 'selected' : '' }}>{{ $company->name }}</option>
+                                        @endforeach
+                                    </select> --}}
+                                    <input type="text" class="form-control" name="company" id="company" value={{ $company }} readonly> 
                                 </div>
                             </div>            
                             <div class="card-footer" style="text-align: center;">
-                                <button type="button" class="btn btn-primary">Cập nhật</button>
+                                <button type="submit" class="btn btn-primary">Cập nhật</button>
                             </div>
                         </div>
                     </form>
@@ -72,4 +92,12 @@
             </section>
         </div>
     </div>
+
+    <script>
+        jQuery(document).ready(function() {
+            $('#company-select').select2({
+                tags: true
+            });
+        });
+    </script>
 @endsection
