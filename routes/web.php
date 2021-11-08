@@ -31,14 +31,6 @@ Route::get('/kath/{id}/edit', [UserController::class, 'edit'])->name('kath.edit'
 Route::put('/kath/{id}/update', [UserController::class, 'update'])->name('kath.update');
 
 Route::post('change_password', [UserController::class, 'changePassword']);
-Route::get('password', function() {
+Route::get('password', function () {
     return view('user.change_password');
-<<<<<<< HEAD
-})->name('change_password');
-
-Route::get('/create_event', function () {
-    return view('create');
-})->name('create_event');
-=======
 })->name('password');
->>>>>>> anhpham
