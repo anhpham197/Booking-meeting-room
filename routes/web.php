@@ -25,12 +25,6 @@ Auth::routes();
 
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-<<<<<<< HEAD
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-=======
 Route::get('/edit_profile', function () {
     return view('user.edit');
 })->name('edit_profile');
@@ -38,4 +32,7 @@ Route::get('/edit_profile', function () {
 Route::get('/change_password', function () {
     return view('user.change_password');
 })->name('change_password');
->>>>>>> 5c0ef833c88425cbf8f1a5db7bf9d0810c81b05a
+
+Route::get('/create_event', function () {
+    return view('create');
+})->name('create_event');
