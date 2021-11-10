@@ -10,13 +10,10 @@
             
            <ul class="collapse list-unstyled subnav" id="homeSubmenu">
               <li>
-                  <?php
-                    $user = Auth::user();
-                  ?>
-                  <a href="{{ route('kath.edit', $user->id) }}" class="text-white hover:no-underline">Chỉnh sửa thông tin cá nhân</a>
+                  <a href="{{ route('kath.edit', Auth::user()->id) }}" class="text-white hover:no-underline">Chỉnh sửa thông tin cá nhân</a>
               </li>
               <li>
-                  <a href="{{ route('password') }}" class="text-white hover:no-underline">Thay đổi mật khẩu</a>
+                  <a href="{{ route('kath.editPassword', ['id' => Auth::user()->id]) }}" class="text-white hover:no-underline">Thay đổi mật khẩu</a>
               </li>
 
           </ul>

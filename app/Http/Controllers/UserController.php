@@ -113,13 +113,22 @@ class UserController extends Controller
         //
     }
 
+    
+
+    public function editPassword($id) {
+        return view('user.change_password');
+    }
 
     public function changePassword(Request $request, $id) {
         $request->validate([
-            'password'=>'required'
+            'new_password'=>'required|min:6',
+            'repeat_password'=>'required|min:6'
         ]);
-        User::where('id', $id)->update([
-            'password' => Hash::make($request->password)
-        ]);
+        if ($request->new_password === $request->repeat_password) {
+            User::where('id', $id)->update([
+                'password' => Hash::make($request->new_password)
+            ]);
+        }
+        return redirect()->route('home');
     }
 }

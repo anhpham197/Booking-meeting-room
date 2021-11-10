@@ -47,24 +47,24 @@
 
 
                     {{-- Company --}}
-                    {{-- <div class="flex flex-wrap">
+                    <div class="flex flex-wrap">
                         <label for="company" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
                             Company
                         </label>
 
-                        <datalist>
-
-                        </datalist>
-                        <input id="email" type="text"
-                            class="form-input w-full @error('email') border-red-500 @enderror" name="email"
-                            value="{{ old('email') }}" required autocomplete="email">
+                        <select name="company" id="company-select" class="form-control">
+                            <option value="">Chọn</option>
+                            @foreach ($companies as $company)
+                                <option value="{{ $company->id }}" {{ $user->company_id == $company->id ? 'selected' : '' }}>{{ $company->name }}</option>
+                            @endforeach
+                        </select>
 
                         @error('email')
                         <p class="text-red-500 text-xs italic mt-4">
                             {{ $message }}
                         </p>
                         @enderror
-                    </div> --}}
+                    </div>
 
                     <div class="flex flex-wrap">
                         <label for="password" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
