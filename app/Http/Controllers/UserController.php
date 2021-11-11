@@ -66,6 +66,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::query()->where('id', $id)->first();
+        // dd($user);
         return view('user.edit', [
             'user' => $user,
             'company' => $user->company->name
@@ -82,17 +83,17 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name'=>'required',
-            'phone'=>'required|numeric',
-            'email'=>'required|email',
+            'name' => 'required',
+            'phone' => 'required|numeric',
+            'email' => 'required|email',
         ]);
 
         /* $company = Company::firstOrCreate([
             'name' => $request->company
-        ]); */ 
+        ]); */
 
         $user = User::where('id', $id)->update([
-            'name' => $request->name, 
+            'name' => $request->name,
             'gender' => $request->gender,
             'phone' => $request->phone,
             'email' => $request->email,
@@ -114,9 +115,10 @@ class UserController extends Controller
     }
 
 
-    public function changePassword(Request $request, $id) {
+    public function changePassword(Request $request, $id)
+    {
         $request->validate([
-            'password'=>'required'
+            'password' => 'required'
         ]);
         User::where('id', $id)->update([
             'password' => Hash::make($request->password)

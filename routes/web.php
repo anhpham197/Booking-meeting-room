@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\EventsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,22 @@ Route::get('/', function () {
 });
 
 Route::get('/booking', [\App\Http\Controllers\HomeController::class, 'show'])->name('show_booking');
+
+Route::get('/create', [\App\Http\Controllers\EventsController::class, 'create'])->name('create_booking');
+
+// Events
+// Route::delete('events/destroy', 'App\Http\Controllers\EventsController@massDestroy')->name('events.massDestroy');
+// Route::post('events/media', 'App\Http\Controllers\EventsController@storeMedia')->name('events.storeMedia');
+// Route::post('events/ckmedia', 'App\Http\Controllers\EventsController@storeCKEditorImages')->name('events.storeCKEditorImages');
+// Route::resource('events', 'App\Http\Controllers\EventsController');
+
+Route::get('event/create', [EventsController::class, 'index'])->name('event.create');
+Route::get('event/{id}/edit', [EventsController::class, 'edit'])->name('event.edit');
+Route::post('event/upload', [EventsController::class, 'create'])->name('event.upload');
+
+// Rooms
+Route::delete('rooms/destroy', 'RoomsController@massDestroy')->name('rooms.massDestroy');
+Route::resource('rooms', 'RoomsController');
 
 Auth::routes();
 

@@ -6,37 +6,24 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateEventsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('events', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('fullName');
-            $table->string('address');
-            $table->string('phoneNumber');
+            $table->bigIncrements('id');
+            $table->string('address')->nullable();
+            $table->string('full_name');
+            $table->string('phone_number');
             $table->string('email');
-            $table->dateTime('startDay');
-            $table->dateTime('finishDay');
-            $table->string('participantEmail');
-            $table->longText('depcription');
-            $table->binary('file');
+            $table->datetime('start_day')->nullable();
+            $table->datetime('end_day')->nullable();
+            $table->time('start_time')->nullable();
+            $table->time('end_time')->nullable();
+            $table->string('partition_email')->nullable();
+            $table->longText('description')->nullable();
             $table->longText('note')->nullable();
+            $table->longText('file')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('events');
     }
 }
