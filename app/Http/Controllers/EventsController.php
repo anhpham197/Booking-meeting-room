@@ -2,27 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Company;
-use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
+use App\Models\Event;
 
-class UserController extends Controller
+use Illuminate\Http\Request;
+
+class EventsController extends Controller
 {
+    //
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     public function index()
     {
         //
+        return view('events.index');
     }
 
     /**
@@ -30,9 +30,34 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
+        $data = new event;
+        $file = $request->fileupload;
+        if ($file != '') {
+            echo "Yes";
+            $fileName = time() . '.' . $file->getClientOriginalExtension();
+            $destinationPath = base_path('files');
+            $file->move($destinationPath, $fileName);
+            $data->file = $fileName;
+        } else {
+            dd('Request Has No File');
+        }
+
+        $data->address = $request->address;
+        $data->full_name = $request->usernameBooking;
+        $data->phone_number = $request->telephoneBooking;
+        $data->email = $request->emailBooking;
+        $data->start_day = $request->booking_date_start;
+        $data->end_day = $request->booking_date_end;
+        $data->start_time = $request->time_start;
+        $data->end_time = $request->time_end;
+        $data->partition_email = $request->emails;
+        $data->description = $request->description;
+        $data->note = $request->note;
+        $data->save();
+        return view('home');
     }
 
     /**
@@ -114,23 +139,14 @@ class UserController extends Controller
         //
     }
 
-    
-
-    public function editPassword($id) {
-        return view('user.change_password');
-    }
 
     public function changePassword(Request $request, $id)
     {
         $request->validate([
-            'new_password'=>'required|min:6',
-            'repeat_password'=>'required|min:6'
+            'password' => 'required'
         ]);
-        if ($request->new_password === $request->repeat_password) {
-            User::where('id', $id)->update([
-                'password' => Hash::make($request->new_password)
-            ]);
-        }
-        return redirect()->route('home');
+        User::where('id', $id)->update([
+            'password' => Hash::make($request->password)
+        ]);
     }
 }
