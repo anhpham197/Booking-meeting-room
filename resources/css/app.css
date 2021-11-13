@@ -5,10 +5,6 @@
 @import "tailwindcss/utilities";
 
 
-* {
-	font-family: 'Merriweather', serif;
-}
-
 .ml6 {
     position: relative;
 }
