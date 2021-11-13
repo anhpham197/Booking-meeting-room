@@ -114,7 +114,7 @@ class UserController extends Controller
         //
     }
 
-    
+
 
     public function editPassword($id) {
         return view('user.change_password');
@@ -127,7 +127,7 @@ class UserController extends Controller
             'repeat_password'=>'required|min:6'
         ]);
         if (Hash::check($request->new_password, Hash::make($request->repeat_password))) {
-            User::where('id', $id)->update([ 
+            User::where('id', $id)->update([
                 'password' => Hash::make($request->new_password)
             ]);
         }

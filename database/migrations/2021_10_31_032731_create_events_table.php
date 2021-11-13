@@ -18,6 +18,7 @@ class CreateEventsTable extends Migration
             $table->datetime('end_day')->nullable();
             $table->time('start_time')->nullable();
             $table->time('end_time')->nullable();
+            $table->string('room_id')->nullable();
             $table->string('partition_email')->nullable();
             $table->longText('description')->nullable();
             $table->longText('note')->nullable();

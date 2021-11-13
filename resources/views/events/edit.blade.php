@@ -17,7 +17,7 @@
 
             <section class="row">
                 <div class="col-12">
-                    <form autocomplete="on" action="{{url('event/upload')}}" method="POST" enctype="multipart/form-data">
+                    <form autocomplete="on" action="{{route('event.update', $event->id)}}" method="POST" enctype="multipart/form-data">
                         {{-- @method('PUT') --}}
                         @csrf
 
@@ -27,34 +27,34 @@
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="full_name">Họ tên người đặt</label>
-                                    <input type="text" class="form-control" name="full_name" id="full_name" aria-describedby="full_nameHid" placeholder="">
+                                    <label for="usernameBooking">Họ tên người đặt</label>
+                                    <input type="text" class="form-control" name="usernameBooking" id="usernameBooking" aria-describedby="usernameBookingHid" placeholder="" value="{{ $event->full_name }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="address">Địa chỉ</label>
-                                    <input type="text" class="form-control" name="address" id="address" aria-describedby="addressHid" placeholder="">
+                                    <input type="text" class="form-control" name="address" id="address" aria-describedby="addressHid" placeholder="" value="{{ $event->address }}">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="phone_number">Số điện thoại</label>
-                                    <input type="tel" class="form-control" name="phone_number" id="phone_number" aria-describedby="phone_numberHid" placeholder="">
+                                    <label for="telephoneBooking">Số điện thoại</label>
+                                    <input type="tel" class="form-control" name="telephoneBooking" id="telephoneBooking" aria-describedby="telephoneBookingHid" placeholder="" value="{{ $event->phone_number }}">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHid" placeholder="">
+                                    <label for="emailBooking">Email</label>
+                                    <input type="email" class="form-control" name="emailBooking" id="emailBooking" aria-describedby="emailBookingHid" placeholder="" value="{{ $event->email }}">
                                 </div>
 
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col">
-                                            <label for="start_day">Ngày bắt đầu</label>
-                                            <input type="date" class="form-control" name="start_day" id="start_day" >
+                                            <label for="booking_date_start">Ngày bắt đầu</label>
+                                            <input type="date" class="form-control" name="booking_date_start" id="booking_date_start" value="{{ $event->start_day }}">
                                         </div>
                                         <div class="col">
-                                            <label for="start_time">Thời gian bắt đầu</label>
-                                            <input type="time" class="form-control" name="start_time" id="start_time" >
+                                            <label for="time_start">Thời gian bắt đầu</label>
+                                            <input type="time" class="form-control" name="time_start" id="time_start" value="{{ $event->start_time }}">
                                         </div>
                                     </div>
                                 </div>
@@ -62,19 +62,19 @@
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col">
-                                            <label for="end_day">Ngày kết thúc</label>
-                                            <input type="date" class="form-control" name="end_day" id="end_day" >
+                                            <label for="booking_date_end">Ngày kết thúc</label>
+                                            <input type="date" class="form-control" name="booking_date_end" id="booking_date_end" value="{{ $event->end_day }}">
                                         </div>
                                         <div class="col">
-                                            <label for="end_time">Thời gian kết thúc</label>
-                                            <input type="time" class="form-control" name="end_time" id="end_time" >
+                                            <label for="time_end">Thời gian kết thúc</label>
+                                            <input type="time" class="form-control" name="time_end" id="time_end" value="{{ $event->end_time }}">
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="room_id">Mã phòng</label>
-                                    <select name="room_id" id="" class="form-control" id="room_id">
+                                    <label for="roomId">Mã phòng</label>
+                                    <select name="roomId" id="" class="form-control" id="roomId">
                                         <option value="405">405</option>
                                         <option value="406">406</option>
                                     </select>
@@ -82,8 +82,8 @@
 
                                 <div class="form-group">
                                     <label for="email">Email người tham gia</label>
-                                    <input type="email" class="form-control" id="partition_email" list="partition_email" multiple style="width: 100%;">
-                                    <datalist id="partition_email">
+                                    <input type="email" class="form-control" id="emails" list="emails" multiple style="width: 100%;">
+                                    <datalist id="emails">
                                         <option value="19021274@vnu.edu.vn">
                                         <option value="1234@vnu.edu.vn">
                                         <option value="23232@vnu.edu.vn">
@@ -93,17 +93,17 @@
 
                                 <div class="form-group">
                                     <label for="textarea">Nội dung cuộc họp</label>
-                                    <textarea id="textarea1" name="description" class="form-control" rows="5"></textarea>
+                                    <textarea id="textarea1" name="description" class="form-control" rows="5" value="{{ $event->description }}"></textarea>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="fileupload">Đính kèm tệp</label>
-                                    <input type = "file" name = "fileupload" >
+                                    <input type = "file" name = "fileupload" value="{{ $event->file }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="textarea">Ghi chú</label>
-                                    <textarea id="textarea2" name="note" class="form-control" rows="5"></textarea>
+                                    <textarea id="textarea2" name="note" class="form-control" rows="5" value="{{ $event->note }}"></textarea>
                                 </div>
                             </div>
                             <div class="card-footer" style="text-align: center;">

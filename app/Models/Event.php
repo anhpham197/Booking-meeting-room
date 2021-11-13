@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Event extends Model 
+class Event extends Model
 {
     use SoftDeletes;
     use HasFactory;
@@ -32,6 +32,7 @@ class Event extends Model
         'end_day',
         'start_time',
         'end_time',
+        'room_id',
         'partition_email',
         'description',
         'note',

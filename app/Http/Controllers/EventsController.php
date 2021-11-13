@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -56,6 +55,7 @@ class EventsController extends Controller
         $data->end_day = $request->booking_date_end;
         $data->start_time = $request->time_start;
         $data->end_time = $request->time_end;
+        $data->room_id = $request->roomId;
         $data->partition_email = $request->emails;
         $data->description = $request->description;
         $data->note = $request->note;
@@ -93,11 +93,11 @@ class EventsController extends Controller
      */
     public function edit($id)
     {
-        $user = User::query()->where('id', $id)->first();
-        // dd($user);
-        return view('user.edit', [
-            'user' => $user,
-            'company' => $user->company->name
+        $event = Event::query()->where('id', $id)->first();
+        // dd($event);
+        return view('events.edit', [
+            'event' => $event
+            // 'company' => $event->company->name
         ]);
     }
 
@@ -111,24 +111,39 @@ class EventsController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required',
-            'phone' => 'required|numeric',
-            'email' => 'required|email',
+            'usernameBooking' => 'required',
+            'telephoneBooking' => 'required|numeric',
+            'emailBooking' => 'required|email',
         ]);
 
-        /* $company = Company::firstOrCreate([
-            'name' => $request->company
-        ]); */
+        $data = new event;
+        $file = $request->fileupload;
+        $fileName = time();
+        if ($file != '') {
+            // echo "Yes";
+            $fileName = $fileName . '.' . $file->getClientOriginalExtension();
+            $destinationPath = base_path('files');
+            $file->move($destinationPath, $fileName);
+            //$data->file = $fileName;
+        }
 
-        $user = User::where('id', $id)->update([
-            'name' => $request->name,
-            'gender' => $request->gender,
-            'phone' => $request->phone,
-            'email' => $request->email,
-            'date_of_birth' => $request->date_of_birth
+        $event = Event::where('id', $id)->update([
+            'address' => $request->address,
+            'full_name' => $request->usernameBooking,
+            'phone_number' => $request->telephoneBooking,
+            'email' => $request->emailBooking,
+            'start_day' => $request->booking_date_start,
+            'end_day' => $request->booking_date_end,
+            'start_time' => $request->time_start,
+            'end_time' => $request->time_end,
+            'room_id' => $request->roomId,
+            'partition_email' => $request->emails,
+            'description' => $request->description,
+            'note' => $request->note,
+            'file' => $fileName
         ]);
 
-        return redirect()->route('kath.edit', Auth::user()->id);
+        return redirect()->route('event.edit', $id);
     }
 
     /**
@@ -148,7 +163,7 @@ class EventsController extends Controller
         $request->validate([
             'password' => 'required'
         ]);
-        User::where('id', $id)->update([
+        Event::where('id', $id)->update([
             'password' => Hash::make($request->password)
         ]);
     }
