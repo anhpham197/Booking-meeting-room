@@ -5,7 +5,6 @@
 @import "tailwindcss/utilities";
 
 
-
 .ml6 {
     position: relative;
 }
@@ -16,7 +15,7 @@
 }
 
 .font-logo {
-    font-family: 'Londrina Shadow', cursive;
+    font-family: 'Londrina Shadow', cursive !important;
     letter-spacing: 0.5rem;
 }
 

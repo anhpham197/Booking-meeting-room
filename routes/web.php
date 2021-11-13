@@ -47,7 +47,5 @@ Route::get('/kath/create', [UserController::class, 'create'])->name('kath.create
 Route::get('/kath/{id}/edit', [UserController::class, 'edit'])->name('kath.edit');
 Route::put('/kath/{id}/update', [UserController::class, 'update'])->name('kath.update');
 
-Route::post('change_password', [UserController::class, 'changePassword']);
-Route::get('password', function () {
-    return view('user.change_password');
-})->name('password');
+Route::put('/kath/{id}/change_password', [UserController::class, 'changePassword'])->name('kath.changePassword');
+Route::get('/kath/{id}/edit_password', [UserController::class, 'editPassword'])->name('kath.editPassword');

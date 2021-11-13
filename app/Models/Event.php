@@ -3,15 +3,13 @@
 namespace App\Models;
 
 use \DateTimeInterface;
-// use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Event extends Model implements HasMedia
+class Event extends Model 
 {
     use SoftDeletes;
-    use InteractsWithMedia;
     use HasFactory;
 
     public $table = 'events';
