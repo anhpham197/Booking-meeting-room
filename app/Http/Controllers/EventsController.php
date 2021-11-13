@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
-
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class EventsController extends Controller
 {
@@ -14,10 +16,11 @@ class EventsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function index()
     {
@@ -36,13 +39,13 @@ class EventsController extends Controller
         $data = new event;
         $file = $request->fileupload;
         if ($file != '') {
-            echo "Yes";
+            // echo "Yes";
             $fileName = time() . '.' . $file->getClientOriginalExtension();
             $destinationPath = base_path('files');
             $file->move($destinationPath, $fileName);
             $data->file = $fileName;
         } else {
-            dd('Request Has No File');
+            // dd('Request Has No File');
         }
 
         $data->address = $request->address;

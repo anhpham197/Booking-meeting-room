@@ -47,7 +47,7 @@
 
 
                     {{-- Company --}}
-                    <div class="flex flex-wrap">
+                    {{-- <div class="flex flex-wrap">
                         <label for="company" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
                             Company
                         </label>
@@ -64,7 +64,7 @@
                             {{ $message }}
                         </p>
                         @enderror
-                    </div>
+                    </div> --}}
 
                     <div class="flex flex-wrap">
                         <label for="password" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">

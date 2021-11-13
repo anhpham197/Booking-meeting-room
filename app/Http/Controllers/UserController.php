@@ -126,8 +126,8 @@ class UserController extends Controller
             'new_password'=>'required|min:6',
             'repeat_password'=>'required|min:6'
         ]);
-        if ($request->new_password === $request->repeat_password) {
-            User::where('id', $id)->update([
+        if (Hash::check($request->new_password, Hash::make($request->repeat_password))) {
+            User::where('id', $id)->update([ 
                 'password' => Hash::make($request->new_password)
             ]);
         }

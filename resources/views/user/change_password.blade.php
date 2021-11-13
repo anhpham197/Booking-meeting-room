@@ -23,10 +23,10 @@
                         </label>
 
                         <input id="new_password" type="password"
-                            class="form-input w-full @error('password') border-red-500 @enderror" name="new_password"
+                            class="form-input w-full @error('new_password') border-red-500 @enderror" name="new_password"
                             required>
 
-                        @error('password')
+                        @error('new_password')
                         <p class="text-red-500 text-xs italic mt-4">
                             {{ $message }}
                         </p>

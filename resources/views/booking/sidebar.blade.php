@@ -20,7 +20,7 @@
         </li>
         <li>
            <i class="fas fa-chevron-circle-down"></i>
-           <a href="#" class="text-white hover:no-underline">Danh sách công ty</a>
+           <a href="#" class="text-white hover:no-underline">Danh sách nhân viên</a>
         </li>
         <li>
             <i class="far fa-file-alt"></i>

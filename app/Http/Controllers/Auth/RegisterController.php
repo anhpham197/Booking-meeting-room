@@ -72,8 +72,8 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'date_of_birth' => null,
             'phone' => null,
-            'company_id' => $data['company_id'],
+            'company_id' => null,
             'gender' => null
-        ])->with('companies', \App\Models\Company::query()->get());
+        ]);
     }
 }
