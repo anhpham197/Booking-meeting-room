@@ -17,8 +17,8 @@
 
             <section class="row">
                 <div class="col-12">
-                    <form autocomplete="on" action="{{route('event.update', $event->id)}}" method="POST" enctype="multipart/form-data">
-                        {{-- @method('PUT') --}}
+                    <form autocomplete="on" action="{{route('event.update', [$event->id])}}" method="POST" enctype="multipart/form-data">
+                        @method('PUT')
                         @csrf
 
                         <div class="card">
@@ -50,7 +50,7 @@
                                     <div class="row">
                                         <div class="col">
                                             <label for="booking_date_start">Ngày bắt đầu</label>
-                                            <input type="date" class="form-control" name="booking_date_start" id="booking_date_start" value="{{ $event->start_day }}">
+                                            <input type="date" class="form-control" name="booking_date_start" id="booking_date_start" value="{{ $event->start_day->format('Y-m-d') }}">
                                         </div>
                                         <div class="col">
                                             <label for="time_start">Thời gian bắt đầu</label>
@@ -63,7 +63,7 @@
                                     <div class="row">
                                         <div class="col">
                                             <label for="booking_date_end">Ngày kết thúc</label>
-                                            <input type="date" class="form-control" name="booking_date_end" id="booking_date_end" value="{{ $event->end_day }}">
+                                            <input type="date" class="form-control" name="booking_date_end" id="booking_date_end" value="{{$event->end_day->format('Y-m-d') }}">
                                         </div>
                                         <div class="col">
                                             <label for="time_end">Thời gian kết thúc</label>
@@ -94,6 +94,11 @@
                                 <div class="form-group">
                                     <label for="textarea">Nội dung cuộc họp</label>
                                     <textarea id="textarea1" name="description" class="form-control" rows="5" value="{{ $event->description }}"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="fileupload">Tệp trước đó</label> <br>
+                                    {{$event->file}}
                                 </div>
 
                                 <div class="form-group">

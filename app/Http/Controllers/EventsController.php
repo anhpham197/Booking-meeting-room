@@ -94,10 +94,9 @@ class EventsController extends Controller
     public function edit($id)
     {
         $event = Event::query()->where('id', $id)->first();
-        // dd($event);
+        //dd($event);
         return view('events.edit', [
             'event' => $event
-            // 'company' => $event->company->name
         ]);
     }
 
