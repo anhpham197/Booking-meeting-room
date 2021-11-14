@@ -17,37 +17,41 @@
 
             <section class="row">
                 <div class="col-12">
-                    <form autocomplete="on" action="{{route('room.upload')}}" method="POST" enctype="multipart/form-data">
+                    <form autocomplete="on" action="{{route('room.update', [$room->id])}}" method="POST" enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
 
                         <div class="card">
                             <div class="card-header text-center">
-                                <b>Thêm phòng họp</b>
+                                <b>Sửa phòng họp</b>
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="roomName">Tên / Mã số phòng</label>
-                                    <input type="text" class="form-control" name="roomName" id="roomName" aria-describedby="roomNameHid" placeholder="" >
+                                    <input type="text" class="form-control" name="roomName" id="roomName" aria-describedby="roomNameHid" placeholder="" value="{{ $room->name }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="image">Ảnh hiện tại</label>
+                                    <img src="/img/{{$room->image}}" alt="">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="image">Đính kèm ảnh</label>
-                                    <input type = "file" name = "image" >
+                                    <label for="image">Đổi ảnh</label>
+                                    <input type = "file" name = "image" value="{{ $room->image }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="capacity">Sức chứa</label>
-                                    <input type="number" class="form-control" name="capacity" id="capacity" aria-describedby="capacityHid" placeholder="" required>
+                                    <input type="number" class="form-control" name="capacity" id="capacity" aria-describedby="capacityHid" placeholder="" value="{{ $room->capacity }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="textarea">Mô tả</label>
-                                    <textarea id="textarea" name="description" class="form-control" rows="5" ></textarea>
+                                    <textarea id="textarea" name="description" class="form-control" rows="5" value="{{ $room->description }}"></textarea>
                                 </div>
                             </div>
                             <div class="card-footer" style="text-align: center;">
-                                <button type="submit" class="btn btn-success">Tạo phòng</button>
+                                <button type="submit" class="btn btn-success">Lưu phòng</button>
                             </div>
                         </div>
                     </form>

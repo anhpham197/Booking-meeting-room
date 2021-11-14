@@ -22,7 +22,7 @@ class CreateEventsTable extends Migration
             $table->string('partition_email')->nullable();
             $table->longText('description')->nullable();
             $table->longText('note')->nullable();
-            $table->longText('file')->nullable();
+            $table->string('file')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

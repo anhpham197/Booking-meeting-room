@@ -21,7 +21,9 @@ class Room extends Model
     ];
 
     protected $fillable = [
+        'id',
         'name',
+        'image',
         'capacity',
         'description',
         'created_at',
@@ -29,8 +31,8 @@ class Room extends Model
         'deleted_at',
     ];
 
-    protected function serializeDate(DateTimeInterface $date)
-    {
-        return $date->format('Y-m-d H:i:s');
-    }
+    // protected function serializeDate(DateTimeInterface $date)
+    // {
+    //     return $date->format('Y-m-d H:i:s');
+    // }
 }

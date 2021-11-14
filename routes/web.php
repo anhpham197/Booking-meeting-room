@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventsController;
+use App\Http\Controllers\RoomsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -36,8 +37,10 @@ Route::post('/event/upload', [EventsController::class, 'create'])->name('event.u
 Route::put('/event/{id}/update', [EventsController::class, 'update'])->name('event.update');
 
 // Rooms
-Route::delete('rooms/destroy', 'RoomsController@massDestroy')->name('rooms.massDestroy');
-Route::resource('rooms', 'RoomsController');
+Route::get('/room/create', [RoomsController::class, 'index'])->name('room.create');
+Route::get('/room/{id}/edit', [RoomsController::class, 'edit'])->name('room.edit');
+Route::put('/room/upload', [RoomsController::class, 'create'])->name('room.upload');
+Route::put('/room/{id}/update', [RoomsController::class, 'update'])->name('room.update');
 
 Auth::routes();
 

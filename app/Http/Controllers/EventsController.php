@@ -155,15 +155,4 @@ class EventsController extends Controller
     {
         //
     }
-
-
-    public function changePassword(Request $request, $id)
-    {
-        $request->validate([
-            'password' => 'required'
-        ]);
-        Event::where('id', $id)->update([
-            'password' => Hash::make($request->password)
-        ]);
-    }
 }

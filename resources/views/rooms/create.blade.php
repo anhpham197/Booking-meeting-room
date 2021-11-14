@@ -17,8 +17,8 @@
 
             <section class="row">
                 <div class="col-12">
-                    <form autocomplete="on" action="{{route('create.update')}}" method="POST" enctype="multipart/form-data">
-                        @method('PUT')
+                    <form autocomplete="on" action="{{url('room/upload')}}" method="POST" enctype="multipart/form-data">
+                        {{-- @method('PUT') --}}
                         @csrf
 
                         <div class="card">
@@ -27,8 +27,8 @@
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="usernameBooking">Họ tên người đặt</label>
-                                    <input type="text" class="form-control" name="usernameBooking" id="usernameBooking" aria-describedby="usernameBookingHid" placeholder="">
+                                    <label for="full_name">Họ tên người đặt</label>
+                                    <input type="text" class="form-control" name="full_name" id="full_name" aria-describedby="full_nameHid" placeholder="">
                                 </div>
 
                                 <div class="form-group">
@@ -37,24 +37,24 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="telephoneBooking">Số điện thoại</label>
-                                    <input type="tel" class="form-control" name="telephoneBooking" id="telephoneBooking" aria-describedby="telephoneBookingHid" placeholder="">
+                                    <label for="phone_number">Số điện thoại</label>
+                                    <input type="tel" class="form-control" name="phone_number" id="phone_number" aria-describedby="phone_numberHid" placeholder="">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="emailBooking">Email</label>
-                                    <input type="email" class="form-control" name="emailBooking" id="emailBooking" aria-describedby="emailBookingHid" placeholder="">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHid" placeholder="">
                                 </div>
 
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col">
-                                            <label for="booking_date_start">Ngày bắt đầu</label>
-                                            <input type="date" class="form-control" name="booking_date_start" id="booking_date_start" >
+                                            <label for="start_day">Ngày bắt đầu</label>
+                                            <input type="date" class="form-control" name="start_day" id="start_day" >
                                         </div>
                                         <div class="col">
-                                            <label for="time_start">Thời gian bắt đầu</label>
-                                            <input type="time" class="form-control" name="time_start" id="time_start" >
+                                            <label for="start_time">Thời gian bắt đầu</label>
+                                            <input type="time" class="form-control" name="start_time" id="start_time" >
                                         </div>
                                     </div>
                                 </div>
@@ -62,19 +62,19 @@
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col">
-                                            <label for="booking_date_end">Ngày kết thúc</label>
-                                            <input type="date" class="form-control" name="booking_date_end" id="booking_date_end" >
+                                            <label for="end_day">Ngày kết thúc</label>
+                                            <input type="date" class="form-control" name="end_day" id="end_day" >
                                         </div>
                                         <div class="col">
-                                            <label for="time_end">Thời gian kết thúc</label>
-                                            <input type="time" class="form-control" name="time_end" id="time_end" >
+                                            <label for="end_time">Thời gian kết thúc</label>
+                                            <input type="time" class="form-control" name="end_time" id="end_time" >
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="roomId">Mã phòng</label>
-                                    <select name="roomId" id="">
+                                    <label for="room_id">Mã phòng</label>
+                                    <select name="room_id" id="" class="form-control" id="room_id">
                                         <option value="405">405</option>
                                         <option value="406">406</option>
                                     </select>
@@ -82,8 +82,8 @@
 
                                 <div class="form-group">
                                     <label for="email">Email người tham gia</label>
-                                    <input type="email" list="emails" multiple style="width: 100%;">
-                                    <datalist id="emails">
+                                    <input type="email" class="form-control" id="partition_email" list="partition_email" multiple style="width: 100%;">
+                                    <datalist id="partition_email">
                                         <option value="19021274@vnu.edu.vn">
                                         <option value="1234@vnu.edu.vn">
                                         <option value="23232@vnu.edu.vn">
@@ -93,7 +93,7 @@
 
                                 <div class="form-group">
                                     <label for="textarea">Nội dung cuộc họp</label>
-                                    <textarea id="textarea1" class="form-control" rows="5"></textarea>
+                                    <textarea id="textarea1" name="description" class="form-control" rows="5"></textarea>
                                 </div>
 
                                 <div class="form-group">
@@ -103,7 +103,7 @@
 
                                 <div class="form-group">
                                     <label for="textarea">Ghi chú</label>
-                                    <textarea id="textarea2" class="form-control" rows="5"></textarea>
+                                    <textarea id="textarea2" name="note" class="form-control" rows="5"></textarea>
                                 </div>
                             </div>
                             <div class="card-footer" style="text-align: center;">
