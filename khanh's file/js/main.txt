@@ -47,20 +47,33 @@ document.getElementById("th-office").addEventListener("click", function(){
 
 // code for inforMeeting.html
 
-function funct_all(type){
-  // type =1 => select all|| type =0 => deselect all
-  var a = document.getElementsByClassName('tb-row');
-  
-  for(var i =0; i<a.length; i ++) {
-    var b = a[i].cells[0];
-    if(type == 1){
-      b.firstElementChild.checked = true;
-      a[i].style.backgroundColor = "#1e90ff";
-    } else {
-      b.firstElementChild.checked = false;
-      a[i].style.backgroundColor = null;
-    }
-  }  
+function pickme(box, row) {
+  var color = document.getElementById(row).style;
+  var check = document.getElementById(box);
+  if(check.checked){
+    document.getElementById(row).style.backgroundColor = "#1e90ff";
+  } else {
+    document.getElementById(row).style= color;
+  }
 }
+
+
+  document.getElementById('table_to_highlight')
+  .addEventListener('click', function (item) {
+    // var row = item.path[1];
+    // row.style.backgroundColor = "#1e90ff";
+    var row = item.path[1];
+
+    var row_value = "";
+
+    for (var j = 0; j < row.cells.length; j++) {
+
+        row_value += row.cells[j].innerHTML;
+        row_value += " / ";
+    }
+
+    alert(row_value);
+});
+
 
 

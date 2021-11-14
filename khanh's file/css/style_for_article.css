@@ -113,9 +113,76 @@ ul ul a{
         opacity: 1;
     }
 }
+/* code cho phần event-content */
+.highlight{
+	background-color: #2eb85c;
+}
+.event-content{
+	background-color: #e5e4e2;
+	padding-left: 12px;
+	padding-right: 12px;
+	padding-top: 18px;
+	padding-bottom: 18px;
+	
+}
+.add-event-btn{
+	color: #fff;
+    background-color: #2eb85c;
+    border: none;
+	height: 32px;
+}
+.event-list-p{
+	line-height: 36px;	
+	background-color: white;
+	padding-left: 12px;
+	border-style: none none solid none;
+	border-width: 1px;
+	margin-bottom: 0px;
+	margin-top: 12px;
+}
+.event-main-section{
+	background-color: white;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.select-event{
+	display: flex;
+	justify-content: space-between;
+}
+.left-content{
+	display: flex;
+	justify-content: space-evenly;
+	cursor: pointer;
+}
+.left-content>p{
+	padding: 0 6px;
+	margin-right: 5px;
+	
+	background-color: #e5e4e2;
+	border-radius: 3px;
+}
+.content-table{
+	border-collapse: collapse;
+	width: 100%;
+}
 
-
-
-
+.content-table th, td{
+	border: 1px solid #a9a9a9;
+	text-align: center;
+	
+}
+.tb-row{
+	background-color: #e3dac9;
+}
+.scroller{
+	overflow-x: scroll;
+}
+#entities{
+	width: 56px;
+	height: 25px;
+	margin-right: 5px;
+}
 
 
