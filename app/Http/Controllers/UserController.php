@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
+use Symfony\Component\Console\Helper\Helper;
 
 class UserController extends Controller
 {
@@ -123,14 +125,15 @@ class UserController extends Controller
     public function changePassword(Request $request, $id)
     {
         $request->validate([
-            'new_password'=>'required|min:6',
-            'repeat_password'=>'required|min:6'
+            'newPassword'=>'required|confirmed|min:6',
         ]);
-        if (Hash::check($request->new_password, Hash::make($request->repeat_password))) {
+        if (Hash::check($request->newPassword, Hash::make($request->newPassword_confirmation))) {
             User::where('id', $id)->update([ 
-                'password' => Hash::make($request->new_password)
+                'password' => Hash::make($request->newPassword)
             ]);
+            return redirect()->route('home');
+        } else {
+            return Redirect::back()->with('message', 'Vui lòng xác nhận lại mật khẩu');
         }
-        return redirect()->route('home');
     }
 }
