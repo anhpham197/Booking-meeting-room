@@ -17,7 +17,7 @@
 
             <section class="row">
                 <div class="col-12">
-                    <form autocomplete="on" action="{{url('event/upload')}}" method="POST" enctype="multipart/form-data">
+                    <form autocomplete="on" action="{{route('event.upload')}}" method="POST" enctype="multipart/form-data">
                         {{-- @method('PUT') --}}
                         @csrf
 
