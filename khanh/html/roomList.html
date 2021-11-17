@@ -13,9 +13,6 @@
 </head>
 
 <body>
-
-
-
     <div class="wrapper" >
         <nav id="sidebar">
              <div class="sidebar-header">
@@ -64,6 +61,7 @@
        
              </ul>
         </nav>
+
         <div id="content">
             
             <nav class="navbar navbar-expand-lg navbar-light bg-light " style="height: 81px;" >
@@ -75,15 +73,17 @@
                 </div>
             </nav>
             <div class="event-content">
-                <button class="add-event-btn">Thêm sự kiện</button>
-                <p class="event-list-p">Danh sách sự kiện</p>
-                <div class="event-main-section">
+                <button class="add-event-btn">Thêm phòng</button>
+            </div>
+            <div class="card" >
+                <div class="card-header">Danh sách phòng</div>
+                <div class="card-body">
                     <div class="select-event">
                         <div class="left-content">
                             <label for="entities">Xem: </label>
                             <input type="number" name="" id="entities" min="0" max="100" placeholder="1" step="10">
-                            <p style="background-color: #321fdb; color: white;">Chọn toàn bộ</p>
-                            <p style="background-color: #321fdb; color: white; opacity: 0.65;">Bỏ chọn</p>
+                            <p style="background-color: #321fdb; color: white;" onclick="funct_all(1)">Chọn toàn bộ</p>
+                            <p style="background-color: #321fdb; color: white; opacity: 0.65;" onclick="funct_all(0)">Bỏ chọn</p>
                             <p>Copy</p>
                             <p>CSV</p>
                             <p>Excel</p>
@@ -97,59 +97,56 @@
                             <input type="text" id="search">
                         </div>
                     </div>
-                    
-                    
-                    <table class="content-table">
-                        <tr>
-                            <th></th>
-                            <th>ID
-                                <i class="fas fa-sort"></i>
-                            </th>
-                            
-                            <th>Họ và tên
-                                <i class="fas fa-sort"></i>
-                            </th>
-                            <th>Số điện thoại
-                                
-                            </th>
-                            <th>Email
-                                <i class="fas fa-sort"></i>
-                            </th>
-                            <th>Ngày bắt đầu
-                                <i class="fas fa-sort"></i>
-                            </th>
-                            <th>Ngày kết thúc
-                                <i class="fas fa-sort"></i>
-                            </th>
-                            <th>Email
-                                <i class="fas fa-sort"></i>
-                            </th>
-                            <th>Mô tả
-                                
-                            </th>
-                            <th>Lưu ý 
-                                
-                            </th>
-                            <th>File
-                                
-                            </th>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="radio"></input>
-                            </td>
-                            <td>1</td>
-                            <td>Kieu van tuyen</td>
-                            <td>113</td>
-                            <td>Kieuvantuyen@gmail.com</td>
-                            <td>12/08/2021</td>
-                            <td>12/08/2021</td>
-                            <td>1190123@vnu.edu.vn</td>
-                            <td>ddddddddd</td>
-                            <td>sssssssss</td>
-                            <td>aaaaaaaaaaa</td>
-                        </tr>
-                    </table>
+                    <div class="scroller">
+                        <table class="content-table" id="table_to_highlight">
+                            <tr >
+                                <th></th>
+                                <th id="rl-tb-id">ID
+                                    <i class="fas fa-sort"></i>
+                                </th>
+                                <th id="rl-tb-name">Họ và tên
+                                   <i class="fas fa-sort"></i>
+                                </th>
+                                <th>Diện tích                                  
+                                </th>
+                                <th>Mô tả   
+                                </th>
+                            </tr>
+                            <tr class="tb-row">
+                                <td>
+                                    <input type="checkbox" disabled></input>
+                                </td>
+                                <td>1</td>
+                                <td>Kieu van tuyen3</td>
+                                <td>113</td>
+                                <td>Họp</td>
+                            </tr>
+                            <tr class="tb-row">
+                                <td>
+                                    <input type="checkbox" disabled></input>
+                                </td>
+                                <td>2</td>
+                                <td>Kieu van tuyen2</td>
+                                <td>113</td>
+                                <td>Họp</td>
+                            </tr>
+                            <tr class="tb-row">
+                                <td>
+                                    <input type="checkbox" disabled></input>
+                                </td>
+                                <td>3</td>
+                                <td>Kieu van tuyen1</td>
+                                <td>113</td>
+                                <td>Họp</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <ul class="pagination justify-content-end">
+                        <li class="page-item list-group-item-secondary border border-light"><a class="page-link" href="#" style="color: #321fdb;" >Previous</a></li>
+                        <li class="page-item list-group-item-secondary border border-light"><a class="page-link" href="#" style="color: #321fdb;">Next</a></li>
+                      </ul>
                 </div>
             </div>
         </div>
@@ -208,5 +205,28 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="/js/main.js"></script>
+<script type="text/javascript">
+    // code này chạy để chọn thông tin trong table
+document.getElementById('table_to_highlight')
+    .addEventListener('click', function (item) {
+
+        var row = item.path[1];
+        var box = row.cells[0];
+        if(!box.firstElementChild.checked) {
+            box.firstElementChild.checked = true;
+            row.style.backgroundColor = "#1e90ff";
+        } else {
+            box.firstElementChild.checked = false;
+            row.style.backgroundColor = null;
+        }
+    });
+
+document.getElementById('rl-tb-id').addEventListener('click', function(){
+    sort_name("1", "table_to_highlight");
+});
+document.getElementById('rl-tb-name').addEventListener('click', function(){
+    sort_name("2", "table_to_highlight");
+});
+    </script>
 </body>
 </html>
