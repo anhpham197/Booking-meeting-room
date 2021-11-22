@@ -125,7 +125,7 @@ class UserController extends Controller
     public function changePassword(Request $request, $id)
     {
         $request->validate([
-            'newPassword'=>'required|confirmed|min:6',
+            'newPassword'=>'required|confirmed|min:8',
         ]);
         if (Hash::check($request->newPassword, Hash::make($request->newPassword_confirmation))) {
             User::where('id', $id)->update([ 

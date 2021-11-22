@@ -1,22 +1,3 @@
-{{-- <!DOCTYPE html>
-<html>
-<head>
-    <title>Booking Room</title>
-    <meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-    <style>
-        .form-group + .form-group{
-            margin-top: 15px;
-        }
-
-        .card , .card-header{
-            border-radius: 0px;
-        }
-    </style>
-</head>
-<body>
-    <main class="container"> --}}
 @extends('layouts.app')
 @section('content')
     <div class="wrapper">
@@ -46,13 +27,8 @@
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="usernameBooking">Họ tên người đặt</label>
+                                    <label for="usernameBooking">Họ tên người đặt <span class="text-red-600">*</span></label>
                                     <input type="text" class="form-control" name="usernameBooking" id="usernameBooking" aria-describedby="usernameBookingHid" placeholder="">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="address">Địa chỉ</label>
-                                    <input type="text" class="form-control" name="address" id="address" aria-describedby="addressHid" placeholder="">
                                 </div>
 
                                 <div class="form-group">
@@ -126,7 +102,7 @@
                                 </div>
                             </div>
                             <div class="card-footer" style="text-align: center;">
-                                <button type="submit" class="btn btn-success">Đặt phòng</button>
+                                <button type="submit" class="btn btn-primary">Đặt phòng</button>
                             </div>
                         </div>
                     </form>

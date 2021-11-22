@@ -27,13 +27,8 @@
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="usernameBooking">Họ tên người đặt</label>
-                                    <input type="text" class="form-control" name="usernameBooking" id="usernameBooking" aria-describedby="usernameBookingHid" placeholder="">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="address">Địa chỉ</label>
-                                    <input type="text" class="form-control" name="address" id="address" aria-describedby="addressHid" placeholder="">
+                                    <label for="usernameBooking">Họ tên người đặt <span class="text-red-600">*</span></label>
+                                    <input type="text" class="form-control" name="usernameBooking" id="usernameBooking" aria-describedby="usernameBookingHid" required>
                                 </div>
 
                                 <div class="form-group">
@@ -98,7 +93,7 @@
 
                                 <div class="form-group">
                                     <label for="fileupload">Đính kèm tệp</label>
-                                    <input type = "file" name = "fileupload" >
+                                    <input type="file" name="fileupload" >
                                 </div>
 
                                 <div class="form-group">
@@ -107,7 +102,7 @@
                                 </div>
                             </div>
                             <div class="card-footer" style="text-align: center;">
-                                <button type="submit" class="btn btn-success">Đặt phòng</button>
+                                <button type="submit" class="btn btn-primary">Đặt phòng</button>
                             </div>
                         </div>
                     </form>
