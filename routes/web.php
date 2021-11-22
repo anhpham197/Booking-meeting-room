@@ -35,8 +35,8 @@ Route::get('event/{id}/edit', [EventsController::class, 'edit'])->name('event.ed
 Route::post('event/upload', [EventsController::class, 'create'])->name('event.upload');
 
 // Rooms
-Route::delete('rooms/destroy', 'RoomsController@massDestroy')->name('rooms.massDestroy');
-Route::resource('rooms', 'RoomsController');
+/* Route::delete('rooms/destroy', 'RoomsController@massDestroy')->name('rooms.massDestroy');
+Route::resource('rooms', 'RoomsController'); */
 
 Auth::routes();
 

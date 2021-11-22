@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Company;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -55,7 +56,8 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+            'company' => ['required']
+        ]); 
     }
 
     /**
@@ -65,14 +67,22 @@ class RegisterController extends Controller
      * @return \App\Models\User
      */
     protected function create(array $data)
-    {
+    {   
+        $parseFromCompany = (int)($data['company']);
+        $idCompany = -1;
+        if ($parseFromCompany == 0) {
+            $newCompany = new Company();
+            $newCompany->name = $data['company'];
+            $newCompany->save();
+            $idCompany = $newCompany->id;
+        } else $idCompany = $data['company'];
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'date_of_birth' => null,
             'phone' => null,
-            'company_id' => null,
+            'company_id' => $idCompany,
             'gender' => null
         ]);
     }

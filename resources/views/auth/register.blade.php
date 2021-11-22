@@ -6,7 +6,7 @@
         <div class="w-full">
             <section class="flex flex-col break-words bg-white sm:border-1 sm:rounded-md sm:shadow-sm sm:shadow-lg">
 
-                <header class="font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 sm:rounded-t-md">
+                <header class="font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 sm:rounded-t-md text-xl text-center uppercase">
                     {{ __('Register') }}
                 </header>
 
@@ -16,7 +16,7 @@
 
                     <div class="flex flex-wrap">
                         <label for="name" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
-                            {{ __('Name') }}:
+                            {{ __('Name') }} <span class="text-red-600">*</span>
                         </label>
 
                         <input id="name" type="text" class="form-input w-full @error('name')  border-red-500 @enderror"
@@ -31,7 +31,7 @@
 
                     <div class="flex flex-wrap">
                         <label for="email" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
-                            {{ __('E-Mail Address') }}:
+                            {{ __('E-Mail Address') }} <span class="text-red-600">*</span>
                         </label>
 
                         <input id="email" type="email"
@@ -47,28 +47,22 @@
 
 
                     {{-- Company --}}
-                    {{-- <div class="flex flex-wrap">
+                    <div class="flex flex-wrap">
                         <label for="company" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
-                            Company
+                            Company <span class="text-red-600">*</span>
                         </label>
 
-                        <select name="company" id="company-select" class="form-control">
+                        <select name="company" id="company-select" class="form-control" required>
                             <option value="">Chọn</option>
                             @foreach ($companies as $company)
-                                <option value="{{ $company->id }}" {{ $user->company_id == $company->id ? 'selected' : '' }}>{{ $company->name }}</option>
+                                <option value="{{ $company->id }}">{{ $company->name }}</option>
                             @endforeach
                         </select>
-
-                        @error('email')
-                        <p class="text-red-500 text-xs italic mt-4">
-                            {{ $message }}
-                        </p>
-                        @enderror
-                    </div> --}}
+                    </div> 
 
                     <div class="flex flex-wrap">
                         <label for="password" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
-                            {{ __('Password') }}:
+                            {{ __('Password') }} <span class="text-red-600">*</span>
                         </label>
 
                         <input id="password" type="password"
@@ -84,7 +78,7 @@
 
                     <div class="flex flex-wrap">
                         <label for="password-confirm" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
-                            {{ __('Confirm Password') }}:
+                            {{ __('Confirm Password') }} <span class="text-red-600">*</span>
                         </label>
 
                         <input id="password-confirm" type="password" class="form-input w-full"
@@ -109,5 +103,18 @@
             </section>
         </div>
     </div>
+
+    <script>
+        jQuery(document).ready(function() {
+            $('#company-select').select2({
+                tags: true
+            });
+
+            // console.log($("#company-select option:selected").text());
+            $("#company-select").on('select2:select', function(e) {
+                console.log(typeof e.target.value)
+            })
+        });
+    </script>
 </main>
 @endsection

@@ -30,14 +30,14 @@
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="username">Họ tên <span class="text-red-600">*</span></label>
+                                    <label for="username" class="font-semibold">Họ tên <span class="text-red-600">*</span></label>
                                     <input type="text" class="form-control" name="name" id="name" value="{{ $user->name }}">
                                     @error('name')
                                         <span class="text-red-600">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="form-group flex gap-4">
-                                    <label for="gender">Giới tính</label><br>
+                                    <label for="gender" class="font-semibold">Giới tính</label><br>
                                     <div>
                                         <input type="radio" name="gender" id="male" value="Nam" @if (!empty($user->gender) && $user->gender == 'Nam')
                                             checked
@@ -55,32 +55,26 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="date">Ngày sinh</label>
+                                    <label for="date" class="font-semibold">Ngày sinh</label>
                                     <input type="date" class="form-control" name="date_of_birth" id="date_of_birth" @if (!empty($user->date_of_birth)) value="{{ $user->date_of_birth }}" @endif>
                                 </div>
                                 <div class="form-group">
-                                    <label for="telephone">Số điện thoại <span class="text-red-600">*</span></label>
+                                    <label for="telephone" class="font-semibold">Số điện thoại <span class="text-red-600">*</span></label>
                                     <input type="tel" class="form-control" name="phone" id="phone" @if (!empty($user->phone)) value="{{ $user->phone}}" @endif>
                                     @error('phone')
                                         <span class="text-red-600">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="email">Email <span class="text-red-600">*</span></label>
+                                    <label for="email" class="font-semibold">Email <span class="text-red-600">*</span></label>
                                     <input type="email" class="form-control" name="email" id="email" value="{{ $user->email }}">
                                     @error('email')
                                         <span class="text-red-600">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="company">Công ty <span class="text-red-600">*</span></label>
-                                    {{-- <select name="company" id="company-select" class="form-control">
-                                        <option value="">Chọn</option>
-                                        @foreach ($companies as $company)
-                                            <option value="{{ $company->id }}" {{ $user->company_id == $company->id ? 'selected' : '' }}>{{ $company->name }}</option>
-                                        @endforeach
-                                    </select> --}}
-                                    <input type="text" class="form-control" name="company" id="company" value={{ $company }} readonly>
+                                    <label for="company" class="font-semibold">Công ty <span class="text-red-600">*</span></label>
+                                    <input type="text" class="form-control" name="company" id="company" value="{{ $company }}" readonly>
                                 </div>
                             </div>
                             <div class="card-footer" style="text-align: center;">
@@ -92,12 +86,4 @@
             </section>
         </div>
     </div>
-
-    <script>
-        jQuery(document).ready(function() {
-            $('#company-select').select2({
-                tags: true
-            });
-        });
-    </script>
 @endsection
