@@ -90,19 +90,23 @@ class UserController extends Controller
             'email' => 'required|email',
         ]);
 
-        /* $company = Company::firstOrCreate([
-            'name' => $request->company
-        ]); */
+        $existedEmail = User::query()->where('email', $request->email);
+        $existedPhone = User::query()->where('phone', $request->phone);
 
-        $user = User::where('id', $id)->update([
-            'name' => $request->name,
-            'gender' => $request->gender,
-            'phone' => $request->phone,
-            'email' => $request->email,
-            'date_of_birth' => $request->date_of_birth
-        ]);
-
-        return redirect()->route('kath.edit', Auth::user()->id);
+        if (empty($existedPhone) != null) {
+            return redirect()->route('kath.edit', Auth::user()->id)->with('msgPhone', 'Số điện thoại đã tồn tại ! ');
+        } else if (empty($existedEmail) != null) {
+            return redirect()->route('kath.edit', Auth::user()->id)->with('msgEmail', 'Email đã tồn tại ! ');
+        } else {
+            $user = User::where('id', $id)->update([
+                'name' => $request->name,
+                'gender' => $request->gender,
+                'phone' => $request->phone,
+                'email' => $request->email,
+                'date_of_birth' => $request->date_of_birth
+            ]);
+            return redirect()->route('kath.edit', Auth::user()->id)->with('msgUpdateSuccess', "Cập nhập thông tin thành công !");
+        }
     }
 
     /**

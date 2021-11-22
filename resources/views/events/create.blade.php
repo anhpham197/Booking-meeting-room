@@ -3,15 +3,20 @@
     <div class="wrapper">
         @include('booking.sidebar')
         <div id="content">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 80px;" >
+            <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 60px;" >
                 <div class="flex gap-6">
-                    <button type="button" id="sidebarCollapse" class="footer-main-cl rounded-md">
-                        <i class="fas fa-bars p-3"></i>
+                    <button type="button" id="sidebarCollapse" class="cursor-pointer rounded-md">
+                        <i class="fas fa-angle-double-left text-2xl font-normal"></i>    
                     </button>
-                    <form action="" method="post" class="flex" class="border border-gray-100">
-                        <input type="search" id="search" name="search" class="pl-2 border border-gray-100 rounded-l" onchange="hideIcon(this);" placeholder=" Tìm kiếm"/>
-                        <button type="submit" class="bg-blue-400 hover:bg-blue-500 p-3 w-1/5 rounded-r"><i class="fa fa-search"></i></button>
-                    </form>
+                    {{-- <div class="justify-center">Trang chủ</div> --}}
+                    <div class="relative flex w-full flex-wrap items-stretch"> 
+                        <span
+                          class="z-10 h-full leading-snug font-normal absolutetext-center text-gray-400 absolute bg-transparent rounded items-center justify-center pl-3 py-3">
+                          <i class="fas fa-search"></i>
+                        </span>
+                        <input type="search" id="search" name="search" class="form-input placeholder-gray-400 w-72 pl-10" placeholder="Tìm kiếm..."
+                                style="font-family: 'Font Awesome 5 Free', 'system-ui'; border: 1px solid #4f4f4f" >
+                    </div>
                 </div>
             </nav>
 
@@ -110,19 +115,4 @@
             </section>
         </div>
     </div>
-    {{-- </main> --}}
-
-
-    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script> --}}
-    <script>
-        jQuery(document).ready(function() {
-            $('#company-select').select2({
-                tags: true
-            });
-        });
-    </script>
-{{-- </body>
-</html> --}}
 @endsection
