@@ -3,10 +3,10 @@
     <div class="wrapper">
         @include('booking.sidebar')
         <div id="content">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 60px;" >
+            <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 70px;" >
                 <div class="flex gap-6">
                     <button type="button" id="sidebarCollapse" class="cursor-pointer rounded-md">
-                        <i class="fas fa-angle-double-left text-2xl font-normal"></i>    
+                        <i class="fas fa-angle-double-left text-2xl font-normal text-gray-400"></i>    
                     </button>
                     {{-- <div class="justify-center">Trang chủ</div> --}}
                     {{-- <div class="relative flex w-full flex-wrap items-stretch"> 

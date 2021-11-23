@@ -3,7 +3,7 @@
     <div class="wrapper">
         @include('booking.sidebar')
         <div id="content">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 60px;" >
+            <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 70px;" >
                 <div class="flex gap-6">
                     <button type="button" id="sidebarCollapse" class="cursor-pointer rounded-md">
                         <i class="fas fa-angle-double-left text-2xl font-normal"></i>    

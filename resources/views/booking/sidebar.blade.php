@@ -1,5 +1,6 @@
 <nav id="sidebar">
-    <div class="sidebar-header">
+    <div class="sidebar-header uppercase font-bold text-center text-2xl" style="height: 70px">
+        Trang chủ
     </div>
     <ul class="lisst-unstyled components">
         <li>
@@ -24,7 +25,7 @@
         <li>
             {{-- fa-chevron-circle-down --}}
            <i class="fas fa-users"></i>
-           <a href="#" class="text-white hover:no-underline">Danh sách nhân viên</a>
+           <a href="{{ route('kath.showUsers') }}" class="text-white hover:no-underline">Danh sách nhân viên</a>
         </li>
         <li>
             <i class="far fa-handshake"></i>            
@@ -51,7 +52,7 @@
       </li> --}}
     </ul>
 
-    <div class="text-center bottom-0">PHIÊN BẢN : {{ env('APP_STATIC_VERSION') }}</div>
+    <div class="text-center pb-5">PHIÊN BẢN : {{ env('APP_STATIC_VERSION') }}</div>
 
     
     <script>

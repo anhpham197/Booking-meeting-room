@@ -108,6 +108,13 @@ ul ul a{
 	transition: all 0.3s;
 }
 
+.table-idea{
+	position: sticky;
+	top: 0;
+	background-color: #D9CAB3;
+	
+}
+
 header {
     background-color: #343a40;
 }
