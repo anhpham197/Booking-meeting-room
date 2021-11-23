@@ -38,11 +38,16 @@ Route::post('/event/upload', [EventsController::class, 'upload'])->name('event.u
 Route::put('/event/{id}/update', [EventsController::class, 'update'])->name('event.update');
 
 // Rooms
+<<<<<<< HEAD
 Route::get('/room/view', [RoomsController::class, 'index'])->name('room.view');
 Route::get('/room/create', [RoomsController::class, 'create'])->name('room.create');
 Route::get('/room/{id}/edit', [RoomsController::class, 'edit'])->name('room.edit');
 Route::put('/room/upload', [RoomsController::class, 'upload'])->name('room.upload');
 Route::put('/room/{id}/update', [RoomsController::class, 'update'])->name('room.update');
+=======
+/* Route::delete('rooms/destroy', 'RoomsController@massDestroy')->name('rooms.massDestroy');
+Route::resource('rooms', 'RoomsController'); */
+>>>>>>> anhpham
 
 Auth::routes();
 

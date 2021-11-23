@@ -18,15 +18,15 @@
                     @csrf
 
                     <div class="flex flex-wrap">
-                        <label for="new_password" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
+                        <label for="newPassword" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
                             Mật khẩu mới:
                         </label>
 
-                        <input id="new_password" type="password"
-                            class="form-input w-full @error('new_password') border-red-500 @enderror" name="new_password"
+                        <input id="newPassword" type="password"
+                            class="form-input w-full @error('newPassword') border-red-500 @enderror" name="newPassword"
                             required>
 
-                        @error('new_password')
+                        @error('newPassword')
                         <p class="text-red-500 text-xs italic mt-4">
                             {{ $message }}
                         </p>
@@ -34,15 +34,15 @@
                     </div>
 
                     <div class="flex flex-wrap">
-                        <label for="repeat_password" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
+                        <label for="newPassword_confirmation" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
                             Xác nhận mật khẩu mới:
                         </label>
 
-                        <input id="repeat_password" type="password"
-                            class="form-input w-full @error('repeat_password') border-red-500 @enderror" name="repeat_password"
+                        <input id="newPassword_confirmation" type="password"
+                            class="form-input w-full @error('newPassword_confirmation') border-red-500 @enderror" name="newPassword_confirmation"
                             required>
 
-                        @error('repeat_password')
+                        @error('newPassword_confirmation')
                         <p class="text-red-500 text-xs italic mt-4">
                             {{ $message }}
                         </p>

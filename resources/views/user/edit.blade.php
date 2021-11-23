@@ -3,15 +3,20 @@
     <div class="wrapper">
         @include('booking.sidebar')
         <div id="content">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 80px;" >
+            <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 60px;" >
                 <div class="flex gap-6">
-                    <button type="button" id="sidebarCollapse" class="footer-main-cl rounded-md">
-                        <i class="fas fa-bars p-3"></i>
+                    <button type="button" id="sidebarCollapse" class="cursor-pointer rounded-md">
+                        <i class="fas fa-angle-double-left text-2xl font-normal"></i>    
                     </button>
-                    <form action="" method="post" class="flex" class="border border-gray-100">
-                        <input type="search" id="search" name="search" class="pl-2 border border-gray-100 rounded-l" onchange="hideIcon(this);" placeholder=" Tìm kiếm"/>
-                        <button type="submit" class="bg-blue-400 hover:bg-blue-500 p-3 w-1/5 rounded-r"><i class="fa fa-search"></i></button>
-                    </form>
+                    {{-- <div class="justify-center">Trang chủ</div> --}}
+                    {{-- <div class="relative flex w-full flex-wrap items-stretch"> 
+                        <span
+                          class="z-10 h-full leading-snug font-normal absolutetext-center text-gray-400 absolute bg-transparent rounded items-center justify-center pl-3 py-3">
+                          <i class="fas fa-search"></i>
+                        </span>
+                        <input type="search" id="search" name="search" class="form-input placeholder-gray-400 w-72 pl-10" placeholder="Tìm kiếm..."
+                                style="font-family: 'Font Awesome 5 Free', 'system-ui'; border: 1px solid #4f4f4f" >
+                    </div> --}}
                 </div>
             </nav>
 
@@ -29,15 +34,19 @@
                                 <b>Thông tin cá nhân</b>
                             </div>
                             <div class="card-body">
+                                @if (session()->has('msgUpdateSuccess'))
+                                    <div class="text-center text-blue-500">{{ session()->get('msgUpdateSuccess') }}</div>
+                                @endif
+                                <div class="text-center"></div>
                                 <div class="form-group">
-                                    <label for="username">Họ tên <span class="text-red-600">*</span></label>
+                                    <label for="username" class="font-semibold">Họ tên <span class="text-red-600">*</span></label>
                                     <input type="text" class="form-control" name="name" id="name" value="{{ $user->name }}">
                                     @error('name')
                                         <span class="text-red-600">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="form-group flex gap-4">
-                                    <label for="gender">Giới tính</label><br>
+                                    <label for="gender" class="font-semibold">Giới tính</label><br>
                                     <div>
                                         <input type="radio" name="gender" id="male" value="Nam" @if (!empty($user->gender) && $user->gender == 'Nam')
                                             checked
@@ -55,32 +64,38 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="date">Ngày sinh</label>
+                                    <label for="date" class="font-semibold">Ngày sinh</label>
                                     <input type="date" class="form-control" name="date_of_birth" id="date_of_birth" @if (!empty($user->date_of_birth)) value="{{ $user->date_of_birth }}" @endif>
                                 </div>
                                 <div class="form-group">
-                                    <label for="telephone">Số điện thoại <span class="text-red-600">*</span></label>
+                                    <label for="telephone" class="font-semibold">Số điện thoại 
+                                        <span class="text-red-600">* 
+                                            @if (session()->has('msgPhone'))
+                                                <span class="font-normal">{{ session()->get('msgPhone') }}</span>
+                                            @endif
+                                        </span>
+                                    </label>
                                     <input type="tel" class="form-control" name="phone" id="phone" @if (!empty($user->phone)) value="{{ $user->phone}}" @endif>
                                     @error('phone')
                                         <span class="text-red-600">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="email">Email <span class="text-red-600">*</span></label>
+                                    <label for="email" class="font-semibold">Email 
+                                        <span class="text-red-600">* 
+                                            @if (session()->has('msgEmail'))
+                                                <span class="font-normal">{{ session()->get('msgEmail') }}</span>
+                                            @endif
+                                        </span>
+                                    </label>
                                     <input type="email" class="form-control" name="email" id="email" value="{{ $user->email }}">
                                     @error('email')
                                         <span class="text-red-600">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="company">Công ty <span class="text-red-600">*</span></label>
-                                    {{-- <select name="company" id="company-select" class="form-control">
-                                        <option value="">Chọn</option>
-                                        @foreach ($companies as $company)
-                                            <option value="{{ $company->id }}" {{ $user->company_id == $company->id ? 'selected' : '' }}>{{ $company->name }}</option>
-                                        @endforeach
-                                    </select> --}}
-                                    <input type="text" class="form-control" name="company" id="company" value={{ $company }} readonly>
+                                    <label for="company" class="font-semibold">Công ty <span class="text-red-600">*</span></label>
+                                    <input type="text" class="form-control" name="company" id="company" value="{{ $company }}" readonly>
                                 </div>
                             </div>
                             <div class="card-footer" style="text-align: center;">
@@ -92,12 +107,4 @@
             </section>
         </div>
     </div>
-
-    <script>
-        jQuery(document).ready(function() {
-            $('#company-select').select2({
-                tags: true
-            });
-        });
-    </script>
 @endsection
