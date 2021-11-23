@@ -122,24 +122,19 @@ class UserController extends Controller
 
 
 
-    public function editPassword($id) {
+    public function editPassword($id)
+    {
         return view('user.change_password');
     }
 
     public function changePassword(Request $request, $id)
     {
         $request->validate([
-            'newPassword'=>'required|confirmed|min:8',
+            'newPassword' => 'required|confirmed|min:8',
         ]);
-<<<<<<< HEAD
-        if (Hash::check($request->new_password, Hash::make($request->repeat_password))) {
-            User::where('id', $id)->update([
-                'password' => Hash::make($request->new_password)
-=======
         if (Hash::check($request->newPassword, Hash::make($request->newPassword_confirmation))) {
-            User::where('id', $id)->update([ 
+            User::where('id', $id)->update([
                 'password' => Hash::make($request->newPassword)
->>>>>>> anhpham
             ]);
             return redirect()->route('home');
         } else {
