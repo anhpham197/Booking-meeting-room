@@ -114,9 +114,7 @@ ul ul a{
     }
 }
 /* code cho phần event-content */
-.highlight{
-	background-color: #2eb85c;
-}
+
 .event-content{
 	background-color: #e5e4e2;
 	padding-left: 12px;
@@ -130,6 +128,7 @@ ul ul a{
     background-color: #2eb85c;
     border: none;
 	height: 32px;
+	border-radius: 5px;
 }
 .event-list-p{
 	line-height: 36px;	
@@ -159,7 +158,6 @@ ul ul a{
 .left-content>p{
 	padding: 0 6px;
 	margin-right: 5px;
-	
 	background-color: #e5e4e2;
 	border-radius: 3px;
 }
@@ -177,12 +175,19 @@ ul ul a{
 	background-color: #e3dac9;
 }
 .scroller{
-	overflow-x: scroll;
+	position: relative;
+	height: 200px;
+	overflow: auto;
+	display: block;
 }
 #entities{
 	width: 56px;
 	height: 25px;
 	margin-right: 5px;
+}
+
+th,td{
+	text-align: center;
 }
 
 

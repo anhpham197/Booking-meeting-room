@@ -4,9 +4,25 @@ $(document).ready(function () {
     });
 });
 
-function sort_name(col){
+function funct_all(type){
+  // type =1 => select all|| type =0 => deselect all
+  var a = document.getElementsByClassName('tb-row');
+  
+  for(var i =0; i<a.length; i ++) {
+    var b = a[i].cells[0];
+    if(type == 1){
+      b.firstElementChild.checked = true;
+      a[i].style.backgroundColor = "#1e90ff";
+    } else {
+      b.firstElementChild.checked = false;
+      a[i].style.backgroundColor = null;
+    }
+  }  
+}
+
+function sort_name(col, table_name){
   var table, rows, switching, i, x, y, shouldSwitch;
-  table = document.getElementById("dtOrderExample");
+  table = document.getElementById(table_name);
   switching = true;
   
   while (switching) {
@@ -28,39 +44,24 @@ function sort_name(col){
       }
     }
     if (shouldSwitch) {
-      /*If a switch has been marked, make the switch
-      and mark that a switch has been done:*/
       rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
       switching = true;
     }
   }
 }
 document.getElementById("th-name").addEventListener("click", function(){
-    sort_name("0");
+    sort_name("0","dtOrderExample");
 });
 document.getElementById("th-mail").addEventListener("click", function(){
-    sort_name("1");
+    sort_name("1","dtOrderExample");
 });
 document.getElementById("th-office").addEventListener("click", function(){
-    sort_name("2");
+    sort_name("2","dtOrderExample");
 });
 
-// code for inforMeeting.html
+ 
 
-function funct_all(type){
-  // type =1 => select all|| type =0 => deselect all
-  var a = document.getElementsByClassName('tb-row');
-  
-  for(var i =0; i<a.length; i ++) {
-    var b = a[i].cells[0];
-    if(type == 1){
-      b.firstElementChild.checked = true;
-      a[i].style.backgroundColor = "#1e90ff";
-    } else {
-      b.firstElementChild.checked = false;
-      a[i].style.backgroundColor = null;
-    }
-  }  
-}
+
+
 
 
