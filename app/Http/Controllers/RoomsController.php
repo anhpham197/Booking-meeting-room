@@ -25,12 +25,18 @@ class RoomsController extends Controller
         return view('rooms.index');
     }
 
+    public function create()
+    {
+        //
+        return view('rooms.create');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function upload(Request $request)
     {
         //
         $data = new room;

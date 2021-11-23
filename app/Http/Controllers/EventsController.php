@@ -27,12 +27,18 @@ class EventsController extends Controller
         return view('events.index');
     }
 
+    public function create()
+    {
+        //
+        return view('events.create');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function upload(Request $request)
     {
         //
         $data = new event;

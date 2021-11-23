@@ -17,97 +17,37 @@
 
             <section class="row">
                 <div class="col-12">
-                    <form autocomplete="on" action="{{url('room/upload')}}" method="POST" enctype="multipart/form-data">
-                        {{-- @method('PUT') --}}
+                    <form autocomplete="on" action="{{route('room.upload')}}" method="POST" enctype="multipart/form-data">
+                        @method('PUT')
                         @csrf
 
                         <div class="card">
                             <div class="card-header text-center">
-                                <b>Đặt phòng họp</b>
+                                <b>Thêm phòng họp</b>
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="full_name">Họ tên người đặt</label>
-                                    <input type="text" class="form-control" name="full_name" id="full_name" aria-describedby="full_nameHid" placeholder="">
+                                    <label for="roomName">Tên / Mã số phòng</label>
+                                    <input type="text" class="form-control" name="roomName" id="roomName" aria-describedby="roomNameHid" placeholder="" >
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="address">Địa chỉ</label>
-                                    <input type="text" class="form-control" name="address" id="address" aria-describedby="addressHid" placeholder="">
+                                    <label for="image">Đính kèm ảnh</label>
+                                    <input type = "file" name = "image" >
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="phone_number">Số điện thoại</label>
-                                    <input type="tel" class="form-control" name="phone_number" id="phone_number" aria-describedby="phone_numberHid" placeholder="">
+                                    <label for="capacity">Sức chứa</label>
+                                    <input type="number" class="form-control" name="capacity" id="capacity" aria-describedby="capacityHid" placeholder="" required>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHid" placeholder="">
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col">
-                                            <label for="start_day">Ngày bắt đầu</label>
-                                            <input type="date" class="form-control" name="start_day" id="start_day" >
-                                        </div>
-                                        <div class="col">
-                                            <label for="start_time">Thời gian bắt đầu</label>
-                                            <input type="time" class="form-control" name="start_time" id="start_time" >
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col">
-                                            <label for="end_day">Ngày kết thúc</label>
-                                            <input type="date" class="form-control" name="end_day" id="end_day" >
-                                        </div>
-                                        <div class="col">
-                                            <label for="end_time">Thời gian kết thúc</label>
-                                            <input type="time" class="form-control" name="end_time" id="end_time" >
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="room_id">Mã phòng</label>
-                                    <select name="room_id" id="" class="form-control" id="room_id">
-                                        <option value="405">405</option>
-                                        <option value="406">406</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="email">Email người tham gia</label>
-                                    <input type="email" class="form-control" id="partition_email" list="partition_email" multiple style="width: 100%;">
-                                    <datalist id="partition_email">
-                                        <option value="19021274@vnu.edu.vn">
-                                        <option value="1234@vnu.edu.vn">
-                                        <option value="23232@vnu.edu.vn">
-                                        <option value="2342312@vnu.edu.vn">
-                                    </datalist>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="textarea">Nội dung cuộc họp</label>
-                                    <textarea id="textarea1" name="description" class="form-control" rows="5"></textarea>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="fileupload">Đính kèm tệp</label>
-                                    <input type = "file" name = "fileupload" >
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="textarea">Ghi chú</label>
-                                    <textarea id="textarea2" name="note" class="form-control" rows="5"></textarea>
+                                    <label for="textarea">Mô tả</label>
+                                    <textarea id="textarea" name="description" class="form-control" rows="5" ></textarea>
                                 </div>
                             </div>
                             <div class="card-footer" style="text-align: center;">
-                                <button type="submit" class="btn btn-success">Đặt phòng</button>
+                                <button type="submit" class="btn btn-success">Tạo phòng</button>
                             </div>
                         </div>
                     </form>

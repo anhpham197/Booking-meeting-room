@@ -31,15 +31,17 @@ Route::get('/create', [\App\Http\Controllers\EventsController::class, 'create'])
 // Route::post('events/ckmedia', 'App\Http\Controllers\EventsController@storeCKEditorImages')->name('events.storeCKEditorImages');
 // Route::resource('events', 'App\Http\Controllers\EventsController');
 
-Route::get('/event/create', [EventsController::class, 'index'])->name('event.create');
+Route::get('/event/view', [EventsController::class, 'index'])->name('event.view');
+Route::get('/event/create', [EventsController::class, 'create'])->name('event.create');
 Route::get('/event/{id}/edit', [EventsController::class, 'edit'])->name('event.edit');
-Route::post('/event/upload', [EventsController::class, 'create'])->name('event.upload');
+Route::post('/event/upload', [EventsController::class, 'upload'])->name('event.upload');
 Route::put('/event/{id}/update', [EventsController::class, 'update'])->name('event.update');
 
 // Rooms
-Route::get('/room/create', [RoomsController::class, 'index'])->name('room.create');
+Route::get('/room/view', [RoomsController::class, 'index'])->name('room.view');
+Route::get('/room/create', [RoomsController::class, 'create'])->name('room.create');
 Route::get('/room/{id}/edit', [RoomsController::class, 'edit'])->name('room.edit');
-Route::put('/room/upload', [RoomsController::class, 'create'])->name('room.upload');
+Route::put('/room/upload', [RoomsController::class, 'upload'])->name('room.upload');
 Route::put('/room/{id}/update', [RoomsController::class, 'update'])->name('room.update');
 
 Auth::routes();
