@@ -9,7 +9,7 @@
 
         <li>
            <i class="fas fa-user"></i>
-           <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle text-white hover:no-underline pl-3">Thông tin cá nhân</a>
+           <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle text-white hover:no-underline pl-3g">Thông tin cá nhân</a>
             
            <ul class="collapse list-unstyled subnav" id="homeSubmenu">
               <li>
