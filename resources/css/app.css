@@ -115,8 +115,13 @@ ul ul a{
 	
 }
 
+
 header {
     background-color: #343a40;
+}
+
+input[type=search]::-webkit-search-cancel-button {
+    -webkit-appearance: searchfield-cancel-button;
 }
 
 
