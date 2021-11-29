@@ -1,0 +1,7 @@
+.form-group + .form-group{
+    margin-top: 12px;
+}
+
+.form-gender + .form-gender{
+    margin-left: 20px;
+}
