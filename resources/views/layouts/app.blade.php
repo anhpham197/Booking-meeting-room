@@ -53,17 +53,17 @@
                     <a class="hover:font-bold hover:no-underline hover:text-gray-300 uppercase text-gray-300" href="{{ route('show_booking') }}">Đặt phòng</a>
 
                     @guest
-                        <a class="hover:font-bold hover:no-underline hover:text-gray-300 uppercase text-gray-300" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        <a class="hover:font-bold hover:no-underline hover:text-gray-300 uppercase text-gray-300" href="{{ route('login') }}">Đăng nhập</a>
                         @if (Route::has('register'))
-                            <a class="hover:font-bold hover:no-underline hover:text-gray-300 uppercase text-gray-300" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="hover:font-bold hover:no-underline hover:text-gray-300 uppercase text-gray-300" href="{{ route('register') }}">Đăng ký</a>
                         @endif
                     @else
                         <span class="text-gray-300 font-medium">{{ Auth::user()->name }}</span>
 
                         <a href="{{ route('logout') }}"
-                           class="hover:font-bold hover:no-underline hover:text-gray-300 uppercase text-gray-300"
+                           class="hover:font-bold hover:no-underline hover:text-gray-300 uppercase text-gray-300 fas fa-sign-out-alt text-lg"
                            onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                                document.getElementById('logout-form').submit();"></a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
                             {{ csrf_field() }}
                         </form>
