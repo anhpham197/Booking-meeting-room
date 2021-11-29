@@ -29,6 +29,10 @@ class Room extends Model
         'deleted_at',
     ];
 
+    protected function facilities() {
+        return $this->hasMany(Facility::class);
+    }
+
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');

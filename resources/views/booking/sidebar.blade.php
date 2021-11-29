@@ -10,7 +10,7 @@
 
         <li>
            <i class="fas fa-user"></i>
-           <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle text-white hover:no-underline pl-3g">Thông tin cá nhân</a>
+           <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle text-white hover:no-underline pl-3">Thông tin cá nhân</a>
             
            <ul class="collapse list-unstyled subnav" id="homeSubmenu">
               <li>
@@ -59,6 +59,13 @@
         $(document).ready(function () {
                     $('#sidebarCollapse').on('click', function () {
                         $('#sidebar').toggleClass('active');
+                        if ($('#sidebarCollapse i').hasClass('fa-angle-double-left')) {
+                            $('#sidebarCollapse i').removeClass('fa-angle-double-left');
+                            $('#sidebarCollapse i').addClass('fa-angle-double-right');
+                        } else if ($('#sidebarCollapse i').hasClass('fa-angle-double-right')){
+                            $('#sidebarCollapse i').removeClass('fa-angle-double-right');
+                            $('#sidebarCollapse i').addClass('fa-angle-double-left');
+                        }
                     });
                 });
     </script>
