@@ -19,6 +19,8 @@ function funct_all(type){
     }
   }  
 }
+// type là để chọn chiều lọc data
+var type = 1;
 // sort data
 function sort_name(col, table_name){
   var table, rows, switching, i, x, y, shouldSwitch;
@@ -37,10 +39,16 @@ function sort_name(col, table_name){
       x = rows[i].getElementsByTagName("TD")[col];
       y = rows[i + 1].getElementsByTagName("TD")[col];
       
-      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-       
-        shouldSwitch = true;
-        break;
+      if(type == -1) {
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          shouldSwitch = true;
+          break;
+        }
+      } else {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          shouldSwitch = true;
+          break;
+        }
       }
     }
     if (shouldSwitch) {
@@ -55,7 +63,7 @@ function sort_data(col, table_name){
   var table, rows, switching, i, x, y, shouldSwitch;
   table = document.getElementById(table_name);
   switching = true;
-  
+  type *=-1;
   while (switching) {
    
     switching = false;
@@ -68,11 +76,18 @@ function sort_data(col, table_name){
       x = rows[i].getElementsByTagName("TD")[col];
       y = rows[i + 1].getElementsByTagName("TD")[col];
       
-      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-       
-        shouldSwitch = true;
-        break;
+      if(type == -1) {
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          shouldSwitch = true;
+          break;
+        }
+      } else {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          shouldSwitch = true;
+          break;
+        }
       }
+      
     }
     if (shouldSwitch) {
       rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
@@ -86,9 +101,7 @@ document.getElementById("th-id").addEventListener("click", function(){
 document.getElementById("th-name").addEventListener("click", function(){
     sort_data("1","dtOrderExample");
 });
-document.getElementById("th-mail").addEventListener("click", function(){
-  sort_data("2","dtOrderExample");
-});
+
  
 
 
