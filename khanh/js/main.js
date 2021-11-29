@@ -19,14 +19,14 @@ function funct_all(type){
     }
   }  
 }
-// type là để chọn chiều lọc data
-var type = 1;
+// num là để chọn chiều lọc data
+var num = 1;
 // sort data
 function sort_name(col, table_name){
   var table, rows, switching, i, x, y, shouldSwitch;
   table = document.getElementById(table_name);
   switching = true;
-  
+  num *=-1;
   while (switching) {
    
     switching = false;
@@ -39,7 +39,7 @@ function sort_name(col, table_name){
       x = rows[i].getElementsByTagName("TD")[col];
       y = rows[i + 1].getElementsByTagName("TD")[col];
       
-      if(type == -1) {
+      if(num == -1) {
         if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
           shouldSwitch = true;
           break;
@@ -63,7 +63,7 @@ function sort_data(col, table_name){
   var table, rows, switching, i, x, y, shouldSwitch;
   table = document.getElementById(table_name);
   switching = true;
-  type *=-1;
+  num *=-1;
   while (switching) {
    
     switching = false;
@@ -76,7 +76,7 @@ function sort_data(col, table_name){
       x = rows[i].getElementsByTagName("TD")[col];
       y = rows[i + 1].getElementsByTagName("TD")[col];
       
-      if(type == -1) {
+      if(num == -1) {
         if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
           shouldSwitch = true;
           break;
