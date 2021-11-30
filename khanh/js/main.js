@@ -3,7 +3,7 @@ $(document).ready(function () {
         $('#sidebar').toggleClass('active');
     });
 });
-
+// dùng ở file inforRoom.html và roomList.html tại nút chọn tất cả 
 function funct_all(type){
   // type =1 => select all|| type =0 => deselect all
   var a = document.getElementsByClassName('tb-row');
@@ -19,28 +19,36 @@ function funct_all(type){
     }
   }  
 }
-
+// num là để chọn chiều lọc data
+var num = 1;
+// sort data
 function sort_name(col, table_name){
   var table, rows, switching, i, x, y, shouldSwitch;
   table = document.getElementById(table_name);
   switching = true;
-  
+  num *=-1;
   while (switching) {
    
     switching = false;
     rows = table.rows;
    
-    for (i = 1; i < (rows.length - 1); i++) {
+    for (i = 2; i < (rows.length - 1); i++) {
      
       shouldSwitch = false;
       
       x = rows[i].getElementsByTagName("TD")[col];
       y = rows[i + 1].getElementsByTagName("TD")[col];
       
-      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-       
-        shouldSwitch = true;
-        break;
+      if(num == -1) {
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          shouldSwitch = true;
+          break;
+        }
+      } else {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          shouldSwitch = true;
+          break;
+        }
       }
     }
     if (shouldSwitch) {
@@ -49,14 +57,49 @@ function sort_name(col, table_name){
     }
   }
 }
+
+// vẫn là sort nhưng mà dùng cho bảng có tbodies
+function sort_data(col, table_name){
+  var table, rows, switching, i, x, y, shouldSwitch;
+  table = document.getElementById(table_name);
+  switching = true;
+  num *=-1;
+  while (switching) {
+   
+    switching = false;
+    rows = table.tBodies;
+   
+    for (i = 0; i < (rows.length - 1); i++) {
+     
+      shouldSwitch = false;
+      
+      x = rows[i].getElementsByTagName("TD")[col];
+      y = rows[i + 1].getElementsByTagName("TD")[col];
+      
+      if(num == -1) {
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          shouldSwitch = true;
+          break;
+        }
+      } else {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          shouldSwitch = true;
+          break;
+        }
+      }
+      
+    }
+    if (shouldSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+}
+document.getElementById("th-id").addEventListener("click", function(){
+  sort_data("0","dtOrderExample");
+});
 document.getElementById("th-name").addEventListener("click", function(){
-    sort_name("0","dtOrderExample");
-});
-document.getElementById("th-mail").addEventListener("click", function(){
-    sort_name("1","dtOrderExample");
-});
-document.getElementById("th-office").addEventListener("click", function(){
-    sort_name("2","dtOrderExample");
+    sort_data("1","dtOrderExample");
 });
 
  

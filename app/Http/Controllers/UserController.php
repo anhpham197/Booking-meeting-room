@@ -141,4 +141,11 @@ class UserController extends Controller
             return Redirect::back()->with('message', 'Vui lòng xác nhận lại mật khẩu');
         }
     }
+
+    public function showUsers(){
+        $users = User::query()->where('company_id', Auth::user()->company_id)->get();
+        return view('user.show_users', [
+            'users' => $users
+        ]);
+    }
 }

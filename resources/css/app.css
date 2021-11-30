@@ -88,6 +88,10 @@ a:focus{
     cursor: pointer;
 }
 
+button#sidebarCollapse:focus {
+	outline: none;
+}
+
 .subnav li:hover a {
     /* animation: modalFadeIn ease 0.1s; */
     font-weight: 400;
@@ -108,8 +112,20 @@ ul ul a{
 	transition: all 0.3s;
 }
 
+.table-idea{
+	position: sticky;
+	top: 0;
+	background-color: #D9CAB3;
+	
+}
+
+
 header {
     background-color: #343a40;
+}
+
+input[type=search]::-webkit-search-cancel-button {
+    -webkit-appearance: searchfield-cancel-button;
 }
 
 
@@ -120,6 +136,14 @@ header {
 
 .form-gender + .form-gender{
     margin-left: 20px;
+}
+
+/* Show users */
+.scroller{
+	position: relative;
+	height: 200px;
+	overflow: auto;
+	display: block;
 }
 
 @media (max-width: 768px) {

@@ -57,3 +57,5 @@ Route::put('/kath/{id}/update', [UserController::class, 'update'])->name('kath.u
 
 Route::put('/kath/{id}/change_password', [UserController::class, 'changePassword'])->name('kath.changePassword');
 Route::get('/kath/{id}/edit_password', [UserController::class, 'editPassword'])->name('kath.editPassword');
+
+Route::get('/kath/users', [UserController::class, 'showUsers'])->name('kath.showUsers');

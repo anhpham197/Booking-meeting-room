@@ -89,7 +89,6 @@ ul ul a{
 	position: sticky;
 	top: 0;
 	background-color: #D9CAB3;
-	
 }
 
 @media (max-width: 768px) {
@@ -171,9 +170,7 @@ ul ul a{
 	text-align: center;
 	
 }
-.tb-row{
-	background-color: #e3dac9;
-}
+
 .scroller{
 	position: relative;
 	height: 200px;
