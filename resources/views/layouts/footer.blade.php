@@ -14,7 +14,6 @@
                 <hr class="footer-main-cl mb-4 mt-0 d-inline-block max-auto" style="width: 125px; height: 10px;border-radius: 10px;">
                 <ul class="list-unstyled">
                     <li class="my-2"><a href="{{ route('show_booking') }}">Nhà của tôi</a></li>
-                    <li class="my-2"><a href="{{ route('kath.edit', ['id'=>Auth::user()->id]) }}">Thông tin cá nhân</a></li>
                     <li class="my-2"><a href="{{ route('kath.showUsers') }}">Danh sách nhân viên</a></li>
                     <li class="my-2"><a href="{{ route('event.create') }}">Hệ thống phòng họp</a></li>
                 </ul>

@@ -33,17 +33,17 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="usernameBooking">Họ tên người đặt <span class="text-red-600">*</span></label>
-                                    <input type="text" class="form-control" name="usernameBooking" id="usernameBooking" aria-describedby="usernameBookingHid" required>
+                                    <input type="text" class="form-control" name="usernameBooking" id="usernameBooking" aria-describedby="usernameBookingHid" required readonly value="Phạm Ngọc Ánh">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="telephoneBooking">Số điện thoại</label>
-                                    <input type="tel" class="form-control" name="telephoneBooking" id="telephoneBooking" aria-describedby="telephoneBookingHid" placeholder="">
+                                    <label for="telephoneBooking">Số điện thoại <span class="text-red-600">*</span></label>
+                                    <input type="tel" class="form-control" name="telephoneBooking" id="telephoneBooking" aria-describedby="telephoneBookingHid" required>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="emailBooking">Email</label>
-                                    <input type="email" class="form-control" name="emailBooking" id="emailBooking" aria-describedby="emailBookingHid" placeholder="">
+                                    <input type="email" class="form-control" name="emailBooking" id="emailBooking" aria-describedby="emailBookingHid" readonly value="ngocanhpham197@gmail.com">
                                 </div>
 
                                 <div class="form-group">
@@ -73,7 +73,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="roomId">Mã phòng</label>
+                                    <label for="roomId">Tên phòng</label>
                                     <select name="roomId" id="" class="form-control" id="roomId">
                                         <option value="405">405</option>
                                         <option value="406">406</option>
@@ -82,13 +82,12 @@
 
                                 <div class="form-group">
                                     <label for="email">Email người tham gia</label>
-                                    <input type="email" class="form-control" id="emails" list="emails" multiple style="width: 100%;">
-                                    <datalist id="emails">
-                                        <option value="19021274@vnu.edu.vn">
-                                        <option value="1234@vnu.edu.vn">
-                                        <option value="23232@vnu.edu.vn">
-                                        <option value="2342312@vnu.edu.vn">
-                                    </datalist>
+                                    <select class="form-control email" multiple="multiple" style="height: 40px">
+                                        <option value="19021274@vnu.edu.vn">19021274@vnu.edu.vn</option>
+                                        <option value="1234@vnu.edu.vn">19021234@vnu.edu.vn</option>
+                                        <option value="23232@vnu.edu.vn">19021111@vnu.edu.vn</option>
+                                        <option value="2342312@vnu.edu.vn">19029999@vnu.edu.vn</option>
+                                    </select>
                                 </div>
 
                                 <div class="form-group">
@@ -131,4 +130,7 @@
         })
         $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
     </script> --}}
+    <script>
+        $('.email').select2();
+    </script>
 @endsection

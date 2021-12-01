@@ -73,7 +73,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="roomId">Mã phòng</label>
+                                    <label for="roomId">Tên phòng</label>
                                     <select name="roomId" id="">
                                         <option value="405">405</option>
                                         <option value="406">406</option>
@@ -83,12 +83,12 @@
                                 <div class="form-group">
                                     <label for="email">Email người tham gia</label>
                                     <input type="email" list="emails" multiple style="width: 100%;">
-                                    <datalist id="emails">
+                                    <select id="emails">
                                         <option value="19021274@vnu.edu.vn">
                                         <option value="1234@vnu.edu.vn">
                                         <option value="23232@vnu.edu.vn">
                                         <option value="2342312@vnu.edu.vn">
-                                    </datalist>
+                                    </select>
                                 </div>
 
                                 <div class="form-group">

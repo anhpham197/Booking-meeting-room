@@ -9,15 +9,6 @@
                     <button type="button" id="sidebarCollapse" class="cursor-pointer rounded-md">
                         <i class="fas fa-angle-double-left text-2xl font-normal text-gray-400"></i>
                     </button>
-                    <div class="relative flex w-full flex-wrap items-stretch">
-                        <span
-                            class="z-10 h-full leading-snug font-normal absolutetext-center text-gray-400 absolute bg-transparent rounded items-center justify-center pl-3 py-2">
-                            <i class="fas fa-search"></i>
-                        </span>
-                        <input type="search" id="search" name="search" class="form-input placeholder-gray-400 w-72 pl-10"
-                            placeholder="Tìm kiếm..."
-                            style="font-family: 'Font Awesome 5 Free', 'system-ui'; border: 1px solid #4f4f4f">
-                    </div>
                 </div>
             </nav>
 
@@ -28,16 +19,26 @@
                             <b>Đánh giá chất lượng phòng họp</b>
                         </div>
                         <div class="card-body">                        
-                            <div class="form-group">
-                                <label for="meetingId" style="margin-right: 10px;">Cuộc họp : </label>
-                                <select name="meetingId" id="">
-                                    <option value="405">phòng họp của Ánh</option>
-                                    <option value="406">phòng họp của Hiếu</option>
-                                </select>
+                            <div class="form-group flex justify-between items-center">
+                                <div>
+                                    <label for="meetingId" style="margin-right: 10px;" class="font-semibold">Cuộc họp  </label>
+                                    <select name="meetingId" id="" class="border border-black py-2 px-3 rounded-md">
+                                        <option value="405">Bàn giao sản phẩm</option>
+                                        <option value="406">Tổng kết cuối năm</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="" style="margin-right: 10px" class="font-semibold">Thời gian  </label>
+                                    <input type="text" value="08:00  29/12/2021" readonly class="py-2 px-3 rounded-md border border-black">
+                                </div>
+                                <div>
+                                    <label for="" style="margin-right: 10px;" class="font-semibold">Phòng  </label>
+                                    <input type="text" name="" id="" value="405" readonly class="py-2 px-3 rounded-md border border-black w-max-content">
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label for="comment">Phản hồi :</label>
-                                <textarea id="comment" class="form-control" rows="11"></textarea>
+                                <label for="comment" class="font-semibold">Phản hồi </label>
+                                <textarea id="comment" class="form-control"></textarea>
                             </div>  
                         </div>            
                         <div class="card-footer" style="text-align: center;">
@@ -48,4 +49,11 @@
             </div>
         </div>
     </div>
+    <script>
+        ClassicEditor
+        .create( document.querySelector( '#comment' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+    </script>
 @endsection

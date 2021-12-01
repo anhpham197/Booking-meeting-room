@@ -132,13 +132,18 @@
                         @foreach ($users as $user)
                             <tbody>
                                 <tr>
-                                    <td>{{ $user->id }}</td>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>{{ $user->phone }}</td>
-                                    <td>29/12/2021</td>
+                                    <td rowspan="2">{{ $user->id }}</td>
+                                    <td rowspan="2">{{ $user->name }}</td>
+                                    <td rowspan="2">{{ $user->email }}</td>
+                                    <td rowspan="2">{{ $user->phone }}</td>
+                                    <td>29/11/2021</td>
                                     <td>08:00</td>
                                     <td>Họp tổng kết cuối năm</td>
+                                </tr>
+                                <tr>
+                                    <td>29/12/2021</td>
+                                    <td>13:00</td>
+                                    <td>Bàn giao sản phẩm</td>
                                 </tr>
                             </tbody>
                         @endforeach
