@@ -33,6 +33,7 @@ Route::get('/create', [\App\Http\Controllers\EventsController::class, 'create'])
 Route::get('event/create', [EventsController::class, 'index'])->name('event.create');
 Route::get('event/{id}/edit', [EventsController::class, 'edit'])->name('event.edit');
 Route::post('event/upload', [EventsController::class, 'create'])->name('event.upload');
+Route::get('event/rate', [EventsController::class, 'rate'])->name('event.rate');
 
 // Rooms
 /* Route::delete('rooms/destroy', 'RoomsController@massDestroy')->name('rooms.massDestroy');

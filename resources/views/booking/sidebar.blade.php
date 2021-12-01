@@ -23,7 +23,6 @@
           </ul>
         </li>
         <li>
-            {{-- fa-chevron-circle-down --}}
            <i class="fas fa-users"></i>
            <a href="{{ route('kath.showUsers') }}" class="text-white hover:no-underline">Danh sách nhân viên</a>
         </li>
@@ -38,18 +37,10 @@
                     <a href="#" class="text-white hover:no-underline">Danh sách các phòng</a>
                 </li>
                 <li>
-                    <a href="#" class="text-white hover:no-underline">Đánh giá phòng họp</a>
+                    <a href="{{ route('event.rate') }}" class="text-white hover:no-underline">Đánh giá phòng họp</a>
                 </li>
             </ul>
         </li>
-      {{-- <li>
-           <i class="fas fa-paint-brush"></i>
-           <a href="#" class="text-white hover:no-underline">Policy</a>
-      </li>
-      <li>
-           <i class="fas fa-mail-bulk"></i>
-           <a href="#" class="text-white hover:no-underline">Contact </a>
-      </li> --}}
     </ul>
 
     <div class="text-center pb-5">PHIÊN BẢN : {{ env('APP_STATIC_VERSION') }}</div>
