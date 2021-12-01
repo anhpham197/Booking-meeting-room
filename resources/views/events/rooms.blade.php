@@ -10,65 +10,60 @@
                         <i class="fas fa-angle-double-left text-2xl font-normal text-gray-400"></i>
                     </button>
                 </div>
-            </nav>
-            <div class="card text-center">
-                <div class="card-header text-center">
-                    <b>Danh sách phòng họp</b>
-                </div>
-                <div>
-                    <div class="scroller" style="height: 427px;">
-                        <table class="table table-bordered table-hover" id="dtOrderExample">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        <b style="margin-right: 5px;">Tên phòng</b>
-                                        <i class="fas fa-sort" id="rl-name"></i>
-                                    </th>
-                                    <th>
-                                        <b style="margin-right: 5px;">Sức chứa</b>
-                                        <i class="fas fa-sort" id="rl-sc"></i>
-                                    </th>
-                                    <th>
-                                        <b style="margin-right: 5px;">Diện tích</b>
-                                        <i class="fas fa-sort" id="rl-sp"></i>
-                                    </th>
-                                    <th>
-                                        <b style="margin-right: 5px;">Tình trạng</b>
-                                        <i class="fas fa-sort" id="rl-mood"></i>
-                                    </th>
-                                    <th><b>Trang thiết bị</b></th>
+            </nav> 
+
+            <div class="card-header text-center text-xl font-semibold uppercase">Danh sách phòng họp</div>
+            
+            <div class="">
+                <div class="scroller" style="height: 427px;">
+                    <table class="table table-bordered table-hover text-center" id="dtOrderExample">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <b style="margin-right: 5px;">Tên phòng</b>
+                                    <i class="fas fa-sort" id="rl-name"></i>
+                                </th>
+                                <th>
+                                    <b style="margin-right: 5px;">Sức chứa</b>
+                                    <i class="fas fa-sort" id="rl-sc"></i>
+                                </th>
+                                <th>
+                                    <b style="margin-right: 5px;">Diện tích</b>
+                                    <i class="fas fa-sort" id="rl-sp"></i>
+                                </th>
+                                <th>
+                                    <b style="margin-right: 5px;">Tình trạng</b>
+                                    <i class="fas fa-sort" id="rl-mood"></i>
+                                </th>
+                                <th><b>Trang thiết bị</b></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+                            @foreach ($rooms as $room)
+                                <td style="font-weight: 400;">Phòng {{ $room->name }}</td>
+                                <td>{{ $room->capacity }} người</td>
+                                <td>{{ $room->area }} m<sup>2</sup> </td>
+                                <td>
+                                    @if ($room->status == 'Hoạt động')
+                                        <div class="text-white bg-green-500 py-2 px-2 rounded-md font-semibold">
+                                            {{ $room->status }}</div>
+                                    @elseif ($room->status == 'Đang sửa chữa')
+                                        <div class="text-white bg-gray-400 py-2 px-2 rounded-md font-semibold block">
+                                            {{ $room->status }}</div>
+                                    @endif
+                                </td>
+                                <td class="">
+                                    @foreach ($room->facilities as $facility)
+                                        <div class=" text-white label-info inline-flex mb-2" style="font-weight: 400">
+                                            {{ $facility->name }}</div>
+                                    @endforeach
+                                </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-
-
-                                @foreach ($rooms as $room)
-                                        <td style="font-weight: 400;">Phòng {{ $room->name }}</td>
-                                        <td>{{ $room->capacity }} người</td>
-                                        <td>{{ $room->area }} m<sup>2</sup> </td>
-                                        <td>
-                                            @if ($room->status == 'Hoạt động')
-                                                <div class="text-white bg-green-500 py-2 px-2 rounded-md font-semibold">
-                                                    {{ $room->status }}</div>
-                                            @elseif ($room->status == 'Đang sửa chữa')
-                                                <div
-                                                    class="text-white bg-gray-400 py-2 px-2 rounded-md font-semibold block">
-                                                    {{ $room->status }}</div>
-                                            @endif
-                                        </td>
-                                        <td class="">
-                                            @foreach ($room->facilities as $facility)
-                                                <div class=" text-white label-info inline-flex mb-2"
-                                                    style="font-weight: 400">{{ $facility->name }}</div>
-                                            @endforeach
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="card-footer">
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

@@ -161,9 +161,9 @@ tbody tr td {
 	display: block;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     #sidebar {
-        margin-left: -250px;
+        margin-left: -300px;
     }
     #sidebar.active {
         margin-left: 0;
