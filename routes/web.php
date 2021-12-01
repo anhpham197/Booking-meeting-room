@@ -24,20 +24,10 @@ Route::get('/booking', [\App\Http\Controllers\HomeController::class, 'show'])->n
 
 Route::get('/create', [\App\Http\Controllers\EventsController::class, 'create'])->name('create_booking');
 
-// Events
-// Route::delete('events/destroy', 'App\Http\Controllers\EventsController@massDestroy')->name('events.massDestroy');
-// Route::post('events/media', 'App\Http\Controllers\EventsController@storeMedia')->name('events.storeMedia');
-// Route::post('events/ckmedia', 'App\Http\Controllers\EventsController@storeCKEditorImages')->name('events.storeCKEditorImages');
-// Route::resource('events', 'App\Http\Controllers\EventsController');
-
-Route::get('event/create', [EventsController::class, 'index'])->name('event.create');
+Route::get('event/create', [EventsController::class, 'create'])->name('event.create');
 Route::get('event/{id}/edit', [EventsController::class, 'edit'])->name('event.edit');
-Route::post('event/upload', [EventsController::class, 'create'])->name('event.upload');
 Route::get('event/rate', [EventsController::class, 'rate'])->name('event.rate');
 
-// Rooms
-/* Route::delete('rooms/destroy', 'RoomsController@massDestroy')->name('rooms.massDestroy');
-Route::resource('rooms', 'RoomsController'); */
 
 Auth::routes();
 
@@ -52,3 +42,4 @@ Route::put('/kath/{id}/change_password', [UserController::class, 'changePassword
 Route::get('/kath/{id}/edit_password', [UserController::class, 'editPassword'])->name('kath.editPassword');
 
 Route::get('/kath/users', [UserController::class, 'showUsers'])->name('kath.showUsers');
+Route::get('/kath/rooms', [EventsController::class, 'showRooms'])->name('kath.showRooms');

@@ -1,8 +1,3 @@
-$(document).ready(function () {
-    $('#sidebarCollapse').on('click', function () {
-        $('#sidebar').toggleClass('active');
-    });
-});
 // dùng ở file inforRoom.html và roomList.html tại nút chọn tất cả 
 function funct_all(type){
   // type =1 => select all|| type =0 => deselect all

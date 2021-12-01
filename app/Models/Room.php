@@ -12,7 +12,7 @@ class Room extends Model
     use SoftDeletes;
     use HasFactory;
 
-    public $table = 'rooms';
+    protected $table = 'rooms';
 
     protected $dates = [
         'created_at',
@@ -23,14 +23,12 @@ class Room extends Model
     protected $fillable = [
         'name',
         'capacity',
-        'description',
-        'created_at',
-        'updated_at',
-        'deleted_at',
+        'area',
+        'status',
     ];
 
     protected function facilities() {
-        return $this->hasMany(Facility::class);
+        return $this->belongsToMany(Facility::class, 'facility_room');
     }
 
     protected function serializeDate(DateTimeInterface $date)

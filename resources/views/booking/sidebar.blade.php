@@ -34,7 +34,7 @@
                     <a href="{{ route('event.create') }}" class="text-white hover:no-underline">Đặt phòng</a>
                 </li>
                 <li >
-                    <a href="#" class="text-white hover:no-underline">Danh sách các phòng</a>
+                    <a href="{{ route('kath.showRooms') }}" class="text-white hover:no-underline">Danh sách phòng họp</a>
                 </li>
                 <li>
                     <a href="{{ route('event.rate') }}" class="text-white hover:no-underline">Đánh giá phòng họp</a>

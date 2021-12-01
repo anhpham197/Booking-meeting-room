@@ -119,6 +119,16 @@ ul ul a{
 	
 }
 
+.label-info{
+	background-color: #6d9886;
+	padding: 6px;
+	border-radius: 4px;
+	margin-right: 5px;
+}
+
+thead{
+	background-color: #D9CAB3;
+}
 
 header {
     background-color: #343a40;
@@ -126,6 +136,11 @@ header {
 
 input[type=search]::-webkit-search-cancel-button {
     -webkit-appearance: searchfield-cancel-button;
+}
+
+tbody tr td {
+	filter: contrast(1);
+	font-size: medium;
 }
 
 
