@@ -10,13 +10,12 @@
                 </p>
             </div>
             <div class="col-md-2 mx-auto mb-4">
-                <h6 class="text-uppercase font-weight-bold">ingredient</h6>
+                <h6 class="text-uppercase font-weight-bold">Trang chủ</h6>
                 <hr class="footer-main-cl mb-4 mt-0 d-inline-block max-auto" style="width: 125px; height: 10px;border-radius: 10px;">
                 <ul class="list-unstyled">
-                    <li class="my-2"><a href="#">HTML 5</a></li>
-                    <li class="my-2"><a href="#">CSS 3</a></li>
-                    <li class="my-2"><a href="#">Bootstrap 4</a></li>
-                    <li class="my-2"><a href="#">JavaScript</a></li>
+                    <li class="my-2"><a href="{{ route('show_booking') }}">Nhà của tôi</a></li>
+                    <li class="my-2"><a href="{{ route('kath.showUsers') }}">Danh sách nhân viên</a></li>
+                    <li class="my-2"><a href="{{ route('event.create') }}">Hệ thống phòng họp</a></li>
                 </ul>
             </div>
             <div class="col-md-3 mx-auto mb-4">
@@ -37,7 +36,7 @@
         <div class="footer-main-cl ">
             <div class="footer-copyright text-center py-4">
                 <p>
-                    <span class="text-white font-normal">&copy; Copyright 2021</span> by KATH. All Rights Reserved.
+                    &copy; Copyright 2021 by <span class="text-white font-normal">KATH</span>. All Rights Reserved.
                 </p>
             </div>
         </div>

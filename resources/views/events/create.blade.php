@@ -6,10 +6,10 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 70px;" >
                 <div class="flex gap-6">
                     <button type="button" id="sidebarCollapse" class="cursor-pointer rounded-md">
-                        <i class="fas fa-angle-double-left text-2xl font-normal"></i>    
+                        <i class="fas fa-angle-double-left text-2xl font-normal"></i>
                     </button>
                     {{-- <div class="justify-center">Trang chủ</div> --}}
-                    <div class="relative flex w-full flex-wrap items-stretch"> 
+                    <div class="relative flex w-full flex-wrap items-stretch">
                         <span
                           class="z-10 h-full leading-snug font-normal absolutetext-center text-gray-400 absolute bg-transparent rounded items-center justify-center pl-3 py-3">
                           <i class="fas fa-search"></i>
@@ -73,7 +73,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="roomId">Mã phòng</label>
+                                    <label for="roomId">Tên phòng</label>
                                     <select name="roomId" id="" class="form-control" id="roomId">
                                         <option value="405">405</option>
                                         <option value="406">406</option>
@@ -82,13 +82,13 @@
 
                                 <div class="form-group">
                                     <label for="email">Email người tham gia</label>
-                                    <input type="email" class="form-control" id="emails" list="emails" multiple style="width: 100%;">
-                                    <datalist id="emails">
+                                    <input type="email" list="emails" multiple style="width: 100%;">
+                                    <select id="emails">
                                         <option value="19021274@vnu.edu.vn">
                                         <option value="1234@vnu.edu.vn">
                                         <option value="23232@vnu.edu.vn">
                                         <option value="2342312@vnu.edu.vn">
-                                    </datalist>
+                                    </select>
                                 </div>
 
                                 <div class="form-group">

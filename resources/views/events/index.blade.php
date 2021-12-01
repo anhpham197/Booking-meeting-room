@@ -336,6 +336,7 @@
                     row.style.backgroundColor = null;
                 }
             });
+<<<<<<< HEAD
 
         document.getElementById("im-tb-id").addEventListener("click", function () {
             sort_name("1", "table_to_highlight");
@@ -361,3 +362,12 @@
 </body>
 
 </html>
+=======
+        })
+        $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+    </script> --}}
+    <script>
+        $('.email').select2();
+    </script>
+@endsection
+>>>>>>> anhpham
