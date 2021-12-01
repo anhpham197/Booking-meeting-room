@@ -40,9 +40,6 @@
     <!-- Select 2 -->
     <link rel="stylesheet" href="{{ asset('select2/css/select2.min.css') }}"/>
     <script src="{{ asset('select2/js/select2.min.js') }}"></script>
-    {{-- <script src="{{ asset('select2/js/select2.min.js') }}"></script> --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
-
 </head>
 <body class="bg-gray-100 h-screen antialiased leading-none font-sans">
     <div id="app">
