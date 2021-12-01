@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -24,7 +25,11 @@ class EventsController extends Controller
     public function index()
     {
         //
-        return view('events.index');
+        $users = User::query()->where('company_id', Auth::user()->company_id)->get();
+        $events = Event::query()->where('id', $users->id);
+        return view('events.index', [
+            'events' => $events
+        ]);
     }
 
     public function create()

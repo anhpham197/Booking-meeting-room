@@ -24,7 +24,7 @@ class Event extends Model
     ];
 
     protected $fillable = [
-        'address',
+        'user_id',
         'full_name',
         'phone_number',
         'email',
