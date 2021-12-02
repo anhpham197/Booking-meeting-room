@@ -192,7 +192,9 @@
             </div>
         </div>
     </div>
-
+    <script>
+        $('.email').select2();
+    </script>
 @endsection
 
 

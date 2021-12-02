@@ -23,7 +23,7 @@
 
             <div class="text-center py-3 font-semibold text-xl uppercase">{{ Auth::user()->company->name }}</div>
 
-            <div>
+            <div class="">
                 <div class="scroller" style="height: 500px;">
                     <table id="dtOrderExample" class="table table-bordered table-sm" cellspacing="0" width="100%"
                         style="text-align: center">

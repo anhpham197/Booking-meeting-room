@@ -114,6 +114,7 @@
             </section>
         </div>
     </div>
+<<<<<<< HEAD
     {{-- <script type="text/javascript">
         $('#search').on('keyup',function(){
             $value = $(this).val();
@@ -130,6 +131,8 @@
         })
         $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
     </script> --}}
+=======
+>>>>>>> 41a12c1622ad1a8207048b7edc1cc857bc7b7c4b
     <script>
         $('.email').select2();
     </script>

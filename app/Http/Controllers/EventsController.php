@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Room;
 use Illuminate\Http\Request;
 
 class EventsController extends Controller
@@ -156,5 +157,12 @@ class EventsController extends Controller
     public function rate()
     {
         return view('events.rate');
+    }
+
+    public function showRooms() {
+        $rooms = Room::all();
+        return view('events.rooms', [
+            'rooms' => $rooms
+        ]);
     }
 }

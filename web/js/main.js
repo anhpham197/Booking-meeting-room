@@ -1,8 +1,3 @@
-$(document).ready(function () {
-    $('#sidebarCollapse').on('click', function () {
-        $('#sidebar').toggleClass('active');
-    });
-});
 // dùng ở file inforRoom.html và roomList.html tại nút chọn tất cả 
 function funct_all(type){
   // type =1 => select all|| type =0 => deselect all
@@ -22,7 +17,8 @@ function funct_all(type){
 // num là để chọn chiều lọc data
 var num = 1;
 // sort data
-function sort_name(col, table_name){
+// sort cho dạng string
+function sort_row_string(col, table_name){
   var table, rows, switching, i, x, y, shouldSwitch;
   table = document.getElementById(table_name);
   switching = true;
@@ -46,6 +42,43 @@ function sort_name(col, table_name){
         }
       } else {
         if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          shouldSwitch = true;
+          break;
+        }
+      }
+    }
+    if (shouldSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+}
+
+// sort cho dạng int
+function sort_row_int(col, table_name){
+  var table, rows, switching, i, x, y, shouldSwitch;
+  table = document.getElementById(table_name);
+  switching = true;
+  num *=-1;
+  while (switching) {
+   
+    switching = false;
+    rows = table.rows;
+   
+    for (i = 1; i < (rows.length - 1); i++) {
+     
+      shouldSwitch = false;
+      
+      x = rows[i].getElementsByTagName("TD")[col];
+      y = rows[i + 1].getElementsByTagName("TD")[col];
+      
+      if(num == -1) {
+        if (parseInt(x.innerHTML) > parseInt(y.innerHTML)) {
+          shouldSwitch = true;
+          break;
+        }
+      } else {
+        if (parseInt(x.innerHTML) < parseInt(y.innerHTML)) {
           shouldSwitch = true;
           break;
         }
