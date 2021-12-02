@@ -6,12 +6,12 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 70px;" >
                 <div class="flex gap-6">
                     <button type="button" id="sidebarCollapse" class="cursor-pointer rounded-md">
-                        <i class="fas fa-angle-double-left text-2xl font-normal"></i>
+                        <i class="fas fa-angle-double-left text-2xl font-normal text-gray-400"></i>
                     </button>
                     {{-- <div class="justify-center">Trang chủ</div> --}}
                     <div class="relative flex w-full flex-wrap items-stretch">
                         <span
-                          class="z-10 h-full leading-snug font-normal absolutetext-center text-gray-400 absolute bg-transparent rounded items-center justify-center pl-3 py-3">
+                          class="z-10 h-full leading-snug font-normal absolutetext-center text-gray-400 absolute bg-transparent rounded items-center justify-center pl-3 py-2">
                           <i class="fas fa-search"></i>
                         </span>
                         <input type="search" id="search" name="search" class="form-input placeholder-gray-400 w-72 pl-10" placeholder="Tìm kiếm..."
@@ -22,7 +22,7 @@
 
             <section class="row">
                 <div class="col-12">
-                    <form autocomplete="on" action="{{route('event.upload')}}" method="POST" enctype="multipart/form-data">
+                    <form autocomplete="on" action="{{url('event/upload')}}" method="POST" enctype="multipart/form-data">
                         {{-- @method('PUT') --}}
                         @csrf
 
@@ -33,17 +33,17 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="usernameBooking">Họ tên người đặt <span class="text-red-600">*</span></label>
-                                    <input type="text" class="form-control" name="usernameBooking" id="usernameBooking" aria-describedby="usernameBookingHid" placeholder="">
+                                    <input type="text" class="form-control" name="usernameBooking" id="usernameBooking" aria-describedby="usernameBookingHid" required readonly value="Phạm Ngọc Ánh">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="telephoneBooking">Số điện thoại</label>
-                                    <input type="tel" class="form-control" name="telephoneBooking" id="telephoneBooking" aria-describedby="telephoneBookingHid" placeholder="">
+                                    <label for="telephoneBooking">Số điện thoại <span class="text-red-600">*</span></label>
+                                    <input type="tel" class="form-control" name="telephoneBooking" id="telephoneBooking" aria-describedby="telephoneBookingHid" required>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="emailBooking">Email</label>
-                                    <input type="email" class="form-control" name="emailBooking" id="emailBooking" aria-describedby="emailBookingHid" placeholder="">
+                                    <input type="email" class="form-control" name="emailBooking" id="emailBooking" aria-describedby="emailBookingHid" readonly value="ngocanhpham197@gmail.com">
                                 </div>
 
                                 <div class="form-group">
@@ -82,12 +82,11 @@
 
                                 <div class="form-group">
                                     <label for="email">Email người tham gia</label>
-                                    <input type="email" list="emails" multiple style="width: 100%;">
-                                    <select id="emails">
-                                        <option value="19021274@vnu.edu.vn">
-                                        <option value="1234@vnu.edu.vn">
-                                        <option value="23232@vnu.edu.vn">
-                                        <option value="2342312@vnu.edu.vn">
+                                    <select class="form-control email" multiple="multiple" style="height: 40px">
+                                        <option value="19021274@vnu.edu.vn">19021274@vnu.edu.vn</option>
+                                        <option value="1234@vnu.edu.vn">19021234@vnu.edu.vn</option>
+                                        <option value="23232@vnu.edu.vn">19021111@vnu.edu.vn</option>
+                                        <option value="2342312@vnu.edu.vn">19029999@vnu.edu.vn</option>
                                     </select>
                                 </div>
 
@@ -98,7 +97,7 @@
 
                                 <div class="form-group">
                                     <label for="fileupload">Đính kèm tệp</label>
-                                    <input type = "file" name = "fileupload" >
+                                    <input type="file" name="fileupload" >
                                 </div>
 
                                 <div class="form-group">
@@ -115,4 +114,23 @@
             </section>
         </div>
     </div>
+    {{-- <script type="text/javascript">
+        $('#search').on('keyup',function(){
+            $value = $(this).val();
+            $.ajax({
+                type: 'get',
+                url: '{{ URL::to('search') }}',
+                data: {
+                    'search': $value
+                },
+                success:function(data){
+                    $('#data').html(data);
+                }
+            });
+        })
+        $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+    </script> --}}
+    <script>
+        $('.email').select2();
+    </script>
 @endsection

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class EventsController extends Controller
@@ -22,8 +23,8 @@ class EventsController extends Controller
     public function index()
     {
         //
-        $users = User::query()->where('company_id', Auth::user()->company_id)->get();
-        $events = Event::query()->where('id', $users->id);
+        $events = Event::query()->where('user_id', Auth::user()->id)->get();
+        //dd($events);
         return view('events.index', [
             'events' => $events
         ]);
@@ -55,7 +56,6 @@ class EventsController extends Controller
             // dd('Request Has No File');
         }
 
-        $data->address = $request->address;
         $data->full_name = $request->usernameBooking;
         $data->phone_number = $request->telephoneBooking;
         $data->email = $request->emailBooking;
@@ -119,7 +119,6 @@ class EventsController extends Controller
         }
 
         $event = Event::where('id', $id)->update([
-            'address' => $request->address,
             'full_name' => $request->usernameBooking,
             'phone_number' => $request->telephoneBooking,
             'email' => $request->emailBooking,
@@ -154,7 +153,8 @@ class EventsController extends Controller
     }
 
 
-    public function rate() {
+    public function rate()
+    {
         return view('events.rate');
     }
 }

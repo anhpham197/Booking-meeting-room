@@ -16,3 +16,4 @@ class CreateEventRoomPivotTable extends Migration
         });
     }
 }
+
