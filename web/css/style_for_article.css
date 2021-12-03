@@ -1,3 +1,4 @@
+/* chung cả admin và user */
 body{
 	background: #fafafa;
 }
@@ -13,7 +14,7 @@ a:focus{
 	transition: all 0.3s;
 }
 
-/* Side Bar*/
+/* Side Bar cả user và admin*/
 
 #sidebar.active {
     margin-left: -300px;
@@ -111,7 +112,9 @@ ul ul a{
         opacity: 1;
     }
 }
-/* code cho phần event-content */
+/* code cho phần event-content - cái này dùng cho các form html nhiều nút mà Tuyên bảo làm hồi trước
+Khánh bảo để đấy lỡ Tuyên bảo làm 
+  */
 
 .event-content{
 	background-color: #e5e4e2;
@@ -170,12 +173,14 @@ ul ul a{
 	
 }
 
+/* dùng cho các table - dùng cả admin và user */
 .scroller{
 	position: relative;
 	height: 200px;
 	overflow: auto;
 	display: block;
 }
+
 #entities{
 	width: 56px;
 	height: 25px;
@@ -186,8 +191,24 @@ th,td{
 	text-align: center;
 }
 
-.hidden-cl{
-	display: none;
+
+
+/* css cho form , cả admin và user */
+.form-group + .form-group{
+	margin-top: 15px;
+}
+
+/* css cho card , dùng cả admin và user */
+.card , .card-header{
+	border-radius: 0px;
+}
+
+/* dùng cho thẻ span cho trường status và operation của giao diện table trong admin */
+.label-info{
+	background-color: #6d9886;
+	padding: 6px;
+	border-radius: 4px;
+	margin-right: 5px;
 }
 
 
