@@ -63,7 +63,9 @@
 
                                     </th>
                                     <th>Ghi chú
-
+                                    </th>
+                                    <th>
+                                        &nbsp;
                                     </th>
                                 </tr>
                             </thead>
@@ -172,6 +174,17 @@
                                     <td>{{$event->description}}</td>
                                     <td>{{$event->file}}</td>
                                     <td>{{$event->note}}</td>
+                                    <td>
+                                        <a class="btn btn-xs btn-primary" href="{{ route('events.show', $event->id) }}">
+                                            Xem
+                                        </a>
+                                        <a class="btn btn-xs btn-primary" href="{{ route('event.edit', $event->id) }}">
+                                            Sửa
+                                        </a>
+                                        <a class="btn btn-xs btn-primary" href="{{ route('event.delete', $event->id) }}">
+                                            Xóa
+                                        </a>
+                                    </td>
                                 </tr>
 
 

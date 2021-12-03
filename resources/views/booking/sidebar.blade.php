@@ -20,7 +20,7 @@
                   <a href="{{ route('kath.editPassword', ['id' => Auth::user()->id]) }}" class="text-white hover:no-underline">Thay đổi mật khẩu</a>
               </li>
               <li>
-                <a href="{{ route('event.view') }}" class="text-white hover:no-underline">Danh sách dự kiện</a>
+                <a href="{{ route('event.view') }}" class="text-white hover:no-underline">Danh sách sự kiện</a>
             </li>
 
           </ul>

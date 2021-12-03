@@ -149,6 +149,15 @@ class EventsController extends Controller
         return redirect()->route('event.edit', $id);
     }
 
+
+    public function deleteEvent($id)
+    {
+        //
+        $event = event::find($id);
+        $event->delete();
+        return redirect()->back();
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -163,6 +172,11 @@ class EventsController extends Controller
     public function show($id)
     {
         //
+        $event = Event::query()->where('id', $id)->first();
+        //dd($event);
+        return view('events.show', [
+            'event' => $event
+        ]);
     }
 
 

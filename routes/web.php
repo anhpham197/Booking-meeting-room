@@ -29,13 +29,14 @@ Route::get('/create', [\App\Http\Controllers\EventsController::class, 'create'])
 // Route::delete('events/destroy', 'App\Http\Controllers\EventsController@massDestroy')->name('events.massDestroy');
 // Route::post('events/media', 'App\Http\Controllers\EventsController@storeMedia')->name('events.storeMedia');
 // Route::post('events/ckmedia', 'App\Http\Controllers\EventsController@storeCKEditorImages')->name('events.storeCKEditorImages');
-// Route::resource('events', 'App\Http\Controllers\EventsController');
+Route::resource('events', 'App\Http\Controllers\EventsController');
 
 Route::get('/event/view', [EventsController::class, 'index'])->name('event.view');
 Route::get('/event/{id}/create', [EventsController::class, 'create'])->name('event.create');
 Route::get('/event/{id}/edit', [EventsController::class, 'edit'])->name('event.edit');
 Route::post('/event/upload', [EventsController::class, 'upload'])->name('event.upload');
 Route::put('/event/{id}/update', [EventsController::class, 'update'])->name('event.update');
+Route::get('/event/{id}/delete', [EventsController::class, 'deleteEvent'])->name('event.delete');
 // Route::get('event/create', [EventsController::class, 'index'])->name('event.create');
 // Route::get('event/{id}/edit', [EventsController::class, 'edit'])->name('event.edit');
 // Route::post('event/upload', [EventsController::class, 'create'])->name('event.upload');
@@ -47,8 +48,8 @@ Route::get('/room/create', [RoomsController::class, 'create'])->name('room.creat
 Route::get('/room/{id}/edit', [RoomsController::class, 'edit'])->name('room.edit');
 Route::put('/room/upload', [RoomsController::class, 'upload'])->name('room.upload');
 Route::put('/room/{id}/update', [RoomsController::class, 'update'])->name('room.update');
-/* Route::delete('rooms/destroy', 'RoomsController@massDestroy')->name('rooms.massDestroy');
-Route::resource('rooms', 'RoomsController'); */
+/* Route::delete('rooms/destroy', 'RoomsController@massDestroy')->name('rooms.massDestroy'); */
+Route::resource('rooms', 'RoomsController');
 
 Auth::routes();
 
