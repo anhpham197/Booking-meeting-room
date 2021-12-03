@@ -63,4 +63,3 @@ Route::put('/kath/{id}/change_password', [UserController::class, 'changePassword
 Route::get('/kath/{id}/edit_password', [UserController::class, 'editPassword'])->name('kath.editPassword');
 
 Route::get('/kath/users', [UserController::class, 'showUsers'])->name('kath.showUsers');
-Route::get('/kath/rooms', [EventsController::class, 'showRooms'])->name('kath.showRooms');

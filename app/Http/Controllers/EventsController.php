@@ -168,12 +168,4 @@ class EventsController extends Controller
     {
         return view('events.rate');
     }
-
-    public function showRooms()
-    {
-        $rooms = Room::all();
-        return view('events.rooms', [
-            'rooms' => $rooms
-        ]);
-    }
 }

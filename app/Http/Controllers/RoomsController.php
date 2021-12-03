@@ -22,7 +22,10 @@ class RoomsController extends Controller
     public function index()
     {
         //
-        return view('rooms.index');
+        $rooms = Room::all();
+        return view('rooms.index', [
+            'rooms' => $rooms
+        ]);
     }
 
     public function create()

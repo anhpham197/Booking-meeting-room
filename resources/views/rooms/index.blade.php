@@ -1,174 +1,161 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Booking</title>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
-	<link href="{{ mix('css/app.css') }}" rel="stylesheet">
+@extends('layouts.app')
 
-
-</head>
-
-<body>
-
-
-
-    <div class="wrapper" >
-        <nav id="sidebar">
-             <div class="sidebar-header">
-                 <h3>Booking</h3>
-             </div>
-             <ul class="lisst-unstyled components">
-
-                 <li>
-                    <i class="fas fa-home"></i>
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Thông tin cá nhân</a>
-
-                    <ul class="collapse list-unstyled subnav" id="homeSubmenu" >
-                       <li>
-                           <a href="#">Home 1</a>
-                       </li>
-                       <li>
-                           <a href="#">Home 2</a>
-                       </li>
-
-                   </ul>
-                 </li>
-                 <li>
-                    <i class="fas fa-chevron-circle-down"></i>
-                    <a href="#">About</a>
-                 </li>
-                 <li>
-                     <i class="far fa-file-alt"></i>
-                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
-                     <ul class="collapse list-unstyled subnav" id="pageSubmenu" >
-                         <li >
-                             <a href="#">Page 1</a>
-                         </li>
-                         <li>
-                             <a href="#">Page 2</a>
-                         </li>
-                     </ul>
-                 </li>
-               <li>
-                    <i class="fas fa-paint-brush"></i>
-                    <a href="#">Policy</a>
-               </li>
-               <li>
-                    <i class="fas fa-mail-bulk"></i>
-                    <a href="#">Contact </a>
-               </li>
-
-             </ul>
-        </nav>
-        <div id="content">
-
-            <nav class="navbar navbar-expand-lg navbar-light bg-light " style="height: 81px;" >
-                <div class="container-fluid">
-                    <button type="button" id="sidebarCollapse" class="footer-main-cl">
-                    <i class="fas fa-bars"></i>
-
+@section('content')
+    <div class="wrapper">
+        @include('booking.sidebar')
+        <div id="content" class="leading-snug">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 70px;">
+                <div class="flex gap-6">
+                    <button type="button" id="sidebarCollapse" class="cursor-pointer rounded-md">
+                        <i class="fas fa-angle-double-left text-2xl font-normal text-gray-400"></i>
                     </button>
                 </div>
             </nav>
-            <div style="height: 888px;" >
-                <table class="table table-bordered table-hover" style="text-align: center;">
-                    <thead class=" bg-success text-white">
-                      <tr>
-                        <th scope="col">Mã phòng</th>
-                        <th scope="col">Tầng</th>
-                        <th scope="col">Diện tích (m2)</th>
-                        <th scope="col">Số ghế</th>
-                        <th scope="col">Trang thiết bị</th>
-                        <th scope="col">Trạng thái</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">
-                            <select>
-                                <option selected>Chọn mã phòng</option>
-                                <option value="401">401</option>
-                                <option value="402">402</option>
-                                <option value="403">403</option>
-                                <option value="404">404</option>
-                            </select>
-                        </th>
-                        <td>
-                            <select>
-                                <option selected>Chọn tầng</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                            </select>
-                        </td>
-                        <td>Diện tích</td>
-                        <td>Số ghế</td>
-                        <td>Trang thiết bị</td>
-                        <td>Trạng thái</td>
-                      </tr>
-                    </tbody>
-                  </table>
-            </div>
-        </div>
-    </div>
-    <footer class="page-footer bg-dark pt-3 pb-5">
 
-        <div class="container text-center text-md-left mt-5">
-            <div class="row">
-                <div class="col-md-3 mx-auto mb-4">
-                    <h6 class="text-uppercase font-weight-bold"> product</h6>
-                    <hr class="footer-main-cl mb-4 mt-0 d-inline-block max-auto" style="width: 125px; height: 10px;border-radius: 10px;">
-                    <p class="mt-2">
-                        Sản phẩm giúp đặt phòng nhanh chóng, đảm bản uy tín chất lượng
-                    </p>
-                </div>
-                <div class="col-md-2 mx-auto mb-4">
-                    <h6 class="text-uppercase font-weight-bold">ingredient</h6>
-                    <hr class="footer-main-cl mb-4 mt-0 d-inline-block max-auto" style="width: 125px; height: 10px;border-radius: 10px;">
-                    <ul class="list-unstyled">
-                        <li class="my-2"><a href="#">HTML 5</a></li>
-                        <li class="my-2"><a href="#">CSS 3</a></li>
-                        <li class="my-2"><a href="#">Bootstrap 4</a></li>
-                        <li class="my-2"><a href="#">JavaScript</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3 mx-auto mb-4">
-                    <h6 class="text-uppercase font-weight-bold">contact</h6>
-                    <hr class="footer-main-cl mb-4 mt-0 d-inline-block max-auto" style="width: 125px; height: 10px;border-radius: 10px;">
-                    <ul class="list-unstyled">
-                        <li class="my-2"><i class="fas fa-phone mr-2"></i> 113</li>
-                        <li class="my-2"><i class="fab fa-github mr-2"></i>penzz</li>
-                        <li class="my-2"><i class="fas fa-envelope-square mr-2"></i>gmail</li>
-                        <li class="my-2"><i class="fas fa-home mr-2"></i>144 Xuan Thuy</li>
-                    </ul>
+            <div class="card-header text-center text-xl font-semibold uppercase">Danh sách phòng họp</div>
+
+            <div class="">
+                <div class="scroller" style="height: 427px;">
+                    <table class="table table-bordered table-hover text-center" id="dtOrderExample">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <b style="margin-right: 5px;">Tên phòng</b>
+                                    <i class="fas fa-sort" id="rl-name"></i>
+                                </th>
+                                <th>
+                                    <b style="margin-right: 5px;">Sức chứa</b>
+                                    <i class="fas fa-sort" id="rl-sc"></i>
+                                </th>
+                                <th>
+                                    <b style="margin-right: 5px;">Diện tích</b>
+                                    <i class="fas fa-sort" id="rl-sp"></i>
+                                </th>
+                                <th>
+                                    <b style="margin-right: 5px;">Tình trạng</b>
+                                    <i class="fas fa-sort" id="rl-mood"></i>
+                                </th>
+                                <th><b>Trang thiết bị</b></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+                            @foreach ($rooms as $room)
+                                <td style="font-weight: 400;">Phòng {{ $room->name }}</td>
+                                <td>{{ $room->capacity }} người</td>
+                                <td>{{ $room->area }} m<sup>2</sup> </td>
+                                <td>
+                                    @if ($room->status == 'Hoạt động')
+                                        <div class="text-white bg-green-500 py-2 px-2 rounded-md font-semibold">
+                                            {{ $room->status }}</div>
+                                    @elseif ($room->status == 'Đang sửa chữa')
+                                        <div class="text-white bg-gray-400 py-2 px-2 rounded-md font-semibold block">
+                                            {{ $room->status }}</div>
+                                    @endif
+                                </td>
+                                <td class="">
+                                    @foreach ($room->facilities as $facility)
+                                        <div class=" text-white label-info inline-flex mb-2" style="font-weight: 400">
+                                            {{ $facility->name }}</div>
+                                    @endforeach
+                                </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
 
+        <script>
+            // num là để chọn chiều lọc data
+            var num = 1;
+            // sort data
+            // sort cho dạng string
+            function sort_row_string(col, table_name) {
+                var table, rows, switching, i, x, y, shouldSwitch;
+                table = document.getElementById(table_name);
+                switching = true;
+                num *= -1;
+                while (switching) {
 
-        <div class="">
-            <div class="footer-main-cl ">
+                    switching = false;
+                    rows = table.rows;
 
-                <div class="footer-copyright text-center py-4">
-                    <p>
-                        <a href="">Copyright 1999-2021</a>  by Penzz DKhanh. All Rights Reserved.
-                    </p>
-                </div>
-            </div>
-        </div>
+                    for (i = 1; i < (rows.length - 1); i++) {
 
+                        shouldSwitch = false;
 
+                        x = rows[i].getElementsByTagName("TD")[col];
+                        y = rows[i + 1].getElementsByTagName("TD")[col];
 
-    </footer>
+                        if (num == -1) {
+                            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                                shouldSwitch = true;
+                                break;
+                            }
+                        } else {
+                            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                                shouldSwitch = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (shouldSwitch) {
+                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                        switching = true;
+                    }
+                }
+            }
 
+            // sort cho dạng int
+            function sort_row_int(col, table_name) {
+                var table, rows, switching, i, x, y, shouldSwitch;
+                table = document.getElementById(table_name);
+                switching = true;
+                num *= -1;
+                while (switching) {
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="/js/main.js"></script>
-</body>
-</html>
+                    switching = false;
+                    rows = table.rows;
+
+                    for (i = 1; i < (rows.length - 1); i++) {
+
+                        shouldSwitch = false;
+
+                        x = rows[i].getElementsByTagName("TD")[col];
+                        y = rows[i + 1].getElementsByTagName("TD")[col];
+
+                        if (num == -1) {
+                            if (parseInt(x.innerHTML) > parseInt(y.innerHTML)) {
+                                shouldSwitch = true;
+                                break;
+                            }
+                        } else {
+                            if (parseInt(x.innerHTML) < parseInt(y.innerHTML)) {
+                                shouldSwitch = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (shouldSwitch) {
+                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                        switching = true;
+                    }
+                }
+            }
+            document.getElementById('rl-name').addEventListener("click", function() {
+                sort_row_string("0", "dtOrderExample");
+            });
+            document.getElementById('rl-sc').addEventListener("click", function() {
+                sort_row_int("1", "dtOrderExample");
+            });
+            document.getElementById('rl-sp').addEventListener("click", function() {
+                sort_row_int("2", "dtOrderExample");
+            });
+            document.getElementById('rl-mood').addEventListener("click", function() {
+                sort_row_string("3", "dtOrderExample");
+            });
+        </script>
+    @endsection
