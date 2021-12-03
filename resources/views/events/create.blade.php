@@ -80,7 +80,7 @@
                                     <label for="roomId">Tên phòng</label>
                                     <select name="roomId" class="form-control" id="roomId">
                                         @foreach ($rooms as $room)
-                                            <option value="{{ $room->name }}">{{ $room->name }}</option>
+                                            <option value="{{ $room->id }}">{{ $room->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>   
