@@ -6,10 +6,10 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 70px;" >
                 <div class="flex gap-6">
                     <button type="button" id="sidebarCollapse" class="cursor-pointer rounded-md">
-                        <i class="fas fa-angle-double-left text-2xl font-normal text-gray-400"></i>    
+                        <i class="fas fa-angle-double-left text-2xl font-normal text-gray-400"></i>
                     </button>
                     {{-- <div class="justify-center">Trang chủ</div> --}}
-                    <div class="relative flex w-full flex-wrap items-stretch"> 
+                    <div class="relative flex w-full flex-wrap items-stretch">
                         <span
                           class="z-10 h-full leading-snug font-normal absolutetext-center text-gray-400 absolute bg-transparent rounded items-center justify-center pl-3 py-2">
                           <i class="fas fa-search"></i>
@@ -22,7 +22,7 @@
 
             <section class="row">
                 <div class="col-12">
-                    <form autocomplete="on" action="{{ route('event.save') }}" method="POST" enctype="multipart/form-data">
+                    <form autocomplete="on" action="{{route('event.upload', ['id' => Auth::user()->id])}}"  method="POST" enctype="multipart/form-data">
                         {{-- @method('PUT') --}}
                         @csrf
 
@@ -32,8 +32,12 @@
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="usernameBooking">Họ tên người đặt <span class="text-red-600">*</span></label>
-                                    <input type="text" class="form-control" name="usernameBooking" id="usernameBooking" aria-describedby="usernameBookingHid" required readonly value="Phạm Ngọc Ánh">
+                                    <label for="title">Tiêu đề Cuộc họp <span class="text-red-600">*</span></label>
+                                    <input type="text" class="form-control" name="title" id="title" aria-describedby="titleHid" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="usernameBooking">Họ tên người đặt</label>
+                                    <input type="text" class="form-control" name="usernameBooking" id="usernameBooking" aria-describedby="usernameBookingHid" required readonly value="{{ $user->name }}">
                                 </div>
 
                                 <div class="form-group">
@@ -43,7 +47,7 @@
 
                                 <div class="form-group">
                                     <label for="emailBooking">Email</label>
-                                    <input type="email" class="form-control" name="emailBooking" id="emailBooking" aria-describedby="emailBookingHid" readonly value="ngocanhpham197@gmail.com">
+                                    <input type="email" class="form-control" name="emailBooking" id="emailBooking" aria-describedby="emailBookingHid" readonly value="{{ $user->email }}">
                                 </div>
 
                                 <div class="form-group">
@@ -74,17 +78,18 @@
 
                                 <div class="form-group">
                                     <label for="roomId">Tên phòng</label>
-                                    <select name="roomId" class="form-control" id="roomId">
-                                        <option value="405">405</option>
-                                        <option value="406">406</option>
+                                    <select name="roomId" id="" class="form-control" id="roomId">
+                                        @foreach ($rooms as $room)
+                                            <option value="{{ $room->name }}">{{ $room->name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="email">Email người tham gia</label>
-                                    <select class="form-control email" multiple="multiple" style="height: 40px" name="participants[]">
-                                        @foreach ($users as $user)                                        
-                                            <option value="{{$user->id}}">{{$user->email}}</option>
+                                    <select class="form-control email" multiple="multiple" style="height: 40px" name="emails[]">
+                                        @foreach ($users as $user)
+                                            <option value="{{ $user->id }}">{{ $user->email }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -113,6 +118,22 @@
             </section>
         </div>
     </div>
+    {{-- <script type="text/javascript">
+        $('#search').on('keyup',function(){
+            $value = $(this).val();
+            $.ajax({
+                type: 'get',
+                url: '{{ URL::to('search') }}',
+                data: {
+                    'search': $value
+                },
+                success:function(data){
+                    $('#data').html(data);
+                }
+            });
+        })
+        $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+    </script> --}}
     <script>
         $('.email').select2({
             placeholder: "Select a state",

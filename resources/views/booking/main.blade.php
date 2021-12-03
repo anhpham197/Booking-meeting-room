@@ -6,10 +6,10 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 70px;" >
                 <div class="flex gap-6">
                     <button type="button" id="sidebarCollapse" class="cursor-pointer rounded-md">
-                        <i class="fas fa-angle-double-left text-2xl font-normal text-gray-400"></i>    
+                        <i class="fas fa-angle-double-left text-2xl font-normal text-gray-400"></i>
                     </button>
                     {{-- <div class="justify-center">Trang chủ</div> --}}
-{{--                     <div class="relative flex w-full flex-wrap items-stretch"> 
+{{--                     <div class="relative flex w-full flex-wrap items-stretch">
                         <span
                           class="z-10 h-full leading-snug font-normal absolutetext-center text-gray-400 absolute bg-transparent rounded items-center justify-center pl-3 py-2">
                           <i class="fas fa-search"></i>
@@ -50,18 +50,18 @@
                                 </button>
                             </div>
                         </div>
-        
+
                         <div class="-mx-1 -mb-1">
                             <div id="days-bar" class="flex flex-wrap" style="margin-bottom: -40px;">
                             </div>
-        
+
                             <div id="day-list" class="flex flex-wrap border-t border-l">
-                                
+
                             </div>
                         </div>
                     </div>
                 </div>
-        
+
                 <!-- Modal -->
                 <div id='calendar-modal' style=" background-color: rgba(0, 0, 0, 0.8); display: none" class="fixed z-40 top-0 right-0 left-0 bottom-0 h-full w-full">
                     <div class="p-4 max-w-xl mx-auto relative absolute left-0 right-0 overflow-hidden mt-24">
@@ -72,11 +72,11 @@
                                     d="M16.192 6.344L11.949 10.586 7.707 6.344 6.293 7.758 10.535 12 6.293 16.242 7.707 17.656 11.949 13.414 16.192 17.656 17.606 16.242 13.364 12 17.606 7.758z" />
                             </svg>
                         </div>
-        
+
                         <div class="shadow w-full rounded-lg bg-white overflow-hidden w-full block p-8">
-        
+
                             <h2 class="font-bold text-2xl mb-6 text-gray-800 border-b pb-2">Event Details</h2>
-        
+
                             <div class="mt-8 text-right">
                                 <button type="button"
                                     class="bg-white hover:bg-gray-100 text-gray-700 font-semibold py-2 px-4 border border-gray-300 rounded-lg shadow-sm mr-2"

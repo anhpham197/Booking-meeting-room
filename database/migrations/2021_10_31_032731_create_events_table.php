@@ -14,14 +14,15 @@ class CreateEventsTable extends Migration
             $table->string('full_name');
             $table->string('phone_number');
             $table->string('email');
-            $table->datetime('start_day')->nullable();
-            $table->datetime('end_day')->nullable();
+            $table->date('start_day')->nullable();
+            $table->date('end_day')->nullable();
             $table->time('start_time')->nullable();
             $table->time('end_time')->nullable();
+            $table->string('room_id')->nullable();
             $table->string('partition_email')->nullable();
             $table->longText('description')->nullable();
             $table->longText('note')->nullable();
-            $table->longText('file')->nullable();
+            $table->string('file')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -22,7 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
         'date_of_birth',
-        'gender', 
+        'gender',
         'company_id',
         'phone'
     ];
@@ -46,7 +46,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function company() {
+    public function company()
+    {
         return $this->belongsTo(Company::class);
     }
 }

@@ -1,120 +1,238 @@
 @extends('layouts.app')
+
 @section('content')
     <div class="wrapper">
         @include('booking.sidebar')
-        <div id="content">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 70px;" >
-                <div class="flex gap-6">
-                    <button type="button" id="sidebarCollapse" class="cursor-pointer rounded-md">
-                        <i class="fas fa-angle-double-left text-2xl font-normal text-gray-400"></i>    
+        <div id="content" class="leading-snug">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light " style="height: 81px;">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="footer-main-cl">
+                        <i class="fas fa-bars"></i>
+
                     </button>
-                    {{-- <div class="justify-center">Trang chủ</div> --}}
-                    <div class="relative flex w-full flex-wrap items-stretch"> 
-                        <span
-                          class="z-10 h-full leading-snug font-normal absolutetext-center text-gray-400 absolute bg-transparent rounded items-center justify-center pl-3 py-2">
-                          <i class="fas fa-search"></i>
-                        </span>
-                        <input type="search" id="search" name="search" class="form-input placeholder-gray-400 w-72 pl-10" placeholder="Tìm kiếm..."
-                                style="font-family: 'Font Awesome 5 Free', 'system-ui'; border: 1px solid #4f4f4f" >
-                    </div>
                 </div>
             </nav>
 
-            <section class="row">
-                <div class="col-12">
-                    <form autocomplete="on" action="{{url('event/upload')}}" method="POST" enctype="multipart/form-data">
-                        {{-- @method('PUT') --}}
-                        @csrf
-
-                        <div class="card">
-                            <div class="card-header text-center">
-                                <b>Đặt phòng họp</b>
-                            </div>
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <label for="usernameBooking">Họ tên người đặt <span class="text-red-600">*</span></label>
-                                    <input type="text" class="form-control" name="usernameBooking" id="usernameBooking" aria-describedby="usernameBookingHid" required readonly value="Phạm Ngọc Ánh">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="telephoneBooking">Số điện thoại <span class="text-red-600">*</span></label>
-                                    <input type="tel" class="form-control" name="telephoneBooking" id="telephoneBooking" aria-describedby="telephoneBookingHid" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="emailBooking">Email</label>
-                                    <input type="email" class="form-control" name="emailBooking" id="emailBooking" aria-describedby="emailBookingHid" readonly value="ngocanhpham197@gmail.com">
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col">
-                                            <label for="booking_date_start">Ngày bắt đầu</label>
-                                            <input type="date" class="form-control" name="booking_date_start" id="booking_date_start" >
-                                        </div>
-                                        <div class="col">
-                                            <label for="time_start">Thời gian bắt đầu</label>
-                                            <input type="time" class="form-control" name="time_start" id="time_start" >
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col">
-                                            <label for="booking_date_end">Ngày kết thúc</label>
-                                            <input type="date" class="form-control" name="booking_date_end" id="booking_date_end" >
-                                        </div>
-                                        <div class="col">
-                                            <label for="time_end">Thời gian kết thúc</label>
-                                            <input type="time" class="form-control" name="time_end" id="time_end" >
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="roomId">Tên phòng</label>
-                                    <select name="roomId" id="" class="form-control" id="roomId">
-                                        <option value="405">405</option>
-                                        <option value="406">406</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="email">Email người tham gia</label>
-                                    <select class="form-control email" multiple="multiple" style="height: 40px">
-                                        <option value="19021274@vnu.edu.vn">19021274@vnu.edu.vn</option>
-                                        <option value="1234@vnu.edu.vn">19021234@vnu.edu.vn</option>
-                                        <option value="23232@vnu.edu.vn">19021111@vnu.edu.vn</option>
-                                        <option value="2342312@vnu.edu.vn">19029999@vnu.edu.vn</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="textarea">Nội dung cuộc họp</label>
-                                    <textarea id="textarea1" name="description" class="form-control" rows="5"></textarea>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="fileupload">Đính kèm tệp</label>
-                                    <input type="file" name="fileupload" >
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="textarea">Ghi chú</label>
-                                    <textarea id="textarea2" name="note" class="form-control" rows="5"></textarea>
-                                </div>
-                            </div>
-                            <div class="card-footer" style="text-align: center;">
-                                <button type="submit" class="btn btn-primary">Đặt phòng</button>
-                            </div>
-                        </div>
-                    </form>
+            <div class="event-content">
+                <button class="add-event-btn">Xóa toàn bộ</button>
+            </div>
+            <div class="card">
+                <div class="card-header" style="padding: 15px 0px;">
+                    <p style="margin: 0px ;margin-left: 10px;">Danh sách sự kiện</p>
                 </div>
-            </section>
+                <div class="card-body" style="height: 500px; padding: 15px 0px;">
+                    <div class="select-event">
+                        <div class="left-content">
+                            <label for="entities" style="margin-left: 10px;">Xem: </label>
+                            <input type="number" name="" id="entities" min="0" max="100" placeholder="1" step="10">
+                            <p style="background-color: #321fdb; color: white;" onclick="funct_all(1)">Chọn toàn bộ</p>
+                            <p style="background-color: #321fdb; color: white; opacity: 0.65; " onclick="funct_all(0)">
+                                Bỏ chọn</p>
+                            <p>Copy</p>
+                            <p>CSV</p>
+                            <p>Excel</p>
+                            <p>PDF</p>
+                            <p>In</p>
+                            <p>Cột</p>
+                            <p style="background-color: #e55353; color: white;">Xóa</p>
+                        </div>
+                        <div class="right-content">
+                            <label for="search">Tìm kiếm:</label>
+                            <input type="text" id="search">
+                        </div>
+                    </div>
+                    <div class="scroller" style="height:300px">
+                        <table class="table table-striped table-bordered " id="table_to_highlight">
+                            <thead align="center">
+                                <tr style="background-color: #fff;">
+                                    <th></th>
+                                    <th id="im-tb-name">Tên sự kiện
+                                        <i class="fas fa-sort"></i>
+                                    </th>
+
+                                    <th id="im-tb-sdate">Ngày bắt đầu
+                                        <i class="fas fa-sort"></i>
+                                    </th>
+                                    <th id="im-tb-fdate">Ngày kết thúc
+                                        <i class="fas fa-sort"></i>
+                                    </th>
+                                    <th>Mô tả
+
+                                    </th>
+                                    <th>File
+
+                                    </th>
+                                    <th>Ghi chú
+
+                                    </th>
+                                </tr>
+                            </thead>
+
+                            {{-- <tbody>
+                                <tr id="row1" class="tb-row">
+                                    <td>
+                                        <input type="checkbox" name="" id="box1" disabled>
+                                    </td>
+                                    <td>3</td>
+                                    <td>Kieu van tuyen1</td>
+                                    <td>113</td>
+                                    <td>Kieuvantuyen@gmail.com</td>
+                                    <td>12/08/2021</td>
+                                    <td>12/08/2021</td>
+                                    <td>1190123@vnu.edu.vn</td>
+                                    <td>ddddddddd</td>
+                                    <td>sssssssss</td>
+                                    <td>aaaaaaaaaaa</td>
+                                </tr>
+                                <tr id="row2" class="tb-row">
+                                    <td>
+                                        <input type="checkbox" name="" id="box2" disabled>
+                                    </td>
+                                    <td>2</td>
+                                    <td>Kieu van tuyen2</td>
+                                    <td>113</td>
+                                    <td>Kieuvantuyen@gmail.com</td>
+                                    <td>12/08/2021</td>
+                                    <td>12/08/2021</td>
+                                    <td>1190123@vnu.edu.vn</td>
+                                    <td>ddddddddd</td>
+                                    <td>sssssssss</td>
+                                    <td>aaaaaaaaaaa</td>
+                                </tr>
+                                <tr id="row3" class="tb-row">
+                                    <td>
+                                        <input type="checkbox" name="" id="box3" disabled>
+                                    </td>
+                                    <td>9</td>
+                                    <td>Kieu van tuyen4</td>
+                                    <td>113</td>
+                                    <td>Kieuvantuyen@gmail.com</td>
+                                    <td>12/08/2021</td>
+                                    <td>12/08/2021</td>
+                                    <td>1190123@vnu.edu.vn</td>
+                                    <td>ddddddddd</td>
+                                    <td>sssssssss</td>
+                                    <td>aaaaaaaaaaa</td>
+                                </tr>
+                                <tr id="row4" class="tb-row">
+                                    <td>
+                                        <input type="checkbox" name="" id="box3" disabled>
+                                    </td>
+                                    <td>8</td>
+                                    <td>Kieu van tuyen5</td>
+                                    <td>113</td>
+                                    <td>Kieuvantuyen@gmail.com</td>
+                                    <td>12/08/2021</td>
+                                    <td>12/08/2021</td>
+                                    <td>1190123@vnu.edu.vn</td>
+                                    <td>ddddddddd</td>
+                                    <td>sssssssss</td>
+                                    <td>aaaaaaaaaaa</td>
+                                </tr>
+                                <tr id="row5" class="tb-row">
+                                    <td>
+                                        <input type="checkbox" name="" id="box3" disabled>
+                                    </td>
+                                    <td>7</td>
+                                    <td>Kieu van tuyen6</td>
+                                    <td>113</td>
+                                    <td>Kieuvantuyen@gmail.com</td>
+                                    <td>12/08/2021</td>
+                                    <td>12/08/2021</td>
+                                    <td>1190123@vnu.edu.vn</td>
+                                    <td>ddddddddd</td>
+                                    <td>sssssssss</td>
+                                    <td>aaaaaaaaaaa</td>
+                                </tr>
+                                <tr id="row6" class="tb-row">
+                                    <td>
+                                        <input type="checkbox" name="" id="box3" disabled>
+                                    </td>
+                                    <td>1</td>
+                                    <td>Kieu van tuyen7</td>
+                                    <td>113</td>
+                                    <td>Kieuvantuyen@gmail.com</td>
+                                    <td>12/08/2021</td>
+                                    <td>12/08/2021</td>
+                                    <td>1190123@vnu.edu.vn</td>
+                                    <td>ddddddddd</td>
+                                    <td>sssssssss</td>
+                                    <td>aaaaaaaaaaa</td>
+                                </tr>
+                            </tbody> --}}
+                            <tbody>
+                                @foreach ($events as $event)
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" name="" id="box3" disabled>
+                                    </td>
+                                    <td text-align:left>{{$event->title}}</td>
+                                    <td>{{$event->start_day}}</td>
+                                    <td>{{$event->end_day}}</td>
+                                    <td>{{$event->description}}</td>
+                                    <td>{{$event->file}}</td>
+                                    <td>{{$event->note}}</td>
+                                </tr>
+
+
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
     <script>
         $('.email').select2();
     </script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+    <script src="/js/main.js"></script>
+
+    <script type="text/javascript">
+    // code này chạy để chọn thông tin trong table
+    document.getElementById('table_to_highlight')
+        .addEventListener('click', function (item) {
+
+            var row = item.path[1];
+            var box = row.cells[0];
+            if (!box.firstElementChild.checked) {
+                box.firstElementChild.checked = true;
+                row.style.backgroundColor = "#1e90ff";
+            } else {
+                box.firstElementChild.checked = false;
+                row.style.backgroundColor = null;
+            }
+        });
+
+    document.getElementById("im-tb-id").addEventListener("click", function () {
+        sort_name("1", "table_to_highlight");
+    });
+    document.getElementById("im-tb-name").addEventListener("click", function () {
+        sort_name("2", "table_to_highlight");
+    });
+    document.getElementById("im-tb-mail1").addEventListener("click", function () {
+        sort_name("4", "table_to_highlight");
+    });
+    document.getElementById("im-tb-sdate").addEventListener("click", function () {
+        sort_name("5", "table_to_highlight");
+    });
+    document.getElementById("im-tb-fdate").addEventListener("click", function () {
+        sort_name("6", "table_to_highlight");
+    });
+    document.getElementById("im-tb-mail2").addEventListener("click", function () {
+        sort_name("7", "table_to_highlight");
+    });
+
+    </script>
+
 @endsection
+
+

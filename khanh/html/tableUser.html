@@ -4,10 +4,10 @@
 	<title>Booking</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
-	  <link rel="stylesheet" href="/khanh/css/style_for_article.css">
+	<link rel="stylesheet" href="/css/style_for_article.css">
     
     
 </head>
@@ -75,116 +75,366 @@
                 </div>
             </nav>
             <div>
-              <div class="scroller" style="height: 500px;">
-                <table id="dtOrderExample" class="table table-bordered table-sm" cellspacing="0" width="100%" style="text-align: center">
-                    <thead class="table-idea">
-                      <tr>
-                        <th id="th-id" rowspan="2" style="line-height: 58px;width: 74px;">
-                          ID
-                          <i class="fas fa-sort"></i>
-                        </th>
-                        <th id="th-name" rowspan="2" style="line-height: 58px; width: 200px;">
-                          HỌ VÀ TÊN
-                          <i class="fas fa-sort"></i>
-                        </th>
-                        <th id="th-mail" rowspan="2" style="line-height: 58px; width: 259px;">
-                          MAIL
-                        <th rowspan="2" style="line-height: 58px;width: 132px;">
-                          SỐ ĐIỆN THOẠI
-                        </th>
-                        <th colspan="3">
-                          LỊCH HỌP
-                        </th>
-                      </tr>
-                      <tr>
-                        <th id="th-date"><b>Ngày</b>
-                          
-                        </th>
-                        <th id="th-hour" class="font-weight-bolder">
-                          <b>Giờ</b>
-                        </th>
-                        <th id="th-meeting" class="font-weight-bolder">
-                          <b>Cuộc họp</b>
-                        </th>
+                <table id="dtOrderExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%" style="text-align: center;">
+                    <thead>
+                      <tr class="table-idea">
+                        <th id="th-name">Name</th>
+                        <th id="th-mail">mail</th>
+                        <th id="th-office">Office</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td >1</td>
-                        <td >Pham Ngoc Anh</td>
-                        <td >NgocAnhNgu@gmail.com</td>
-                        <td >103456789</td>
-                        <td>29/11/2021</td>
-                        <td>09:11</td>
-                        <td>đây là cuộc họp chứ không phải cuộc chơi đùa cái lồn j dcm cả lũ nhân viên ngu này:)</td>
+                          
+                        <td>Tiger Nixon</td>
+                        <td>Tiger Nixon@</td>
+                        <td>Edinburgh</td>
                       </tr>
-                      
+                      <tr>
+                        <td>Garrett Winters</td>
+                        <td>Garrett Winters@</td>
+                        <td>Tokyo</td>
+                       
+                      </tr>
+                      <tr>
+                        <td>Ashton Cox</td>
+                        
+                        <td>mail@</td>
+                        <td>San Francisco</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Cedric Kelly</td>
+                       
+                        <td>mail@</td>
+                        <td>Edinburgh</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Airi Satou</td>
+                       
+                        <td>mail@</td>
+                        <td>Tokyo</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Brielle Williamson</td>
+
+                        <td>mail@</td>
+                        <td>New York</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Herrod Chandler</td>
+                        <td>mail@</td>
+                        <td>San Francisco</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Rhona Davidson</td>
+                        <td>mail@</td>
+                        <td>Tokyo</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Colleen Hurst</td>
+                        <td>mail@</td>
+                        <td>San Francisco</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Sonya Frost</td>
+                        <td>mail@</td>
+                        <td>Edinburgh</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Jena Gaines</td>
+                        <td>mail@</td>
+                        <td>London</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Quinn Flynn</td>
+                        <td>mail@</td>
+                        <td>Edinburgh</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Charde Marshall</td>
+                        <td>mail@</td>
+                        <td>San Francisco</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Haley Kennedy</td>
+                        <td>mail@</td>
+                        <td>London</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Tatyana Fitzpatrick</td>
+                        <td>mail@</td>
+                        <td>London</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Michael Silva</td>
+                        <td>mail@</td>
+                        <td>London</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Paul Byrd</td>
+                        <td>mail@</td>
+                        <td>New York</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Gloria Little</td>
+                        <td>mail@</td>
+                        <td>New York</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Bradley Greer</td>
+                        <td>mail@</td>
+                        <td>London</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Dai Rios</td>
+                        <td>mail@</td>
+                        <td>Edinburgh</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Jenette Caldwell</td>
+                        <td>mail@</td>
+                        <td>New York</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Yuri Berry</td>
+                        <td>mail@</td>
+                        <td>New York</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Caesar Vance</td>
+                        <td>mail@</td>
+                        <td>New York</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Doris Wilder</td>
+                        <td>mail@</td>
+                        <td>Sidney</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Angelica Ramos</td>
+                        <td>mail@</td>
+                        <td>London</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Gavin Joyce</td>
+                        <td>mail@</td>
+                        <td>Edinburgh</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Jennifer Chang</td>
+                        <td>mail@</td>
+                        <td>Singapore</td>
+                        
+                      </tr>
+                      <tr>
+                        
+                        <td>Brenden Wagner</td>
+                        <td>mail@</td>
+                        <td>San Francisco</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Fiona Green</td>
+                        <td>mail@</td>
+                        <td>San Francisco</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Shou Itou</td>
+                        <td>mail@</td>
+                        <td>Tokyo</td>
+                       
+                      </tr>
+                      <tr>
+                        <td>Michelle House</td>
+                        <td>mail@</td>
+                        <td>Sidney</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Suki Burks</td>
+                        <td>mail@</td>
+                        <td>London</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Prescott Bartlett</td>
+                        <td>mail@</td>
+                        <td>London</td>
+                        
+                        
+                      </tr>
+                      <tr>
+                        <td>Gavin Cortez</td>
+                        <td>mail@</td>
+                        <td>San Francisco</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Martena Mccray</td>
+                        <td>mail@</td>
+                        <td>Edinburgh</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Unity Butler</td>
+                        <td>mail@</td>
+                        <td>San Francisco</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Howard Hatfield</td>
+                        <td>mail@</td>
+                        <td>San Francisco</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Hope Fuentes</td>
+                        <td>mail@</td>
+                        <td>San Francisco</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Vivian Harrell</td>
+                        <td>mail@</td>
+                        <td>San Francisco</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Timothy Mooney</td>
+                        <td>mail@</td>
+                        <td>London</td>
+                       
+                      </tr>
+                      <tr>
+                        <td>Jackson Bradshaw</td>
+                        <td>mail@</td>
+                        <td>New York</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Olivia Liang</td>
+                        <td>mail@</td>
+                        <td>Singapore</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Bruno Nash</td>
+                        <td>mail@</td>
+                        <td>London</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Sakura Yamamoto</td>
+                        <td>mail@</td>
+                        <td>Tokyo</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Thor Walton</td>
+                        <td>mail@</td>
+                        <td>New York</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Finn Camacho</td>
+                        <td>mail@</td>
+                        <td>San Francisco</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Serge Baldwin</td>
+                        <td>mail@</td>
+                        <td>Singapore</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Zenaida Frank</td>
+                        <td>mail@</td>
+                        <td>New York</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Zorita Serrano</td>
+                        <td>mail@</td>
+                        <td>San Francisco</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Jennifer Acosta</td>
+                        <td>mail@</td>
+                        <td>Edinburgh</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Cara Stevens</td>
+                        <td>mail@</td>
+                        <td>New York</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Hermione Butler</td>
+                        <td>mail@</td>
+                        <td>London</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Lael Greer</td>
+                        <td>mail@</td>
+                        <td>London</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Jonas Alexander</td>
+                        <td>mail@</td>
+                        <td>San Francisco</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Shad Decker</td>
+                        <td>mail@</td>
+                        <td>Edinburgh</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Michael Bruce</td>
+                        <td>mail@</td>
+                        <td>Singapore</td>
+                        
+                      </tr>
+                      <tr>
+                        <td>Donna Snider</td>
+                        <td>mail@</td>
+                        <td>New York</td>
+                        
+                      </tr>
                     </tbody>
-                    <tbody>
-                      <tr>
-                        <td rowspan="2">2</td>
-                        <td rowspan="2">2Garrett Winters</td>
-                        <td rowspan="2">20Garrett Winters@</td>
-                        <td rowspan="2">123456789</td>
-                        <td>2/3</td>
-                        <td>8h</td>
-                        <td>dau nam</td>
-                      </tr>
-                      <tr>
-                        <td>11/11</td>
-                        <td>8h</td>
-                        <td>cuoi nam</td>
-                      </tr>
-                    </tbody>
-                    <tbody>
-                      <tr>
-                        <td rowspan="3">3</td>
-                        <td rowspan="3">3Garrett Winters</td>
-                        <td rowspan="3">1Garrett Winters@</td>
-                        <td rowspan="3">113456789</td>
-                        <td>3/3</td>
-                        <td>8h</td>
-                        <td>dau nam</td>
-                      </tr>
-                      <tr>
-                        <td>13/6</td>
-                        <td>8h</td>
-                        <td>giua nam</td>
-                      </tr>
-                      <tr>
-                        <td>12/11</td>
-                        <td>8h</td>
-                        <td>cuoi nam</td>
-                      </tr>
-                    </tbody>
-                    <tbody>
-                      <tr>
-                        <td rowspan="4">4</td>
-                        <td rowspan="4">4Garrett Winters</td>
-                        <td rowspan="4">9Garrett Winters@</td>
-                        <td rowspan="4">113456789</td>
-                        <td>3/3</td>
-                        <td>8h</td>
-                        <td>dau nam</td>
-                      </tr>
-                      <tr>
-                        <td>13/6</td>
-                        <td>8h</td>
-                        <td>giua nam</td>
-                      </tr>
-                      <tr>
-                        <td>12/11</td>
-                        <td>8h</td>
-                        <td>cuoi nam</td>
-                      </tr>
-                      <tr>
-                        <td>24/12</td>
-                        <td>8h</td>
-                        <td>cuoi nam</td>
-                      </tr>
-                    </tbody>
+                    
                   </table>
-              </div>
             </div>
         </div>
     </div>
@@ -239,8 +489,8 @@
     </footer>
 
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="/khanh/js/main.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="/js/main.js"></script>
 </body>
 </html>
