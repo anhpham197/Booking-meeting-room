@@ -190,5 +190,12 @@ th,td{
 .hidden-cl{
 	display: none;
 }
+.form-group + .form-group{
+	margin-top: 15px;
+}
+
+.card , .card-header{
+	border-radius: 0px;
+}
 
 
