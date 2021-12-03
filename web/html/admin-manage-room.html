@@ -11,29 +11,21 @@
 	<link rel="stylesheet" href="/css/style_for_article.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <style>
+        /* màu của thead */
         thead{
             background-color: #343a40;
         }
+        
+        /* css cho sidebar */
         #sidebar{
             background-color: #343a40;
         }
         #sidebar ul li:hover{
-            background-color: black;
+            background-color: #1a202c;
         }
-
         #sidebar ul li:hover> a  {
             color : #fff;
-        }
-        .label-info{
-            background-color: #6d9886;
-            padding: 6px;
-            border-radius: 4px;
-            margin-right: 5px;
-        }
-        .hidden-cl{
-            display: none;
-        }
-        
+        } 
     </style>
 </head>
 
@@ -46,24 +38,24 @@
             <ul class="lisst-unstyled components">  
                <li>
                    <i class="fas fa-home"></i>
-                   <a href="#">Trang quản lý</a>
+                   <a href="#">Management page</a>
        
                </li>
                <li>
                    <i class="fas fa-chevron-circle-down"></i>
-                   <a href="#">Công việc</a>
+                   <a href="#">Work</a>
                </li>
                <li>
                    <i class="far fa-file-alt"></i>
-                   <a>Danh mục</a>
+                   <a>Category</a>
                </li>
                <li>
                    <i class="fas fa-user"></i>
-                   <a href="#">Tài khoản</a>
+                   <a href="#">Account</a>
                </li>
                <li>
                    <i class="fas fa-cog"></i>
-                   <a href="#">Cài đặt </a>
+                   <a href="#">Setting </a>
                </li>
             </ul>
        </nav>
@@ -79,9 +71,9 @@
                 </div>
             </nav>
             <div class="card">
-                <div class="card-header" style="margin-bottom: 0px;" >
-                    <input type="text" placeholder="Tìm kiếm">
-                    <button class="btn btn-"></button>
+                <div class="card-header d-flex justify-content-between" style="margin-bottom: 0px;" >
+                    <input type="text" placeholder="Search">
+                    <button class="btn btn-sm btn-primary" style="margin:0px ; height: 30px;">Add</button>
                 </div>
                 <div class="card-body">
                     <div class="scroller" style="height: 390px;">
@@ -92,21 +84,21 @@
                                         <b class = "text-white">ID <i class="fas fa-sort" id="rl-id"></i></b> 
                                     </th>
                                     <th style="width: 12%;">
-                                        <b class = "text-white">Tên phòng <i class="fas fa-sort" id="rl-name"></i></b>
+                                        <b class = "text-white">Room name <i class="fas fa-sort" id="rl-name"></i></b>
                                     </th>
                                     <th style="width: 17%;">
-                                        <b class = "text-white">Sức chứa (người) <i class="fas fa-sort" id="rl-sc"></i></b>
+                                        <b class = "text-white">Capacity (human) <i class="fas fa-sort" id="rl-sc"></i></b>
                                     </th>
                                     <th style="width: 10%;">
-                                        <b class = "text-white">Diện tích <i class="fas fa-sort" id="rl-dt"></i></b>
+                                        <b class = "text-white">Area <i class="fas fa-sort" id="rl-dt"></i></b>
                                     </th>
                                     <th style="width: 18%;">
-                                        <b class = "text-white">Trạng thái <i class="fas fa-sort" id="rl-tt"></i></b>
+                                        <b class = "text-white">Status <i class="fas fa-sort" id="rl-tt"></i></b>
                                     </th>
                                     <th style="width: 23%;">
-                                        <b class = "text-white">Trang thiết bị</b>
+                                        <b class = "text-white">Equipment</b>
                                     </th>
-                                    <th style="width: 13%;"><b class ="text-white">Thao tác</b></th>
+                                    <th style="width: 13%;"><b class ="text-white">Operation</b></th>
                                 </tr>
                             </thead>
                             <tbody id="ad-tb">
@@ -184,7 +176,7 @@
                                     <td>213</td>
                                     <td>23123</td>
                                     <td>
-                                        <span class=" text-white label-info">họp</span>
+                                        <span class=" text-white label-info">Đang hoạt động</span>
                                     </td>
                                     <td>
                                         <span class=" text-white label-info"> bàn </span>
@@ -218,13 +210,8 @@
                         </table>
                     </div>
                 </div>
-                <div class="card-footer">
-                    <ul class="pagination d-flex justify-content-between" style="margin-bottom: 0px;">
-                        <li class="page-item" style="background-color: #4285f4;"><a class="page-link text-white" href="#" onclick="myFunt(-5)">Previous</a></li>
-                        <li class="page-item" style="background-color: #5285f4;"><a class="page-link text-white" href="#" onclick="myFunt(5)">Next</a></li>
-                      </ul>
+                <div class="card-footer" style="height: 56px;">
                 </div>
-                
             </div>
         </div>
     </div>
@@ -233,6 +220,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="/js/main.js"></script>
 <script type="text/javascript">
+
+    // Phần sort các trường lần lượt là id , room name , capacity , area , status
     document.getElementById('rl-id').addEventListener("click", function(){
         sort_row_int("0", "dtOrderExample");
     });
@@ -248,51 +237,6 @@
     document.getElementById('rl-tt').addEventListener("click", function(){
         sort_row_string("4", "dtOrderExample");
     });
-
-
-    // đây là code chạy phần chuyển trang
-    var rows = document.getElementById('ad-tb').rows;
-    var tmp = 5;
-    for(var i =5; i< rows.length; i ++) {
-        rows[i].classList.add('hidden-cl');
-    }
-    function myFunt(num){
-        if(num > 0) {
-            for(var i = tmp ; i >=tmp-5 ; i--) {
-                rows[i].classList.add('hidden-cl');
-            }
-            if(rows.length - tmp > 5){
-                for(var i = tmp ; i < tmp+5; i++){
-                    rows[i].classList.remove('hidden-cl');
-                }
-                tmp+=5;
-            } else {
-                for(var i = tmp ; i < rows.length; i++){
-                    rows[i].classList.remove('hidden-cl');
-                }
-            }
-        } else {
-            console.log(tmp);
-            if( tmp > 5){
-                for(var i =rows.length-1; i>= tmp; i --){
-                    rows[i].classList.add('hidden-cl');
-                }
-                for(var i = tmp -1; i >= tmp-5; i--) {
-                    rows[i].classList.remove('hidden-cl');
-                }
-                tmp -=5;
-            } else {
-               for(var i = tmp; i < tmp +5; i++){
-                    rows[i].classList.add('hidden-cl');
-               }
-               for(var i =0 ; i< 5; i++) {
-                rows[i].classList.remove('hidden-cl');
-               }
-            }
-        }
-        
-    }
-
 </script>
 </body>
 </html>

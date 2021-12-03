@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>admin-room</title>
+	<title>admin-form-add</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -11,21 +11,18 @@
 	<link rel="stylesheet" href="/css/style_for_article.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <style>
-        thead{
-            background-color: #343a40;
-        }
+
+        /* css cho sidebar */
         #sidebar{
             background-color: #343a40;
         }
         #sidebar ul li:hover{
-            background-color: black;
+            background-color: #1a202c;
         }
-
         #sidebar ul li:hover> a  {
             color : #fff;
         }
-
-        
+     
     </style>
 </head>
 
@@ -38,24 +35,24 @@
             <ul class="lisst-unstyled components">  
                <li>
                    <i class="fas fa-home"></i>
-                   <a href="#">Trang quản lý</a>
+                   <a href="#">Management page</a>
        
                </li>
                <li>
                    <i class="fas fa-chevron-circle-down"></i>
-                   <a href="#">Công việc</a>
+                   <a href="#">Work</a>
                </li>
                <li>
                    <i class="far fa-file-alt"></i>
-                   <a>Danh mục</a>
+                   <a>Category</a>
                </li>
                <li>
                    <i class="fas fa-user"></i>
-                   <a href="#">Tài khoản</a>
+                   <a href="#">Account</a>
                </li>
                <li>
                    <i class="fas fa-cog"></i>
-                   <a href="#">Cài đặt </a>
+                   <a href="#">Setting </a>
                </li>
             </ul>
        </nav>
@@ -73,31 +70,31 @@
             <form autocomplete="on" action="" method="post">
                 <div class="card">
                     <div class="card-header text-center">
-                        <b>Thêm mới</b>
+                        <b>Add</b>
                     </div>
                     <div class="card-body" style="height: 415px;">
                         <div class="form-group">
-                            <label for="room">Tên phòng</label>
+                            <label for="room">Room name</label>
                             <input type="text" class="form-control" name="room" required >
                         </div>
                         <div class="form-group">
-                            <label for="sc">Sức chứa</label>
+                            <label for="sc">Capacity(people)</label>
                             <input type="number" class="form-control" name="sc" required >
                         </div>
                         <div class="form-group">
-                            <label for="dt">Diện tích</label>
+                            <label for="dt">Area</label>
                             <input type="number" class="form-control" name="dt" required >
                         </div>                            
                         <div class="form-group d-flex justify-content-between">
                             <div >
-                                <label for="tt">Trạng thái</label>
+                                <label for="tt">Status</label>
                                 <select style="width: 200px; height: 30px ;text-align: center;" name="tt" id="" required>
                                     <option value="hop">Họp</option>
                                     <option value="ranh">Rảnh</option>
                                 </select>
                             </div>
                             <div>
-                                <label for="ttb">Trạng thiết bị</label>
+                                <label for="ttb">Equipment</label>
                                 <select style="width: 400px ; height: 30px; text-align: center;" name="ttb" id="" required>
                                     <option value="ghe">ghế</option>
                                     <option value="ban">bàn</option>
@@ -106,7 +103,7 @@
                         </div>
                     </div>              
                     <div class="card-footer" style="text-align: center;">
-                        <button type="button" class="btn btn-primary" style="height: 40px">Gửi</button>
+                        <button type="button" class="btn btn-primary" style="height: 40px">Add</button>
                     </div>
                 </div>
             </form>
@@ -116,18 +113,5 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="/js/main.js"></script>
-<script>
-    $(document).ready(function(){
-
-var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
-removeItemButton: true,
-maxItemCount:5,
-searchResultLimit:5,
-renderChoiceLimit:5
-});
-
-
-});
-</script>
 </body>
 </html>

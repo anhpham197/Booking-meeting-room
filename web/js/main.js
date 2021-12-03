@@ -1,3 +1,5 @@
+//  js dành cho sort dữ liệu table và collapse
+
 $(document).ready(function () {
     $('#sidebarCollapse').on('click', function () {
         $('#sidebar').toggleClass('active');
