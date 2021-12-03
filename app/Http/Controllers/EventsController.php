@@ -26,7 +26,7 @@ class EventsController extends Controller
     {
         //
         $events = Event::query()->where('user_id', Auth::user()->id)->get();
-        // dd($events);
+        //dd($events);
         return view('events.index', [
             'events' => $events
         ]);
@@ -66,7 +66,7 @@ class EventsController extends Controller
         }
         $data->title = $request->title;
         $data->user_id = Auth::user()->id;
-        $data->full_name = $request->usernameBooking;
+        $data->name = $request->usernameBooking;
         $data->phone_number = $request->telephoneBooking;
         $data->email = $request->emailBooking;
         $data->start_day = $request->booking_date_start;
@@ -74,7 +74,7 @@ class EventsController extends Controller
         $data->start_time = $request->time_start;
         $data->end_time = $request->time_end;
         $data->room_id = $request->roomId;
-        $data->partition_email = $request->emails;
+        $data->partition_email = implode(',', $request->emails);
         $data->description = $request->description;
         $data->note = $request->note;
         $data->save();
@@ -130,7 +130,7 @@ class EventsController extends Controller
 
         $event = Event::where('id', $id)->update([
             'title' => $request->title,
-            'full_name' => $request->usernameBooking,
+            'name' => $request->usernameBooking,
             'phone_number' => $request->telephoneBooking,
             'email' => $request->emailBooking,
             'start_day' => $request->booking_date_start,

@@ -14,7 +14,7 @@
             </nav>
 
             <div class="event-content">
-                <button class="add-event-btn">Thêm sự kiện</button>
+                <button class="add-event-btn">Xóa toàn bộ</button>
             </div>
             <div class="card">
                 <div class="card-header" style="padding: 15px 0px;">
@@ -43,38 +43,26 @@
                     </div>
                     <div class="scroller" style="height:300px">
                         <table class="table table-striped table-bordered " id="table_to_highlight">
-                            <thead>
+                            <thead align="center">
                                 <tr style="background-color: #fff;">
                                     <th></th>
-                                    <th id="im-tb-id">ID
+                                    <th id="im-tb-name">Tên sự kiện
                                         <i class="fas fa-sort"></i>
                                     </th>
 
-                                    <th id="im-tb-name">Họ và tên
-                                        <i class="fas fa-sort"></i>
-                                    </th>
-                                    <th>Số điện thoại
-
-                                    </th>
-                                    <th id="im-tb-mail1">Email
-                                        <i class="fas fa-sort"></i>
-                                    </th>
                                     <th id="im-tb-sdate">Ngày bắt đầu
                                         <i class="fas fa-sort"></i>
                                     </th>
                                     <th id="im-tb-fdate">Ngày kết thúc
                                         <i class="fas fa-sort"></i>
                                     </th>
-                                    <th id="im-tb-mail2">Email
-                                        <i class="fas fa-sort"></i>
-                                    </th>
                                     <th>Mô tả
 
                                     </th>
-                                    <th>Lưu ý
+                                    <th>File
 
                                     </th>
-                                    <th>File
+                                    <th>Ghi chú
 
                                     </th>
                                 </tr>
@@ -178,8 +166,12 @@
                                     <td>
                                         <input type="checkbox" name="" id="box3" disabled>
                                     </td>
-                                    <td>{{$event->id}}</td>
-                                    <td>{{$event->full_name}}</td>
+                                    <td text-align:left>{{$event->title}}</td>
+                                    <td>{{$event->start_day}}</td>
+                                    <td>{{$event->end_day}}</td>
+                                    <td>{{$event->description}}</td>
+                                    <td>{{$event->file}}</td>
+                                    <td>{{$event->note}}</td>
                                 </tr>
 
 
@@ -195,6 +187,52 @@
     <script>
         $('.email').select2();
     </script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+    <script src="/js/main.js"></script>
+
+    <script type="text/javascript">
+    // code này chạy để chọn thông tin trong table
+    document.getElementById('table_to_highlight')
+        .addEventListener('click', function (item) {
+
+            var row = item.path[1];
+            var box = row.cells[0];
+            if (!box.firstElementChild.checked) {
+                box.firstElementChild.checked = true;
+                row.style.backgroundColor = "#1e90ff";
+            } else {
+                box.firstElementChild.checked = false;
+                row.style.backgroundColor = null;
+            }
+        });
+
+    document.getElementById("im-tb-id").addEventListener("click", function () {
+        sort_name("1", "table_to_highlight");
+    });
+    document.getElementById("im-tb-name").addEventListener("click", function () {
+        sort_name("2", "table_to_highlight");
+    });
+    document.getElementById("im-tb-mail1").addEventListener("click", function () {
+        sort_name("4", "table_to_highlight");
+    });
+    document.getElementById("im-tb-sdate").addEventListener("click", function () {
+        sort_name("5", "table_to_highlight");
+    });
+    document.getElementById("im-tb-fdate").addEventListener("click", function () {
+        sort_name("6", "table_to_highlight");
+    });
+    document.getElementById("im-tb-mail2").addEventListener("click", function () {
+        sort_name("7", "table_to_highlight");
+    });
+
+    </script>
+
 @endsection
 
 

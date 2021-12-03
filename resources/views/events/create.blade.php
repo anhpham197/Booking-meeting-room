@@ -32,11 +32,11 @@
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="title">Tiêu đề Cuộc họp</label>
+                                    <label for="title">Tiêu đề Cuộc họp <span class="text-red-600">*</span></label>
                                     <input type="text" class="form-control" name="title" id="title" aria-describedby="titleHid" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="usernameBooking">Họ tên người đặt <span class="text-red-600">*</span></label>
+                                    <label for="usernameBooking">Họ tên người đặt</label>
                                     <input type="text" class="form-control" name="usernameBooking" id="usernameBooking" aria-describedby="usernameBookingHid" required readonly value="{{ $user->name }}">
                                 </div>
 
@@ -87,7 +87,7 @@
 
                                 <div class="form-group">
                                     <label for="email">Email người tham gia</label>
-                                    <select class="form-control email" multiple="multiple" style="height: 40px">
+                                    <select class="form-control email" multiple="multiple" style="height: 40px" name="emails[]">
                                         @foreach ($users as $user)
                                             <option value="{{ $user->email }}">{{ $user->email }}</option>
                                         @endforeach

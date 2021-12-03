@@ -26,7 +26,7 @@ class Event extends Model
     protected $fillable = [
         'title',
         'user_id',
-        'full_name',
+        'name',
         'phone_number',
         'email',
         'start_day',
@@ -46,6 +46,20 @@ class Event extends Model
     public function rooms()
     {
         return $this->belongsToMany(Room::class);
+    }
+
+    public function setEmailListAttribute($value)
+    {
+        $this->attributes['partition_email'] = json_encode($value);
+    }
+
+    /**
+     * Get the categories
+     *
+     */
+    public function getEmailListAttribute($value)
+    {
+        return $this->attributes['partition_email'] = json_decode($value);
     }
 
     // protected function serializeDate(DateTimeInterface $date)
