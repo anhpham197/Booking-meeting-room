@@ -1,5 +1,4 @@
 body{
-    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 	background: #fafafa;
 }
 .footer-main-cl{
@@ -41,7 +40,6 @@ a:focus{
 }
 #sidebar ul.components{
 	padding: 20px 0;
-	border-bottom: 1px solid #6d9886;
 }
 
 #sidebar ul p{
@@ -186,6 +184,10 @@ ul ul a{
 
 th,td{
 	text-align: center;
+}
+
+.hidden-cl{
+	display: none;
 }
 
 

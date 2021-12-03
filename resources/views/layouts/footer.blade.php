@@ -15,7 +15,7 @@
                 <ul class="list-unstyled">
                     <li class="my-2"><a href="{{ route('show_booking') }}">Nhà của tôi</a></li>
                     <li class="my-2"><a href="{{ route('kath.showUsers') }}">Danh sách nhân viên</a></li>
-                    <li class="my-2"><a href="{{ route('room.view') }}">Hệ thống phòng họp</a></li>
+                    <li class="my-2"><a href="{{ route('kath.showRooms') }}">Hệ thống phòng họp</a></li>
                 </ul>
             </div>
             <div class="col-md-3 mx-auto mb-4">
