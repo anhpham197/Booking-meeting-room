@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 use App\Models\Room;
 use Illuminate\Http\Request;
 
@@ -25,16 +26,23 @@ class EventsController extends Controller
     {
         //
         $events = Event::query()->where('user_id', Auth::user()->id)->get();
-        //dd($events);
+        // dd($events);
         return view('events.index', [
             'events' => $events
         ]);
     }
 
-    public function create()
+    public function create($id)
     {
         //
-        return view('events.create');
+        $user = User::query()->where('id', $id)->first();
+        $rooms = Room::all();
+        $users = User::query()->where('company_id', Auth::user()->company_id)->get();
+        return view('events.create', [
+            'user' => $user,
+            'users' => $users,
+            'rooms' => $rooms
+        ]);
     }
 
     /**
@@ -56,7 +64,8 @@ class EventsController extends Controller
         } else {
             // dd('Request Has No File');
         }
-
+        $data->title = $request->title;
+        $data->user_id = Auth::user()->id;
         $data->full_name = $request->usernameBooking;
         $data->phone_number = $request->telephoneBooking;
         $data->email = $request->emailBooking;
@@ -120,6 +129,7 @@ class EventsController extends Controller
         }
 
         $event = Event::where('id', $id)->update([
+            'title' => $request->title,
             'full_name' => $request->usernameBooking,
             'phone_number' => $request->telephoneBooking,
             'email' => $request->emailBooking,
@@ -159,7 +169,8 @@ class EventsController extends Controller
         return view('events.rate');
     }
 
-    public function showRooms() {
+    public function showRooms()
+    {
         $rooms = Room::all();
         return view('events.rooms', [
             'rooms' => $rooms

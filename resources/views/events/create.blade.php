@@ -22,7 +22,7 @@
 
             <section class="row">
                 <div class="col-12">
-                    <form autocomplete="on" action="{{url('event/upload')}}" method="POST" enctype="multipart/form-data">
+                    <form autocomplete="on" action="{{route('event.upload', ['id' => Auth::user()->id])}}"  method="POST" enctype="multipart/form-data">
                         {{-- @method('PUT') --}}
                         @csrf
 
@@ -32,8 +32,12 @@
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
+                                    <label for="title">Tiêu đề Cuộc họp</label>
+                                    <input type="text" class="form-control" name="title" id="title" aria-describedby="titleHid" required>
+                                </div>
+                                <div class="form-group">
                                     <label for="usernameBooking">Họ tên người đặt <span class="text-red-600">*</span></label>
-                                    <input type="text" class="form-control" name="usernameBooking" id="usernameBooking" aria-describedby="usernameBookingHid" required readonly value="Phạm Ngọc Ánh">
+                                    <input type="text" class="form-control" name="usernameBooking" id="usernameBooking" aria-describedby="usernameBookingHid" required readonly value="{{ $user->name }}">
                                 </div>
 
                                 <div class="form-group">
@@ -43,7 +47,7 @@
 
                                 <div class="form-group">
                                     <label for="emailBooking">Email</label>
-                                    <input type="email" class="form-control" name="emailBooking" id="emailBooking" aria-describedby="emailBookingHid" readonly value="ngocanhpham197@gmail.com">
+                                    <input type="email" class="form-control" name="emailBooking" id="emailBooking" aria-describedby="emailBookingHid" readonly value="{{ $user->email }}">
                                 </div>
 
                                 <div class="form-group">
@@ -75,18 +79,18 @@
                                 <div class="form-group">
                                     <label for="roomId">Tên phòng</label>
                                     <select name="roomId" id="" class="form-control" id="roomId">
-                                        <option value="405">405</option>
-                                        <option value="406">406</option>
+                                        @foreach ($rooms as $room)
+                                            <option value="{{ $room->name }}">{{ $room->name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="email">Email người tham gia</label>
                                     <select class="form-control email" multiple="multiple" style="height: 40px">
-                                        <option value="19021274@vnu.edu.vn">19021274@vnu.edu.vn</option>
-                                        <option value="1234@vnu.edu.vn">19021234@vnu.edu.vn</option>
-                                        <option value="23232@vnu.edu.vn">19021111@vnu.edu.vn</option>
-                                        <option value="2342312@vnu.edu.vn">19029999@vnu.edu.vn</option>
+                                        @foreach ($users as $user)
+                                            <option value="{{ $user->email }}">{{ $user->email }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
 
@@ -114,7 +118,6 @@
             </section>
         </div>
     </div>
-<<<<<<< HEAD
     {{-- <script type="text/javascript">
         $('#search').on('keyup',function(){
             $value = $(this).val();
@@ -131,8 +134,6 @@
         })
         $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
     </script> --}}
-=======
->>>>>>> 41a12c1622ad1a8207048b7edc1cc857bc7b7c4b
     <script>
         $('.email').select2();
     </script>

@@ -1,5 +1,5 @@
 <footer class="page-footer bg-dark pt-3 pb-5">
-    
+
     <div class="container text-center text-md-left mt-5">
         <div class="row">
             <div class="col-md-3 mx-auto mb-4">
@@ -15,7 +15,7 @@
                 <ul class="list-unstyled">
                     <li class="my-2"><a href="{{ route('show_booking') }}">Nhà của tôi</a></li>
                     <li class="my-2"><a href="{{ route('kath.showUsers') }}">Danh sách nhân viên</a></li>
-                    <li class="my-2"><a href="{{ route('event.create') }}">Hệ thống phòng họp</a></li>
+                    <li class="my-2"><a href="{{ route('room.view') }}">Hệ thống phòng họp</a></li>
                 </ul>
             </div>
             <div class="col-md-3 mx-auto mb-4">
@@ -42,6 +42,6 @@
         </div>
     </div>
 
-    
+
 
 </footer>
