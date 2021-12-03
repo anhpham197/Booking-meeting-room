@@ -36,42 +36,54 @@ class EventsController extends Controller
     /* Hiển thị form tạo cuộc họp */
     public function create()
     {
+        $minDate = date("Y-m-d\TH:i");
         $rooms = Room::all();
         $users = User::query()->where('company_id', Auth::user()->company_id)->get();
         return view('events.create', [
             'users' => $users,
-            'rooms' => $rooms
+            'rooms' => $rooms,
+            'minDate' => $minDate
         ]);
     }
 
     /* Lưu thông tin đăng kí tạo cuộc họp */
     public function store(Request $request)
     {
-        $data = new Event();
-        $file = $request->fileupload;
-        if ($file != '') {
-            $fileName = time() . '.' . $file->getClientOriginalExtension();
-            $destinationPath = base_path('files');
-            $file->move($destinationPath, $fileName);
-            $data->file = $fileName;
-        } else {
-            // dd('Request Has No File');
+        $events = Event::where('room_id', $request->roomId)->get();
+        $isOverlap = false;
+        $msg = '';
+        foreach($events as $event) {
+            if ($request->starting_time <= $event->ending_time && $request->ending_time >= $event->starting_time) {
+                $isOverlap = true;
+                break;
+            } 
         }
-        $data->name = $request->title;
-        $data->start_day = $request->booking_date_start;
-        $data->end_day = $request->booking_date_end;
-        $data->start_time = $request->time_start;
-        $data->end_time = $request->time_end;
-        $data->room_id = $request->roomId;
-        $data->description = $request->description;
-        $data->note = $request->note;
-        $data->save();
-
-        $users = User::query()->whereIn('id', $request->emails)->get();
-        foreach($users as $user) {
-            $user->events()->attach($data->id);
-        }
-        return redirect()->route('event.create', ['id'=>Auth::user()->id]);
+        if ($isOverlap == false) {
+            $data = new Event();
+            $file = $request->fileupload;
+            if ($file != '') {
+                $fileName = time() . '.' . $file->getClientOriginalExtension();
+                $destinationPath = base_path('files');
+                $file->move($destinationPath, $fileName);
+                $data->file = $fileName;
+            } else {
+                // dd('Request Has No File');
+            }
+            $data->name = $request->title;
+            $data->starting_time = $request->starting_time;
+            $data->ending_time = $request->ending_time;
+            $data->room_id = $request->roomId;
+            $data->description = $request->description;
+            $data->note = $request->note;
+            $data->save();
+    
+            $users = User::query()->whereIn('id', $request->emails)->get();
+            foreach($users as $user) {
+                $user->events()->attach($data->id);
+            }
+            $msg = "Created successfully";
+        } else $msg = "There is another meeting booked. Please select time again";
+        return back()->with('message', $msg);
     }
 
     /* Hiển thị form chỉnh sửa cuộc họp */
