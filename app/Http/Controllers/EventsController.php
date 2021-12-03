@@ -97,10 +97,13 @@ class EventsController extends Controller
      */
     public function edit($id)
     {
-        $event = Event::query()->where('id', $id)->first();
-        //dd($event);
-        return view('events.edit', [
-            'event' => $event
+        $user = User::query()->where('id', $id)->first();
+        $rooms = Room::all();
+        $users = User::query()->where('company_id', Auth::user()->company_id)->get();
+        return view('events.create', [
+            'user' => $user,
+            'users' => $users,
+            'rooms' => $rooms
         ]);
     }
 

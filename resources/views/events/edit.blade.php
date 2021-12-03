@@ -28,22 +28,22 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="usernameBooking">Họ tên người đặt</label>
-                                    <input type="text" class="form-control" name="usernameBooking" id="usernameBooking" aria-describedby="usernameBookingHid" placeholder="" value="{{ $event->full_name }}">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="address">Địa chỉ</label>
-                                    <input type="text" class="form-control" name="address" id="address" aria-describedby="addressHid" placeholder="" value="{{ $event->address }}">
+                                    <input type="text" class="form-control" name="usernameBooking" id="usernameBooking" aria-describedby="usernameBookingHid" required readonly value="{{ Auth::user()->name }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="telephoneBooking">Số điện thoại</label>
-                                    <input type="tel" class="form-control" name="telephoneBooking" id="telephoneBooking" aria-describedby="telephoneBookingHid" placeholder="" value="{{ $event->phone_number }}">
+                                    <input type="tel" class="form-control" name="telephoneBooking" id="telephoneBooking" aria-describedby="telephoneBookingHid" required value="{{ Auth::user()->phone }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="emailBooking">Email</label>
-                                    <input type="email" class="form-control" name="emailBooking" id="emailBooking" aria-describedby="emailBookingHid" placeholder="" value="{{ $event->email }}">
+                                    <input type="email" class="form-control" name="emailBooking" id="emailBooking" aria-describedby="emailBookingHid" value="{{ Auth::user()->email }}" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="title">Tiêu đề Cuộc họp <span class="text-red-600">*</span></label>
+                                    <input type="text" class="form-control" name="title" id="title" aria-describedby="titleHid" value="{{ $event->title }}" required>
                                 </div>
 
                                 <div class="form-group">
@@ -73,22 +73,21 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="roomId">Mã phòng</label>
-                                    <select name="roomId" id="" class="form-control" id="roomId">
-                                        <option value="405">405</option>
-                                        <option value="406">406</option>
+                                    <label for="roomId">Tên phòng</label>
+                                    <select name="roomId" id="" class="form-control" id="roomId" value="{{ $event->room_id }}">
+                                        @foreach ($rooms as $room)
+                                            <option value="{{ $room->id }}">{{ $room->name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="email">Email người tham gia</label>
-                                    <input type="email" class="form-control" id="emails" list="emails" multiple style="width: 100%;">
-                                    <datalist id="emails">
-                                        <option value="19021274@vnu.edu.vn">
-                                        <option value="1234@vnu.edu.vn">
-                                        <option value="23232@vnu.edu.vn">
-                                        <option value="2342312@vnu.edu.vn">
-                                    </datalist>
+                                    <select class="form-control email" multiple="multiple" style="height: 40px" name="emails[]" value="{{ $event->user_id }}" required>
+                                        @foreach ($users as $user)
+                                            <option value="{{ $user->id }}">{{ $user->email }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
 
                                 <div class="form-group">
@@ -112,7 +111,7 @@
                                 </div>
                             </div>
                             <div class="card-footer" style="text-align: center;">
-                                <button type="submit" class="btn btn-success">Đặt phòng</button>
+                                <button type="submit" class="btn btn-success">Xác nhận</button>
                             </div>
                         </div>
                     </form>
