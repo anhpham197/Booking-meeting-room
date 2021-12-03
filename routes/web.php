@@ -34,7 +34,7 @@ Route::get('/create', [\App\Http\Controllers\EventsController::class, 'create'])
 Route::get('/event/view', [EventsController::class, 'index'])->name('event.view');
 Route::get('/event/{id}/create', [EventsController::class, 'create'])->name('event.create');
 Route::get('/event/{id}/edit', [EventsController::class, 'edit'])->name('event.edit');
-Route::post('/event/upload', [EventsController::class, 'upload'])->name('event.upload');
+Route::post('/event/store', [EventsController::class, 'store'])->name('event.store');
 Route::put('/event/{id}/update', [EventsController::class, 'update'])->name('event.update');
 // Route::get('event/create', [EventsController::class, 'index'])->name('event.create');
 // Route::get('event/{id}/edit', [EventsController::class, 'edit'])->name('event.edit');

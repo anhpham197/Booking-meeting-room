@@ -22,7 +22,7 @@
 
             <section class="row">
                 <div class="col-12">
-                    <form autocomplete="on" action="{{route('event.upload', ['id' => Auth::user()->id])}}"  method="POST" enctype="multipart/form-data">
+                    <form autocomplete="on" action="{{route('event.store', ['id' => Auth::user()->id])}}"  method="POST" enctype="multipart/form-data">
                         {{-- @method('PUT') --}}
                         @csrf
 
@@ -37,17 +37,17 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="usernameBooking">Họ tên người đặt</label>
-                                    <input type="text" class="form-control" name="usernameBooking" id="usernameBooking" aria-describedby="usernameBookingHid" required readonly value="{{ $user->name }}">
+                                    <input type="text" class="form-control" name="usernameBooking" id="usernameBooking" aria-describedby="usernameBookingHid" required readonly value="{{ Auth::user()->name }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="telephoneBooking">Số điện thoại <span class="text-red-600">*</span></label>
-                                    <input type="tel" class="form-control" name="telephoneBooking" id="telephoneBooking" aria-describedby="telephoneBookingHid" required>
+                                    <input type="tel" class="form-control" name="telephoneBooking" id="telephoneBooking" aria-describedby="telephoneBookingHid" required value="{{ Auth::user()->phone }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="emailBooking">Email</label>
-                                    <input type="email" class="form-control" name="emailBooking" id="emailBooking" aria-describedby="emailBookingHid" readonly value="{{ $user->email }}">
+                                    <input type="email" class="form-control" name="emailBooking" id="emailBooking" aria-describedby="emailBookingHid" readonly value="{{ Auth::user()->email }}">
                                 </div>
 
                                 <div class="form-group">
@@ -78,12 +78,12 @@
 
                                 <div class="form-group">
                                     <label for="roomId">Tên phòng</label>
-                                    <select name="roomId" id="" class="form-control" id="roomId">
+                                    <select name="roomId" class="form-control" id="roomId">
                                         @foreach ($rooms as $room)
                                             <option value="{{ $room->name }}">{{ $room->name }}</option>
                                         @endforeach
                                     </select>
-                                </div>
+                                </div>   
 
                                 <div class="form-group">
                                     <label for="email">Email người tham gia</label>
@@ -136,7 +136,7 @@
     </script> --}}
     <script>
         $('.email').select2({
-            placeholder: "Select a state",
+            placeholder: "  Nhập email người tham gia",
             allowClear: true,
         });
     </script>

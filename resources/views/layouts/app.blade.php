@@ -20,7 +20,6 @@
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-    {{-- Nếu muốn dùng file ngoài thì như này nhé, ko cần mix, ko cần chạy npm  --}}
     <link rel="stylesheet" href="/css/style_for_article.css">
 
     <!-- Font -->
