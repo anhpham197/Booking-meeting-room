@@ -130,7 +130,7 @@
                         </tbody> --}}
 
                         @foreach ($users as $user)
-                            <tbody>
+                            <tbody class="table-hover">
                                 <tr>
                                     <td rowspan="2">{{ $user->id }}</td>
                                     <td rowspan="2">{{ $user->name }}</td>

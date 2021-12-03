@@ -25,6 +25,7 @@ Route::get('/booking', [\App\Http\Controllers\HomeController::class, 'show'])->n
 Route::get('/create', [\App\Http\Controllers\EventsController::class, 'create'])->name('create_booking');
 
 Route::get('event/create', [EventsController::class, 'create'])->name('event.create');
+Route::post('event/save', [EventsController::class, 'store'])->name('event.save');
 Route::get('event/{id}/edit', [EventsController::class, 'edit'])->name('event.edit');
 Route::get('event/rate', [EventsController::class, 'rate'])->name('event.rate');
 

@@ -22,7 +22,7 @@
 
             <section class="row">
                 <div class="col-12">
-                    <form autocomplete="on" action="{{url('event/upload')}}" method="POST" enctype="multipart/form-data">
+                    <form autocomplete="on" action="{{ route('event.save') }}" method="POST" enctype="multipart/form-data">
                         {{-- @method('PUT') --}}
                         @csrf
 
@@ -74,7 +74,7 @@
 
                                 <div class="form-group">
                                     <label for="roomId">Tên phòng</label>
-                                    <select name="roomId" id="" class="form-control" id="roomId">
+                                    <select name="roomId" class="form-control" id="roomId">
                                         <option value="405">405</option>
                                         <option value="406">406</option>
                                     </select>
@@ -82,11 +82,10 @@
 
                                 <div class="form-group">
                                     <label for="email">Email người tham gia</label>
-                                    <select class="form-control email" multiple="multiple" style="height: 40px">
-                                        <option value="19021274@vnu.edu.vn">19021274@vnu.edu.vn</option>
-                                        <option value="1234@vnu.edu.vn">19021234@vnu.edu.vn</option>
-                                        <option value="23232@vnu.edu.vn">19021111@vnu.edu.vn</option>
-                                        <option value="2342312@vnu.edu.vn">19029999@vnu.edu.vn</option>
+                                    <select class="form-control email" multiple="multiple" style="height: 40px" name="participants[]">
+                                        @foreach ($users as $user)                                        
+                                            <option value="{{$user->id}}">{{$user->email}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
 
@@ -115,6 +114,9 @@
         </div>
     </div>
     <script>
-        $('.email').select2();
+        $('.email').select2({
+            placeholder: "Select a state",
+            allowClear: true,
+        });
     </script>
 @endsection

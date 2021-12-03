@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\Room;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class EventsController extends Controller
@@ -34,7 +35,7 @@ class EventsController extends Controller
     public function create(Request $request)
     {
         //
-        $data = new event;
+        /* $data = new event;
         $file = $request->fileupload;
         if ($file != '') {
             // echo "Yes";
@@ -58,13 +59,17 @@ class EventsController extends Controller
         $data->description = $request->description;
         $data->note = $request->note;
         $data->save();
-        return view('home');
+        return view('home'); */
+        $users = User::all();
+        return view('events.create', [
+            'users' => $users
+        ]);
     }
-
-
+    
+    
     public function store(Request $request)
     {
-        //
+        $participants = $request->participants;
     }
 
 
