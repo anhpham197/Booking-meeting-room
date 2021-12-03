@@ -89,7 +89,7 @@
                                     <label for="email">Email người tham gia</label>
                                     <select class="form-control email" multiple="multiple" style="height: 40px" name="emails[]">
                                         @foreach ($users as $user)
-                                            <option value="{{ $user->email }}">{{ $user->email }}</option>
+                                            <option value="{{ $user->id }}">{{ $user->email }}</option>
                                         @endforeach
                                     </select>
                                 </div>

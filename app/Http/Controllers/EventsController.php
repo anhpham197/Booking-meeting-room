@@ -65,7 +65,9 @@ class EventsController extends Controller
             // dd('Request Has No File');
         }
         $data->title = $request->title;
-        $data->user_id = Auth::user()->id;
+        $emails = implode(',', $request->emails);
+        //dd($emails);
+        $data->user_id = Auth::user()->id . "," . $emails;
         $data->name = $request->usernameBooking;
         $data->phone_number = $request->telephoneBooking;
         $data->email = $request->emailBooking;
@@ -74,7 +76,7 @@ class EventsController extends Controller
         $data->start_time = $request->time_start;
         $data->end_time = $request->time_end;
         $data->room_id = $request->roomId;
-        $data->partition_email = implode(',', $request->emails);
+
         $data->description = $request->description;
         $data->note = $request->note;
         $data->save();

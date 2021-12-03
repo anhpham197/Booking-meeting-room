@@ -34,7 +34,6 @@ class Event extends Model
         'start_time',
         'end_time',
         'room_id',
-        'partition_email',
         'description',
         'note',
         'file',
