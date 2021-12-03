@@ -20,7 +20,6 @@
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="/css/style_for_article.css">
 
     <!-- Font -->
     <link href="https://fonts.googleapis.com/css2?family=Jacques+Francois+Shadow&family=Londrina+Shadow&display=swap" rel="stylesheet">
@@ -38,6 +37,7 @@
 
     <!-- JQuery -->
     <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
     <!-- Select 2 -->
     <link rel="stylesheet" href="{{ asset('select2/css/select2.min.css') }}"/>

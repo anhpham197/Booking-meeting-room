@@ -25,213 +25,111 @@
 
             <div class="">
                 <div class="scroller" style="height: 500px;">
-                    <table id="dtOrderExample" class="table table-bordered table-sm" cellspacing="0" width="100%"
-                        style="text-align: center">
+                    <table id="dtOrderExample" class="table table-bordered table-hover table-sm" cellspacing="0"
+                        width="100%" style="text-align: center">
                         <thead class="table-idea">
                             <tr>
-                                <th id="th-id" rowspan="2" style="line-height: 58px;" class="lg:w-16">
-                                    ID
-                                    <i class="fas fa-sort"></i>
+                                <th id="th-id" style="line-height: 40px;" class="lg:w-16">
+                                    STT
                                 </th>
-                                <th id="th-name" rowspan="2" style="line-height: 58px;" class="lg:w-48">
+                                <th id="th-name" style="line-height: 40px;" class="lg:w-48">
                                     HỌ VÀ TÊN
-                                    <i class="fas fa-sort"></i>
                                 </th>
-                                <th id="th-mail" rowspan="2" style="line-height: 58px;" class="lg:w-52">
+                                <th id="th-mail" style="line-height: 40px;" class="lg:w-52">
                                     MAIL
-                                <th rowspan="2" style="line-height: 58px;" class="lg:w-32">
+                                <th style="line-height: 40px;" class="lg:w-32">
                                     SỐ ĐIỆN THOẠI
                                 </th>
-                                <th colspan="3">
-                                    LỊCH HỌP
-                                </th>
-                            </tr>
-                            <tr>
-                                <th id="th-date" style="width: 75px">Ngày</th>
-                                <th id="th-hour" style="width: 50px;">Giờ</th>
-                                <th id="th-meeting">Cuộc họp</th>
                             </tr>
                         </thead>
-{{--                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Pham Ngoc Anh</td>
-                                <td>NgocAnhNgu@gmail.com</td>
-                                <td>103456789</td>
-                                <td>29/11/2021</td>
-                                <td>09:11</td>
-                                <td>đây là cuộc họp chứ không phải cuộc chơi đùa cái lồn j dcm cả lũ nhân viên ngu này:)
-                                </td>
-                            </tr>
-
-                        </tbody>
-                        <tbody>
-                            <tr>
-                                <td rowspan="2">2</td>
-                                <td rowspan="2">2Garrett Winters</td>
-                                <td rowspan="2">20Garrett Winters@</td>
-                                <td rowspan="2">123456789</td>
-                                <td>2/3</td>
-                                <td>8h</td>
-                                <td>dau nam</td>
-                            </tr>
-                            <tr>
-                                <td>11/11</td>
-                                <td>8h</td>
-                                <td>cuoi nam</td>
-                            </tr>
-                        </tbody>
-                        <tbody>
-                            <tr>
-                                <td rowspan="3">3</td>
-                                <td rowspan="3">3Garrett Winters</td>
-                                <td rowspan="3">1Garrett Winters@</td>
-                                <td rowspan="3">113456789</td>
-                                <td>3/3</td>
-                                <td>8h</td>
-                                <td>dau nam</td>
-                            </tr>
-                            <tr>
-                                <td>13/6</td>
-                                <td>8h</td>
-                                <td>giua nam</td>
-                            </tr>
-                            <tr>
-                                <td>12/11</td>
-                                <td>8h</td>
-                                <td>cuoi nam</td>
-                            </tr>
-                        </tbody>
-                        <tbody>
-                            <tr>
-                                <td rowspan="4">4</td>
-                                <td rowspan="4">4Garrett Winters</td>
-                                <td rowspan="4">9Garrett Winters@</td>
-                                <td rowspan="4">113456789</td>
-                                <td>3/3</td>
-                                <td>8h</td>
-                                <td>dau nam</td>
-                            </tr>
-                            <tr>
-                                <td>13/6</td>
-                                <td>8h</td>
-                                <td>giua nam</td>
-                            </tr>
-                            <tr>
-                                <td>12/11</td>
-                                <td>8h</td>
-                                <td>cuoi nam</td>
-                            </tr>
-                            <tr>
-                                <td>24/12</td>
-                                <td>8h</td>
-                                <td>cuoi nam</td>
-                            </tr>
-                        </tbody> --}}
-
-                        @foreach ($users as $user)
-                            <tbody class="table-hover">
+                        <tbody id="data">
+                            @foreach ($users as $key => $user)
                                 <tr>
-                                    <td rowspan="2">{{ $user->id }}</td>
-                                    <td rowspan="2">{{ $user->name }}</td>
-                                    <td rowspan="2">{{ $user->email }}</td>
-                                    <td rowspan="2">{{ $user->phone }}</td>
-                                    <td>29/11/2021</td>
-                                    <td>08:00</td>
-                                    <td>Họp tổng kết cuối năm</td>
+                                    <td>{{ $users->firstItem() + $key }}</td>
+                                    <td><a href="#" data-toggle="modal"
+                                            data-target="#modal-{{ $user->id }}">{{ $user->name }}</a></td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $user->phone }}</td>
                                 </tr>
-                                <tr>
-                                    <td>29/12/2021</td>
-                                    <td>13:00</td>
-                                    <td>Bàn giao sản phẩm</td>
-                                </tr>
-                            </tbody>
-                        @endforeach
+                            @endforeach
+                        </tbody>
                     </table>
+
+                    {{ $users->links() }}
+
+                    @foreach ($users as $user)
+                        <div class="modal fade" id="modal-{{ $user->id }}" tabindex="-1" role="dialog">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Lịch họp của {{ $user->name }}</h5>
+                                        <button type="button" class="close" data-dismiss="modal"
+                                            aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Tên cuộc họp</th>
+                                                    <th>Ngày bắt đầu</th>
+                                                    <th>Ngày kết thúc</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($user->events as $event)
+                                                    <tr>
+                                                        <td>{{ $event->name }}</td>
+                                                        <td>{{ $event->start_day }}</td>
+                                                        <td>{{ $event->end_day }}</td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        $('#search').on('keyup', function() {
+            $value = $(this).val();
+            console.log($value)
+            $.ajax({
+                type: 'get',
+                url: '{{ URL::to('search') }}', 
+                data: {
+                    'search': $value
+                },
+                success: function(data) {
+                    let html = '';
+                    for (let item of data) {
+                        let htmlItem = 
+                                `<tr>
+                                    <td>{{ $users->firstItem() + $key }}</td>
+                                    <td><a href="#" data-toggle="modal"
+                                            data-target="#modal-${item.id }">${item.name}</a></td>
+                                    <td>${item.email}</td>
+                                    <td>${item.phone}</td>
+                                </tr>`
 
-    <script>
-        var num = 1;
-        function sort_name(col, table_name) {
-            var table, rows, switching, i, x, y, shouldSwitch;
-            table = document.getElementById(table_name);
-            switching = true;
-            num *= -1;
-            while (switching) {
-
-                switching = false;
-                rows = table.rows;
-
-                for (i = 2; i < (rows.length - 1); i++) {
-
-                    shouldSwitch = false;
-
-                    x = rows[i].getElementsByTagName("TD")[col];
-                    y = rows[i + 1].getElementsByTagName("TD")[col];
-
-                    if (num == -1) {
-                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                            shouldSwitch = true;
-                            break;
-                        }
-                    } else {
-                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-                            shouldSwitch = true;
-                            break;
-                        }
+                        html += htmlItem
                     }
+                    $('#data').html(html);
                 }
-                if (shouldSwitch) {
-                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                    switching = true;
-                }
+            });
+        })
+
+
+        $.ajaxSetup({
+            headers: {
+                'csrftoken': '{{ csrf_token() }}'
             }
-        }
-
-        function sort_data(col, table_name) {
-            var table, rows, switching, i, x, y, shouldSwitch;
-            table = document.getElementById(table_name);
-            switching = true;
-            num *= -1;
-            while (switching) {
-
-                switching = false;
-                rows = table.tBodies;
-
-                for (i = 0; i < (rows.length - 1); i++) {
-
-                    shouldSwitch = false;
-
-                    x = rows[i].getElementsByTagName("TD")[col];
-                    y = rows[i + 1].getElementsByTagName("TD")[col];
-
-                    if (num == -1) {
-                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                            shouldSwitch = true;
-                            break;
-                        }
-                    } else {
-                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-                            shouldSwitch = true;
-                            break;
-                        }
-                    }
-
-                }
-                if (shouldSwitch) {
-                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                    switching = true;
-                }
-            }
-        }
-        document.getElementById("th-id").addEventListener("click", function() {
-            sort_data("0", "dtOrderExample");
-        });
-        document.getElementById("th-name").addEventListener("click", function() {
-            sort_data("1", "dtOrderExample");
         });
     </script>
 @endsection
