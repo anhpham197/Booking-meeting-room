@@ -24,11 +24,8 @@ class Event extends Model
     ];
 
     protected $fillable = [
-        'title',
         'user_id',
         'name',
-        'phone_number',
-        'email',
         'starting_time',
         'ending_time',
         'room_id',

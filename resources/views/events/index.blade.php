@@ -12,32 +12,28 @@
                     </button>
                 </div>
             </nav>
-
-            <div class="event-content">
-                <button class="add-event-btn">Xóa toàn bộ</button>
-            </div>
             <div class="card">
                 <div class="card-header" style="padding: 15px 0px;">
-                    <p style="margin: 0px ;margin-left: 10px;">Danh sách sự kiện</p>
+                    <p style="margin: 0px ;margin-left: 10px;">Events List</p>
                 </div>
                 <div class="card-body" style="height: 500px; padding: 15px 0px;">
                     <div class="select-event">
                         <div class="left-content">
-                            <label for="entities" style="margin-left: 10px;">Xem: </label>
+                            <label for="entities" style="margin-left: 10px;">View: </label>
                             <input type="number" name="" id="entities" min="0" max="100" placeholder="1" step="10">
-                            <p style="background-color: #321fdb; color: white;" onclick="funct_all(1)">Chọn toàn bộ</p>
+                            <p style="background-color: #321fdb; color: white;" onclick="funct_all(1)">Select all</p>
                             <p style="background-color: #321fdb; color: white; opacity: 0.65; " onclick="funct_all(0)">
-                                Bỏ chọn</p>
+                                Deselect</p>
                             <p>Copy</p>
                             <p>CSV</p>
                             <p>Excel</p>
                             <p>PDF</p>
-                            <p>In</p>
-                            <p>Cột</p>
+                            <p>Print</p>
+                            <p>Column</p>
                             <p style="background-color: #e55353; color: white;">Xóa</p>
                         </div>
                         <div class="right-content">
-                            <label for="search">Tìm kiếm:</label>
+                            <label for="search">Search:</label>
                             <input type="text" id="search">
                         </div>
                     </div>
@@ -46,27 +42,20 @@
                             <thead align="center">
                                 <tr style="background-color: #fff;">
                                     <th></th>
-                                    <th id="im-tb-name">Tên sự kiện
+                                    <th id="im-tb-name">Event's Title
                                         <i class="fas fa-sort"></i>
                                     </th>
 
-                                    <th id="im-tb-sdate">Ngày bắt đầu
+                                    <th id="im-tb-sdate">Start day
                                         <i class="fas fa-sort"></i>
                                     </th>
-                                    <th id="im-tb-fdate">Ngày kết thúc
+                                    <th id="im-tb-fdate">End day
                                         <i class="fas fa-sort"></i>
                                     </th>
-                                    <th>Mô tả
-
-                                    </th>
-                                    <th>File
-
-                                    </th>
-                                    <th>Ghi chú
-                                    </th>
-                                    <th>
-                                        &nbsp;
-                                    </th>
+                                    <th>Description</th>
+                                    <th>File</th>
+                                    <th>Note</th>
+                                    <th>&nbsp; </th>
                                 </tr>
                             </thead>
 

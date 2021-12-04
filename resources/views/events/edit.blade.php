@@ -23,7 +23,7 @@
 
                         <div class="card">
                             <div class="card-header text-center">
-                                <b>Đặt phòng họp</b>
+                                <b>Booking a meeting room</b>
                             </div>
                             <div class="card-body">
                                 <div class="form-group">

@@ -19,7 +19,7 @@
                         @csrf
 
                         <div class="card">
-                            <div class="card-header text-center uppercase text-xl font-semibold">Đặt phòng họp
+                            <div class="card-header text-center uppercase text-xl font-semibold">Booking a meeting room
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
@@ -63,7 +63,7 @@
                                             <option value="{{ $room->id }}">{{ $room->name }}</option>
                                         @endforeach
                                     </select>
-                                </div>   
+                                </div>
 
                                 <div class="form-group">
                                     <label for="email">Email người tham gia <span class="text-red-600">*</span></label>
