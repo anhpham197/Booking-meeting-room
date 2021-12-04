@@ -7,7 +7,7 @@
             <section class="flex flex-col break-words bg-white sm:border-1 sm:rounded-md sm:shadow-sm sm:shadow-lg">
 
                 <header class="font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 sm:rounded-t-md text-xl uppercase text-center">
-                    Đăng nhập
+                    WELCOME 
                 </header>
 
                 <form class="w-full px-6 space-y-6 sm:px-10 sm:space-y-8" method="POST" action="{{ route('login') }}">
@@ -31,7 +31,7 @@
 
                     <div class="flex flex-wrap">
                         <label for="password" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
-                            Mật khẩu <span class="text-red-600">*</span>
+                            Password <span class="text-red-600">*</span>
                         </label>
 
                         <input id="password" type="password"
@@ -49,28 +49,28 @@
                         <label class="inline-flex items-center text-sm text-gray-700" for="remember">
                             <input type="checkbox" name="remember" id="remember" class="form-checkbox"
                                 {{ old('remember') ? 'checked' : '' }}>
-                            <span class="ml-2">Ghi nhớ đăng nhập</span>
+                            <span class="ml-2">Remember me</span>
                         </label>
 
-                        @if (Route::has('password.request'))
+                        {{-- @if (Route::has('password.request'))
                         <a class="text-sm text-blue-500 hover:text-blue-700 whitespace-no-wrap no-underline hover:underline ml-auto"
                             href="{{ route('password.request') }}">
-                            Quên mật khẩu
+                            Forgot password? 
                         </a>
-                        @endif
+                        @endif --}}
                     </div>
 
                     <div class="flex flex-wrap">
                         <button type="submit"
                         class="w-full select-none font-bold whitespace-no-wrap p-3 rounded-lg text-base leading-normal no-underline text-gray-100 bg-blue-500 hover:bg-blue-700 sm:py-4">
-                            Đăng nhập
+                            Sign in
                         </button>
 
                         @if (Route::has('register'))
                         <p class="w-full text-xs text-center text-gray-700 my-6 sm:text-sm sm:my-8">
-                            Bạn chưa có tài khoản?
+                            Don't have an account?
                             <a class="text-blue-500 hover:text-blue-700 no-underline hover:underline" href="{{ route('register') }}">
-                                Đăng ký
+                                Sign up now
                             </a>
                         </p>
                         @endif

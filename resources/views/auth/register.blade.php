@@ -7,7 +7,7 @@
             <section class="flex flex-col break-words bg-white sm:border-1 sm:rounded-md sm:shadow-sm sm:shadow-lg">
 
                 <header class="font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 sm:rounded-t-md text-xl text-center uppercase">
-                    Tạo tài khoản
+                    REGISTRATION
                 </header>
 
                 <form class="w-full px-6 space-y-6 sm:px-10 sm:space-y-8" method="POST"
@@ -16,7 +16,7 @@
 
                     <div class="flex flex-wrap">
                         <label for="name" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
-                            Họ và tên <span class="text-red-600">*</span>
+                            Full name <span class="text-red-600">*</span>
                         </label>
 
                         <input id="name" type="text" class="form-input w-full @error('name')  border-red-500 @enderror"
@@ -49,11 +49,11 @@
                     {{-- Company --}}
                     <div class="flex flex-wrap">
                         <label for="company" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
-                            Công ty <span class="text-red-600">*</span>
+                            Company <span class="text-red-600">*</span>
                         </label>
 
                         <select name="company" id="company-select" class="form-control" required>
-                            <option value="">Chọn</option>
+                            <option value="">Select</option>
                             @foreach ($companies as $company)
                                 <option value="{{ $company->id }}">{{ $company->name }}</option>
                             @endforeach
@@ -62,7 +62,7 @@
 
                     <div class="flex flex-wrap">
                         <label for="password" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
-                            Mật khẩu <span class="text-red-600">*</span>
+                            Password <span class="text-red-600">*</span>
                         </label>
 
                         <input id="password" type="password"
@@ -78,7 +78,7 @@
 
                     <div class="flex flex-wrap">
                         <label for="password-confirm" class="block text-gray-700 text-sm font-bold mb-2 sm:mb-4">
-                            Xác nhận mật khẩu <span class="text-red-600">*</span>
+                            Confirm password <span class="text-red-600">*</span>
                         </label>
 
                         <input id="password-confirm" type="password" class="form-input w-full"
@@ -88,13 +88,13 @@
                     <div class="flex flex-wrap">
                         <button type="submit"
                             class="w-full select-none font-bold whitespace-no-wrap p-3 rounded-lg text-base leading-normal no-underline text-gray-100 bg-blue-500 hover:bg-blue-700 sm:py-4">
-                            Đăng ký
+                            Register
                         </button>
 
                         <p class="w-full text-xs text-center text-gray-700 my-6 sm:text-sm sm:my-8">
-                            Bạn đã có tài khoản?
+                            Already have an account?
                             <a class="text-blue-500 hover:text-blue-700 no-underline hover:underline" href="{{ route('login') }}">
-                                Đăng nhập
+                                Sign in
                             </a>
                         </p>
                     </div>

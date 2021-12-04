@@ -24,6 +24,7 @@ class User extends Authenticatable
         'date_of_birth',
         'gender',
         'company_id',
+        'isAdmin',
         'phone'
     ];
 

@@ -12,44 +12,44 @@
                 </div>
             </nav> 
 
-            <div class="card-header text-center text-xl font-semibold uppercase">Danh sách phòng họp</div>
+            <div class="card-header text-center text-xl font-semibold uppercase">KATH'S MEETING ROOMS</div>
             
             <div class="">
-                <div class="scroller" style="height: 427px;">
-                    <table class="table table-bordered table-hover text-center" id="dtOrderExample">
+                <div>
+                    <table class="table table-bordered table-hover text-center table-sm" id="dtOrderExample">
                         <thead>
                             <tr>
                                 <th>
-                                    <b style="margin-right: 5px;">Tên phòng</b>
+                                    <span style="margin-right: 2px;" class="uppercase font-semibold">Room</span>
                                     <i class="fas fa-sort" id="rl-name"></i>
                                 </th>
                                 <th>
-                                    <b style="margin-right: 5px;">Sức chứa</b>
+                                    <span style="margin-right: 2px;" class="uppercase font-semibold">Capacity</span>
                                     <i class="fas fa-sort" id="rl-sc"></i>
                                 </th>
                                 <th>
-                                    <b style="margin-right: 5px;">Diện tích</b>
+                                    <span style="margin-right: 2px;" class="uppercase font-semibold">Area</span>
                                     <i class="fas fa-sort" id="rl-sp"></i>
                                 </th>
                                 <th>
-                                    <b style="margin-right: 5px;">Tình trạng</b>
+                                    <span style="margin-right: 2px;" class="uppercase font-semibold">Status</span>
                                     <i class="fas fa-sort" id="rl-mood"></i>
                                 </th>
-                                <th><b>Trang thiết bị</b></th>
+                                <th class="uppercase font-semibold">Facilities</th>
                             </tr>
                         </thead>
                         <tbody>
 
 
                             @foreach ($rooms as $room)
-                                <td style="font-weight: 400;">Phòng {{ $room->name }}</td>
-                                <td>{{ $room->capacity }} người</td>
+                                <td style="font-weight: 400;">Room {{ $room->name }}</td>
+                                <td>{{ $room->capacity }} people</td>
                                 <td>{{ $room->area }} m<sup>2</sup> </td>
                                 <td>
-                                    @if ($room->status == 'Hoạt động')
+                                    @if ($room->status == 'Active')
                                         <div class="text-white bg-green-500 py-1 px-2 rounded-md font-semibold">
                                             {{ $room->status }}</div>
-                                    @elseif ($room->status == 'Đang sửa chữa')
+                                    @elseif ($room->status == 'Repairing')
                                         <div class="text-white bg-red-500 py-1 px-2 rounded-md font-semibold block">
                                             {{ $room->status }}</div>
                                     @endif
@@ -64,6 +64,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{ $rooms->links() }}
                 </div>
             </div>
         </div>

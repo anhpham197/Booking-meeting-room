@@ -23,7 +23,7 @@
 
             <div class="text-center py-3 font-semibold text-xl uppercase">{{ Auth::user()->company->name }}</div>
 
-            <div class="scroller">
+            <div>
                 <table id="dtOrderExample" class="table table-bordered table-hover table-sm" cellspacing="0" width="100%"
                     style="text-align: center">
                     <thead class="table-idea">
@@ -70,9 +70,9 @@
                                     <table class="table table-bordered table-sm text-center">
                                         <thead>
                                             <tr>
-                                                <th>Meeting name</th>
-                                                <th>Starting time</th>
-                                                <th>Ending time</th>
+                                                <th class="font-semibold">Meeting name</th>
+                                                <th class="font-semibold">Starting time</th>
+                                                <th class="font-semibold">Ending time</th>
                                             </tr>
                                         </thead>
                                         <tbody>

@@ -162,7 +162,7 @@ class EventsController extends Controller
     }
 
     public function showRooms() {
-        $rooms = Room::all();
+        $rooms = Room::paginate(3);
         return view('events.rooms', [
             'rooms' => $rooms
         ]);
