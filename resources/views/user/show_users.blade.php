@@ -40,6 +40,9 @@
                                 <th style="line-height: 40px;" class="lg:w-32">
                                     SỐ ĐIỆN THOẠI
                                 </th>
+                                <th>
+                                    &nbsp;
+                                </th>
                             </tr>
                         </thead>
                         <tbody id="data">
@@ -50,6 +53,17 @@
                                             data-target="#modal-{{ $user->id }}">{{ $user->name }}</a></td>
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->phone }}</td>
+                                    <td>
+                                        <a class="btn btn-xs btn-primary" href="{{ route('user.show', $user->id) }}">
+                                            View
+                                        </a>
+                                        <a class="btn btn-xs btn-primary" href="{{ route('kath.edit', $user->id) }}">
+                                            Edit
+                                        </a>
+                                        <a class="btn btn-xs btn-primary" href="{{ route('kath.delete', $user->id) }}">
+                                            Delete
+                                        </a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -102,14 +116,14 @@
             console.log($value)
             $.ajax({
                 type: 'get',
-                url: '{{ URL::to('search') }}', 
+                url: '{{ URL::to('search') }}',
                 data: {
                     'search': $value
                 },
                 success: function(data) {
                     let html = '';
                     for (let item of data) {
-                        let htmlItem = 
+                        let htmlItem =
                                 `<tr>
                                     <td>{{ $users->firstItem() + $key }}</td>
                                     <td><a href="#" data-toggle="modal"

@@ -13,7 +13,8 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('auth', ['except' => ['index']]);
     }
     /**
@@ -26,7 +27,8 @@ class HomeController extends Controller
         return view('index');
     }
 
-    public function show() {
+    public function show()
+    {
         return view('booking.main');
     }
 }

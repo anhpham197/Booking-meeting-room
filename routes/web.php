@@ -26,7 +26,7 @@ Route::get('/booking', [HomeController::class, 'show'])->name('show_booking');
 
 Route::get('/create', [EventsController::class, 'create'])->name('create_booking');
 
-Route::resource('events', 'App\Http\Controllers\EventsController');
+Route::resource('events', 'App\Http\Controllers\User\EventsController');
 Route::get('/event/view', [EventsController::class, 'index'])->name('event.view');
 Route::get('/event/{id}/create', [EventsController::class, 'create'])->name('event.create');
 Route::get('/event/{id}/edit', [EventsController::class, 'edit'])->name('event.edit');
@@ -49,10 +49,12 @@ Auth::routes();
 
 Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::resource('user', 'App\Http\Controllers\User\UserController');
+
 Route::get('/kath/create', [UserController::class, 'create'])->name('kath.create');
 Route::get('/kath/{id}/edit', [UserController::class, 'edit'])->name('kath.edit');
 Route::put('/kath/{id}/update', [UserController::class, 'update'])->name('kath.update');
-
+Route::get('/kath/{id}/delete', [UserController::class, 'delete'])->name('kath.delete');
 Route::put('/kath/{id}/change_password', [UserController::class, 'changePassword'])->name('kath.changePassword');
 Route::get('/kath/{id}/edit_password', [UserController::class, 'editPassword'])->name('kath.editPassword');
 
