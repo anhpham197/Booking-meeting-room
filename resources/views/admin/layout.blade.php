@@ -71,7 +71,7 @@
                             <i class="fas fa-search"></i>
                         </span>
                         <input type="search" id="search" name="search" class="form-input placeholder-gray-400 w-72 pl-10"
-                            placeholder="Tìm kiếm..."
+                            placeholder="Search..."
                             style="font-family: 'Font Awesome 5 Free', 'system-ui'; border: 1px solid #4f4f4f">
                     </div>
                 </div>
