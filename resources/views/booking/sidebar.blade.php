@@ -1,52 +1,52 @@
 <nav id="sidebar">
     <div class="sidebar-header uppercase font-bold text-center text-2xl" style="height: 70px">
-        Trang chủ
+        HOMEPAGE
     </div>
     <ul class="lisst-unstyled components">
         <li>
             <i class="fas fa-home"></i>
-            <a href="/booking" aria-expanded="false" class="text-white hover:no-underline">Nhà của tôi</a>
+            <a href="/booking" aria-expanded="false" class="text-white hover:no-underline">My calendar</a>
         </li>
 
         <li>
            <i class="fas fa-user"></i>
-           <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle text-white hover:no-underline pl-3">Thông tin cá nhân</a>
+           <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle text-white hover:no-underline pl-3">Personal information</a>
 
            <ul class="collapse list-unstyled subnav" id="homeSubmenu">
               <li>
-                  <a href="{{ route('kath.edit', Auth::user()->id) }}" class="text-white hover:no-underline">Chỉnh sửa thông tin cá nhân</a>
+                  <a href="{{ route('kath.edit', Auth::user()->id) }}" class="text-white hover:no-underline">Edit profile</a>
               </li>
               <li>
-                  <a href="{{ route('kath.editPassword', ['id' => Auth::user()->id]) }}" class="text-white hover:no-underline">Thay đổi mật khẩu</a>
+                  <a href="{{ route('kath.editPassword', ['id' => Auth::user()->id]) }}" class="text-white hover:no-underline">Change password</a>
               </li>
               <li>
-                <a href="{{ route('event.view') }}" class="text-white hover:no-underline">Danh sách dự kiện</a>
+                <a href="{{ route('event.view') }}" class="text-white hover:no-underline">My meetings</a>
             </li>
 
           </ul>
         </li>
         <li>
            <i class="fas fa-users"></i>
-           <a href="{{ route('kath.showUsers') }}" class="text-white hover:no-underline">Danh sách nhân viên</a>
+           <a href="{{ route('kath.showUsers') }}" class="text-white hover:no-underline">Employees</a>
         </li>
         <li>
             <i class="far fa-handshake"></i>
-            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle text-white hover:no-underline">Hệ thống phòng họp</a>
+            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle text-white hover:no-underline">Meeting room system</a>
             <ul class="collapse list-unstyled subnav" id="pageSubmenu" >
                 <li>
-                    <a href="{{ route('event.create', Auth::user()->id) }}" class="text-white hover:no-underline">Đặt phòng</a>
+                    <a href="{{ route('event.create', Auth::user()->id) }}" class="text-white hover:no-underline">Booking room</a>
                 </li>
                 <li >
-                    <a href="{{ route('kath.showRooms') }}" class="text-white hover:no-underline">Danh sách phòng họp</a>
+                    <a href="{{ route('kath.showRooms') }}" class="text-white hover:no-underline">Meeting rooms</a>
                 </li>
                 <li>
-                    <a href="{{ route('event.rate') }}" class="text-white hover:no-underline">Đánh giá phòng họp</a>
+                    <a href="{{ route('event.rate') }}" class="text-white hover:no-underline">Feedback</a>
                 </li>
             </ul>
         </li>
     </ul>
 
-    <div class="text-center pb-5">PHIÊN BẢN : {{ env('APP_STATIC_VERSION') }}</div>
+    <div class="text-center pb-5">VERSION : {{ env('APP_STATIC_VERSION') }}</div>
 
 
     <script>

@@ -9,7 +9,7 @@
                         <i class="fas fa-angle-double-left text-2xl font-normal text-gray-400"></i>
                     </button>
                 </div>
-            </nav>
+            </nav>               
 
             <section class="row">
                 <div class="col-12">
@@ -19,7 +19,7 @@
                         @csrf
 
                         <div class="card">
-                            <div class="card-header text-center uppercase text-xl font-semibold">Thông tin cá nhân</div>
+                            <div class="card-header text-center uppercase text-xl font-semibold">Personal information</div>
                             <div class="card-body">
                                 @if (session()->has('msgUpdateSuccess'))
                                     <div class="flex justify-center items-center text-green-700"
@@ -38,7 +38,7 @@
                                 @endif
                                 <div class="text-center"></div>
                                 <div class="form-group">
-                                    <label for="username" class="font-semibold">Họ tên <span
+                                    <label for="username" class="font-semibold">Full name <span
                                             class="text-red-600">*</span></label>
                                     <input type="text" class="form-control" name="name" id="name"
                                         value="{{ $user->name }}">
@@ -47,30 +47,30 @@
                                     @enderror
                                 </div>
                                 <div class="form-group flex gap-4">
-                                    <label for="gender" class="font-semibold">Giới tính</label><br>
+                                    <label for="gender" class="font-semibold">Gender</label><br>
                                     <div>
                                         <input type="radio" name="gender" id="male" value="Nam" @if (!empty($user->gender) && $user->gender == 'Nam')
                                         checked
-                                        @endif> Nam
+                                        @endif> Male
                                     </div>
                                     <div>
                                         <input type="radio" name="gender" id="female" value="Nữ" @if (!empty($user->gender) && $user->gender == 'Nữ')
                                         checked
-                                        @endif> Nữ
+                                        @endif> Female
                                     </div>
                                     <div>
                                         <input type="radio" name="gender" id="other" value="Khác" @if (!empty($user->gender) && $user->gender == 'Khác')
                                         checked
-                                        @endif> Khác
+                                        @endif> Other
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="date" class="font-semibold">Ngày sinh</label>
+                                    <label for="date" class="font-semibold">Date of birth</label>
                                     <input type="date" class="form-control" name="date_of_birth" id="date_of_birth"
                                         @if (!empty($user->date_of_birth)) value="{{ $user->date_of_birth }}" @endif>
                                 </div>
                                 <div class="form-group">
-                                    <label for="telephone" class="font-semibold">Số điện thoại
+                                    <label for="telephone" class="font-semibold">Phone
                                         <span class="text-red-600">*
                                             @if (session()->has('msgPhone'))
                                                 <span class="font-normal">{{ session()->get('msgPhone') }}</span>
@@ -98,14 +98,14 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="company" class="font-semibold">Công ty <span
+                                    <label for="company" class="font-semibold">Company <span
                                             class="text-red-600">*</span></label>
                                     <input type="text" class="form-control" name="company" id="company"
                                         value="{{ $company }}" readonly>
                                 </div>
                             </div>
                             <div class="card-footer" style="text-align: center;">
-                                <button type="submit" class="btn btn-primary">Cập nhật</button>
+                                <button type="submit" class="btn btn-primary">UPDATE</button>
                             </div>
                         </div>
                     </form>

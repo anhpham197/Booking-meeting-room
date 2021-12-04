@@ -35,12 +35,13 @@ Route::put('/event/{id}/update', [EventsController::class, 'update'])->name('eve
 // Route::get('event/create', [EventsController::class, 'index'])->name('event.create');
 // Route::get('event/{id}/edit', [EventsController::class, 'edit'])->name('event.edit');
 // Route::post('event/upload', [EventsController::class, 'create'])->name('event.upload');
-Route::get('event/rate', [EventsController::class, 'rate'])->name('event.rate');
-
+Route::get('/event/rate', [EventsController::class, 'rate'])->name('event.rate');
+Route::get('/event/{id}/data', [EventsController::class, 'getEventData'])->name('event.data');
+Route::post('/event/rate/save', [EventsController::class, 'saveRate'])->name('event.saveRate');
 
 Auth::routes();
 
-Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/kath/create', [UserController::class, 'create'])->name('kath.create');
 Route::get('/kath/{id}/edit', [UserController::class, 'edit'])->name('kath.edit');
@@ -50,4 +51,5 @@ Route::put('/kath/{id}/change_password', [UserController::class, 'changePassword
 Route::get('/kath/{id}/edit_password', [UserController::class, 'editPassword'])->name('kath.editPassword');
 
 Route::get('/kath/users', [UserController::class, 'showUsers'])->name('kath.showUsers');
+Route::get('kath/users/search', [UserController::class, 'searchUsers'])->name('kath.searchUsers');
 Route::get('kath/rooms', [EventsController::class, 'showRooms'])->name('kath.showRooms');

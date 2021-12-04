@@ -3,23 +3,23 @@
     <div class="container text-center text-md-left mt-5">
         <div class="row">
             <div class="col-md-3 mx-auto mb-4">
-                <h6 class="text-uppercase font-weight-bold"> Về chúng tôi</h6>
+                <h6 class="text-uppercase font-weight-bold">About us</h6>
                 <hr class="footer-main-cl mb-4 mt-0 d-inline-block max-auto" style="width: 125px; height: 10px;border-radius: 10px;">
                 <p class="leading-normal">
                     Sản phẩm giúp đặt phòng nhanh chóng, đảm bản uy tín chất lượng
                 </p>
             </div>
             <div class="col-md-2 mx-auto mb-4">
-                <h6 class="text-uppercase font-weight-bold">Trang chủ</h6>
+                <h6 class="text-uppercase font-weight-bold">Homepage</h6>
                 <hr class="footer-main-cl mb-4 mt-0 d-inline-block max-auto" style="width: 125px; height: 10px;border-radius: 10px;">
                 <ul class="list-unstyled">
-                    <li class="my-2"><a href="{{ route('show_booking') }}">Nhà của tôi</a></li>
-                    <li class="my-2"><a href="{{ route('kath.showUsers') }}">Danh sách nhân viên</a></li>
-                    <li class="my-2"><a href="{{ route('kath.showRooms') }}">Hệ thống phòng họp</a></li>
+                    <li class="my-2"><a href="{{ route('show_booking') }}">My calendar</a></li>
+                    <li class="my-2"><a href="{{ route('kath.showUsers') }}">Employees</a></li>
+                    <li class="my-2"><a href="{{ route('kath.showRooms') }}">Meeting room system</a></li>
                 </ul>
             </div>
             <div class="col-md-3 mx-auto mb-4">
-                <h6 class="text-uppercase font-weight-bold">Liên hệ</h6>
+                <h6 class="text-uppercase font-weight-bold">Contact</h6>
                 <hr class="footer-main-cl mb-4 mt-0 d-inline-block max-auto" style="width: 125px; height: 10px;border-radius: 10px;">
                 <ul class="list-unstyled">
                     <li class="my-2"><a href="tel:+84123456789" class="hover:no-underline"><span class="fa fa-phone mr-2"></span>0123456789</a></li>

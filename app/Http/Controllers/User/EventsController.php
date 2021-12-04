@@ -51,13 +51,18 @@ class EventsController extends Controller
     {
         $events = Event::where('room_id', $request->roomId)->get();
         $isOverlap = false;
+        $isValid = true;
         $msg = '';
+        if ($request->ending_time <= $request->starting_time) {
+            return back()->with('message', "Invalid time. Please book again!");
+        }
         foreach($events as $event) {
             if ($request->starting_time <= $event->ending_time && $request->ending_time >= $event->starting_time) {
                 $isOverlap = true;
                 break;
             } 
         }
+        
         if ($isOverlap == false) {
             $data = new Event();
             $file = $request->fileupload;
@@ -121,9 +126,39 @@ class EventsController extends Controller
 
 
     /* Hiển thị form đánh giá cuộc họp */
-    public function rate()
-    {
+    public function rate()  {
         return view('events.rate');
+    }
+
+    public function getEventData($id) {
+        $event = Event::query()->where('id', $id)->get();
+        $room = Room::query()->where('id', $event[0]->room_id)->get();
+        return response()->json([
+            'startingTime' => $event[0]->starting_time,
+            'endingTime' => $event[0]->ending_time,
+            'roomName' => $room[0]->name
+        ], 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
+    }
+
+    public function saveRate(Request $request) {
+        $user = User::find(Auth::user()->id);
+        foreach($user->rates as $rate) {
+            if($rate->pivot->event_id == $request->meetingId) {
+                return response()->json([
+                    'status'=>'fail', 
+                    'message'=>'You have rated this meeting!',
+                    'titleMsg'=>'Save failed'
+                ]);
+            }
+        }
+        $user->rates()->attach($request->meetingId, [
+            'comment' => $request->comment
+        ]);
+        return response()->json([
+            'status'=>'success', 
+            'message'=>'Thanks for your feedback!',
+            'titleMsg'=>'Saved successfully'
+        ]);
     }
 
     public function showRooms() {

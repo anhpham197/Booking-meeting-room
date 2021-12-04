@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 03, 2021 lúc 09:59 PM
+-- Thời gian đã tạo: Th12 04, 2021 lúc 08:07 PM
 -- Phiên bản máy phục vụ: 10.4.17-MariaDB
 -- Phiên bản PHP: 7.3.27
 
@@ -71,7 +71,9 @@ CREATE TABLE `events` (
 INSERT INTO `events` (`id`, `room_id`, `name`, `starting_time`, `ending_time`, `description`, `note`, `file`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, 1, 'Test 1', '2021-12-04 03:24:00', '2021-12-04 20:24:00', NULL, NULL, NULL, '2021-12-03 13:24:20', '2021-12-03 13:24:20', NULL),
 (2, 1, 'test 2', '2021-12-04 03:28:00', '2021-12-03 20:34:00', NULL, NULL, NULL, '2021-12-03 13:29:08', '2021-12-03 13:29:08', NULL),
-(3, 1, 'nnnnn', '2021-12-18 03:56:00', '2021-12-22 20:56:00', NULL, NULL, NULL, '2021-12-03 13:56:20', '2021-12-03 13:56:20', NULL);
+(3, 1, 'nnnnn', '2021-12-18 03:56:00', '2021-12-22 20:56:00', NULL, NULL, NULL, '2021-12-03 13:56:20', '2021-12-03 13:56:20', NULL),
+(4, 1, 'Test 10', '2021-12-23 17:48:00', '2021-12-24 10:48:00', NULL, NULL, NULL, '2021-12-04 03:48:28', '2021-12-04 03:48:28', NULL),
+(5, 1, 'Check datetime', '2021-12-30 18:49:00', '2021-12-31 11:49:00', NULL, NULL, NULL, '2021-12-04 04:49:16', '2021-12-04 04:49:16', NULL);
 
 -- --------------------------------------------------------
 
@@ -90,7 +92,11 @@ CREATE TABLE `event_user` (
 
 INSERT INTO `event_user` (`event_id`, `user_id`) VALUES
 (2, 4),
-(3, 6);
+(3, 6),
+(4, 1),
+(4, 4),
+(4, 6),
+(5, 1);
 
 -- --------------------------------------------------------
 
@@ -230,14 +236,24 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `rate`
+-- Cấu trúc bảng cho bảng `rates`
 --
 
-CREATE TABLE `rate` (
+CREATE TABLE `rates` (
   `event_id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
-  `comment` longtext NOT NULL
+  `comment` longtext NOT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `rates`
+--
+
+INSERT INTO `rates` (`event_id`, `user_id`, `comment`, `created_at`, `updated_at`) VALUES
+(4, 1, 'aaaaaaaaa', NULL, NULL),
+(5, 1, 'aaaaaaaaa', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -267,29 +283,6 @@ INSERT INTO `rooms` (`id`, `name`, `capacity`, `area`, `status`, `created_at`, `
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `test`
---
-
-CREATE TABLE `test` (
-  `id` int(11) NOT NULL,
-  `start` datetime NOT NULL,
-  `end` datetime NOT NULL,
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Đang đổ dữ liệu cho bảng `test`
---
-
-INSERT INTO `test` (`id`, `start`, `end`, `created_at`, `updated_at`) VALUES
-(2, '2021-12-04 02:16:00', '2021-12-09 02:16:00', '2021-12-03 19:19:38', '2021-12-03 19:19:38'),
-(3, '2021-12-04 02:19:00', '2021-12-05 02:19:00', '2021-12-03 19:19:56', '2021-12-03 19:19:56'),
-(4, '2021-12-04 02:20:00', '2021-12-07 02:20:00', '2021-12-03 19:21:02', '2021-12-03 19:21:02');
-
--- --------------------------------------------------------
-
---
 -- Cấu trúc bảng cho bảng `users`
 --
 
@@ -313,12 +306,12 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `date_of_birth`, `phone`, `company_id`, `gender`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Ánh Phạm', 'ngocanhpham197@gmail.com', '2021-11-30', '0859662379', 2, 'Khác', NULL, '$2y$10$GdayqfI0m.87/TTBFG5WBeN1QTt/yueslHDuWd5ql8JKfgGnnQtUq', 'Q0pPylmQo2NHKyqvcEsRbHbhTKD6xsxKj7QtgqHbsObJfGPd8FeWR7DVMusG', '2021-11-13 04:04:22', '2021-12-01 12:56:23'),
-(2, 'PHẠM NGỌC ÁNH', 'anhpnFX12745@funix.edu.vn', NULL, NULL, 1, NULL, NULL, '$2y$10$l0jc.CBFA/vfhggoGwzbeOwWiHFcofPcJtV7/7XKKJdYil/rpdTrW', NULL, '2021-11-22 02:34:22', '2021-11-22 02:34:22'),
+(1, 'Phạm Ngọc Ánh', 'ngocanhpham197@gmail.com', '2021-11-30', '0859662379', 2, 'Khác', NULL, '$2y$10$GdayqfI0m.87/TTBFG5WBeN1QTt/yueslHDuWd5ql8JKfgGnnQtUq', '5tiFVpQfQQS3lwlGLRuLxi7oztxm9mzp1E46033yIVjLOn46lvxWPmkAfdF6', '2021-11-13 04:04:22', '2021-12-01 12:56:23'),
+(2, 'Ánh Phạm', 'anhpnFX12745@funix.edu.vn', NULL, NULL, 1, NULL, NULL, '$2y$10$l0jc.CBFA/vfhggoGwzbeOwWiHFcofPcJtV7/7XKKJdYil/rpdTrW', NULL, '2021-11-22 02:34:22', '2021-11-22 02:34:22'),
 (3, 'Bùi Cao Chinh', 'chinhngungok@gmail.com', NULL, NULL, 1, NULL, NULL, '$2y$10$GJUjakxKdRHB3StOXohzXur7KNxOGWhrj1nhZ3zWSLxUJWK7z24I.', NULL, '2021-11-22 09:31:56', '2021-11-22 09:31:56'),
 (4, 'Mai Tân Tân', 'maiteoteo@gmail.com', NULL, NULL, 2, NULL, NULL, '$2y$10$AAtgAxl62E7Q/nDW20JKBuLyvAOqNSAahAp4bIkstpOZ1zcpp/65C', NULL, '2021-11-22 09:35:35', '2021-11-22 09:35:35'),
 (5, 'Mai Thành Vũ', 'vuchoancutcho@gmail.com', NULL, NULL, 1, NULL, NULL, '$2y$10$UXCK17mXZBKKsU4yjWe5juWp/Ic.nlT2tUSlYnDV3TUNsC4E4rtTG', NULL, '2021-11-22 09:37:32', '2021-11-22 09:37:32'),
-(6, 'Đỗ Gấm', 'gamdo@gmail.com', NULL, NULL, 2, NULL, NULL, '$2y$10$sx/QdCOIJ6fcPF7chtrVcu7vMHpm3ngd6qI/lXmbqr2lbII42lcd6', NULL, '2021-11-22 09:40:07', '2021-11-22 09:40:07'),
+(6, 'Đỗ Thị Hồng Gấm', 'gamdo@gmail.com', NULL, NULL, 2, NULL, NULL, '$2y$10$sx/QdCOIJ6fcPF7chtrVcu7vMHpm3ngd6qI/lXmbqr2lbII42lcd6', NULL, '2021-11-22 09:40:07', '2021-11-22 09:40:07'),
 (7, 'Lương Thành Công', 'congcut@gmail.com', '2001-09-27', '1111111111', 6, 'Nam', NULL, '$2y$10$SugX1Y3dR7R3HTfQY6hq2O6h48dRbtdxaF161sxo8pdOjLaTBCVOy', NULL, '2021-11-22 10:07:58', '2021-11-22 11:33:31'),
 (8, 'Admin', 'admin@kath.vn', NULL, NULL, NULL, NULL, NULL, '$2y$10$NVQihscQ0.k7h5kvO6xmDOwxEwgkOQpGupNO1phrbnEs2fIYbms..', NULL, '2021-12-03 02:40:02', '2021-12-03 02:40:02');
 
@@ -387,9 +380,9 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
--- Chỉ mục cho bảng `rate`
+-- Chỉ mục cho bảng `rates`
 --
-ALTER TABLE `rate`
+ALTER TABLE `rates`
   ADD PRIMARY KEY (`event_id`,`user_id`),
   ADD KEY `fk_user_rate` (`user_id`);
 
@@ -397,12 +390,6 @@ ALTER TABLE `rate`
 -- Chỉ mục cho bảng `rooms`
 --
 ALTER TABLE `rooms`
-  ADD PRIMARY KEY (`id`);
-
---
--- Chỉ mục cho bảng `test`
---
-ALTER TABLE `test`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -427,7 +414,7 @@ ALTER TABLE `companies`
 -- AUTO_INCREMENT cho bảng `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `facilities`
@@ -460,12 +447,6 @@ ALTER TABLE `rooms`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT cho bảng `test`
---
-ALTER TABLE `test`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
@@ -496,9 +477,9 @@ ALTER TABLE `facility_room`
   ADD CONSTRAINT `fk_room_facility` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`) ON DELETE CASCADE;
 
 --
--- Các ràng buộc cho bảng `rate`
+-- Các ràng buộc cho bảng `rates`
 --
-ALTER TABLE `rate`
+ALTER TABLE `rates`
   ADD CONSTRAINT `fk_event` FOREIGN KEY (`event_id`) REFERENCES `events` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `fk_user_rate` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 

@@ -47,16 +47,16 @@
                                 <td>{{ $room->area }} m<sup>2</sup> </td>
                                 <td>
                                     @if ($room->status == 'Hoạt động')
-                                        <div class="text-white bg-green-500 py-2 px-2 rounded-md font-semibold">
+                                        <div class="text-white bg-green-500 py-1 px-2 rounded-md font-semibold">
                                             {{ $room->status }}</div>
                                     @elseif ($room->status == 'Đang sửa chữa')
-                                        <div class="text-white bg-gray-400 py-2 px-2 rounded-md font-semibold block">
+                                        <div class="text-white bg-red-500 py-1 px-2 rounded-md font-semibold block">
                                             {{ $room->status }}</div>
                                     @endif
                                 </td>
-                                <td class="">
+                                <td>
                                     @foreach ($room->facilities as $facility)
-                                        <div class=" text-white label-info inline-flex mb-2" style="font-weight: 400">
+                                        <div class=" text-white rounded-md inline-flex mb-2 bg-cool-gray-400 py-1 px-2" style="font-weight: 400">
                                             {{ $facility->name }}</div>
                                     @endforeach
                                 </td>

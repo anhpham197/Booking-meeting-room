@@ -107,23 +107,16 @@ ul ul a{
 	background: #6d9886;
 }
 
-#content{
+/* #content{
 	width: 100%;
 	transition: all 0.3s;
-}
+} */
 
 .table-idea{
 	position: sticky;
 	top: 0;
 	background-color: #D9CAB3;
 	
-}
-
-.label-info{
-	background-color: #6d9886;
-	padding: 6px;
-	border-radius: 4px;
-	margin-right: 5px;
 }
 
 thead{
@@ -264,6 +257,7 @@ ul ul a{
 	background: #6d9886;
 }
 
+
 #content{
 	width: 100%;
 	min-height: 100vh;
@@ -277,27 +271,6 @@ ul ul a{
 
 }
 
-@media (max-width: 768px) {
-    #sidebar {
-        margin-left: -250px;
-    }
-    #sidebar.active {
-        margin-left: 0;
-    }
-    #sidebarCollapse span {
-        display: none;
-    }
-}
-@keyframes modalFadeIn {
-    from {
-        transform: translateY(-600);
-        opacity: 0.1;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
 /* code cho phần event-content */
 
 .event-content{
@@ -359,12 +332,7 @@ ul ul a{
 .tb-row{
 	background-color: #e3dac9;
 }
-.scroller{
-	position: relative;
-	height: 200px;
-	overflow: auto;
-	display: block;
-}
+
 #entities{
 	width: 56px;
 	height: 25px;

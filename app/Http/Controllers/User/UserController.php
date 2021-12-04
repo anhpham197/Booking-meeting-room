@@ -88,9 +88,13 @@ class UserController extends Controller
         ]);
     }
 
-    public function search(Request $request) {
+    public function searchUsers(Request $request) {
         if($request->ajax()) {
-            $users = User::query()->where('name', 'LIKE', '%' . $request->search . '%')->get();
+            $name = mb_strtolower($request->search, 'UTF-8');
+            $users = User::query()->where([
+                ['company_id', Auth::user()->company_id], 
+                ['name', 'LIKE', '%' . $name . '%']
+            ])->get();
             return response()->json($users, 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
         }
     }
