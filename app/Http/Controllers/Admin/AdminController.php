@@ -9,10 +9,7 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     //
-    public function test() {
-        $now = date("Y-m-d\TH:i");
-        return view('test', [
-            'now' => $now
-        ]);
+    public function users() {
+        return view('admin.layout');
     }
 }
