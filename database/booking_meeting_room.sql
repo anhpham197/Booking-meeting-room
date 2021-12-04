@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 04, 2021 lúc 08:07 PM
+-- Thời gian đã tạo: Th12 05, 2021 lúc 12:07 AM
 -- Phiên bản máy phục vụ: 10.4.17-MariaDB
 -- Phiên bản PHP: 7.3.27
 
@@ -42,7 +42,8 @@ INSERT INTO `companies` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (1, 'Công ty TNHH MTV Tân Trường Phát', NULL, NULL),
 (2, 'Công ty giải pháp phần mềm An An', NULL, NULL),
 (5, 'công ty abc', '2021-11-22 10:03:46', '2021-11-22 10:03:46'),
-(6, 'công ty 123', '2021-11-22 10:07:58', '2021-11-22 10:07:58');
+(6, 'công ty 123', '2021-11-22 10:07:58', '2021-11-22 10:07:58'),
+(7, 'ADC Book', '2021-12-04 14:38:44', '2021-12-04 14:38:44');
 
 -- --------------------------------------------------------
 
@@ -149,7 +150,9 @@ INSERT INTO `facility_room` (`room_id`, `facility_id`) VALUES
 (2, 4),
 (2, 5),
 (2, 6),
-(2, 7);
+(2, 7),
+(3, 5),
+(3, 7);
 
 -- --------------------------------------------------------
 
@@ -266,7 +269,7 @@ CREATE TABLE `rooms` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `capacity` int(11) NOT NULL,
   `area` int(11) NOT NULL,
-  `status` enum('Hoạt động','Đang sửa chữa') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('Active','Repairing') COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -277,8 +280,9 @@ CREATE TABLE `rooms` (
 --
 
 INSERT INTO `rooms` (`id`, `name`, `capacity`, `area`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, '101', 30, 50, 'Hoạt động', NULL, NULL, NULL),
-(2, '102', 35, 40, 'Đang sửa chữa', NULL, NULL, NULL);
+(1, '101', 30, 50, 'Active', NULL, NULL, NULL),
+(2, '102', 35, 40, 'Repairing', NULL, NULL, NULL),
+(3, '103', 12, 30, 'Active', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -290,6 +294,7 @@ CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `isAdmin` tinyint(1) NOT NULL DEFAULT 0,
   `date_of_birth` date DEFAULT NULL,
   `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `company_id` int(10) UNSIGNED DEFAULT NULL,
@@ -305,15 +310,20 @@ CREATE TABLE `users` (
 -- Đang đổ dữ liệu cho bảng `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `date_of_birth`, `phone`, `company_id`, `gender`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Phạm Ngọc Ánh', 'ngocanhpham197@gmail.com', '2021-11-30', '0859662379', 2, 'Khác', NULL, '$2y$10$GdayqfI0m.87/TTBFG5WBeN1QTt/yueslHDuWd5ql8JKfgGnnQtUq', '5tiFVpQfQQS3lwlGLRuLxi7oztxm9mzp1E46033yIVjLOn46lvxWPmkAfdF6', '2021-11-13 04:04:22', '2021-12-01 12:56:23'),
-(2, 'Ánh Phạm', 'anhpnFX12745@funix.edu.vn', NULL, NULL, 1, NULL, NULL, '$2y$10$l0jc.CBFA/vfhggoGwzbeOwWiHFcofPcJtV7/7XKKJdYil/rpdTrW', NULL, '2021-11-22 02:34:22', '2021-11-22 02:34:22'),
-(3, 'Bùi Cao Chinh', 'chinhngungok@gmail.com', NULL, NULL, 1, NULL, NULL, '$2y$10$GJUjakxKdRHB3StOXohzXur7KNxOGWhrj1nhZ3zWSLxUJWK7z24I.', NULL, '2021-11-22 09:31:56', '2021-11-22 09:31:56'),
-(4, 'Mai Tân Tân', 'maiteoteo@gmail.com', NULL, NULL, 2, NULL, NULL, '$2y$10$AAtgAxl62E7Q/nDW20JKBuLyvAOqNSAahAp4bIkstpOZ1zcpp/65C', NULL, '2021-11-22 09:35:35', '2021-11-22 09:35:35'),
-(5, 'Mai Thành Vũ', 'vuchoancutcho@gmail.com', NULL, NULL, 1, NULL, NULL, '$2y$10$UXCK17mXZBKKsU4yjWe5juWp/Ic.nlT2tUSlYnDV3TUNsC4E4rtTG', NULL, '2021-11-22 09:37:32', '2021-11-22 09:37:32'),
-(6, 'Đỗ Thị Hồng Gấm', 'gamdo@gmail.com', NULL, NULL, 2, NULL, NULL, '$2y$10$sx/QdCOIJ6fcPF7chtrVcu7vMHpm3ngd6qI/lXmbqr2lbII42lcd6', NULL, '2021-11-22 09:40:07', '2021-11-22 09:40:07'),
-(7, 'Lương Thành Công', 'congcut@gmail.com', '2001-09-27', '1111111111', 6, 'Nam', NULL, '$2y$10$SugX1Y3dR7R3HTfQY6hq2O6h48dRbtdxaF161sxo8pdOjLaTBCVOy', NULL, '2021-11-22 10:07:58', '2021-11-22 11:33:31'),
-(8, 'Admin', 'admin@kath.vn', NULL, NULL, NULL, NULL, NULL, '$2y$10$NVQihscQ0.k7h5kvO6xmDOwxEwgkOQpGupNO1phrbnEs2fIYbms..', NULL, '2021-12-03 02:40:02', '2021-12-03 02:40:02');
+INSERT INTO `users` (`id`, `name`, `email`, `isAdmin`, `date_of_birth`, `phone`, `company_id`, `gender`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Phạm Ngọc Ánh', 'ngocanhpham197@gmail.com', 0, '2021-11-30', '0859662379', 2, 'Khác', NULL, '$2y$10$GdayqfI0m.87/TTBFG5WBeN1QTt/yueslHDuWd5ql8JKfgGnnQtUq', 'kg6GUzm1PReJUiXenUExDadwpZLLi7UmMQReOvrQy1oaekPg8f32cbq1Fl8o', '2021-11-13 04:04:22', '2021-12-01 12:56:23'),
+(2, 'Ánh Phạm', 'anhpnFX12745@funix.edu.vn', 0, NULL, NULL, 1, NULL, NULL, '$2y$10$l0jc.CBFA/vfhggoGwzbeOwWiHFcofPcJtV7/7XKKJdYil/rpdTrW', NULL, '2021-11-22 02:34:22', '2021-11-22 02:34:22'),
+(3, 'Bùi Cao Chinh', 'chinhngungok@gmail.com', 0, NULL, NULL, 1, NULL, NULL, '$2y$10$GJUjakxKdRHB3StOXohzXur7KNxOGWhrj1nhZ3zWSLxUJWK7z24I.', NULL, '2021-11-22 09:31:56', '2021-11-22 09:31:56'),
+(4, 'Mai Tân Tân', 'maiteoteo@gmail.com', 0, NULL, NULL, 2, NULL, NULL, '$2y$10$AAtgAxl62E7Q/nDW20JKBuLyvAOqNSAahAp4bIkstpOZ1zcpp/65C', NULL, '2021-11-22 09:35:35', '2021-11-22 09:35:35'),
+(5, 'Mai Thành Vũ', 'vuchoancutcho@gmail.com', 0, NULL, NULL, 1, NULL, NULL, '$2y$10$UXCK17mXZBKKsU4yjWe5juWp/Ic.nlT2tUSlYnDV3TUNsC4E4rtTG', NULL, '2021-11-22 09:37:32', '2021-11-22 09:37:32'),
+(6, 'Đỗ Thị Hồng Gấm', 'gamdo@gmail.com', 0, NULL, NULL, 2, NULL, NULL, '$2y$10$sx/QdCOIJ6fcPF7chtrVcu7vMHpm3ngd6qI/lXmbqr2lbII42lcd6', NULL, '2021-11-22 09:40:07', '2021-11-22 09:40:07'),
+(7, 'Lương Thành Công', 'congcut@gmail.com', 0, '2001-09-27', '1111111111', 6, 'Nam', NULL, '$2y$10$SugX1Y3dR7R3HTfQY6hq2O6h48dRbtdxaF161sxo8pdOjLaTBCVOy', NULL, '2021-11-22 10:07:58', '2021-11-22 11:33:31'),
+(8, 'Admin', 'admin@kath.vn', 1, NULL, NULL, NULL, NULL, NULL, '$2y$10$NVQihscQ0.k7h5kvO6xmDOwxEwgkOQpGupNO1phrbnEs2fIYbms..', 'PEp0f6lClLkvAwApJG3ojm1W0ac2NwgB0YwISc7puaebWIdjE41Z402QuuyP', '2021-12-03 02:40:02', '2021-12-03 02:40:02'),
+(9, 'Not admin', 'notadmin@gmail.com', 0, NULL, NULL, 7, NULL, NULL, '$2y$10$4w.KHDivXPKT8MSDAtWWwuI1Ty2djwteG7PwLmafU8OCR.IkEFA0e', NULL, '2021-12-04 14:38:44', '2021-12-04 14:38:44'),
+(10, 'adsh', 'jvnwe@vqef', 0, NULL, NULL, 1, NULL, NULL, '$2y$10$AiK4ocLw6qOFWXWMZv0DaepA7DWH404oVGZNCySbD/5hYT3sa0z5e', NULL, '2021-12-04 14:42:55', '2021-12-04 14:42:55'),
+(11, 'qg3t32t', 'afqw@webew', 0, NULL, NULL, 6, NULL, NULL, '$2y$10$vXCSIA9OWb9OWSFJrEL2gOCzlZ8LimQ/HZfnDhZ7bB.1oBs93o.JK', NULL, '2021-12-04 14:52:42', '2021-12-04 14:52:42'),
+(12, 'qwgg3', 'gefr@geg', 0, NULL, NULL, 2, NULL, NULL, '$2y$10$6einpz/MN6sUgf1d9negpe7DnmqZ4mVZVZMcVBMFq.dUwNWhnlHMW', NULL, '2021-12-04 14:57:07', '2021-12-04 14:57:07'),
+(13, 'nhhfuw', 'nqhg@navc', 0, NULL, NULL, 2, NULL, NULL, '$2y$10$FwaWlUZevukMEoQGX/pCf.pIU8..x9z/lwur78pJp4UOMWtygNR8O', NULL, '2021-12-04 16:05:17', '2021-12-04 16:05:17');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -408,7 +418,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT cho bảng `companies`
 --
 ALTER TABLE `companies`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT cho bảng `events`
@@ -444,13 +454,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT cho bảng `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
