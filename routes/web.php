@@ -3,7 +3,6 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\EventsController;
-use App\Http\Controllers\User\RoomsController;
 use App\Http\Controllers\User\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -59,5 +58,3 @@ Route::get('/kath/{id}/edit_password', [UserController::class, 'editPassword'])-
 
 Route::get('/kath/users', [UserController::class, 'showUsers'])->name('kath.showUsers');
 Route::get('kath/rooms', [EventsController::class, 'showRooms'])->name('kath.showRooms');
-
-Route::get('test', [AdminController::class, 'test']);

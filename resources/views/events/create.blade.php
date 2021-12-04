@@ -45,28 +45,16 @@
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col">
-                                            <label for="booking_date_start">Ngày bắt đầu <span class="text-red-600">*</span></label>
-                                            <input type="date" class="form-control" name="booking_date_start" id="booking_date_start" required>
+                                            <label for="booking_date_start">Starting time <span class="text-red-600">*</span></label>
+                                            <input type="datetime-local" min="{{ $minDate }}" class="form-control" name="starting_time" id="starting_time" required>
                                         </div>
                                         <div class="col">
-                                            <label for="time_start">Thời gian bắt đầu <span class="text-red-600">*</span></label>
-                                            <input type="time" class="form-control" name="time_start" id="time_start" required>
+                                            <label for="time_start">Ending time <span class="text-red-600">*</span></label>
+                                            <input type="datetime-local" min="{{ $minDate }}" class="form-control" name="ending_time" id="ending_time" required>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col">
-                                            <label for="booking_date_end">Ngày kết thúc <span class="text-red-600">*</span></label>
-                                            <input type="date" class="form-control" name="booking_date_end" id="booking_date_end" required>
-                                        </div>
-                                        <div class="col">
-                                            <label for="time_end">Thời gian kết thúc <span class="text-red-600">*</span></label>
-                                            <input type="time" class="form-control" name="time_end" id="time_end" required>
-                                        </div>
-                                    </div>
-                                </div>
 
                                 <div class="form-group">
                                     <label for="roomId">Tên phòng <span class="text-red-600">*</span></label>
