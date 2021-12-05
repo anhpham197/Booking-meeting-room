@@ -27,7 +27,7 @@ class EventsController extends Controller
     /* Hiển thị danh sách các cuộc họp của user */
     public function index()
     {
-        $events = Event::all();
+        $events = User::find(Auth::user()->id)->events()->get();
         return view('events.index', [
             'events' => $events
         ]);
