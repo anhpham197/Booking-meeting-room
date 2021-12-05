@@ -52,117 +52,22 @@
                                     <th id="im-tb-fdate">End day
                                         <i class="fas fa-sort"></i>
                                     </th>
-                                    <th>Description</th>
                                     <th>File</th>
-                                    <th>Note</th>
                                     <th>&nbsp; </th>
                                 </tr>
                             </thead>
 
-                            {{-- <tbody>
-                                <tr id="row1" class="tb-row">
-                                    <td>
-                                        <input type="checkbox" name="" id="box1" disabled>
-                                    </td>
-                                    <td>3</td>
-                                    <td>Kieu van tuyen1</td>
-                                    <td>113</td>
-                                    <td>Kieuvantuyen@gmail.com</td>
-                                    <td>12/08/2021</td>
-                                    <td>12/08/2021</td>
-                                    <td>1190123@vnu.edu.vn</td>
-                                    <td>ddddddddd</td>
-                                    <td>sssssssss</td>
-                                    <td>aaaaaaaaaaa</td>
-                                </tr>
-                                <tr id="row2" class="tb-row">
-                                    <td>
-                                        <input type="checkbox" name="" id="box2" disabled>
-                                    </td>
-                                    <td>2</td>
-                                    <td>Kieu van tuyen2</td>
-                                    <td>113</td>
-                                    <td>Kieuvantuyen@gmail.com</td>
-                                    <td>12/08/2021</td>
-                                    <td>12/08/2021</td>
-                                    <td>1190123@vnu.edu.vn</td>
-                                    <td>ddddddddd</td>
-                                    <td>sssssssss</td>
-                                    <td>aaaaaaaaaaa</td>
-                                </tr>
-                                <tr id="row3" class="tb-row">
-                                    <td>
-                                        <input type="checkbox" name="" id="box3" disabled>
-                                    </td>
-                                    <td>9</td>
-                                    <td>Kieu van tuyen4</td>
-                                    <td>113</td>
-                                    <td>Kieuvantuyen@gmail.com</td>
-                                    <td>12/08/2021</td>
-                                    <td>12/08/2021</td>
-                                    <td>1190123@vnu.edu.vn</td>
-                                    <td>ddddddddd</td>
-                                    <td>sssssssss</td>
-                                    <td>aaaaaaaaaaa</td>
-                                </tr>
-                                <tr id="row4" class="tb-row">
-                                    <td>
-                                        <input type="checkbox" name="" id="box3" disabled>
-                                    </td>
-                                    <td>8</td>
-                                    <td>Kieu van tuyen5</td>
-                                    <td>113</td>
-                                    <td>Kieuvantuyen@gmail.com</td>
-                                    <td>12/08/2021</td>
-                                    <td>12/08/2021</td>
-                                    <td>1190123@vnu.edu.vn</td>
-                                    <td>ddddddddd</td>
-                                    <td>sssssssss</td>
-                                    <td>aaaaaaaaaaa</td>
-                                </tr>
-                                <tr id="row5" class="tb-row">
-                                    <td>
-                                        <input type="checkbox" name="" id="box3" disabled>
-                                    </td>
-                                    <td>7</td>
-                                    <td>Kieu van tuyen6</td>
-                                    <td>113</td>
-                                    <td>Kieuvantuyen@gmail.com</td>
-                                    <td>12/08/2021</td>
-                                    <td>12/08/2021</td>
-                                    <td>1190123@vnu.edu.vn</td>
-                                    <td>ddddddddd</td>
-                                    <td>sssssssss</td>
-                                    <td>aaaaaaaaaaa</td>
-                                </tr>
-                                <tr id="row6" class="tb-row">
-                                    <td>
-                                        <input type="checkbox" name="" id="box3" disabled>
-                                    </td>
-                                    <td>1</td>
-                                    <td>Kieu van tuyen7</td>
-                                    <td>113</td>
-                                    <td>Kieuvantuyen@gmail.com</td>
-                                    <td>12/08/2021</td>
-                                    <td>12/08/2021</td>
-                                    <td>1190123@vnu.edu.vn</td>
-                                    <td>ddddddddd</td>
-                                    <td>sssssssss</td>
-                                    <td>aaaaaaaaaaa</td>
-                                </tr>
-                            </tbody> --}}
+                            
                             <tbody>
                                 @foreach ($events as $event)
                                 <tr>
                                     <td>
                                         <input type="checkbox" name="" id="box3" disabled>
                                     </td>
-                                    <td text-align:left>{{$event->title}}</td>
-                                    <td>{{$event->start_day}}</td>
-                                    <td>{{$event->end_day}}</td>
-                                    <td>{{$event->description}}</td>
+                                    <td text-align:left>{{$event->name}}</td>
+                                    <td>{{$event->starting_time}}</td>
+                                    <td>{{$event->ending_time}}</td>
                                     <td>{{$event->file}}</td>
-                                    <td>{{$event->note}}</td>
                                     <td>
                                         <a class="btn btn-xs btn-primary" href="{{ route('events.show', $event->id) }}">
                                             Xem

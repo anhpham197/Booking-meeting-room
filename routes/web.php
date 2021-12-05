@@ -49,7 +49,6 @@ Route::group(['middleware' => 'user'], function () {
     /* Route::delete('rooms/destroy', 'RoomsController@massDestroy')->name('rooms.massDestroy'); */
     Route::resource('rooms', 'RoomsController');
 
-    Route::resource('events', 'App\Http\Controllers\User\EventsController');
     Route::get('/event/view', [EventsController::class, 'index'])->name('event.view');
     Route::get('/event/{id}/create', [EventsController::class, 'create'])->name('event.create');
     Route::get('/event/{id}/edit', [EventsController::class, 'edit'])->name('event.edit');
