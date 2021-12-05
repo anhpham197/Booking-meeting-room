@@ -25,6 +25,34 @@
         #sidebar ul li:hover> a  {
             color : #fff;
         }
+        /* css cho header bên phải màn hình */
+        .admin-content-header{
+            height: 10%;
+            background-color: #fff; 
+            padding: 0px 10px;
+        }
+        /* css cho cái body chứa input và table bên phải màn hình */
+        .admin-content-body{
+            padding: 0px 15px;
+            background-color: #f1f5f6;
+        }
+        /* css cho table bên phải màn hình */
+        .admin-table{
+            background-color: #fff;
+            border-radius: 7px;
+            overflow: hidden;
+        }
+        /* css cho input search bên phải màn hình */
+        .admin-input{
+            border-radius: 4px;
+            border-width: 1px; 
+            height: 35px;
+        }
+        /* lớp này là để đổi màu khi chọn thẻ li */
+        .active {
+            background-color: #111827;
+        }
+
     </style>
 </head>
 
@@ -34,7 +62,7 @@
             <div class="sidebar-header" style="background-color: #343a40;">
                 <h3>Booking</h3>
             </div>
-            <ul class="lisst-unstyled components">  
+            <ul class="lisst-unstyled components" style="margin-bottom: 0px; padding: 0px;">  
                <li>
                    <i class="fas fa-home"></i>
                    <a href="#">Management page</a>
@@ -60,104 +88,97 @@
        </nav>
 
         <div id="content">
-            
-            <nav class="navbar navbar-expand-lg navbar-light bg-light " style="height: 81px;" >
-                <div class="container-fluid">
-                    <button type="button" id="sidebarCollapse" class="footer-main-cl">
-                    <i class="fas fa-bars"></i>
-                        
-                    </button>
-                </div>
+            <nav class="navbar-expand-lg navbar-light d-flex justify-content-between admin-content-header" >
+                <button type="button" id="sidebarCollapse">
+                    <i class="fas fa-angle-double-left"></i>  
+                </button>
+                <div style="align-self: center;">Hieu</div>
             </nav>
-            <div class="card">
-                <div class="card-header" style="margin-bottom: 0px;" >
-                    <input type="text" placeholder="Search">
+
+            <div class="admin-content-body" style="height: 90%;">
+                <div style="padding: 20px 0px;" >
+                    <input class="admin-input" type="text" placeholder="Search" >
                 </div>
-                <div class="card-body">
-                    <div class="scroller" style="height: 390px;">
-                        <table class="table table-bordered table-hover" id="dtOrderExample">
-                            <thead  >
-                                <tr>
-                                    <th style="width: 3%;">
-                                        <b class = "text-white">ID</b> 
-                                    </th>
-                                    <th style="width: 15%;">
-                                        <b class = "text-white">Event name</b>
-                                    </th>
-                                    <th style="width: 15%;">
-                                        <b class = "text-white">Host</b>
-                                    </th>
-                                    <th style="width: 17%;">
-                                        <b class = "text-white">Room name</b>
-                                    </th>
-                                    <th style="width: 15%;">
-                                        <b class = "text-white">Start time <i class="fas fa-sort" id="rl-start"></i></b>
-                                    </th>
-                                    <th style="width: 15%;">
-                                        <b class = "text-white">End time <i class="fas fa-sort" id="rl-end"></i></b>
-                                    </th>
-                                    <th style="width: 10%;">
-                                        <b class = "text-white">Note</b>
-                                    </th>
-                                    <th style="width: 1%;"><b class = "text-white">Operation</b></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td >1</td>
-                                    <td>Họp cuối năm</td>
-                                    <td>Đặng Minh Hiếu</td>
-                                    <td>ádsadsad</span></td>
-                                    <td>04-12-2021 10h30</td>
-                                    <td>04-12-2021 14h</td>
-                                    <td>sssssssss</td>
-                                    <td style=" color: #6d9886; font-size: 18px;">
-                                        <a data-toggle="tooltip" title="Delete"><i class="fas fa-trash-alt"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Họp đầu tháng</td>
-                                    <td>Đặng Tiến Khánh</td>
-                                    <td>ádsadsad</span></td>
-                                    <td>04-12-2021 10h30</td>
-                                    <td>05-12-2021 10h30</td>
-                                    <td>sssssssss</td>
-                                    <td style=" color: #6d9886; font-size: 18px;">
-                                        <a data-toggle="tooltip" title="Delete"><i class="fas fa-trash-alt"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Họp</td>
-                                    <td>Đặng Minh 3</td>
-                                    <td>ádsadsad</span></td>
-                                    <td>03-12-2021 10h30</td>
-                                    <td>04-12-2021 19h30</td>
-                                    <td>sssssssss</td>
-                                    <td style=" color: #6d9886; font-size: 18px;">
-                                        <a data-toggle="tooltip" title="Delete"><i class="fas fa-trash-alt"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td >4</td>
-                                    <td>Họp cuối năm</td>
-                                    <td>Đặng Minh Hiếu</td>
-                                    <td>ádsadsad</span></td>
-                                    <td>04-12-2021 07h30</td>
-                                    <td>04-12-2021 10h30</td>
-                                    <td>sssssssss</td>
-                                    <td style=" color: #6d9886; font-size: 18px;">
-                                        <a data-toggle="tooltip" title="Delete"><i class="fas fa-trash-alt"></i></a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="card-footer" style="height: 56px;">
-                </div>
-                
+                <div class="">
+                    <table class="table table-bordered table-hover admin-table" id="dtOrderExample">
+                        <thead  >
+                            <tr>
+                                <th style="width: 3%;">
+                                    <b class = "text-white">ID</b> 
+                                </th>
+                                <th style="width: 15%;">
+                                    <b class = "text-white">Event name</b>
+                                </th>
+                                <th style="width: 15%;">
+                                    <b class = "text-white">Host</b>
+                                </th>
+                                <th style="width: 17%;">
+                                    <b class = "text-white">Room name</b>
+                                </th>
+                                <th style="width: 15%;">
+                                    <b class = "text-white">Start time <i class="fas fa-sort" id="rl-start"></i></b>
+                                </th>
+                                <th style="width: 15%;">
+                                    <b class = "text-white">End time <i class="fas fa-sort" id="rl-end"></i></b>
+                                </th>
+                                <th style="width: 10%;">
+                                    <b class = "text-white">Note</b>
+                                </th>
+                                <th style="width: 1%;"><b class = "text-white">Operation</b></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td >1</td>
+                                <td>Họp cuối năm</td>
+                                <td>Đặng Minh Hiếu</td>
+                                <td>ádsadsad</span></td>
+                                <td>04-12-2021 10h30</td>
+                                <td>04-12-2021 14h</td>
+                                <td>sssssssss</td>
+                                <td style=" color: #6d9886; font-size: 18px;">
+                                    <a data-toggle="tooltip" title="Delete"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Họp đầu tháng</td>
+                                <td>Đặng Tiến Khánh</td>
+                                <td>ádsadsad</span></td>
+                                <td>04-12-2021 10h30</td>
+                                <td>05-12-2021 10h30</td>
+                                <td>sssssssss</td>
+                                <td style=" color: #6d9886; font-size: 18px;">
+                                    <a data-toggle="tooltip" title="Delete"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Họp</td>
+                                <td>Đặng Minh 3</td>
+                                <td>ádsadsad</span></td>
+                                <td>03-12-2021 10h30</td>
+                                <td>04-12-2021 19h30</td>
+                                <td>sssssssss</td>
+                                <td style=" color: #6d9886; font-size: 18px;">
+                                    <a data-toggle="tooltip" title="Delete"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td >4</td>
+                                <td>Họp cuối năm</td>
+                                <td>Đặng Minh Hiếu</td>
+                                <td>ádsadsad</span></td>
+                                <td>04-12-2021 07h30</td>
+                                <td>04-12-2021 10h30</td>
+                                <td>sssssssss</td>
+                                <td style=" color: #6d9886; font-size: 18px;">
+                                    <a data-toggle="tooltip" title="Delete"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>           
             </div>
         </div>
     </div>
@@ -173,7 +194,13 @@
     document.getElementById('rl-end').addEventListener("click", function(){
         sort_row_string("5", "dtOrderExample");
     });
-
+    // thêm class active khi chọn thẻ li
+    $(document).ready(function () {
+        $('ul > li').click(function (e) {
+            $('ul > li').removeClass('active');
+            $(this).addClass('active');
+        });
+    });
 </script>
 </body>
 </html>
