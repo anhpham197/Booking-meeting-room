@@ -37,14 +37,6 @@ footer {
 	background: #212121;
 }
 
-/* a,
-a:hover,
-a:focus{
-	color: inherit;
-	text-decoration: none;
-	transition: all 0.3s;
-} */
-
 
 /* Sidebar*/
 
@@ -99,15 +91,10 @@ button#sidebarCollapse:focus {
     font-weight: 400;
 }
 
-a:hover{
+li > a:hover{
 	font-weight: bolder !important;
 }
 
-
-/* #content{
-	width: 100%;
-	transition: all 0.3s;
-} */
 
 .table-idea{
 	position: sticky;
@@ -252,4 +239,26 @@ th, td{
 	height: 25px;
 	margin-right: 5px;
 }
+
+
+/* ADMIN */
+/* css cho form , cả admin và user */
+.form-group + .form-group{
+	margin-top: 15px;
+}
+
+/* css cho card , dùng cả admin và user */
+.card , .card-header{
+	border-radius: 0px;
+}
+
+/* dùng cho thẻ span cho trường status và operation của giao diện table trong admin */
+.label-info{
+	background-color: #6d9886;
+	padding: 6px;
+	border-radius: 4px;
+	margin-right: 5px;
+}
+
+
 

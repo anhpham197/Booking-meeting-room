@@ -81,5 +81,5 @@ Route::group(['middleware' => 'user'], function () {
 
 /* Route for admin */
 Route::group(['middleware' => 'admin'], function () {
-    Route::get('/admin/user', [AdminController::class, 'users'])->name('admin.users');
+    Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
 });

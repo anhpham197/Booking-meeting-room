@@ -10,6 +10,6 @@ class AdminController extends Controller
 {
     //
     public function users() {
-        return view('admin.layout');
+        return view('admin.users');
     }
 }

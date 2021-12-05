@@ -3,7 +3,19 @@ $(document).ready(function () {
         $('#sidebar').toggleClass('active');
     });
 });
-// dùng ở file inforRoom.html và roomList.html tại nút chọn tất cả 
+$(document).ready(function () {
+  $('#sidebarCollapse').on('click', function () {
+      $('#admin-sidebar').toggleClass('active');
+      if ($('#sidebarCollapse i').hasClass('fa-angle-double-left')) {
+        $('#sidebarCollapse i').removeClass('fa-angle-double-left');
+        $('#sidebarCollapse i').addClass('fa-angle-double-right');
+    } else if ($('#sidebarCollapse i').hasClass('fa-angle-double-right')) {
+        $('#sidebarCollapse i').removeClass('fa-angle-double-right');
+        $('#sidebarCollapse i').addClass('fa-angle-double-left');
+    }
+  });
+});
+/* // dùng ở file inforRoom.html và roomList.html tại nút chọn tất cả 
 function funct_all(type){
   // type =1 => select all|| type =0 => deselect all
   var a = document.getElementsByClassName('tb-row');
@@ -145,4 +157,4 @@ document.getElementById("th-name").addEventListener("click", function(){
 
 
 
-
+ */
