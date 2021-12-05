@@ -13,18 +13,6 @@
             <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"
                 class="dropdown-toggle text-white hover:no-underline pl-3">Personal information</a>
 
-<<<<<<< HEAD
-           <ul class="collapse list-unstyled subnav" id="homeSubmenu">
-              <li>
-                  <a href="{{ route('kath.edit', Auth::user()->id) }}" class="text-white hover:no-underline">Chỉnh sửa thông tin cá nhân</a>
-              </li>
-              <li>
-                  <a href="{{ route('kath.editPassword', ['id' => Auth::user()->id]) }}" class="text-white hover:no-underline">Thay đổi mật khẩu</a>
-              </li>
-              <li>
-                <a href="{{ route('event.view') }}" class="text-white hover:no-underline">Danh sách sự kiện</a>
-            </li>
-=======
             <ul class="collapse list-unstyled subnav" id="homeSubmenu">
                 <li>
                     <a href="{{ route('kath.edit', Auth::user()->id) }}" class="text-white hover:no-underline">Edit
@@ -37,7 +25,6 @@
                 <li>
                     <a href="{{ route('event.view') }}" class="text-white hover:no-underline">My meetings</a>
                 </li>
->>>>>>> 54733b9f62c114bedd32444b7dbd6507e8348d3a
 
             </ul>
         </li>

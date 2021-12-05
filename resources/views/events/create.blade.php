@@ -10,7 +10,7 @@
                     </button>
                     {{-- <div class="justify-center">Trang chủ</div> --}}
                 </div>
-            </nav>               
+            </nav>
 
             <section class="row">
                 <div class="col-12">
@@ -19,11 +19,7 @@
                         @csrf
 
                         <div class="card">
-<<<<<<< HEAD
-                            <div class="card-header text-center uppercase text-xl font-semibold">Booking a meeting room
-=======
                             <div class="card-header text-center uppercase text-xl font-semibold">BOOKING FORM
->>>>>>> 54733b9f62c114bedd32444b7dbd6507e8348d3a
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
