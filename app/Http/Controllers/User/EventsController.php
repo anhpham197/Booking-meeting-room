@@ -32,7 +32,7 @@ class EventsController extends Controller
     {
         $user = Auth::user();
         $events = $user->events;
-        $data = $this->paginate($events);
+        $data = $this->paginate($events)->withPath('/event/view');
         return view('events.index', [
             'events' => $data
         ]);
@@ -106,9 +106,15 @@ class EventsController extends Controller
     /* Hiển thị form chỉnh sửa cuộc họp */
     public function edit($id)
     {
-        $event = Event::query()->where('id', $id)->first();
+        $event = Event::find($id);
+        $rooms = Room::all();
+        $users = User::query()->where('company_id', Auth::user()->company_id)->get();
+        $minDate = date("Y-m-d\TH:i");
         return view('events.edit', [
-            'event' => $event
+            'event' => $event,
+            'rooms' => $rooms,
+            'users' => $users,
+            'minDate' => $minDate
         ]);
     }
 

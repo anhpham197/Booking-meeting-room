@@ -20,7 +20,6 @@
                         <tr>
                             <th>
                                 <span style="margin-right: 2px;" class="uppercase font-semibold">Meeting title</span>
-                                <i class="fas fa-sort" id="rl-name"></i>
                             </th>
                             <th>
                                 <span style="margin-right: 2px;" class="uppercase font-semibold">Starting time</span>
@@ -41,11 +40,16 @@
                     <tbody>
                         @foreach ($events as $event)
                         <tr>
-                            <td style="font-weight: 400;">{{ $event->name }}</td>
+                            <td style="font-weight: 400;" class="w-1/3">{{ $event->name }}</td>
                             <td>{{ date('H:i', strtotime($event->starting_time)) }} &bull; {{ date('d/m/Y', strtotime($event->starting_time)) }}</td>
                             <td>{{ date('H:i', strtotime($event->ending_time)) }} &bull; {{ date('d/m/Y', strtotime($event->ending_time)) }}</td>
-                            <td>{{ $event->file }}</td>
+                            <td>nnnnnnnnnnnnnnnnnnnnn</td>
                             <td>
+                                <div class="flex flex-wrap gap-2 justify-center">
+                                    <a href="{{ route('event.edit', ['id'=>$event->id]) }}" title="Edit"><i class="fas fa-edit text-blue-600 cursor-pointer"></i></a>
+                                    <a href="{{ route('event.delete', ['id'=>$event->id]) }}" title="Delete"><i class="fas fa-trash-alt text-red-600 cursor-pointer"></i></a>
+                                    
+                                </div>
                             </td>
                         </tr>
                         @endforeach
