@@ -24,6 +24,7 @@ class User extends Authenticatable
         'date_of_birth',
         'gender',
         'company_id',
+        'isAdmin',
         'phone'
     ];
 
@@ -53,5 +54,9 @@ class User extends Authenticatable
 
     public function events() {
         return $this->belongsToMany(Event::class, 'event_user');
+    }
+
+    public function rates() {
+        return $this->belongsToMany(Event::class, 'rates')->withPivot('comment');
     }
 }

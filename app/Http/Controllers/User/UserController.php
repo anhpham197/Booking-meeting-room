@@ -81,36 +81,21 @@ class UserController extends Controller
         }
     }
 
-    public function showUsers()
-    {
+    public function showUsers(){
         $users = User::query()->where('company_id', Auth::user()->company_id)->paginate(10);
         return view('user.show_users', [
             'users' => $users
         ]);
     }
 
-    public function show($id)
-    {
-        $user = User::query()->where('id', $id)->first();
-        //dd($user);
-        return view('user.show', [
-            'user' => $user
-        ]);
-    }
-
-    public function delete($id)
-    {
-        //
-        $user = User::find($id);
-        $user->delete();
-        return redirect()->back();
-    }
-
-    public function search(Request $request)
-    {
-        if ($request->ajax()) {
-            $users = User::query()->where('name', 'LIKE', '%' . $request->search . '%')->get();
-            return response()->json($users, 200, ['Content-type' => 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
+    public function searchUsers(Request $request) {
+        if($request->ajax()) {
+            $name = mb_strtolower($request->search, 'UTF-8');
+            $users = User::query()->where([
+                ['company_id', Auth::user()->company_id],
+                ['name', 'LIKE', '%' . $name . '%']
+            ])->get();
+            return response()->json($users, 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
         }
     }
 }

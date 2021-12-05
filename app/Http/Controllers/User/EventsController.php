@@ -51,13 +51,18 @@ class EventsController extends Controller
     {
         $events = Event::where('room_id', $request->roomId)->get();
         $isOverlap = false;
+        $isValid = true;
         $msg = '';
-        foreach($events as $event) {
+        if ($request->ending_time <= $request->starting_time) {
+            return back()->with('message', "Invalid time. Please book again!");
+        }
+        foreach ($events as $event) {
             if ($request->starting_time <= $event->ending_time && $request->ending_time >= $event->starting_time) {
                 $isOverlap = true;
                 break;
             }
         }
+
         if ($isOverlap == false) {
             $data = new Event();
             $file = $request->fileupload;
@@ -78,7 +83,7 @@ class EventsController extends Controller
             $data->save();
 
             $users = User::query()->whereIn('id', $request->emails)->get();
-            foreach($users as $user) {
+            foreach ($users as $user) {
                 $user->events()->attach($data->id);
             }
             $msg = "Created successfully";
@@ -89,13 +94,9 @@ class EventsController extends Controller
     /* Hiển thị form chỉnh sửa cuộc họp */
     public function edit($id)
     {
-        $user = User::query()->where('id', $id)->first();
-        $rooms = Room::all();
-        $users = User::query()->where('company_id', Auth::user()->company_id)->get();
-        return view('events.create', [
-            'user' => $user,
-            'users' => $users,
-            'rooms' => $rooms
+        $event = Event::query()->where('id', $id)->first();
+        return view('events.edit', [
+            'event' => $event
         ]);
     }
 
@@ -104,40 +105,7 @@ class EventsController extends Controller
     /* Cập nhật chỉnh sửa cuộc họp */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'usernameBooking' => 'required',
-            'telephoneBooking' => 'required|numeric',
-            'emailBooking' => 'required|email',
-        ]);
-
-        $data = new event;
-        $file = $request->fileupload;
-        $fileName = time();
-        if ($file != '') {
-            // echo "Yes";
-            $fileName = $fileName . '.' . $file->getClientOriginalExtension();
-            $destinationPath = base_path('files');
-            $file->move($destinationPath, $fileName);
-            //$data->file = $fileName;
-        }
-
-        $event = Event::where('id', $id)->update([
-            'title' => $request->title,
-            'name' => $request->usernameBooking,
-            'phone_number' => $request->telephoneBooking,
-            'email' => $request->emailBooking,
-            'start_day' => $request->booking_date_start,
-            'end_day' => $request->booking_date_end,
-            'start_time' => $request->time_start,
-            'end_time' => $request->time_end,
-            'room_id' => $request->roomId,
-            'partition_email' => $request->emails,
-            'description' => $request->description,
-            'note' => $request->note,
-            'file' => $fileName
-        ]);
-
-        return redirect()->route('event.edit', $id);
+        //
     }
 
 
@@ -148,25 +116,14 @@ class EventsController extends Controller
         //
     }
 
-    public function deleteEvent($id)
-    {
-        //
-        $event = event::find($id);
-        $event->delete();
-        return redirect()->back();
-    }
 
 
     /* Xem chi tiết cuộc họp */
     public function show($id)
     {
         //
-        $event = Event::query()->where('id', $id)->first();
-        //dd($event);
-        return view('events.show', [
-            'event' => $event
-        ]);
     }
+
 
     /* Hiển thị form đánh giá cuộc họp */
     public function rate()
@@ -174,9 +131,42 @@ class EventsController extends Controller
         return view('events.rate');
     }
 
+    public function getEventData($id)
+    {
+        $event = Event::query()->where('id', $id)->get();
+        $room = Room::query()->where('id', $event[0]->room_id)->get();
+        return response()->json([
+            'startingTime' => $event[0]->starting_time,
+            'endingTime' => $event[0]->ending_time,
+            'roomName' => $room[0]->name
+        ], 200, ['Content-type' => 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
+    }
+
+    public function saveRate(Request $request)
+    {
+        $user = User::find(Auth::user()->id);
+        foreach ($user->rates as $rate) {
+            if ($rate->pivot->event_id == $request->meetingId) {
+                return response()->json([
+                    'status' => 'fail',
+                    'message' => 'You have rated this meeting!',
+                    'titleMsg' => 'Save failed'
+                ]);
+            }
+        }
+        $user->rates()->attach($request->meetingId, [
+            'comment' => $request->comment
+        ]);
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Thanks for your feedback!',
+            'titleMsg' => 'Saved successfully'
+        ]);
+    }
+
     public function showRooms()
     {
-        $rooms = Room::all();
+        $rooms = Room::paginate(3);
         return view('events.rooms', [
             'rooms' => $rooms
         ]);
