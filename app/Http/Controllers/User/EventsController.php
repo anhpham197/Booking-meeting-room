@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Room;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
 
 class EventsController extends Controller
 {
@@ -29,10 +32,17 @@ class EventsController extends Controller
     {
         $user = Auth::user();
         $events = $user->events;
-        // dd($events);
+        $data = $this->paginate($events);
         return view('events.index', [
-            'events' => $events
+            'events' => $data
         ]);
+    }
+
+    public function paginate($items, $perPage = 1, $page = null, $options = [])
+    {
+        $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
+        $items = $items instanceof Collection ? $items : Collection::make($items);
+        return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
     }
 
     /* Hiển thị form tạo cuộc họp */
@@ -113,19 +123,35 @@ class EventsController extends Controller
 
 
     /* Xóa cuộc họp */
+    public function deleteEvent($id)
+    {
+        //
+        $event = event::find($id);
+        $event->delete();
+        return redirect()->back();
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function destroy($id)
     {
         //
     }
-
-
-
     /* Xem chi tiết cuộc họp */
+
     public function show($id)
     {
         //
+        $event = Event::query()->where('id', $id)->first();
+        //dd($event);
+        return view('events.show', [
+            'event' => $event
+        ]);
     }
-
 
     /* Hiển thị form đánh giá cuộc họp */
     public function rate()
@@ -168,7 +194,7 @@ class EventsController extends Controller
 
     public function showRooms()
     {
-        $rooms = Room::paginate(3);
+        $rooms = Room::paginate(2);
         return view('events.rooms', [
             'rooms' => $rooms
         ]);

@@ -4,6 +4,11 @@
 
 @import "tailwindcss/utilities";
 
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
 
 .ml6 {
     position: relative;
@@ -28,6 +33,10 @@
 	background-color: #D9CAB3;
 }
 
+footer {
+	background: #212121;
+}
+
 /* a,
 a:hover,
 a:focus{
@@ -40,7 +49,7 @@ a:focus{
 /* Sidebar*/
 
 #sidebar.active {
-    margin-left: -300px;
+    margin-left: -250px;
 }
 .wrapper{
 	display: flex;
@@ -49,22 +58,15 @@ a:focus{
 }
 
 #sidebar{
-	min-width: 300px;
-	max-width: 300px;
-	background: #6d9886;
+	min-width: 250px;
+	max-width: 250px;
+	background: #6D9886;
 	color: #fff;
 	transition: all 0.3s;
 }
 
-
-#sidebar .sidebar-header{
-	padding: 20px;
-	background: #57997d;
-    text-align: center;
-}
-#sidebar ul.components{
-	padding: 20px 0;
-	border-bottom: 1px solid #6d9886;
+.menu-active {
+	background: #597d6e;
 }
 
 #sidebar ul p{
@@ -74,38 +76,33 @@ a:focus{
 
 #sidebar ul li {
 	padding: 10px;
-	font-size: 1.1em;
+	font-weight: 400;
 	display: block;
+}
+
+#sidebar ul li a:hover {
+	cursor: pointer;
 }
 
 #sidebar ul li a{
 	padding: 10px;
-	font-size: 1.2em;
+	font-weight: 400;
 	display: inline-block;
 }
 
-#sidebar ul li:hover a {
-    cursor: pointer;
-}
 
 button#sidebarCollapse:focus {
 	outline: none;
 }
 
 .subnav li:hover a {
-    /* animation: modalFadeIn ease 0.1s; */
     font-weight: 400;
 }
 
-a[data-toggle="collapse"]{
-	position: relative;
+a:hover{
+	font-weight: bolder !important;
 }
 
-ul ul a{
-	font-size: 0.9em !important;
-	padding-left: 30px !important;
-	background: #6d9886;
-}
 
 /* #content{
 	width: 100%;
@@ -115,16 +112,18 @@ ul ul a{
 .table-idea{
 	position: sticky;
 	top: 0;
-	background-color: #D9CAB3;
-	
+}
+
+tbody tr {
+	background-color: white;
 }
 
 thead{
-	background-color: #D9CAB3;
+	background-color: #6D9886;
 }
 
 header {
-    background-color: #343a40;
+    background-color: #212121;
 }
 
 input[type=search]::-webkit-search-cancel-button {
@@ -149,14 +148,14 @@ tbody tr td {
 /* Show users */
 .scroller{
 	position: relative;
-	height: 200px;
+	height: 250px;
 	overflow: auto;
 	display: block;
 }
 
 @media (max-width: 1024px) {
     #sidebar {
-        margin-left: -300px;
+        margin-left: -250px;
     }
     #sidebar.active {
         margin-left: 0;
@@ -176,99 +175,15 @@ tbody tr td {
     }
 }
 
-body{
-    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-	background: #fafafa;
-}
-.footer-main-cl{
-	background-color: #D9CAB3;
-}
-
-a,
-a:hover,
-a:focus{
-	color: inherit;
-	text-decoration: none;
-	transition: all 0.3s;
-}
-
-/* Side Bar*/
-
-#sidebar.active {
-    margin-left: -300px;
-}
-.wrapper{
-	display: flex;
-	text-decoration: none;
-	transition: all 0.3s;
-}
-
-#sidebar{
-	min-width: 300px;
-	max-width: 300px;
-	background: #6d9886;
-	color: #fff;
-	transition: all 0.3s;
-}
-
-
-#sidebar .sidebar-header{
-	padding: 20px;
-	background: #57997d;
-    text-align: center;
-}
-#sidebar ul.components{
-	padding: 20px 0;
-	border-bottom: 1px solid #6d9886;
-}
-
-#sidebar ul p{
-	color: #fff;
-	padding: 10px;
-}
-
-#sidebar ul li {
-	padding: 10px;
-	font-size: 1.1em;
-	display: block;
-}
-#sidebar ul li a{
-	padding: 10px;
-	font-size: 1.2em;
-	display: inline-block;
-}
-
-#sidebar ul li:hover> a  {
-
-    color: aqua;
-}
-.subnav li:hover a{
-    animation: modalFadeIn ease 1s;
-
-}
 
 a[data-toggle="collapse"]{
 	position: relative;
 }
 
-ul ul a{
-	font-size: 0.9em !important;
-	padding-left: 30px !important;
-	background: #6d9886;
-}
-
-
 #content{
 	width: 100%;
-	min-height: 100vh;
 	transition: all 0.3s;
 	position: relative;
-}
-.table-idea{
-	position: sticky;
-	top: 0;
-	background-color: #D9CAB3;
-
 }
 
 /* code cho phần event-content */
@@ -324,11 +239,10 @@ ul ul a{
 	width: 100%;
 }
 
-.content-table th, td{
-	border: 1px solid #a9a9a9;
-	text-align: center;
-
+th, td{
+	text-align: center !important;
 }
+
 .tb-row{
 	background-color: #e3dac9;
 }
@@ -337,9 +251,5 @@ ul ul a{
 	width: 56px;
 	height: 25px;
 	margin-right: 5px;
-}
-
-th,td{
-	text-align: center;
 }
 

@@ -10,62 +10,61 @@
                         <i class="fas fa-angle-double-left text-2xl font-normal text-gray-400"></i>
                     </button>
                 </div>
-            </nav> 
+            </nav>
 
-            <div class="card-header text-center text-xl font-semibold uppercase">KATH'S MEETING ROOMS</div>
-            
-            <div class="">
-                <div>
-                    <table class="table table-bordered table-hover text-center table-sm" id="dtOrderExample">
-                        <thead>
-                            <tr>
-                                <th>
-                                    <span style="margin-right: 2px;" class="uppercase font-semibold">Room</span>
-                                    <i class="fas fa-sort" id="rl-name"></i>
-                                </th>
-                                <th>
-                                    <span style="margin-right: 2px;" class="uppercase font-semibold">Capacity</span>
-                                    <i class="fas fa-sort" id="rl-sc"></i>
-                                </th>
-                                <th>
-                                    <span style="margin-right: 2px;" class="uppercase font-semibold">Area</span>
-                                    <i class="fas fa-sort" id="rl-sp"></i>
-                                </th>
-                                <th>
-                                    <span style="margin-right: 2px;" class="uppercase font-semibold">Status</span>
-                                    <i class="fas fa-sort" id="rl-mood"></i>
-                                </th>
-                                <th class="uppercase font-semibold">Facilities</th>
+            <div class="py-3 text-center text-xl font-semibold uppercase">KATH'S MEETING ROOMS</div>
+
+            <div class="px-2 max-w-full overflow-x-auto relative table-responsive">
+                <table class="table table-hover table-bordered table-sm" id="dtOrderExample">
+                    <thead class="table-idea">
+                        <tr>
+                            <th>
+                                <span style="margin-right: 2px;" class="uppercase font-semibold">Room</span>
+                                <i class="fas fa-sort" id="rl-name"></i>
+                            </th>
+                            <th>
+                                <span style="margin-right: 2px;" class="uppercase font-semibold">Capacity</span>
+                                <i class="fas fa-sort" id="rl-sc"></i>
+                            </th>
+                            <th>
+                                <span style="margin-right: 2px;" class="uppercase font-semibold">Area</span>
+                                <i class="fas fa-sort" id="rl-sp"></i>
+                            </th>
+                            <th>
+                                <span style="margin-right: 2px;" class="uppercase font-semibold">Status</span>
+                                <i class="fas fa-sort" id="rl-mood"></i>
+                            </th>
+                            <th class="uppercase font-semibold">Facilities</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+
+                        @foreach ($rooms as $room)
+                            <td style="font-weight: 400;">Room {{ $room->name }}</td>
+                            <td>{{ $room->capacity }} people</td>
+                            <td>{{ $room->area }} m<sup>2</sup> </td>
+                            <td>
+                                @if ($room->status == 'Active')
+                                    <div class="text-white bg-green-500 py-1 px-2 rounded-md font-semibold">
+                                        {{ $room->status }}</div>
+                                @elseif ($room->status == 'Repairing')
+                                    <div class="text-white bg-red-500 py-1 px-2 rounded-md font-semibold block">
+                                        {{ $room->status }}</div>
+                                @endif
+                            </td>
+                            <td>
+                                @foreach ($room->facilities as $facility)
+                                    <div class=" text-white rounded-md inline-flex mb-2 bg-cool-gray-400 py-1 px-2"
+                                        style="font-weight: 400">
+                                        {{ $facility->name }}</div>
+                                @endforeach
+                            </td>
                             </tr>
-                        </thead>
-                        <tbody>
-
-
-                            @foreach ($rooms as $room)
-                                <td style="font-weight: 400;">Room {{ $room->name }}</td>
-                                <td>{{ $room->capacity }} people</td>
-                                <td>{{ $room->area }} m<sup>2</sup> </td>
-                                <td>
-                                    @if ($room->status == 'Active')
-                                        <div class="text-white bg-green-500 py-1 px-2 rounded-md font-semibold">
-                                            {{ $room->status }}</div>
-                                    @elseif ($room->status == 'Repairing')
-                                        <div class="text-white bg-red-500 py-1 px-2 rounded-md font-semibold block">
-                                            {{ $room->status }}</div>
-                                    @endif
-                                </td>
-                                <td>
-                                    @foreach ($room->facilities as $facility)
-                                        <div class=" text-white rounded-md inline-flex mb-2 bg-cool-gray-400 py-1 px-2" style="font-weight: 400">
-                                            {{ $facility->name }}</div>
-                                    @endforeach
-                                </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    {{ $rooms->links() }}
-                </div>
+                        @endforeach
+                    </tbody>
+                </table>
+                <div class="pb-2">{{ $rooms->links() }}</div>
             </div>
         </div>
 
