@@ -85,47 +85,41 @@
                         <table class="table table-bordered table-hover" id="dtOrderExample">
                             <thead  >
                                 <tr>
-                                    <th style="width: 7%;">
-                                        <b class = "text-white">ID <i class="fas fa-sort" id="rl-id"></i></b>
+                                    <th style="width: 15%;">
+                                        <b class = "text-white">Event's Title <i class="fas fa-sort" id="rl-id"></i></b>
                                     </th>
                                     <th style="width: 15%;">
-                                        <b class = "text-white">Name <i class="fas fa-sort" id="rl-name"></i></b>
+                                        <b class = "text-white">Start day <i class="fas fa-sort" id="rl-name"></i></b>
+                                    </th>
+                                    <th style="width: 15%;">
+                                        <b class = "text-white">End day</b>
+                                    </th>
+                                    <th style="width: 15%;">
+                                        <b class = "text-white">Description</b>
+                                    </th>
+                                    <th style="width: 15%;">
+                                        <b class = "text-white">File <i class="fas fa-sort" id="rl-email"></i></b>
                                     </th>
                                     <th style="width: 13%;">
-                                        <b class = "text-white">Date of birth</b>
-                                    </th>
-                                    <th style="width: 15%;">
-                                        <b class = "text-white">Phone number</b>
-                                    </th>
-                                    <th style="width: 17%;">
-                                        <b class = "text-white">Email <i class="fas fa-sort" id="rl-email"></i></b>
-                                    </th>
-                                    <th style="width: 18%;">
-                                        <b class = "text-white">Company <i class="fas fa-sort" id="rl-company"></i></b>
+                                        <b class = "text-white">Note <i class="fas fa-sort" id="rl-company"></i></b>
                                     </th>
                                     <th style="width: 12%;"><b class = "text-white">Operation</b></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($users as $key => $user)
+                                @foreach ($events as $key => $event)
                                     <tr>
-                                        <td>{{ $user->id }}</td>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->date_of_birth }}</td>
-                                        <td>{{ $user->phone }}</td>
-                                        <td>{{ $user->email }}</td>
-                                        @if (!$user->isAdmin) {
-                                            <td>{{ $user->company->name}}</td>
-                                        } @else
-                                        {
-                                            <td> </td>
-                                        }
-                                        @endif
+                                        <td text-align:left>{{$event->name}}</td>
+                                        <td>{{$event->starting_time}}</td>
+                                        <td>{{$event->ending_time}}</td>
+                                        <td>{{$event->description}}</td>
+                                        <td>{{$event->file}}</td>
+                                        <td>{{$event->note}}</td>
                                         <td style=" color: #6d9886; font-size: 18px;">
-                                            <a data-toggle="tooltip" title="View" href="{{ route('users.userDetails', $user->id) }}">
-                                                <i style="margin-right: 10px;" class="fas fa-eye"></i> </a>
-                                            <a data-toggle="tooltip" title="Delete" href="{{ route('users.delete', $user->id) }}">
-                                                <i class="fas fa-trash-alt"></i></a>
+                                            <a data-toggle="tooltip" title="View"
+                                            href="{{ route('events.eventDetails', $event->id) }}"><i class="fa fa-eye"></i></a>
+                                            <a data-toggle="tooltip" title="Delete"
+                                            href="{{ route('events.delete', $event->id) }}"><i class="fas fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach

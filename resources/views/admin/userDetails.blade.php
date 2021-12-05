@@ -80,40 +80,72 @@
                 <div class="card-header" style="margin-bottom: 0px;" >
                     <input type="text" placeholder="Search">
                 </div>
+                <div class="card-header text-center text-xl font-semibold uppercase">User Detail</div>
+
                 <div class="card-body">
-                    <div class="scroller" style="height: 390px;">
-                        <table class="table table-bordered table-hover" id="dtOrderExample">
-                            <thead  >
-                                <tr>
-                                    <th style="width: 7%;">
-                                        <b class = "text-white">ID <i class="fas fa-sort" id="rl-id"></i></b>
-                                    </th>
-                                    <th style="width: 15%;">
-                                        <b class = "text-white">Name <i class="fas fa-sort" id="rl-name"></i></b>
-                                    </th>
-                                    <th style="width: 13%;">
-                                        <b class = "text-white">Date of birth</b>
-                                    </th>
-                                    <th style="width: 15%;">
-                                        <b class = "text-white">Phone number</b>
-                                    </th>
-                                    <th style="width: 17%;">
-                                        <b class = "text-white">Email <i class="fas fa-sort" id="rl-email"></i></b>
-                                    </th>
-                                    <th style="width: 18%;">
-                                        <b class = "text-white">Company <i class="fas fa-sort" id="rl-company"></i></b>
-                                    </th>
-                                    <th style="width: 12%;"><b class = "text-white">Operation</b></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($users as $key => $user)
+                    <div class="form-group">
+                        <div class="form-group">
+                            <a class="btn btn-default" href="{{ route('admin.users') }}">
+                                Back
+                            </a>
+                            <table class="table table-bordered table-striped" id="dtOrderExample">
+                                <tbody>
                                     <tr>
-                                        <td>{{ $user->id }}</td>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->date_of_birth }}</td>
-                                        <td>{{ $user->phone }}</td>
-                                        <td>{{ $user->email }}</td>
+                                        <th>
+                                            <b>ID</b>
+                                        </th>
+                                        <td>
+                                            {{ $user->id }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <b>Full Name</b>
+                                        </th>
+                                        <td>
+                                            {{ $user->name }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <b>Email</b>
+                                        </th>
+                                        <td>
+                                            {{ $user->email }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <b>Role</b>
+                                        </th>
+                                        @if (!$user->isAdmin) {
+                                            <td>User</td>
+                                        } @else
+                                        {
+                                            <td>Admin</td>
+                                        }
+                                        @endif
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <b>Date of Birth</b>
+                                        </th>
+                                        <td>
+                                            {{ $user->date_of_birth }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                    <th>
+                                        <b>Phone Number</b>
+                                    </th>
+                                    <td>
+                                        {{ $user->phone }}
+                                    </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <b>Company</b>
+                                        </th>
                                         @if (!$user->isAdmin) {
                                             <td>{{ $user->company->name}}</td>
                                         } @else
@@ -121,17 +153,18 @@
                                             <td> </td>
                                         }
                                         @endif
-                                        <td style=" color: #6d9886; font-size: 18px;">
-                                            <a data-toggle="tooltip" title="View" href="{{ route('users.userDetails', $user->id) }}">
-                                                <i style="margin-right: 10px;" class="fas fa-eye"></i> </a>
-                                            <a data-toggle="tooltip" title="Delete" href="{{ route('users.delete', $user->id) }}">
-                                                <i class="fas fa-trash-alt"></i></a>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <b>Gender</b>
+                                        </th>
+                                        <td>
+                                            {{ $user->gender }}
                                         </td>
                                     </tr>
-                                @endforeach
-
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 <div class="card-footer" style="height: 56px;">

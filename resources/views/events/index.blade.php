@@ -14,7 +14,7 @@
             </nav>
             <div class="card">
                 <div class="card-header" style="padding: 15px 0px;">
-                    <p style="margin: 0px ;margin-left: 10px;">Events List</p>
+                    <p style="margin: 0px ;margin-left: 10px;"> <b> MY MEETING </b> </p>
                 </div>
                 <div class="card-body" style="height: 500px; padding: 15px 0px;">
                     <div class="select-event">
@@ -157,9 +157,9 @@
                                     <td>
                                         <input type="checkbox" name="" id="box3" disabled>
                                     </td>
-                                    <td text-align:left>{{$event->title}}</td>
-                                    <td>{{$event->start_day}}</td>
-                                    <td>{{$event->end_day}}</td>
+                                    <td text-align:left>{{$event->name}}</td>
+                                    <td>{{$event->starting_time}}</td>
+                                    <td>{{$event->ending_time}}</td>
                                     <td>{{$event->description}}</td>
                                     <td>{{$event->file}}</td>
                                     <td>{{$event->note}}</td>

@@ -29,7 +29,8 @@ class Room extends Model
         'status',
     ];
 
-    protected function facilities() {
+    protected function facilities()
+    {
         return $this->belongsToMany(Facility::class, 'facility_room');
     }
 

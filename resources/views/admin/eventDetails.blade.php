@@ -80,58 +80,91 @@
                 <div class="card-header" style="margin-bottom: 0px;" >
                     <input type="text" placeholder="Search">
                 </div>
+                <div class="card-header text-center text-xl font-semibold uppercase">Event Detail</div>
+
                 <div class="card-body">
-                    <div class="scroller" style="height: 390px;">
-                        <table class="table table-bordered table-hover" id="dtOrderExample">
-                            <thead  >
-                                <tr>
-                                    <th style="width: 7%;">
-                                        <b class = "text-white">ID <i class="fas fa-sort" id="rl-id"></i></b>
-                                    </th>
-                                    <th style="width: 15%;">
-                                        <b class = "text-white">Name <i class="fas fa-sort" id="rl-name"></i></b>
-                                    </th>
-                                    <th style="width: 13%;">
-                                        <b class = "text-white">Date of birth</b>
-                                    </th>
-                                    <th style="width: 15%;">
-                                        <b class = "text-white">Phone number</b>
-                                    </th>
-                                    <th style="width: 17%;">
-                                        <b class = "text-white">Email <i class="fas fa-sort" id="rl-email"></i></b>
-                                    </th>
-                                    <th style="width: 18%;">
-                                        <b class = "text-white">Company <i class="fas fa-sort" id="rl-company"></i></b>
-                                    </th>
-                                    <th style="width: 12%;"><b class = "text-white">Operation</b></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($users as $key => $user)
+                    <div class="form-group">
+                        <div class="form-group">
+                            <a class="btn btn-default" href="{{ route('admin.events') }}">
+                                Back
+                            </a>
+                            <table class="table table-bordered table-striped" id="dtOrderExample">
+                                <tbody>
                                     <tr>
-                                        <td>{{ $user->id }}</td>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->date_of_birth }}</td>
-                                        <td>{{ $user->phone }}</td>
-                                        <td>{{ $user->email }}</td>
-                                        @if (!$user->isAdmin) {
-                                            <td>{{ $user->company->name}}</td>
-                                        } @else
-                                        {
-                                            <td> </td>
-                                        }
-                                        @endif
-                                        <td style=" color: #6d9886; font-size: 18px;">
-                                            <a data-toggle="tooltip" title="View" href="{{ route('users.userDetails', $user->id) }}">
-                                                <i style="margin-right: 10px;" class="fas fa-eye"></i> </a>
-                                            <a data-toggle="tooltip" title="Delete" href="{{ route('users.delete', $user->id) }}">
-                                                <i class="fas fa-trash-alt"></i></a>
+                                        <th>
+                                            <b>Event's Title</b>
+                                        </th>
+                                        <td>
+                                            {{ $event->name }}
                                         </td>
                                     </tr>
-                                @endforeach
-
-                            </tbody>
-                        </table>
+                                    <tr>
+                                        <th>
+                                            <b>ID</b>
+                                        </th>
+                                        <td>
+                                            {{ $event->id }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <b>Room ID</b>
+                                        </th>
+                                        <td>
+                                            {{ $event->room_id }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <b>Reservation Holder</b>
+                                        </th>
+                                        <td>
+                                            {{ $event->name }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <b>Starting Time</b>
+                                        </th>
+                                        <td>
+                                            {{ $event->start_day }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                    <th>
+                                        <b>Ending Time</b>
+                                    </th>
+                                    <td>
+                                        {{ $event->end_day }}
+                                    </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <b>Description</b>
+                                        </th>
+                                        <td>
+                                            {{ $event->description }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <b>File</b>
+                                        </th>
+                                        <td>
+                                            {{ $event->file }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <b>Note</b>
+                                        </th>
+                                        <td>
+                                            {{ $event->note }}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 <div class="card-footer" style="height: 56px;">
