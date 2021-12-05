@@ -27,7 +27,7 @@ class EventsController extends Controller
     /* Hiển thị danh sách các cuộc họp của user */
     public function index()
     {
-        $events = Event::query()->where('user_id', Auth::user()->id)->get();
+        $events = Event::all();
         return view('events.index', [
             'events' => $events
         ]);
@@ -111,19 +111,35 @@ class EventsController extends Controller
 
 
     /* Xóa cuộc họp */
+    public function deleteEvent($id)
+    {
+        //
+        $event = event::find($id);
+        $event->delete();
+        return redirect()->back();
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function destroy($id)
     {
         //
     }
-
-
-
     /* Xem chi tiết cuộc họp */
+
     public function show($id)
     {
         //
+        $event = Event::query()->where('id', $id)->first();
+        //dd($event);
+        return view('events.show', [
+            'event' => $event
+        ]);
     }
-
 
     /* Hiển thị form đánh giá cuộc họp */
     public function rate()
