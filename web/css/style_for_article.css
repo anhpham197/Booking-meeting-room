@@ -1,6 +1,5 @@
 /* chung cả admin và user */
 body{
-    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 	background: #fafafa;
 }
 .footer-main-cl{
@@ -116,6 +115,15 @@ ul ul a{
 /* code cho phần event-content - cái này dùng cho các form html nhiều nút mà Tuyên bảo làm hồi trước
 Khánh bảo để đấy lỡ Tuyên bảo làm 
   */
+
+button#sidebarCollapse:focus {
+	outline: none;
+}
+
+button#sidebarCollapse {
+	background: none;
+	border: none;
+}
 
 .event-content{
 	background-color: #e5e4e2;
