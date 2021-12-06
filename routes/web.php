@@ -26,28 +26,11 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-// Route::resource('events', 'App\Http\Controllers\User\EventsController');
-// Route::get('/event/view', [EventsController::class, 'index'])->name('event.view');
-// Route::get('/event/{id}/create', [EventsController::class, 'create'])->name('event.create');
-// Route::get('/event/{id}/edit', [EventsController::class, 'edit'])->name('event.edit');
-// Route::post('/event/store', [EventsController::class, 'store'])->name('event.store');
-// Route::put('/event/{id}/update', [EventsController::class, 'update'])->name('event.update');
-// Route::get('/event/{id}/delete', [EventsController::class, 'deleteEvent'])->name('event.delete');
-
-// Route::get('event/rate', [EventsController::class, 'rate'])->name('event.rate');
 Route::group(['middleware' => 'user'], function () {
     Route::get('/booking', [HomeController::class, 'show'])->name('show_booking');
+    Route::get('/user/event', [HomeController::class, 'getEventByDay'])->name('user.events');
 
     Route::get('/create', [EventsController::class, 'create'])->name('create_booking');
-
-    // Rooms
-    Route::get('/room/view', [RoomsController::class, 'index'])->name('room.view');
-    Route::get('/room/create', [RoomsController::class, 'create'])->name('room.create');
-    Route::get('/room/{id}/edit', [RoomsController::class, 'edit'])->name('room.edit');
-    Route::put('/room/upload', [RoomsController::class, 'upload'])->name('room.upload');
-    Route::put('/room/{id}/update', [RoomsController::class, 'update'])->name('room.update');
-    /* Route::delete('rooms/destroy', 'RoomsController@massDestroy')->name('rooms.massDestroy'); */
-    Route::resource('rooms', 'RoomsController');
 
     Route::get('/event/view', [EventsController::class, 'index'])->name('event.view');
     Route::get('/event/{id}/create', [EventsController::class, 'create'])->name('event.create');
@@ -57,7 +40,8 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('/event/rate', [EventsController::class, 'rate'])->name('event.rate');
     Route::get('/event/{id}/data', [EventsController::class, 'getEventData'])->name('event.data');
     Route::post('/event/rate/save', [EventsController::class, 'saveRate'])->name('event.saveRate');
-    Route::get('/event/{id}/delete', [EventsController::class, 'deleteEvent'])->name('event.delete');
+    Route::delete('/event/{id}/delete', [EventsController::class, 'deleteEvent'])->name('event.delete');
+    Route::get('/event/{file}/download', [EventsController::class, 'downloadFile'])->name('file.download');
 
     Route::get('/kath/create', [UserController::class, 'create'])->name('kath.create');
     Route::get('/kath/{id}/edit', [UserController::class, 'edit'])->name('kath.edit');

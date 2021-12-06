@@ -33,4 +33,29 @@ class HomeController extends Controller
     {
         return view('booking.main');
     }
+
+    public function getEventByDay(Request $request) {
+        $events = Auth::user()->events;
+        $res = array();
+        foreach ($events as $event) {
+            $starting_time = $event->starting_time;
+            $date = (int) (date('d', strtotime($starting_time)));
+            $month = (int) (date('m', strtotime($starting_time)));
+            $year = (int) (date('Y', strtotime($starting_time)));
+            if ($date == $request->date && $month == $request->month && $year == $request->year) {
+                $room = $event->room;
+                $responseData = [
+                    'name' => $event->name,
+                    'starting_time' => $event->starting_time,
+                    'ending_time' => $event->ending_time,
+                    'room' => $room->name
+                ];
+                array_push($res, $responseData);
+            }   
+        }
+        return response()->json([
+            'data' => $res,
+            'status' => 200 
+        ]);
+    }
 }

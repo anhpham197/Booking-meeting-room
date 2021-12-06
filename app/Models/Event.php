@@ -24,12 +24,11 @@ class Event extends Model
     ];
 
     protected $fillable = [
-        'user_id',
         'name',
+        'user_id',
         'starting_time',
         'ending_time',
         'room_id',
-        'description',
         'note',
         'file',
         'created_at',
@@ -37,13 +36,17 @@ class Event extends Model
         'deleted_at',
     ];
 
-    public function rooms()
+    public function room()
     {
-        return $this->belongsToMany(Room::class);
+        return $this->belongsTo(Room::class);
     }
 
     public function users() {
         return $this->belongsToMany(User::class);
+    }
+
+    public function host() {
+        return $this->belongsTo(User::class);
     }
 
     public function setEmailListAttribute($value)

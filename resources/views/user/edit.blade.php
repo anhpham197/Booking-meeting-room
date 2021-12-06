@@ -3,11 +3,15 @@
     <div class="wrapper">
         @include('booking.sidebar')
         <div id="content">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 70px;">
+            <nav class="navbar navbar-light bg-light flex justify-center" style="height: 70px;">
                 <div class="flex gap-6">
                     <button type="button" id="sidebarCollapse" class="cursor-pointer rounded-md">
                         <i class="fas fa-angle-double-left text-2xl font-normal text-gray-400"></i>
                     </button>
+                </div>
+                <div class="text-black font-semibold flex gap-2 items-center py-2 px-3 rounded-md" style="background: #D9CAB3">
+                    <i class="far fa-clock text-lg"></i>
+                    <span id="ct"></span>
                 </div>
             </nav>               
 

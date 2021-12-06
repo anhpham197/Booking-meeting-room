@@ -8,10 +8,13 @@ use App\Models\Event;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Room;
+use DateTime;
+use DateTimeZone;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Storage;
 
 class EventsController extends Controller
 {
@@ -30,11 +33,13 @@ class EventsController extends Controller
     /* Hiển thị danh sách các cuộc họp của user */
     public function index()
     {
-        $user = Auth::user();
-        $events = $user->events;
-        $data = $this->paginate($events)->withPath('/event/view');
+        $currentTime = new DateTime("now", new DateTimeZone('Asia/Ho_Chi_Minh'));
+        $now = $currentTime->format('Y-m-d\TH:i');
+        $events = Event::query()->where('user_id', Auth::user()->id)->orderBy('starting_time', 'desc')->simplePaginate(10);
+        // $events = $this->paginate($data)->withPath('/event/view');
         return view('events.index', [
-            'events' => $data
+            'events' => $events,
+            'now' => $now
         ]);
     }
 
@@ -45,10 +50,16 @@ class EventsController extends Controller
         return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
     }
 
+    public function downloadFile(Request $request, $file)
+    {
+        return response()->download(public_path('files/' . $file));
+    }
+
     /* Hiển thị form tạo cuộc họp */
     public function create()
     {
-        $minDate = date("Y-m-d\TH:i");
+        $now = new DateTime("now", new DateTimeZone('Asia/Ho_Chi_Minh'));
+        $minDate = $now->format('Y-m-d\TH:i');
         $rooms = Room::all();
         $users = User::query()->where('company_id', Auth::user()->company_id)->get();
         return view('events.create', [
@@ -64,9 +75,8 @@ class EventsController extends Controller
         $events = Event::where('room_id', $request->roomId)->get();
         $isOverlap = false;
         $isValid = true;
-        $msg = '';
         if ($request->ending_time <= $request->starting_time) {
-            return back()->with('message', "Invalid time. Please book again!");
+            return redirect()->route('event.create', ['id' => Auth::user()->id])->with('errorMessage', "Ending time is not valid. Please check again!")->withInput();
         }
         foreach ($events as $event) {
             if ($request->starting_time <= $event->ending_time && $request->ending_time >= $event->starting_time) {
@@ -77,20 +87,19 @@ class EventsController extends Controller
 
         if ($isOverlap == false) {
             $data = new Event();
-            $file = $request->fileupload;
+            $file = $request->file;
             if ($file != '') {
                 $fileName = time() . '.' . $file->getClientOriginalExtension();
-                $destinationPath = base_path('files');
-                $file->move($destinationPath, $fileName);
+                $request->file->move('files', $fileName);
                 $data->file = $fileName;
             } else {
                 // dd('Request Has No File');
             }
+            $data->user_id = Auth::user()->id;
             $data->name = $request->title;
             $data->starting_time = $request->starting_time;
             $data->ending_time = $request->ending_time;
             $data->room_id = $request->roomId;
-            $data->description = $request->description;
             $data->note = $request->note;
             $data->save();
 
@@ -98,23 +107,31 @@ class EventsController extends Controller
             foreach ($users as $user) {
                 $user->events()->attach($data->id);
             }
-            $msg = "Created successfully";
-        } else $msg = "There is another meeting booked. Please select time again";
-        return back()->with('message', $msg);
+            return redirect()->route('event.edit', ['id' => $data->id])->with('successMessage', 'Created successfully');
+        } else {
+            return redirect()->route('event.create', ['id' => Auth::user()->id])->with('errorMessage', "There is another meeting booked. Please select time again")->withInput();
+        }
     }
+
 
     /* Hiển thị form chỉnh sửa cuộc họp */
     public function edit($id)
     {
+        $currentTime = new DateTime("now", new DateTimeZone('Asia/Ho_Chi_Minh'));
+        $minDate = $currentTime->format('Y-m-d\TH:i');
         $event = Event::find($id);
+        $isOccured = false;
+        if (strtotime($event->starting_time) <= strtotime($minDate)) {
+            $isOccured = true;
+        }
         $rooms = Room::all();
         $users = User::query()->where('company_id', Auth::user()->company_id)->get();
-        $minDate = date("Y-m-d\TH:i");
         return view('events.edit', [
             'event' => $event,
             'rooms' => $rooms,
             'users' => $users,
-            'minDate' => $minDate
+            'minDate' => $minDate,
+            'isOccured' => $isOccured
         ]);
     }
 
@@ -124,6 +141,25 @@ class EventsController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $file = $request->file;
+        $fileName = '';
+        if ($file != '') {
+            $fileName = time() . '.' . $file->getClientOriginalExtension();
+            $request->file->move('files', $fileName);
+        }
+        $event = Event::find($id);
+        $event->users()->detach();
+        $event->update([
+            'name' => $request->title,
+            'starting_time' => $request->starting_time,
+            'ending_time' => $request->ending_time,
+            'room_id' => $request->roomId,
+            'note' => $request->note,
+            'file' => $fileName
+        ]);
+        $event->users()->sync($request->emails);
+        // dd($request->file);
+        return redirect()->route('event.edit', ['id' => $id])->with('successMessage', 'Updated succesfully!');
     }
 
 
@@ -132,37 +168,20 @@ class EventsController extends Controller
     public function deleteEvent($id)
     {
         //
-        $event = event::find($id);
+        $event = Event::find($id);
         $event->delete();
-        return redirect()->back();
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-    /* Xem chi tiết cuộc họp */
-
-    public function show($id)
-    {
-        //
-        $event = Event::query()->where('id', $id)->first();
-        //dd($event);
-        return view('events.show', [
-            'event' => $event
+        return response()->json([
+            'message' => 'Cancel meeting successfully!'
         ]);
     }
 
     /* Hiển thị form đánh giá cuộc họp */
     public function rate()
     {
-        return view('events.rate');
+        $events = Auth::user()->events;
+        return view('events.rate', [
+            'events' => $events
+        ]);
     }
 
     public function getEventData($id)
@@ -176,6 +195,7 @@ class EventsController extends Controller
         ], 200, ['Content-type' => 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
     }
 
+    /* Lưu đánh giá */
     public function saveRate(Request $request)
     {
         $user = User::find(Auth::user()->id);
@@ -198,9 +218,10 @@ class EventsController extends Controller
         ]);
     }
 
+    /* Hiển thị danh sách phòng họp */
     public function showRooms()
     {
-        $rooms = Room::paginate(2);
+        $rooms = Room::simplePaginate(10);
         return view('events.rooms', [
             'rooms' => $rooms
         ]);
