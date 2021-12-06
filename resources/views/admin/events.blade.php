@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title>admin-user</title>
+	<title>Events Management</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -127,25 +126,25 @@
             </div>
             <ul>
                 <li>
-                    <i class="fas fa-home"></i>
-                    <a href="#">Management page</a>
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <a href="{{ route('admin.users') }}">Accounts</a>
 
                 </li>
                 <li>
-                    <i class="fas fa-chevron-circle-down"></i>
-                    <a href="#">Work</a>
+                    <i class="fas fa-building"></i>
+                    <a href="{{ route('admin.companies') }}">Companies</a>
                 </li>
                 <li>
-                    <i class="far fa-file-alt"></i>
-                    <a>Category</a>
+                    <i class="fas fa-handshake"></i>
+                    <a href="{{ route('admin.events') }}">Meetings</a>
                 </li>
                 <li>
-                    <i class="fas fa-user"></i>
-                    <a href="#">Account</a>
+                    <i class="fas fa-house-damage    "></i>
+                    <a href="{{ route('admin.rooms') }}">Rooms</a>
                 </li>
                 <li>
                     <i class="fas fa-cog"></i>
-                    <a href="#">Setting </a>
+                    <a href="{{ route('admin.facilities') }}">Facilities</a>
                 </li>
             </ul>
         </nav>
@@ -167,6 +166,7 @@
             </nav>
 
             <div class="admin-content-body">
+                <div class="card-header text-center uppercase text-xl font-semibold">EVENTS MANAGEMENT</div>
                 <div class="relative flex w-full flex-wrap items-stretch py-3">
                     <span
                         class="z-10 h-full leading-snug font-normal absolutetext-center text-gray-400 absolute bg-transparent rounded items-center justify-center pl-3 py-2">
@@ -177,101 +177,118 @@
                         style="font-family: 'Font Awesome 5 Free', 'system-ui'; border: 1px solid #4f4f4f">
                 </div>
 
-                @yield('data-table');
-                {{-- <div>
-                    <table class="table table-bordered table-hover admin-table" id="dtOrderExample">
-                        <thead>
+                @yield('data-table')
+                <div>
+                    <table class="table table-bordered table-hover" id="dtOrderExample">
+                        <thead style="background-color: #343a40">
                             <tr>
-                                <th style="width: 7%;">
-                                    <b class="text-white">ID <i class="fas fa-sort" id="rl-id"></i></b>
-                                </th>
-                                <th style="width: 19%;">
-                                    <b class="text-white">Name <i class="fas fa-sort" id="rl-name"></i></b>
-                                </th>
-                                <th style="width: 18%;">
-                                    <b class="text-white">Date of birth</b>
+                                <th style="width: 3%;">
+                                    <b class = "text-white">ID</b>
                                 </th>
                                 <th style="width: 15%;">
-                                    <b class="text-white">Phone number</b>
+                                    <b class = "text-white">Event name</b>
                                 </th>
-                                <th style="width: 17%;">
-                                    <b class="text-white">Email <i class="fas fa-sort" id="rl-email"></i></b>
+                                <th style="width: 7%;">
+                                    <b class = "text-white">Room</b>
                                 </th>
-                                <th style="width: 20%;">
-                                    <b class="text-white">Company <i class="fas fa-sort" id="rl-company"></i></b>
+                                <th style="width: 15%;">
+                                    <b class = "text-white">Start time <i class="fas fa-sort" id="rl-start"></i></b>
                                 </th>
-                                <th style="width: 1%;"><b class="text-white">Operation</b></th>
+                                <th style="width: 15%;">
+                                    <b class = "text-white">End time <i class="fas fa-sort" id="rl-end"></i></b>
+                                </th>
+                                <th style="width:20%;">
+                                    <b class = "text-white">Note</b>
+                                </th>
+                                <th style="width: 10%;"><b class = "text-white">Action</b></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Đặng Minh Hiếu</td>
-                                <td>23-12-2021</td>
-                                <td>01234567891</span></td>
-                                <td>dangminhhieu@gmail.com</td>
-                                <td>f</td>
-                                <td style=" color: #6d9886; font-size: 18px;">
-                                    <a data-toggle="tooltip" title="Delete"><i class="fas fa-trash-alt"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Phạm Ngọc Ánh</td>
-                                <td>20-1-2021</td>
-                                <td>01234563391</span></td>
-                                <td>pna@gmail.com</td>
-                                <td>a</td>
-                                <td style=" color: #6d9886; font-size: 18px;">
-                                    <a data-toggle="tooltip" title="Delete"><i class="fas fa-trash-alt"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Đặng Tiến Khánh</td>
-                                <td>23-10-2021</td>
-                                <td>0123456781</span></td>
-                                <td>dtk@gmail.com</td>
-                                <td>m</td>
-                                <td style=" color: #6d9886; font-size: 18px;">
-                                    <a data-toggle="tooltip" title="Delete"><i class="fas fa-trash-alt"></i></a>
-                                </td>
-                            </tr>
+                            @foreach ($events as $key => $event)
+                                <tr>
+                                    <td>{{$event->id}}</td>
+                                    <td text-align:left>{{$event->name}}</td>
+                                    <td>{{$rooms->find($event->room_id)->name}}</td>
+                                    <td>{{$event->starting_time}}</td>
+                                    <td>{{$event->ending_time}}</td>
+                                    <td>{{$event->note}}</td>
+                                    <td style=" color: #6d9886; font-size: 18px;">
+                                        <a data-toggle="tooltip" title="View" href="{{ route('events.details', $event->id) }}">
+                                            <i style="margin-right: 10px;" class="fa fa-eye"></i></a>
+                                        <a data-toggle="tooltip" title="Delete" href="{{ route('events.delete', $event->id) }}">
+                                            <i class="fas fa-trash-alt"></i></a>
+                                    </td>
+                                </tr>
+                            @endforeach
 
                         </tbody>
                     </table>
-                </div> --}}
+                </div>
             </div>
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-    </script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-    </script>
     <script>
-        $(document).ready(function() {
-            $('ul > li').click(function(e) {
+        // num là để chọn chiều lọc data
+        var num = 1;
+        // sort data
+        // sort cho dạng string
+        function sort_row_string(col, table_name) {
+            var table, rows, switching, i, x, y, shouldSwitch;
+            table = document.getElementById(table_name);
+            switching = true;
+            num *= -1;
+            while (switching) {
+
+                switching = false;
+                rows = table.rows;
+
+                for (i = 1; i < (rows.length - 1); i++) {
+
+                    shouldSwitch = false;
+
+                    x = rows[i].getElementsByTagName("TD")[col];
+                    y = rows[i + 1].getElementsByTagName("TD")[col];
+
+                    if (num == -1) {
+                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    } else {
+                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                }
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                }
+            }
+        }
+
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="/js/main.js"></script>
+    <script type="text/javascript">
+        // phần sort các trường lần lượt là start time , end time
+        document.getElementById('rl-start').addEventListener("click", function(){
+            sort_row_string("3", "dtOrderExample");
+        });
+        document.getElementById('rl-end').addEventListener("click", function(){
+            sort_row_string("4", "dtOrderExample");
+        });
+        // thêm class active khi chọn thẻ li
+        $(document).ready(function () {
+            $('ul > li').click(function (e) {
                 $('ul > li').removeClass('active');
                 $(this).addClass('active');
             });
         });
-
-        $(document).ready(function() {
-            $('#sidebarCollapse').on('click', function() {
-                $('#admin-sidebar').toggleClass('active');
-                if ($('#sidebarCollapse i').hasClass('fa-angle-double-left')) {
-                    $('#sidebarCollapse i').removeClass('fa-angle-double-left');
-                    $('#sidebarCollapse i').addClass('fa-angle-double-right');
-                } else if ($('#sidebarCollapse i').hasClass('fa-angle-double-right')) {
-                    $('#sidebarCollapse i').removeClass('fa-angle-double-right');
-                    $('#sidebarCollapse i').addClass('fa-angle-double-left');
-                }
-            });
-        });
     </script>
 </body>
-
 </html>

@@ -43,10 +43,6 @@ Route::group(['middleware' => 'user'], function () {
     Route::delete('/event/{id}/delete', [EventsController::class, 'deleteEvent'])->name('event.delete');
     Route::get('/event/{file}/download', [EventsController::class, 'downloadFile'])->name('file.download');
 
-    Route::get('/kath/create', [UserController::class, 'create'])->name('kath.create');
-    Route::get('/kath/{id}/edit', [UserController::class, 'edit'])->name('kath.edit');
-    Route::put('/kath/{id}/update', [UserController::class, 'update'])->name('kath.update');
-
     Route::resource('user', 'App\Http\Controllers\User\UserController');
 
     Route::get('/kath/create', [UserController::class, 'create'])->name('kath.create');
@@ -65,5 +61,29 @@ Route::group(['middleware' => 'user'], function () {
 
 /* Route for admin */
 Route::group(['middleware' => 'admin'], function () {
-    Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
+    // Route::resource('admin', 'App\Http\Controllers\Admin\AdminController');
+
+    Route::get('/admin/user', [AdminController::class, 'users'])->name('admin.users');
+    Route::get('/admin/user/{id}/show', [AdminController::class, 'userDetails'])->name('users.details');
+    Route::get('/admin/user/{id}/delete', [AdminController::class, 'deleteUser'])->name('users.delete');
+
+    Route::get('/admin/event', [AdminController::class, 'events'])->name('admin.events');
+    Route::get('/admin/event/{id}/show', [AdminController::class, 'eventDetails'])->name('events.details');
+    Route::get('/admin/event/{id}/delete', [AdminController::class, 'deleteEvent'])->name('events.delete');
+
+    Route::get('/admin/room', [AdminController::class, 'rooms'])->name('admin.rooms');
+    Route::get('/admin/room/create', [AdminController::class, 'createRoom'])->name('rooms.create');
+    Route::put('/admin/room/upload', [AdminController::class, 'storeRoom'])->name('rooms.upload');
+    Route::get('/admin/room/{id}/show', [AdminController::class, 'roomDetails'])->name('rooms.details');
+    Route::get('/admin/room/{id}/edit', [AdminController::class, 'roomEdit'])->name('rooms.edit');
+    Route::get('/admin/room/{id}/delete', [AdminController::class, 'deleteRoom'])->name('rooms.delete');
+
+    Route::get('/admin/facility', [AdminController::class, 'facilities'])->name('admin.facilities');
+    Route::get('/admin/facility/create', [AdminController::class, 'createFacility'])->name('facilities.create');
+    Route::put('/admin/facility/upload', [AdminController::class, 'storeFacility'])->name('facilities.upload');
+    Route::get('/admin/facility/{id}/show', [AdminController::class, 'facilityDetails'])->name('facilities.details');
+    Route::get('/admin/facility/{id}/edit', [AdminController::class, 'facilityEdit'])->name('facilities.edit');
+    Route::get('/admin/facility/{id}/delete', [AdminController::class, 'deleteFacility'])->name('facilities.delete');
+
+    Route::get('/admin/company', [AdminController::class, 'companies'])->name('admin.companies');
 });

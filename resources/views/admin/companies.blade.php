@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>admin-user</title>
+    <title>Companies Management</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -167,7 +167,7 @@
             </nav>
 
             <div class="admin-content-body">
-                <div class="card-header text-center uppercase text-xl font-semibold">ACCOUNTS MANAGEMENT</div>
+                <div class="card-header text-center uppercase text-xl font-semibold">COMPANIES MANAGEMENT</div>
                 <div class="relative flex w-full flex-wrap items-stretch py-3">
                     <span
                         class="z-10 h-full leading-snug font-normal absolutetext-center text-gray-400 absolute bg-transparent rounded items-center justify-center pl-3 py-2">
@@ -186,46 +186,16 @@
                                 <th style="width: 7%;">
                                     <b class = "text-white">ID <i class="fas fa-sort" id="rl-id"></i></b>
                                 </th>
-                                <th style="width: 15%;">
-                                    <b class = "text-white">Name <i class="fas fa-sort" id="rl-name"></i></b>
+                                <th style="width: 81%;">
+                                    <b class = "text-white">Company name <i class="fas fa-sort" id="rl-name"></i></b>
                                 </th>
-                                <th style="width: 13%;">
-                                    <b class = "text-white">Date of birth</b>
-                                </th>
-                                <th style="width: 15%;">
-                                    <b class = "text-white">Phone number</b>
-                                </th>
-                                <th style="width: 17%;">
-                                    <b class = "text-white">Email <i class="fas fa-sort" id="rl-email"></i></b>
-                                </th>
-                                <th style="width: 18%;">
-                                    <b class = "text-white">Company <i class="fas fa-sort" id="rl-company"></i></b>
-                                </th>
-                                <th style="width: 12%;"><b class = "text-white">Action</b></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($users as $key => $user)
+                            @foreach ($companies as $key => $company)
                                 <tr>
-                                    <td>{{ $user->id }}</td>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->date_of_birth }}</td>
-                                    <td>{{ $user->phone }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    @if (!$user->isAdmin)
-                                        <td>{{ $user->company->name}}</td>
-                                    @else
-                                        <td> </td>
-                                    @endif
-                                    <td style=" color: #6d9886; font-size: 18px;">
-                                        <a data-toggle="tooltip" title="View" href="{{ route('users.details', $user->id) }}">
-                                            <i style="margin-right: 10px;" class="fas fa-eye"></i> </a>
-
-                                        <a data-toggle="tooltip" title="Delete" @if (!$user->isAdmin)
-                                        href="{{ route('users.delete', $user->id) }}"> @endif
-                                            <i class="fas fa-trash-alt"></i></a>
-
-                                    </td>
+                                    <td>{{ $company->id }}</td>
+                                    <td>{{ $company->name }}</td>
                                 </tr>
                             @endforeach
 
@@ -318,12 +288,6 @@
         });
         document.getElementById('rl-name').addEventListener("click", function() {
             sort_row_string("1", "dtOrderExample");
-        });
-        document.getElementById('rl-email').addEventListener("click", function() {
-            sort_row_string("4", "dtOrderExample");
-        });
-        document.getElementById('rl-company').addEventListener("click", function() {
-            sort_row_string("5", "dtOrderExample");
         });
     </script>
 

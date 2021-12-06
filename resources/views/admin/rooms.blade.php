@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>admin-user</title>
+    <title>Room Management</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -167,8 +167,9 @@
             </nav>
 
             <div class="admin-content-body">
-                <div class="card-header text-center uppercase text-xl font-semibold">ACCOUNTS MANAGEMENT</div>
-                <div class="relative flex w-full flex-wrap items-stretch py-3">
+                <div class="card-header text-center uppercase text-xl font-semibold">ROOMS MANAGEMENT</div>
+                <div class="form-group d-flex justify-content-between">
+
                     <span
                         class="z-10 h-full leading-snug font-normal absolutetext-center text-gray-400 absolute bg-transparent rounded items-center justify-center pl-3 py-2">
                         <i class="fas fa-search"></i>
@@ -176,66 +177,77 @@
                     <input type="search" id="search" name="search" class="form-input placeholder-gray-400 w-72 pl-10"
                         placeholder="Search..."
                         style="font-family: 'Font Awesome 5 Free', 'system-ui'; border: 1px solid #4f4f4f">
+                        <div >
+                            <a style="height: 40px" class="btn btn-default" href="{{ route('rooms.create') }}">
+                                ADD NEW
+                            </a>
+                        </div>
+
                 </div>
 
                 @yield('data-table')
                 <div>
-                    <table class="table table-bordered table-hover" id="dtOrderExample">
+                    <table class="table table-bordered table-hover text-center table-sm" id="dtOrderExample">
                         <thead style="background-color: #343a40">
                             <tr>
-                                <th style="width: 7%;">
+                                <th style="width: 6%;">
                                     <b class = "text-white">ID <i class="fas fa-sort" id="rl-id"></i></b>
                                 </th>
-                                <th style="width: 15%;">
-                                    <b class = "text-white">Name <i class="fas fa-sort" id="rl-name"></i></b>
+                                <th style="width: 10%;">
+                                    <b class = "text-white">Room<i class="fas fa-sort" id="rl-name"></i></b>
                                 </th>
                                 <th style="width: 13%;">
-                                    <b class = "text-white">Date of birth</b>
+                                    <b class = "text-white">Capacity<i class="fas fa-sort" id="rl-capacity"></i></b>
                                 </th>
-                                <th style="width: 15%;">
-                                    <b class = "text-white">Phone number</b>
+                                <th style="width: 13%;">
+                                    <b class = "text-white">Area<i class="fas fa-sort" id="rl-area"></i></b>
                                 </th>
-                                <th style="width: 17%;">
-                                    <b class = "text-white">Email <i class="fas fa-sort" id="rl-email"></i></b>
+                                <th style="width: 13%;">
+                                    <b class = "text-white">Status</b>
                                 </th>
-                                <th style="width: 18%;">
-                                    <b class = "text-white">Company <i class="fas fa-sort" id="rl-company"></i></b>
+                                <th style="width: 33%;">
+                                    <b class = "text-white">Facilities</b>
                                 </th>
                                 <th style="width: 12%;"><b class = "text-white">Action</b></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($users as $key => $user)
+                            @foreach ($rooms as $room)
                                 <tr>
-                                    <td>{{ $user->id }}</td>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->date_of_birth }}</td>
-                                    <td>{{ $user->phone }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    @if (!$user->isAdmin)
-                                        <td>{{ $user->company->name}}</td>
-                                    @else
-                                        <td> </td>
-                                    @endif
+                                    <td>{{ $room->id }}</td>
+                                    <td style="font-weight: 400;">Room {{ $room->name }}</td>
+                                    <td>{{ $room->capacity }} people</td>
+                                    <td>{{ $room->area }} m<sup>2</sup> </td>
+                                    <td>
+                                        @if ($room->status == 'Active')
+                                            <div class="text-white bg-green-500 py-1 px-2 rounded-md font-semibold">
+                                                {{ $room->status }}</div>
+                                        @elseif ($room->status == 'Repairing')
+                                            <div class="text-white bg-red-500 py-1 px-2 rounded-md font-semibold block">
+                                                {{ $room->status }}</div>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @foreach ($room->facilities as $facility)
+                                            <div class=" text-white rounded-md inline-flex mb-2 bg-cool-gray-400 py-1 px-2" style="font-weight: 400">
+                                                {{ $facility->name }}</div>
+                                        @endforeach
+                                    </td>
                                     <td style=" color: #6d9886; font-size: 18px;">
-                                        <a data-toggle="tooltip" title="View" href="{{ route('users.details', $user->id) }}">
-                                            <i style="margin-right: 10px;" class="fas fa-eye"></i> </a>
-
-                                        <a data-toggle="tooltip" title="Delete" @if (!$user->isAdmin)
-                                        href="{{ route('users.delete', $user->id) }}"> @endif
+                                        <a data-toggle="tooltip" title="Edit" href="{{ route('rooms.edit', $room->id) }}">
+                                            <i style="margin-right: 10px;" class="fas fa-edit"></i></a>
+                                        <a data-toggle="tooltip" title="Delete" href="{{ route('rooms.delete', $room->id) }}">
                                             <i class="fas fa-trash-alt"></i></a>
-
                                     </td>
                                 </tr>
                             @endforeach
-
                         </tbody>
                     </table>
+                    {{ $rooms->links() }}
                 </div>
             </div>
         </div>
     </div>
-
     <script>
         // num là để chọn chiều lọc data
         var num = 1;
@@ -319,16 +331,15 @@
         document.getElementById('rl-name').addEventListener("click", function() {
             sort_row_string("1", "dtOrderExample");
         });
-        document.getElementById('rl-email').addEventListener("click", function() {
-            sort_row_string("4", "dtOrderExample");
+        document.getElementById('rl-capacity').addEventListener("click", function() {
+            sort_row_int("2", "dtOrderExample");
         });
-        document.getElementById('rl-company').addEventListener("click", function() {
-            sort_row_string("5", "dtOrderExample");
+        document.getElementById('rl-area').addEventListener("click", function() {
+            sort_row_string("3", "dtOrderExample");
         });
     </script>
-
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
     </script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">

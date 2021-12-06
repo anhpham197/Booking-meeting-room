@@ -93,7 +93,7 @@ class EventsController extends Controller
                 $request->file->move('files', $fileName);
                 $data->file = $fileName;
             } else {
-                // dd('Request Has No File');
+                //dd('Request Has No File');
             }
             $data->user_id = Auth::user()->id;
             $data->name = $request->title;
@@ -102,8 +102,10 @@ class EventsController extends Controller
             $data->room_id = $request->roomId;
             $data->note = $request->note;
             $data->save();
+            //dd($request->emails.push(Auth::id()));
+            $users = User::query()->whereIn('id', collect($request->emails)->push(Auth::id()))->get();
 
-            $users = User::query()->whereIn('id', $request->emails)->get();
+            //dd($users);
             foreach ($users as $user) {
                 $user->events()->attach($data->id);
             }
