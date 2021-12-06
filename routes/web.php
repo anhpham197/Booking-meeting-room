@@ -40,14 +40,14 @@ Route::group(['middleware' => 'user'], function () {
 
     Route::get('/create', [EventsController::class, 'create'])->name('create_booking');
 
-    // Rooms
-    Route::get('/room/view', [RoomsController::class, 'index'])->name('room.view');
-    Route::get('/room/create', [RoomsController::class, 'create'])->name('room.create');
-    Route::get('/room/{id}/edit', [RoomsController::class, 'edit'])->name('room.edit');
-    Route::put('/room/upload', [RoomsController::class, 'upload'])->name('room.upload');
-    Route::put('/room/{id}/update', [RoomsController::class, 'update'])->name('room.update');
-    /* Route::delete('rooms/destroy', 'RoomsController@massDestroy')->name('rooms.massDestroy'); */
-    Route::resource('rooms', 'RoomsController');
+    // // Rooms
+    // Route::get('/room/view', [RoomsController::class, 'index'])->name('room.view');
+    // Route::get('/room/create', [RoomsController::class, 'create'])->name('room.create');
+    // Route::get('/room/{id}/edit', [RoomsController::class, 'edit'])->name('room.edit');
+    // Route::put('/room/upload', [RoomsController::class, 'upload'])->name('room.upload');
+    // Route::put('/room/{id}/update', [RoomsController::class, 'update'])->name('room.update');
+    // /* Route::delete('rooms/destroy', 'RoomsController@massDestroy')->name('rooms.massDestroy'); */
+    // Route::resource('rooms', 'RoomsController');
 
     Route::get('/event/view', [EventsController::class, 'index'])->name('event.view');
     Route::get('/event/{id}/create', [EventsController::class, 'create'])->name('event.create');
@@ -80,15 +80,26 @@ Route::group(['middleware' => 'admin'], function () {
     // Route::resource('admin', 'App\Http\Controllers\Admin\AdminController');
 
     Route::get('/admin/user', [AdminController::class, 'users'])->name('admin.users');
-    Route::get('/admin/user/{id}/show', [AdminController::class, 'userDetails'])->name('users.userDetails');
+    Route::get('/admin/user/{id}/show', [AdminController::class, 'userDetails'])->name('users.details');
     Route::get('/admin/user/{id}/delete', [AdminController::class, 'deleteUser'])->name('users.delete');
+
     Route::get('/admin/event', [AdminController::class, 'events'])->name('admin.events');
-    Route::get('/admin/event/{id}/show', [AdminController::class, 'eventDetails'])->name('events.eventDetails');
-    Route::get('/admin/{id}/delete', [AdminController::class, 'deleteEvent'])->name('events.delete');
+    Route::get('/admin/event/{id}/show', [AdminController::class, 'eventDetails'])->name('events.details');
+    Route::get('/admin/event/{id}/delete', [AdminController::class, 'deleteEvent'])->name('events.delete');
+
     Route::get('/admin/room', [AdminController::class, 'rooms'])->name('admin.rooms');
-    Route::get('/admin/room/create', [AdminController::class, 'create'])->name('admin.create');
-    Route::put('/admin/room/upload', [AdminController::class, 'store'])->name('admin.roomUpload');
-    Route::get('/admin/room/{id}/show', [AdminController::class, 'roomDetails'])->name('rooms.roomDetails');
-    Route::get('/admin/room/{id}/edit', [AdminController::class, 'roomEdit'])->name('rooms.roomEdit');
+    Route::get('/admin/room/create', [AdminController::class, 'createRoom'])->name('rooms.create');
+    Route::put('/admin/room/upload', [AdminController::class, 'storeRoom'])->name('rooms.upload');
+    Route::get('/admin/room/{id}/show', [AdminController::class, 'roomDetails'])->name('rooms.details');
+    Route::get('/admin/room/{id}/edit', [AdminController::class, 'roomEdit'])->name('rooms.edit');
     Route::get('/admin/room/{id}/delete', [AdminController::class, 'deleteRoom'])->name('rooms.delete');
+
+    Route::get('/admin/facility', [AdminController::class, 'facilities'])->name('admin.facilities');
+    Route::get('/admin/facility/create', [AdminController::class, 'createFacility'])->name('facilities.create');
+    Route::put('/admin/facility/upload', [AdminController::class, 'storeFacility'])->name('facilities.upload');
+    Route::get('/admin/facility/{id}/show', [AdminController::class, 'facilityDetails'])->name('facilities.details');
+    Route::get('/admin/facility/{id}/edit', [AdminController::class, 'facilityEdit'])->name('facilities.edit');
+    Route::get('/admin/facility/{id}/delete', [AdminController::class, 'deleteFacility'])->name('facilities.delete');
+
+    Route::get('/admin/company', [AdminController::class, 'companies'])->name('admin.companies');
 });

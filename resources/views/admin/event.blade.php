@@ -127,25 +127,25 @@
             </div>
             <ul>
                 <li>
-                    <i class="fas fa-home"></i>
-                    <a href="#">Management page</a>
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <a href="{{ route('admin.users') }}">Accounts</a>
 
                 </li>
                 <li>
-                    <i class="fas fa-chevron-circle-down"></i>
-                    <a href="#">Work</a>
+                    <i class="fas fa-building"></i>
+                    <a href="{{ route('admin.companies') }}">Companies</a>
                 </li>
                 <li>
-                    <i class="far fa-file-alt"></i>
-                    <a>Category</a>
+                    <i class="fas fa-handshake"></i>
+                    <a href="{{ route('admin.events') }}">Meetings</a>
                 </li>
                 <li>
-                    <i class="fas fa-user"></i>
-                    <a href="#">Account</a>
+                    <i class="fas fa-house-damage    "></i>
+                    <a href="{{ route('admin.rooms') }}">Rooms</a>
                 </li>
                 <li>
                     <i class="fas fa-cog"></i>
-                    <a href="#">Setting </a>
+                    <a href="{{ route('admin.facilities') }}">Facilities</a>
                 </li>
             </ul>
         </nav>

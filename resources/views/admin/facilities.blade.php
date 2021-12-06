@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Room Management</title>
+    <title>Facilities Management</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -177,12 +177,9 @@
                     <input type="search" id="search" name="search" class="form-input placeholder-gray-400 w-72 pl-10"
                         placeholder="Search..."
                         style="font-family: 'Font Awesome 5 Free', 'system-ui'; border: 1px solid #4f4f4f">
-                        <div >
-                            <a style="height: 40px" class="btn btn-default" href="{{ route('rooms.create') }}">
-                                ADD NEW
-                            </a>
-                        </div>
-
+                        <a style="height: 40px" class="btn btn-default" href="{{ route('facilities.create') }}">
+                            ADD NEW
+                        </a>
                 </div>
 
                 @yield('data-table')
@@ -191,59 +188,31 @@
                         <thead style="background-color: #343a40">
                             <tr>
                                 <th style="width: 6%;">
-                                    <b class = "text-white">ID <i class="fas fa-sort" id="rl-id"></i></b>
+                                    <b class = "text-white">ID<i class="fas fa-sort" id="rl-id"></i></b>
                                 </th>
-                                <th style="width: 10%;">
-                                    <b class = "text-white">Room<i class="fas fa-sort" id="rl-name"></i></b>
-                                </th>
-                                <th style="width: 13%;">
-                                    <b class = "text-white">Capacity<i class="fas fa-sort" id="rl-capacity"></i></b>
-                                </th>
-                                <th style="width: 13%;">
-                                    <b class = "text-white">Area<i class="fas fa-sort" id="rl-area"></i></b>
-                                </th>
-                                <th style="width: 13%;">
-                                    <b class = "text-white">Status</b>
-                                </th>
-                                <th style="width: 33%;">
-                                    <b class = "text-white">Facilities</b>
+                                <th style="width: 82%;">
+                                    <b class = "text-white">Name<i class="fas fa-sort" id="rl-name"></i></b>
                                 </th>
                                 <th style="width: 12%;"><b class = "text-white">Action</b></th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($rooms as $room)
+                            @foreach ($facilities as $facility)
                                 <tr>
-                                    <td>{{ $room->id }}</td>
-                                    <td style="font-weight: 400;">Room {{ $room->name }}</td>
-                                    <td>{{ $room->capacity }} people</td>
-                                    <td>{{ $room->area }} m<sup>2</sup> </td>
-                                    <td>
-                                        @if ($room->status == 'Active')
-                                            <div class="text-white bg-green-500 py-1 px-2 rounded-md font-semibold">
-                                                {{ $room->status }}</div>
-                                        @elseif ($room->status == 'Repairing')
-                                            <div class="text-white bg-red-500 py-1 px-2 rounded-md font-semibold block">
-                                                {{ $room->status }}</div>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @foreach ($room->facilities as $facility)
-                                            <div class=" text-white rounded-md inline-flex mb-2 bg-cool-gray-400 py-1 px-2" style="font-weight: 400">
-                                                {{ $facility->name }}</div>
-                                        @endforeach
-                                    </td>
+                                    <td>{{ $facility->id }}</td>
+                                    <td style="font-weight: 400;">{{ $facility->name }}</td>
+
                                     <td style=" color: #6d9886; font-size: 18px;">
-                                        <a data-toggle="tooltip" title="Edit" href="{{ route('rooms.edit', $room->id) }}">
+                                        <a data-toggle="tooltip" title="Edit" href="{{ route('facilities.edit', $facility->id) }}">
                                             <i style="margin-right: 10px;" class="fas fa-edit"></i></a>
-                                        <a data-toggle="tooltip" title="Delete" href="{{ route('rooms.delete', $room->id) }}">
+                                        <a data-toggle="tooltip" title="Delete" href="{{ route('facilities.delete', $facility->id) }}">
                                             <i class="fas fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
-                    {{ $rooms->links() }}
+                    {{ $facilities->links() }}
                 </div>
             </div>
         </div>
@@ -330,12 +299,6 @@
         });
         document.getElementById('rl-name').addEventListener("click", function() {
             sort_row_string("1", "dtOrderExample");
-        });
-        document.getElementById('rl-capacity').addEventListener("click", function() {
-            sort_row_int("2", "dtOrderExample");
-        });
-        document.getElementById('rl-area').addEventListener("click", function() {
-            sort_row_string("3", "dtOrderExample");
         });
     </script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

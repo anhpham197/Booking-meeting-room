@@ -127,25 +127,25 @@
             </div>
             <ul>
                 <li>
-                    <i class="fas fa-home"></i>
-                    <a href="#">Management page</a>
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <a href="{{ route('admin.users') }}">Accounts</a>
 
                 </li>
                 <li>
-                    <i class="fas fa-chevron-circle-down"></i>
-                    <a href="#">Work</a>
+                    <i class="fas fa-building"></i>
+                    <a href="{{ route('admin.companies') }}">Companies</a>
                 </li>
                 <li>
-                    <i class="far fa-file-alt"></i>
-                    <a>Category</a>
+                    <i class="fas fa-handshake"></i>
+                    <a href="{{ route('admin.events') }}">Meetings</a>
                 </li>
                 <li>
-                    <i class="fas fa-user"></i>
-                    <a href="#">Account</a>
+                    <i class="fas fa-house-damage    "></i>
+                    <a href="{{ route('admin.rooms') }}">Rooms</a>
                 </li>
                 <li>
                     <i class="fas fa-cog"></i>
-                    <a href="#">Setting </a>
+                    <a href="{{ route('admin.facilities') }}">Facilities</a>
                 </li>
             </ul>
         </nav>
@@ -194,13 +194,9 @@
                         @endif
                         <div class="text-center"></div>
                         <div class="form-group">
-                            <label for="username" class="font-semibold">Full name <span
-                                    class="text-red-600">*</span></label>
+                            <label for="username" class="font-semibold">Full name</label>
                             <input type="text" class="form-control" name="name" id="name"
-                                value="{{ $user->name }}">
-                            @error('name')
-                                <span class="text-red-600">{{ $message }}</span>
-                            @enderror
+                                value="{{ $user->name }}" readonly>
                         </div>
                         <div class="form-group flex gap-4">
                             <label for="gender" class="font-semibold">Gender</label><br>
@@ -223,39 +219,22 @@
                         <div class="form-group">
                             <label for="date" class="font-semibold">Date of birth</label>
                             <input type="date" class="form-control" name="date_of_birth" id="date_of_birth"
-                                @if (!empty($user->date_of_birth)) value="{{ $user->date_of_birth }}" @endif>
+                                @if (!empty($user->date_of_birth)) value="{{ $user->date_of_birth }}" @endif readonly>
                         </div>
                         <div class="form-group">
                             <label for="telephone" class="font-semibold">Phone
-                                <span class="text-red-600">*
-                                    @if (session()->has('msgPhone'))
-                                        <span class="font-normal">{{ session()->get('msgPhone') }}</span>
-                                    @endif
-                                </span>
                             </label>
                             <input type="tel" class="form-control" name="phone" id="phone"
-                                @if (!empty($user->phone)) value="{{ $user->phone }}" @endif>
-                            @error('phone')
-                                <span class="text-red-600">{{ $message }}</span>
-                            @enderror
+                                @if (!empty($user->phone)) value="{{ $user->phone }}" @endif readonly>
                         </div>
                         <div class="form-group">
                             <label for="email" class="font-semibold">Email
-                                <span class="text-red-600">*
-                                    @if (session()->has('msgEmail'))
-                                        <span class="font-normal">{{ session()->get('msgEmail') }}</span>
-                                    @endif
-                                </span>
                             </label>
                             <input type="email" class="form-control" name="email" id="email"
-                                value="{{ $user->email }}">
-                            @error('email')
-                                <span class="text-red-600">{{ $message }}</span>
-                            @enderror
+                                value="{{ $user->email }}" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="company" class="font-semibold">Company <span
-                                    class="text-red-600">*</span></label>
+                            <label for="company" class="font-semibold">Company</label>
 
                             <input type="text" class="form-control" name="company" id="company"
                             @if (!$user->isAdmin) value="{{ $user->company->name}}" @endif

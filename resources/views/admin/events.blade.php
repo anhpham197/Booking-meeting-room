@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>KATH</title>
+	<title>Events Management</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -126,25 +126,25 @@
             </div>
             <ul>
                 <li>
-                    <i class="fas fa-home"></i>
-                    <a href="#">Management page</a>
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <a href="{{ route('admin.users') }}">Accounts</a>
 
                 </li>
                 <li>
-                    <i class="fas fa-chevron-circle-down"></i>
-                    <a href="#">Work</a>
+                    <i class="fas fa-building"></i>
+                    <a href="{{ route('admin.companies') }}">Companies</a>
                 </li>
                 <li>
-                    <i class="far fa-file-alt"></i>
-                    <a>Category</a>
+                    <i class="fas fa-handshake"></i>
+                    <a href="{{ route('admin.events') }}">Meetings</a>
                 </li>
                 <li>
-                    <i class="fas fa-user"></i>
-                    <a href="#">Account</a>
+                    <i class="fas fa-house-damage    "></i>
+                    <a href="{{ route('admin.rooms') }}">Rooms</a>
                 </li>
                 <li>
                     <i class="fas fa-cog"></i>
-                    <a href="#">Setting </a>
+                    <a href="{{ route('admin.facilities') }}">Facilities</a>
                 </li>
             </ul>
         </nav>
@@ -179,7 +179,7 @@
                 @yield('data-table')
                 <div>
                     <table class="table table-bordered table-hover" id="dtOrderExample">
-                        <thead  >
+                        <thead style="background-color: #343a40">
                             <tr>
                                 <th style="width: 3%;">
                                     <b class = "text-white">ID</b>
@@ -212,7 +212,7 @@
                                     <td>{{$event->ending_time}}</td>
                                     <td>{{$event->note}}</td>
                                     <td style=" color: #6d9886; font-size: 18px;">
-                                        <a data-toggle="tooltip" title="View" href="{{ route('events.eventDetails', $event->id) }}">
+                                        <a data-toggle="tooltip" title="View" href="{{ route('events.details', $event->id) }}">
                                             <i style="margin-right: 10px;" class="fa fa-eye"></i></a>
                                         <a data-toggle="tooltip" title="Delete" href="{{ route('events.delete', $event->id) }}">
                                             <i class="fas fa-trash-alt"></i></a>

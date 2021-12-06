@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Room;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Models\Company;
 use App\Models\Facility;
 use App\Models\Test;
 use Illuminate\Http\Request;
@@ -108,7 +109,7 @@ class AdminController extends Controller
         ]);
     }
 
-    public function create()
+    public function createRoom()
     {
         //
         $room = Room::first();
@@ -120,7 +121,7 @@ class AdminController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function storeRoom(Request $request)
     {
         $data = new Room();
         $data->name = $request->name;
@@ -147,11 +148,66 @@ class AdminController extends Controller
         ]);
     }
 
-    public function deleteroom($id)
+    public function deleteRoom($id)
     {
         //
         $room = room::find($id);
         $room->delete();
         return redirect()->back();
+    }
+
+    public function facilities()
+    {
+        $facilities = Facility::paginate(10);
+        //dd($facilities);
+        return view('admin.facilities', [
+            'facilities' => $facilities
+        ]);
+    }
+
+    public function createFacility()
+    {
+        //
+        $facility = Facility::first();
+        // dd($facilities);
+        return view('admin.facility', [
+            'facility' => $facility,
+        ]);
+    }
+
+    public function storeFacility(Request $request)
+    {
+        $data = new Facility();
+        $data->name = $request->name;
+        $data->save();
+
+        return redirect()->back();
+    }
+
+    public function facilityEdit($id)
+    {
+        //
+        $facility = Facility::query()->where('id', $id)->first();
+        // dd($facility);
+        return view('admin.facility', [
+            'facility' => $facility,
+        ]);
+    }
+
+    public function deleteFacility($id)
+    {
+        //
+        $facility = Facility::find($id);
+        $facility->delete();
+        return redirect()->back();
+    }
+
+    public function companies()
+    {
+        $companies = Company::paginate(10);
+        //dd($facilities);
+        return view('admin.companies', [
+            'companies' => $companies
+        ]);
     }
 }

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Room View</title>
+    <title>Facility View</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -166,50 +166,20 @@
                     </form>
                 </div>
             </nav>
-            <a class="btn btn-default" href="{{ route('admin.rooms') }}">
+            <a class="btn btn-default" href="{{ route('admin.facilities') }}">
                 Back
             </a>
-            <form autocomplete="on" action="{{route('rooms.upload')}}" method="POST" enctype="multipart/form-data">
+            <form autocomplete="on" action="{{route('facilities.upload')}}" method="POST" enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
                 <div class="card">
                     <div class="card-header text-center">
-                        <b>ROOM MANAGEMENT</b>
+                        <b>FACILITES MANAGEMENT</b>
                     </div>
                     <div class="card-body" style="height: 415px;">
                         <div class="form-group">
-                            <label for="name" class="font-semibold">Room name</label>
-                            <input type="text" class="form-control" name="name" id="room" aria-describedby="nameHid" placeholder="" value="{{ $room->name }}">
-                        </div>
-                        <div class="form-group">
-                            <label for="capacity" class="font-semibold">Capacity (people)</label>
-                            <input type="number" class="form-control" name="capacity" id="capacity" aria-describedby="capacityHid" placeholder="" value="{{ $room->capacity }}">
-                        </div>
-                        <div class="form-group">
-                            <label for="area" class="font-semibold">Area</label>
-                            <input type="number" class="form-control" name="area" id="area" value="{{ $room->area }}">
-                        </div>
-                        <div class="form-group d-flex justify-content-between">
-                            <div >
-                                <label for="status" class="font-semibold">Status</label>
-                                <select class="form-control" name="status" value="{{ $room->status }}" required>
-                                    <option value="Active">Active</option>
-                                    <option value="Repairing">Repairing</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="facilities" class="font-semibold">Facilities</label>
-                                <select class="form-control email" style="width: 400px ; height: 40px; text-align: center;" name="facilities[]" multiple="multiple" required>
-                                {{-- <select class="form-control email" multiple="multiple" style="height: 40px" name="facilities[]" required> --}}
-                                    @foreach ($facilities as $facility)
-                                        <option value="{{ $facility->id }}" @foreach ($room->facilities as $facilityWith)
-                                            @if ($facilityWith->id == $facility->id)
-                                                selected
-                                            @endif
-                                        @endforeach>{{ $facility->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+                            <label for="name" class="font-semibold">Facility name</label>
+                            <input type="text" class="form-control" name="name" id="facility" aria-describedby="nameHid" placeholder="" value="{{ $facility->name }}">
                         </div>
                     </div>
                     <div class="card-footer" style="text-align: center;">

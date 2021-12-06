@@ -127,25 +127,25 @@
             </div>
             <ul>
                 <li>
-                    <i class="fas fa-home"></i>
-                    <a href="#">Management page</a>
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <a href="{{ route('admin.users') }}">Accounts</a>
 
                 </li>
                 <li>
-                    <i class="fas fa-chevron-circle-down"></i>
-                    <a href="#">Work</a>
+                    <i class="fas fa-building"></i>
+                    <a href="{{ route('admin.companies') }}">Companies</a>
                 </li>
                 <li>
-                    <i class="far fa-file-alt"></i>
-                    <a>Category</a>
+                    <i class="fas fa-handshake"></i>
+                    <a href="{{ route('admin.events') }}">Meetings</a>
                 </li>
                 <li>
-                    <i class="fas fa-user"></i>
-                    <a href="#">Account</a>
+                    <i class="fas fa-house-damage    "></i>
+                    <a href="{{ route('admin.rooms') }}">Rooms</a>
                 </li>
                 <li>
                     <i class="fas fa-cog"></i>
-                    <a href="#">Setting </a>
+                    <a href="{{ route('admin.facilities') }}">Facilities</a>
                 </li>
             </ul>
         </nav>
@@ -180,7 +180,7 @@
                 @yield('data-table')
                 <div>
                     <table class="table table-bordered table-hover" id="dtOrderExample">
-                        <thead>
+                        <thead style="background-color: #343a40">
                             <tr>
                                 <th style="width: 7%;">
                                     <b class = "text-white">ID <i class="fas fa-sort" id="rl-id"></i></b>
@@ -217,7 +217,7 @@
                                         <td> </td>
                                     @endif
                                     <td style=" color: #6d9886; font-size: 18px;">
-                                        <a data-toggle="tooltip" title="View" href="{{ route('users.userDetails', $user->id) }}">
+                                        <a data-toggle="tooltip" title="View" href="{{ route('users.details', $user->id) }}">
                                             <i style="margin-right: 10px;" class="fas fa-eye"></i> </a>
 
                                         <a data-toggle="tooltip" title="Delete" @if (!$user->isAdmin)
