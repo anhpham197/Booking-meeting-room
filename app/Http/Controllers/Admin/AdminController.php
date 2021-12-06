@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Event;
 use App\Models\User;
 use App\Models\Room;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Models\Facility;
 use App\Models\Test;
 use Illuminate\Http\Request;
 
@@ -16,7 +18,7 @@ class AdminController extends Controller
     {
         $users = User::paginate(10);
 
-        return view('admin.layout', [
+        return view('admin.users', [
             'users' => $users
         ]);
     }
@@ -26,7 +28,24 @@ class AdminController extends Controller
         //
         $user = User::query()->where('id', $id)->first();
         // dd($event);
-        return view('admin.userDetails', [
+        return view('admin.user', [
+            'user' => $user
+        ]);
+    }
+
+    public function deleteUser($id)
+    {
+        //
+        $user = User::find($id);
+        $user->delete();
+        return redirect()->back();
+    }
+
+    public function userEdit($id)
+    {
+        $user = User::query()->where('id', $id)->first();
+        // dd($user);
+        return view('admin.user', [
             'user' => $user
         ]);
     }
@@ -34,20 +53,40 @@ class AdminController extends Controller
     public function events()
     {
         $events = Event::all();
+        $rooms = Room::all();
         //dd($events);
-        return view('admin.allEvent', [
-            'events' => $events
+        return view('admin.events', [
+            'events' => $events,
+            'rooms' => $rooms
         ]);
     }
 
     public function eventDetails($id)
     {
         //
-        // dd($id);
-        $event = Event::query()->where('id', $id)->first();
-        // dd($event);
-        return view('admin.eventDetails', [
-            'event' => $event
+        $event = Event::find($id);
+        $rooms = Room::all();
+        $users = User::query()->where('company_id', Auth::user()->company_id)->get();
+        $minDate = date("Y-m-d\TH:i");
+        return view('admin.event', [
+            'event' => $event,
+            'rooms' => $rooms,
+            'users' => $users,
+            'minDate' => $minDate
+        ]);
+    }
+
+    public function eventEdit($id)
+    {
+        $event = Event::find($id);
+        $rooms = Room::all();
+        $users = User::query()->where('company_id', Auth::user()->company_id)->get();
+        $minDate = date("Y-m-d\TH:i");
+        return view('admin.event', [
+            'event' => $event,
+            'rooms' => $rooms,
+            'users' => $users,
+            'minDate' => $minDate
         ]);
     }
 
@@ -60,19 +99,11 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    public function deleteUser($id)
-    {
-        //
-        $user = User::find($id);
-        $user->delete();
-        return redirect()->back();
-    }
-
     public function rooms()
     {
         $rooms = Room::paginate(10);
         //dd($rooms);
-        return view('admin.allRooms', [
+        return view('admin.rooms', [
             'rooms' => $rooms
         ]);
     }
@@ -80,21 +111,28 @@ class AdminController extends Controller
     public function create()
     {
         //
-        return view('admin.roomView');
+        $room = Room::first();
+        $facilities = Facility::all();
+        // dd($facilities);
+        return view('admin.room', [
+            'room' => $room,
+            'facilities' => $facilities
+        ]);
     }
 
     public function store(Request $request)
-    { }
-
-    public function roomDetails($id)
     {
-        //
-        // dd($id);
-        $room = Room::query()->where('id', $id)->first();
-        // dd($room);
-        return view('admin.roomView', [
-            'room' => $room
-        ]);
+        $data = new Room();
+        $data->name = $request->name;
+        $data->capacity = $request->capacity;
+        $data->area = $request->area;
+        $data->status = $request->status;
+        $data->save();
+        $facilities = Facility::query()->whereIn('id', $request->facilities)->get();
+        foreach ($facilities as $facilitiy) {
+            $facilitiy->room()->attach($data->id);
+        }
+        return redirect()->back();
     }
 
     public function roomEdit($id)
@@ -102,8 +140,10 @@ class AdminController extends Controller
         //
         $room = Room::query()->where('id', $id)->first();
         // dd($room);
-        return view('admin.roomView', [
-            'room' => $room
+        $facilities = Facility::all();
+        return view('admin.room', [
+            'room' => $room,
+            'facilities' => $facilities
         ]);
     }
 

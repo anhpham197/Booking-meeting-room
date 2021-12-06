@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Room View</title>
+    <title>Event View</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -166,46 +166,88 @@
                     </form>
                 </div>
             </nav>
-            <a class="btn btn-default" href="{{ route('admin.rooms') }}">
+            <a class="btn btn-default" href="{{ route('admin.events') }}">
                 Back
             </a>
-            <form autocomplete="on" action="" method="post">
+            <form autocomplete="on" action="" method="POST" enctype="multipart/form-data">
+                @method('PUT')
+                @csrf
                 <div class="card">
-                    <div class="card-header text-center">
-                        <b>ROOM MANAGEMENT</b>
+                    <div class="card-header text-center uppercase text-xl font-semibold">EVENT MANAGEMENT
                     </div>
-                    <div class="card-body" style="height: 415px;">
+                    <div class="card-body">
                         <div class="form-group">
-                            <label for="room">Room name</label>
-                            <input type="text" class="form-control" name="room" id="room" aria-describedby="roomHid" placeholder="" value="{{ $room->name }}">
+                            <label for="usernameBooking" class="font-semibold">Full name <span class="text-red-600">*</span></label>
+                            <input type="text" class="form-control" name="usernameBooking" id="usernameBooking" aria-describedby="usernameBookingHid" required readonly value="{{ Auth::user()->name }}">
                         </div>
+
                         <div class="form-group">
-                            <label for="capacity">Capacity (people)</label>
-                            <input type="number" class="form-control" name="capacity" id="capacity" aria-describedby="capacityHid" placeholder="" value="{{ $room->capacity }}">
+                            <label for="telephoneBooking" class="font-semibold">Phone <span class="text-red-600">*</span></label>
+                            <input type="tel" class="form-control" name="telephoneBooking" id="telephoneBooking" aria-describedby="telephoneBookingHid" required value="{{ Auth::user()->phone }}">
                         </div>
+
                         <div class="form-group">
-                            <label for="area">Area</label>
-                            <input type="number" class="form-control" name="area" id="area" value="{{ $room->area }}">
+                            <label for="emailBooking" class="font-semibold">Email <span class="text-red-600">*</span></label>
+                            <input type="email" class="form-control" name="emailBooking" id="emailBooking" aria-describedby="emailBookingHid" value="{{ Auth::user()->email }}" required>
                         </div>
-                        <div class="form-group d-flex justify-content-between">
-                            <div >
-                                <label for="tt">Status</label>
-                                <select style="width: 200px; height: 30px ;text-align: center;" name="tt" id="" required>
-                                    <option value="active">Active</option>
-                                    <option value="reparing">Reparing</option>
-                                </select>
+
+                        <div class="form-group">
+                            <label for="title" class="font-semibold">Meeting name <span class="text-red-600">*</span></label>
+                            <input type="text" class="form-control" name="title" id="title" value="{{ $event->name }}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col">
+                                    <label for="booking_date_start" class="font-semibold">Starting time <span class="text-red-600">*</span></label>
+                                    <input type="datetime-local" min="{{ $minDate }}" class="form-control" name="starting_time" id="starting_time" value="{{ date('Y-m-d\TH:i', strtotime($event->starting_time)) }}" required>
+                                </div>
+                                <div class="col">
+                                    <label for="time_start" class="font-semibold">Ending time <span class="text-red-600">*</span></label>
+                                    <input type="datetime-local" min="{{ $minDate }}" class="form-control" name="ending_time" id="ending_time" value="{{ date('Y-m-d\TH:i', strtotime($event->ending_time)) }}" required>
+                                </div>
                             </div>
-                            <div>
-                                <label for="ttb">Equipment</label>
-                                <select style="width: 400px ; height: 30px; text-align: center;" name="ttb" id="" required>
-                                    <option value="chair">Chair</option>
-                                    <option value="table">Table</option>
-                                </select>
-                            </div>
                         </div>
-                    </div>
-                    <div class="card-footer" style="text-align: center;">
-                        <button type="button" class="btn btn-primary" style="height: 40px">Add</button>
+
+
+                        <div class="form-group">
+                            <label for="roomId" class="font-semibold">Room name <span class="text-red-600">*</span></label>
+                            <select name="roomId" class="form-control" id="roomId" required>
+                                @foreach ($rooms as $room)
+                                    <option value="{{ $room->id }}" @if ($event->room_id == $room->id)
+                                        selected
+                                    @endif>{{ $room->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="font-semibold">Attendees' email <span class="text-red-600">*</span></label>
+                            <select class="form-control email" multiple="multiple" style="height: 40px" name="emails[]" required>
+                                @foreach ($users as $user)
+                                    <option value="{{ $user->id }}" @foreach ($event->users as $userJoin)
+                                        @if ($userJoin->id == $user->id)
+                                            selected
+                                        @endif
+                                    @endforeach>{{ $user->email }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="textarea" class="font-semibold">Meeting agenda</label>
+                            <textarea id="textarea1" name="description" class="form-control" rows="5"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fileupload" class="font-semibold">Attached file</label>
+                            <input type="file" name="fileupload" >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="textarea" class="font-semibold">Note for us</label>
+                            <textarea id="textarea2" name="note" class="form-control" rows="5" placeholder="Let us know if you need anything..."></textarea>
+                        </div>
                     </div>
                 </div>
             </form>
@@ -214,6 +256,22 @@
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="/js/main.js"></script>
+<script src="/web/js/main.js"></script>
+<script type="text/javascript">
+    // phần sort các trường lần lượt là id , name , email , company
+    document.getElementById('rl-id').addEventListener("click", function(){
+        sort_row_int("0", "dtOrderExample");
+    });
+    document.getElementById('rl-name').addEventListener("click", function(){
+        sort_row_string("1", "dtOrderExample");
+    });
+    document.getElementById('rl-email').addEventListener("click", function(){
+        sort_row_string("4", "dtOrderExample");
+    });
+    document.getElementById('rl-company').addEventListener("click", function(){
+        sort_row_string("5", "dtOrderExample");
+    });
+
+</script>
 </body>
 </html>

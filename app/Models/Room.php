@@ -21,15 +21,13 @@ class Room extends Model
     ];
 
     protected $fillable = [
-        'id',
         'name',
-        'image',
         'capacity',
         'area',
         'status',
     ];
 
-    protected function facilities()
+    public function facilities()
     {
         return $this->belongsToMany(Facility::class, 'facility_room');
     }

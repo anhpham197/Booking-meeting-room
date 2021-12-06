@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>admin-user</title>
+    <title>Room Management</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -167,10 +167,9 @@
             </nav>
 
             <div class="admin-content-body">
-                <a class="btn btn-default" href="{{ route('admin.users') }}">
-                    ADD NEW
-                </a>
-                <div class="relative flex w-full flex-wrap items-stretch py-3">
+
+                <div class="form-group d-flex justify-content-between">
+
                     <span
                         class="z-10 h-full leading-snug font-normal absolutetext-center text-gray-400 absolute bg-transparent rounded items-center justify-center pl-3 py-2">
                         <i class="fas fa-search"></i>
@@ -178,6 +177,9 @@
                     <input type="search" id="search" name="search" class="form-input placeholder-gray-400 w-72 pl-10"
                         placeholder="Search..."
                         style="font-family: 'Font Awesome 5 Free', 'system-ui'; border: 1px solid #4f4f4f">
+                        <a style="height: 40px" class="btn btn-default" href="{{ route('admin.create') }}">
+                            ADD NEW
+                        </a>
                 </div>
 
                 @yield('data-table')
@@ -185,32 +187,31 @@
                     <table class="table table-bordered table-hover text-center table-sm" id="dtOrderExample">
                         <thead>
                             <tr>
-                                <th>
-                                    <span style="margin-right: 2px;" class="uppercase font-semibold">Room</span>
-                                    <i class="fas fa-sort" id="rl-name"></i>
+                                <th style="width: 6%;">
+                                    <b class = "text-white">ID <i class="fas fa-sort" id="rl-id"></i></b>
                                 </th>
-                                <th>
-                                    <span style="margin-right: 2px;" class="uppercase font-semibold">Capacity</span>
-                                    <i class="fas fa-sort" id="rl-sc"></i>
+                                <th style="width: 10%;">
+                                    <b class = "text-white">Room<i class="fas fa-sort" id="rl-name"></i></b>
                                 </th>
-                                <th>
-                                    <span style="margin-right: 2px;" class="uppercase font-semibold">Area</span>
-                                    <i class="fas fa-sort" id="rl-sp"></i>
+                                <th style="width: 13%;">
+                                    <b class = "text-white">Capacity<i class="fas fa-sort" id="rl-capacity"></i></b>
                                 </th>
-                                <th>
-                                    <span style="margin-right: 2px;" class="uppercase font-semibold">Status</span>
-                                    <i class="fas fa-sort" id="rl-mood"></i>
+                                <th style="width: 13%;">
+                                    <b class = "text-white">Area<i class="fas fa-sort" id="rl-area"></i></b>
                                 </th>
-                                <th class="uppercase font-semibold">Facilities</th>
+                                <th style="width: 13%;">
+                                    <b class = "text-white">Status</b>
                                 </th>
-                                <th class="uppercase font-semibold">Operation</th>
+                                <th style="width: 33%;">
+                                    <b class = "text-white">Facilities</b>
+                                </th>
+                                <th style="width: 12%;"><b class = "text-white">Action</b></th>
                             </tr>
                         </thead>
                         <tbody>
-
-
                             @foreach ($rooms as $room)
                                 <tr>
+                                    <td>{{ $room->id }}</td>
                                     <td style="font-weight: 400;">Room {{ $room->name }}</td>
                                     <td>{{ $room->capacity }} people</td>
                                     <td>{{ $room->area }} m<sup>2</sup> </td>
@@ -230,8 +231,6 @@
                                         @endforeach
                                     </td>
                                     <td style=" color: #6d9886; font-size: 18px;">
-                                        <a data-toggle="tooltip" title="View" href="{{ route('rooms.roomDetails', $room->id) }}">
-                                            <i style="margin-right: 10px;" class="fa fa-eye"></i></a>
                                         <a data-toggle="tooltip" title="Edit" href="{{ route('rooms.roomEdit', $room->id) }}">
                                             <i style="margin-right: 10px;" class="fas fa-edit"></i></a>
                                         <a data-toggle="tooltip" title="Delete" href="{{ route('rooms.delete', $room->id) }}">
@@ -245,97 +244,97 @@
                 </div>
             </div>
         </div>
+    </div>
+    <script>
+        // num là để chọn chiều lọc data
+        var num = 1;
+        // sort data
+        // sort cho dạng string
+        function sort_row_string(col, table_name) {
+            var table, rows, switching, i, x, y, shouldSwitch;
+            table = document.getElementById(table_name);
+            switching = true;
+            num *= -1;
+            while (switching) {
 
-        <script>
-            // num là để chọn chiều lọc data
-            var num = 1;
-            // sort data
-            // sort cho dạng string
-            function sort_row_string(col, table_name) {
-                var table, rows, switching, i, x, y, shouldSwitch;
-                table = document.getElementById(table_name);
-                switching = true;
-                num *= -1;
-                while (switching) {
+                switching = false;
+                rows = table.rows;
 
-                    switching = false;
-                    rows = table.rows;
+                for (i = 1; i < (rows.length - 1); i++) {
 
-                    for (i = 1; i < (rows.length - 1); i++) {
+                    shouldSwitch = false;
 
-                        shouldSwitch = false;
+                    x = rows[i].getElementsByTagName("TD")[col];
+                    y = rows[i + 1].getElementsByTagName("TD")[col];
 
-                        x = rows[i].getElementsByTagName("TD")[col];
-                        y = rows[i + 1].getElementsByTagName("TD")[col];
-
-                        if (num == -1) {
-                            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                                shouldSwitch = true;
-                                break;
-                            }
-                        } else {
-                            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-                                shouldSwitch = true;
-                                break;
-                            }
+                    if (num == -1) {
+                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    } else {
+                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
                         }
                     }
-                    if (shouldSwitch) {
-                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                        switching = true;
-                    }
+                }
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
                 }
             }
+        }
 
-            // sort cho dạng int
-            function sort_row_int(col, table_name) {
-                var table, rows, switching, i, x, y, shouldSwitch;
-                table = document.getElementById(table_name);
-                switching = true;
-                num *= -1;
-                while (switching) {
+        // sort cho dạng int
+        function sort_row_int(col, table_name) {
+            var table, rows, switching, i, x, y, shouldSwitch;
+            table = document.getElementById(table_name);
+            switching = true;
+            num *= -1;
+            while (switching) {
 
-                    switching = false;
-                    rows = table.rows;
+                switching = false;
+                rows = table.rows;
 
-                    for (i = 1; i < (rows.length - 1); i++) {
+                for (i = 1; i < (rows.length - 1); i++) {
 
-                        shouldSwitch = false;
+                    shouldSwitch = false;
 
-                        x = rows[i].getElementsByTagName("TD")[col];
-                        y = rows[i + 1].getElementsByTagName("TD")[col];
+                    x = rows[i].getElementsByTagName("TD")[col];
+                    y = rows[i + 1].getElementsByTagName("TD")[col];
 
-                        if (num == -1) {
-                            if (parseInt(x.innerHTML) > parseInt(y.innerHTML)) {
-                                shouldSwitch = true;
-                                break;
-                            }
-                        } else {
-                            if (parseInt(x.innerHTML) < parseInt(y.innerHTML)) {
-                                shouldSwitch = true;
-                                break;
-                            }
+                    if (num == -1) {
+                        if (parseInt(x.innerHTML) > parseInt(y.innerHTML)) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    } else {
+                        if (parseInt(x.innerHTML) < parseInt(y.innerHTML)) {
+                            shouldSwitch = true;
+                            break;
                         }
                     }
-                    if (shouldSwitch) {
-                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                        switching = true;
-                    }
+                }
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
                 }
             }
-            document.getElementById('rl-name').addEventListener("click", function() {
-                sort_row_string("0", "dtOrderExample");
-            });
-            document.getElementById('rl-sc').addEventListener("click", function() {
-                sort_row_int("1", "dtOrderExample");
-            });
-            document.getElementById('rl-sp').addEventListener("click", function() {
-                sort_row_int("2", "dtOrderExample");
-            });
-            document.getElementById('rl-mood').addEventListener("click", function() {
-                sort_row_string("3", "dtOrderExample");
-            });
-        </script>
+        }
+        document.getElementById('rl-id').addEventListener("click", function() {
+            sort_row_int("0", "dtOrderExample");
+        });
+        document.getElementById('rl-name').addEventListener("click", function() {
+            sort_row_string("1", "dtOrderExample");
+        });
+        document.getElementById('rl-capacity').addEventListener("click", function() {
+            sort_row_int("2", "dtOrderExample");
+        });
+        document.getElementById('rl-area').addEventListener("click", function() {
+            sort_row_string("3", "dtOrderExample");
+        });
+    </script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
     </script>

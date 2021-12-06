@@ -187,11 +187,8 @@
                                 <th style="width: 15%;">
                                     <b class = "text-white">Event name</b>
                                 </th>
-                                <th style="width: 15%;">
-                                    <b class = "text-white">Host</b>
-                                </th>
-                                <th style="width: 17%;">
-                                    <b class = "text-white">Room name</b>
+                                <th style="width: 7%;">
+                                    <b class = "text-white">Room</b>
                                 </th>
                                 <th style="width: 15%;">
                                     <b class = "text-white">Start time <i class="fas fa-sort" id="rl-start"></i></b>
@@ -199,10 +196,10 @@
                                 <th style="width: 15%;">
                                     <b class = "text-white">End time <i class="fas fa-sort" id="rl-end"></i></b>
                                 </th>
-                                <th style="width: 10%;">
+                                <th style="width:20%;">
                                     <b class = "text-white">Note</b>
                                 </th>
-                                <th style="width: 1%;"><b class = "text-white">Operation</b></th>
+                                <th style="width: 10%;"><b class = "text-white">Action</b></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -210,10 +207,9 @@
                                 <tr>
                                     <td>{{$event->id}}</td>
                                     <td text-align:left>{{$event->name}}</td>
+                                    <td>{{$rooms->find($event->room_id)->name}}</td>
                                     <td>{{$event->starting_time}}</td>
                                     <td>{{$event->ending_time}}</td>
-                                    <td>{{$event->description}}</td>
-                                    <td>{{$event->file}}</td>
                                     <td>{{$event->note}}</td>
                                     <td style=" color: #6d9886; font-size: 18px;">
                                         <a data-toggle="tooltip" title="View" href="{{ route('events.eventDetails', $event->id) }}">
@@ -231,16 +227,59 @@
         </div>
     </div>
 
+    <script>
+        // num là để chọn chiều lọc data
+        var num = 1;
+        // sort data
+        // sort cho dạng string
+        function sort_row_string(col, table_name) {
+            var table, rows, switching, i, x, y, shouldSwitch;
+            table = document.getElementById(table_name);
+            switching = true;
+            num *= -1;
+            while (switching) {
+
+                switching = false;
+                rows = table.rows;
+
+                for (i = 1; i < (rows.length - 1); i++) {
+
+                    shouldSwitch = false;
+
+                    x = rows[i].getElementsByTagName("TD")[col];
+                    y = rows[i + 1].getElementsByTagName("TD")[col];
+
+                    if (num == -1) {
+                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    } else {
+                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                }
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                }
+            }
+        }
+
+    </script>
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="/js/main.js"></script>
     <script type="text/javascript">
         // phần sort các trường lần lượt là start time , end time
         document.getElementById('rl-start').addEventListener("click", function(){
-            sort_row_string("4", "dtOrderExample");
+            sort_row_string("3", "dtOrderExample");
         });
         document.getElementById('rl-end').addEventListener("click", function(){
-            sort_row_string("5", "dtOrderExample");
+            sort_row_string("4", "dtOrderExample");
         });
         // thêm class active khi chọn thẻ li
         $(document).ready(function () {
