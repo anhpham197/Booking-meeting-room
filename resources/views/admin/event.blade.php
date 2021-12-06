@@ -173,46 +173,46 @@
                 @method('PUT')
                 @csrf
                 <div class="card">
-                    <div class="card-header text-center uppercase text-xl font-semibold">EVENT MANAGEMENT
+                    <div class="card-header text-center uppercase text-xl font-semibold">EVENT INFORMATION
                     </div>
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="usernameBooking" class="font-semibold">Full name <span class="text-red-600">*</span></label>
-                            <input type="text" class="form-control" name="usernameBooking" id="usernameBooking" aria-describedby="usernameBookingHid" required readonly value="{{ Auth::user()->name }}">
+                            <label for="usernameBooking" class="font-semibold">Full name</label>
+                            <input type="text" class="form-control" name="usernameBooking" id="usernameBooking" aria-describedby="usernameBookingHid" readonly value="{{ Auth::user()->name }}">
                         </div>
 
                         <div class="form-group">
-                            <label for="telephoneBooking" class="font-semibold">Phone <span class="text-red-600">*</span></label>
-                            <input type="tel" class="form-control" name="telephoneBooking" id="telephoneBooking" aria-describedby="telephoneBookingHid" required value="{{ Auth::user()->phone }}">
+                            <label for="telephoneBooking" class="font-semibold">Phone</label>
+                            <input type="tel" class="form-control" name="telephoneBooking" id="telephoneBooking" aria-describedby="telephoneBookingHid" readonly value="{{ Auth::user()->phone }}">
                         </div>
 
                         <div class="form-group">
-                            <label for="emailBooking" class="font-semibold">Email <span class="text-red-600">*</span></label>
-                            <input type="email" class="form-control" name="emailBooking" id="emailBooking" aria-describedby="emailBookingHid" value="{{ Auth::user()->email }}" required>
+                            <label for="emailBooking" class="font-semibold">Email</label>
+                            <input type="email" class="form-control" name="emailBooking" id="emailBooking" aria-describedby="emailBookingHid" value="{{ Auth::user()->email }}" readonly>
                         </div>
 
                         <div class="form-group">
-                            <label for="title" class="font-semibold">Meeting name <span class="text-red-600">*</span></label>
-                            <input type="text" class="form-control" name="title" id="title" value="{{ $event->name }}" required>
+                            <label for="title" class="font-semibold">Meeting name</label>
+                            <input type="text" class="form-control" name="title" id="title" value="{{ $event->name }}" readonly>
                         </div>
 
                         <div class="form-group">
                             <div class="row">
                                 <div class="col">
-                                    <label for="booking_date_start" class="font-semibold">Starting time <span class="text-red-600">*</span></label>
-                                    <input type="datetime-local" min="{{ $minDate }}" class="form-control" name="starting_time" id="starting_time" value="{{ date('Y-m-d\TH:i', strtotime($event->starting_time)) }}" required>
+                                    <label for="booking_date_start" class="font-semibold">Starting time</label>
+                                    <input type="datetime-local" min="{{ $minDate }}" class="form-control" name="starting_time" id="starting_time" value="{{ date('Y-m-d\TH:i', strtotime($event->starting_time)) }}" readonly>
                                 </div>
                                 <div class="col">
-                                    <label for="time_start" class="font-semibold">Ending time <span class="text-red-600">*</span></label>
-                                    <input type="datetime-local" min="{{ $minDate }}" class="form-control" name="ending_time" id="ending_time" value="{{ date('Y-m-d\TH:i', strtotime($event->ending_time)) }}" required>
+                                    <label for="time_start" class="font-semibold">Ending time</label>
+                                    <input type="datetime-local" min="{{ $minDate }}" class="form-control" name="ending_time" id="ending_time" value="{{ date('Y-m-d\TH:i', strtotime($event->ending_time)) }}" readonly>
                                 </div>
                             </div>
                         </div>
 
 
                         <div class="form-group">
-                            <label for="roomId" class="font-semibold">Room name <span class="text-red-600">*</span></label>
-                            <select name="roomId" class="form-control" id="roomId" required>
+                            <label for="roomId" class="font-semibold">Room name</label>
+                            <select name="roomId" class="form-control" id="roomId" readonly>
                                 @foreach ($rooms as $room)
                                     <option value="{{ $room->id }}" @if ($event->room_id == $room->id)
                                         selected
@@ -222,8 +222,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="email" class="font-semibold">Attendees' email <span class="text-red-600">*</span></label>
-                            <select class="form-control email" multiple="multiple" style="height: 40px" name="emails[]" required>
+                            <label for="email" class="font-semibold">Attendees' email</label>
+                            <select class="form-control email" multiple="multiple" style="height: 40px" name="emails[]" readonly>
                                 @foreach ($users as $user)
                                     <option value="{{ $user->id }}" @foreach ($event->users as $userJoin)
                                         @if ($userJoin->id == $user->id)
@@ -236,17 +236,17 @@
 
                         <div class="form-group">
                             <label for="textarea" class="font-semibold">Meeting agenda</label>
-                            <textarea id="textarea1" name="description" class="form-control" rows="5"></textarea>
+                            <textarea id="textarea1" name="description" class="form-control" rows="5" readonly></textarea>
                         </div>
 
                         <div class="form-group">
                             <label for="fileupload" class="font-semibold">Attached file</label>
-                            <input type="file" name="fileupload" >
+                            <input type="file" name="fileupload" readonly>
                         </div>
 
                         <div class="form-group">
                             <label for="textarea" class="font-semibold">Note for us</label>
-                            <textarea id="textarea2" name="note" class="form-control" rows="5" placeholder="Let us know if you need anything..."></textarea>
+                            <textarea id="textarea2" name="note" class="form-control" rows="5" placeholder="Let us know if you need anything..." readonly></textarea>
                         </div>
                     </div>
                 </div>

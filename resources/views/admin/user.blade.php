@@ -175,7 +175,7 @@
                 @csrf
 
                 <div class="card">
-                    <div class="card-header text-center uppercase text-xl font-semibold">Personal information</div>
+                    <div class="card-header text-center uppercase text-xl font-semibold">ACCOUNT INFORMATION</div>
                     <div class="card-body">
                         @if (session()->has('msgUpdateSuccess'))
                             <div class="flex justify-center items-center text-green-700"

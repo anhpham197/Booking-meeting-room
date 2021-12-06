@@ -32,7 +32,9 @@ class EventsController extends Controller
     {
         $user = Auth::user();
         $events = $user->events;
+        //dd(this->paginate($events));
         $data = $this->paginate($events)->withPath('/event/view');
+        //dd($data);
         return view('events.index', [
             'events' => $data
         ]);
@@ -84,7 +86,7 @@ class EventsController extends Controller
                 $file->move($destinationPath, $fileName);
                 $data->file = $fileName;
             } else {
-                // dd('Request Has No File');
+                //dd('Request Has No File');
             }
             $data->name = $request->title;
             $data->starting_time = $request->starting_time;
@@ -93,8 +95,10 @@ class EventsController extends Controller
             $data->description = $request->description;
             $data->note = $request->note;
             $data->save();
+            //dd($request->emails.push(Auth::id()));
+            $users = User::query()->whereIn('id', collect($request->emails)->push(Auth::id()))->get();
 
-            $users = User::query()->whereIn('id', $request->emails)->get();
+            //dd($users);
             foreach ($users as $user) {
                 $user->events()->attach($data->id);
             }

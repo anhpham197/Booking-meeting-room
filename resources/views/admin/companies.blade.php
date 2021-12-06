@@ -167,6 +167,7 @@
             </nav>
 
             <div class="admin-content-body">
+                <div class="card-header text-center uppercase text-xl font-semibold">COMPANIES MANAGEMENT</div>
                 <div class="relative flex w-full flex-wrap items-stretch py-3">
                     <span
                         class="z-10 h-full leading-snug font-normal absolutetext-center text-gray-400 absolute bg-transparent rounded items-center justify-center pl-3 py-2">

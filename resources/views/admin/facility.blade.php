@@ -173,9 +173,7 @@
                 @method('PUT')
                 @csrf
                 <div class="card">
-                    <div class="card-header text-center">
-                        <b>FACILITES MANAGEMENT</b>
-                    </div>
+                    <div class="card-header text-center uppercase text-xl font-semibold">FACILITY INFORMATION</div>
                     <div class="card-body" style="height: 415px;">
                         <div class="form-group">
                             <label for="name" class="font-semibold">Facility name</label>

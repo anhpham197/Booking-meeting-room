@@ -174,7 +174,7 @@
                 @csrf
                 <div class="card">
                     <div class="card-header text-center">
-                        <b>ROOM MANAGEMENT</b>
+                        <b>ROOM INFORMATION</b>
                     </div>
                     <div class="card-body" style="height: 415px;">
                         <div class="form-group">

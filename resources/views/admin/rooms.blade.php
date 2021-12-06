@@ -167,7 +167,7 @@
             </nav>
 
             <div class="admin-content-body">
-
+                <div class="card-header text-center uppercase text-xl font-semibold">ROOMS MANAGEMENT</div>
                 <div class="form-group d-flex justify-content-between">
 
                     <span

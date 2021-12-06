@@ -129,7 +129,6 @@
                 <li>
                     <i class="fa fa-user" aria-hidden="true"></i>
                     <a href="{{ route('admin.users') }}">Accounts</a>
-
                 </li>
                 <li>
                     <i class="fas fa-building"></i>
@@ -167,7 +166,7 @@
             </nav>
 
             <div class="admin-content-body">
-
+                <div class="card-header text-center uppercase text-xl font-semibold">FACILITES MANAGEMENT</div>
                 <div class="form-group d-flex justify-content-between">
 
                     <span
