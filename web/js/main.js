@@ -6,7 +6,7 @@ $(document).ready(function () {
     });
 });
 // dùng ở file inforRoom.html và roomList.html tại nút chọn tất cả 
-function funct_all(type){
+/* function funct_all(type){
   // type =1 => select all|| type =0 => deselect all
   var a = document.getElementsByClassName('tb-row');
   
@@ -141,7 +141,7 @@ document.getElementById("th-id").addEventListener("click", function(){
 document.getElementById("th-name").addEventListener("click", function(){
     sort_data("1","dtOrderExample");
 });
-
+ */
  
 
 

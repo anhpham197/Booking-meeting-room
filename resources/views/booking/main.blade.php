@@ -8,7 +8,6 @@
                     <button type="button" id="sidebarCollapse" class="cursor-pointer rounded-md">
                         <i class="fas fa-angle-double-left text-2xl font-normal text-gray-400"></i>
                     </button>
-                    {{-- <div class="justify-center">Trang chủ</div> --}}
 {{--                     <div class="relative flex w-full flex-wrap items-stretch">
                         <span
                           class="z-10 h-full leading-snug font-normal absolutetext-center text-gray-400 absolute bg-transparent rounded items-center justify-center pl-3 py-2">

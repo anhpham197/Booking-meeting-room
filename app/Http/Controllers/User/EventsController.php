@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Room;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
 
 class EventsController extends Controller
 {
@@ -27,10 +30,19 @@ class EventsController extends Controller
     /* Hiển thị danh sách các cuộc họp của user */
     public function index()
     {
-        $events = User::find(Auth::user()->id)->events()->get();
+        $user = Auth::user();
+        $events = $user->events;
+        $data = $this->paginate($events)->withPath('/event/view');
         return view('events.index', [
-            'events' => $events
+            'events' => $data
         ]);
+    }
+
+    public function paginate($items, $perPage = 1, $page = null, $options = [])
+    {
+        $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
+        $items = $items instanceof Collection ? $items : Collection::make($items);
+        return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
     }
 
     /* Hiển thị form tạo cuộc họp */
@@ -94,9 +106,15 @@ class EventsController extends Controller
     /* Hiển thị form chỉnh sửa cuộc họp */
     public function edit($id)
     {
-        $event = Event::query()->where('id', $id)->first();
+        $event = Event::find($id);
+        $rooms = Room::all();
+        $users = User::query()->where('company_id', Auth::user()->company_id)->get();
+        $minDate = date("Y-m-d\TH:i");
         return view('events.edit', [
-            'event' => $event
+            'event' => $event,
+            'rooms' => $rooms,
+            'users' => $users,
+            'minDate' => $minDate
         ]);
     }
 
@@ -182,7 +200,7 @@ class EventsController extends Controller
 
     public function showRooms()
     {
-        $rooms = Room::paginate(3);
+        $rooms = Room::paginate(2);
         return view('events.rooms', [
             'rooms' => $rooms
         ]);

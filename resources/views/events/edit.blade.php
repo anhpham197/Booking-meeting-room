@@ -17,101 +17,89 @@
 
             <section class="row">
                 <div class="col-12">
-                    <form autocomplete="on" action="{{route('event.update', [$event->id])}}" method="POST" enctype="multipart/form-data">
+                    <form autocomplete="on" action="{{route('event.store', ['id' => Auth::user()->id])}}"  method="POST" enctype="multipart/form-data">
                         @method('PUT')
                         @csrf
 
                         <div class="card">
-                            <div class="card-header text-center">
-                                <b>Booking a meeting room</b>
+                            <div class="card-header text-center uppercase text-xl font-semibold">BOOKING FORM
                             </div>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="usernameBooking">Họ tên người đặt</label>
+                                    <label for="usernameBooking" class="font-semibold">Full name <span class="text-red-600">*</span></label>
                                     <input type="text" class="form-control" name="usernameBooking" id="usernameBooking" aria-describedby="usernameBookingHid" required readonly value="{{ Auth::user()->name }}">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="telephoneBooking">Số điện thoại</label>
+                                    <label for="telephoneBooking" class="font-semibold">Phone <span class="text-red-600">*</span></label>
                                     <input type="tel" class="form-control" name="telephoneBooking" id="telephoneBooking" aria-describedby="telephoneBookingHid" required value="{{ Auth::user()->phone }}">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="emailBooking">Email</label>
+                                    <label for="emailBooking" class="font-semibold">Email <span class="text-red-600">*</span></label>
                                     <input type="email" class="form-control" name="emailBooking" id="emailBooking" aria-describedby="emailBookingHid" value="{{ Auth::user()->email }}" required>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="title">Tiêu đề Cuộc họp <span class="text-red-600">*</span></label>
-                                    <input type="text" class="form-control" name="title" id="title" aria-describedby="titleHid" value="{{ $event->title }}" required>
+                                    <label for="title" class="font-semibold">Meeting name <span class="text-red-600">*</span></label>
+                                    <input type="text" class="form-control" name="title" id="title" value="{{ $event->name }}" required>
                                 </div>
 
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col">
-                                            <label for="booking_date_start">Ngày bắt đầu</label>
-                                            <input type="date" class="form-control" name="booking_date_start" id="booking_date_start" value="{{ $event->start_day->format('Y-m-d') }}">
+                                            <label for="booking_date_start" class="font-semibold">Starting time <span class="text-red-600">*</span></label>
+                                            <input type="datetime-local" min="{{ $minDate }}" class="form-control" name="starting_time" id="starting_time" value="{{ date('Y-m-d\TH:i', strtotime($event->starting_time)) }}" required>
                                         </div>
                                         <div class="col">
-                                            <label for="time_start">Thời gian bắt đầu</label>
-                                            <input type="time" class="form-control" name="time_start" id="time_start" value="{{ $event->start_time }}">
+                                            <label for="time_start" class="font-semibold">Ending time <span class="text-red-600">*</span></label>
+                                            <input type="datetime-local" min="{{ $minDate }}" class="form-control" name="ending_time" id="ending_time" value="{{ date('Y-m-d\TH:i', strtotime($event->ending_time)) }}" required>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col">
-                                            <label for="booking_date_end">Ngày kết thúc</label>
-                                            <input type="date" class="form-control" name="booking_date_end" id="booking_date_end" value="{{$event->end_day->format('Y-m-d') }}">
-                                        </div>
-                                        <div class="col">
-                                            <label for="time_end">Thời gian kết thúc</label>
-                                            <input type="time" class="form-control" name="time_end" id="time_end" value="{{ $event->end_time }}">
-                                        </div>
-                                    </div>
-                                </div>
 
                                 <div class="form-group">
-                                    <label for="roomId">Tên phòng</label>
-                                    <select name="roomId" id="" class="form-control" id="roomId" value="{{ $event->room_id }}">
+                                    <label for="roomId" class="font-semibold">Room name <span class="text-red-600">*</span></label>
+                                    <select name="roomId" class="form-control" id="roomId" required>
                                         @foreach ($rooms as $room)
-                                            <option value="{{ $room->id }}">{{ $room->name }}</option>
+                                            <option value="{{ $room->id }}" @if ($event->room_id == $room->id)
+                                                selected
+                                            @endif>{{ $room->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="email">Email người tham gia</label>
-                                    <select class="form-control email" multiple="multiple" style="height: 40px" name="emails[]" value="{{ $event->user_id }}" required>
+                                    <label for="email" class="font-semibold">Attendees' email <span class="text-red-600">*</span></label>
+                                    <select class="form-control email" multiple="multiple" style="height: 40px" name="emails[]" required>
                                         @foreach ($users as $user)
-                                            <option value="{{ $user->id }}">{{ $user->email }}</option>
+                                            <option value="{{ $user->id }}" @foreach ($event->users as $userJoin)
+                                                @if ($userJoin->id == $user->id)
+                                                    selected
+                                                @endif
+                                            @endforeach>{{ $user->email }}</option>
                                         @endforeach
                                     </select>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="textarea">Nội dung cuộc họp</label>
-                                    <textarea id="textarea1" name="description" class="form-control" rows="5" value="{{ $event->description }}"></textarea>
+                                    <label for="textarea" class="font-semibold">Meeting agenda</label>
+                                    <textarea id="textarea1" name="description" class="form-control" rows="5"></textarea>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="fileupload">Tệp trước đó</label> <br>
-                                    {{$event->file}}
+                                    <label for="fileupload" class="font-semibold">Attached file</label>
+                                    <input type="file" name="fileupload" >
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="fileupload">Đính kèm tệp</label>
-                                    <input type = "file" name = "fileupload" value="{{ $event->file }}">
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="textarea">Ghi chú</label>
-                                    <textarea id="textarea2" name="note" class="form-control" rows="5" value="{{ $event->note }}"></textarea>
+                                    <label for="textarea" class="font-semibold">Note for us</label>
+                                    <textarea id="textarea2" name="note" class="form-control" rows="5" placeholder="Let us know if you need anything..."></textarea>
                                 </div>
                             </div>
                             <div class="card-footer" style="text-align: center;">
-                                <button type="submit" class="btn btn-success">Xác nhận</button>
+                                <button type="submit" class="btn btn-primary">BOOKING</button>
                             </div>
                         </div>
                     </form>
@@ -119,19 +107,10 @@
             </section>
         </div>
     </div>
-    {{-- </main> --}}
-
-
-    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script> --}}
     <script>
-        jQuery(document).ready(function() {
-            $('#company-select').select2({
-                tags: true
-            });
+        $('.email').select2({
+            placeholder: "  Please enter attendees' email",
+            allowClear: true,
         });
     </script>
-{{-- </body>
-</html> --}}
 @endsection

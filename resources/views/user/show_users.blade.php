@@ -23,20 +23,17 @@
 
             <div class="text-center py-3 font-semibold text-xl uppercase">{{ Auth::user()->company->name }}</div>
 
-            <div>
-                <table id="dtOrderExample" class="table table-bordered table-hover table-sm" cellspacing="0" width="100%"
-                    style="text-align: center">
+            <div class="px-2 max-w-full overflow-x-auto relative table-responsive">
+                <table id="dtOrderExample" class="table table-hover table-bordered table-sm" cellspacing="0" width="100%">
                     <thead class="table-idea">
                         <tr>
-                            {{-- <th id="th-id" style="line-height: 40px;" class="lg:w-16">
-                                ORD
-                            </th> --}}
-                            <th id="th-name" style="line-height: 40px;" class="lg:w-48 font-semibold uppercase">
+
+                            <th id="th-name" class="lg:w-48 font-semibold uppercase">
                                 FULL NAME
                             </th>
-                            <th id="th-mail" style="line-height: 40px;" class="lg:w-52 font-semibold uppercase">
+                            <th id="th-mail" class="lg:w-52 font-semibold uppercase">
                                 MAIL
-                            <th style="line-height: 40px;" class="lg:w-32 font-semibold uppercase">
+                            <th class="lg:w-32 font-semibold uppercase">
                                 PHONE
                             </th>
                         </tr>
@@ -54,7 +51,7 @@
                     </tbody>
                 </table>
 
-                {{ $users->links() }}
+                <div>{{ $users->links() }}</div>
 
                 @foreach ($users as $user)
                     <div class="modal fade" id="modal-{{ $user->id }}" tabindex="-1" role="dialog">

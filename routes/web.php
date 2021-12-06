@@ -49,7 +49,6 @@ Route::group(['middleware' => 'user'], function () {
     /* Route::delete('rooms/destroy', 'RoomsController@massDestroy')->name('rooms.massDestroy'); */
     Route::resource('rooms', 'RoomsController');
 
-    Route::resource('events', 'App\Http\Controllers\User\EventsController');
     Route::get('/event/view', [EventsController::class, 'index'])->name('event.view');
     Route::get('/event/{id}/create', [EventsController::class, 'create'])->name('event.create');
     Route::get('/event/{id}/edit', [EventsController::class, 'edit'])->name('event.edit');
@@ -89,4 +88,5 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('/admin/room', [AdminController::class, 'rooms'])->name('admin.rooms');
     Route::get('/admin/room/{id}/show', [AdminController::class, 'roomDetails'])->name('rooms.roomDetails');
     Route::get('/admin/room/{id}/delete', [AdminController::class, 'deleteRoom'])->name('rooms.delete');
+    Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
 });
