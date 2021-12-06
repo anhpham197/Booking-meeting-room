@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>KATH</title>
+    <title>Room View</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -149,7 +150,8 @@
             </ul>
         </nav>
 
-        <div id="content" style="min-height: 100vh">
+        <div id="content">
+
             <nav class="navbar-expand-lg navbar-light admin-content-header flex justify-between items-center">
                 <button type="button" id="sidebarCollapse" class="cursor-pointer rounded-md">
                     <i class="fas fa-angle-double-left text-2xl"></i>
@@ -164,91 +166,54 @@
                     </form>
                 </div>
             </nav>
-
-            <div class="admin-content-body">
-                <div class="relative flex w-full flex-wrap items-stretch py-3">
-                    <span
-                        class="z-10 h-full leading-snug font-normal absolutetext-center text-gray-400 absolute bg-transparent rounded items-center justify-center pl-3 py-2">
-                        <i class="fas fa-search"></i>
-                    </span>
-                    <input type="search" id="search" name="search" class="form-input placeholder-gray-400 w-72 pl-10"
-                        placeholder="Search..."
-                        style="font-family: 'Font Awesome 5 Free', 'system-ui'; border: 1px solid #4f4f4f">
+            <a class="btn btn-default" href="{{ route('admin.rooms') }}">
+                Back
+            </a>
+            <form autocomplete="on" action="" method="post">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <b>ROOM MANAGEMENT</b>
+                    </div>
+                    <div class="card-body" style="height: 415px;">
+                        <div class="form-group">
+                            <label for="room">Room name</label>
+                            <input type="text" class="form-control" name="room" id="room" aria-describedby="roomHid" placeholder="" value="{{ $room->name }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="capacity">Capacity (people)</label>
+                            <input type="number" class="form-control" name="capacity" id="capacity" aria-describedby="capacityHid" placeholder="" value="{{ $room->capacity }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="area">Area</label>
+                            <input type="number" class="form-control" name="area" id="area" value="{{ $room->area }}">
+                        </div>
+                        <div class="form-group d-flex justify-content-between">
+                            <div >
+                                <label for="tt">Status</label>
+                                <select style="width: 200px; height: 30px ;text-align: center;" name="tt" id="" required>
+                                    <option value="active">Active</option>
+                                    <option value="reparing">Reparing</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="ttb">Equipment</label>
+                                <select style="width: 400px ; height: 30px; text-align: center;" name="ttb" id="" required>
+                                    <option value="chair">Chair</option>
+                                    <option value="table">Table</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer" style="text-align: center;">
+                        <button type="button" class="btn btn-primary" style="height: 40px">Add</button>
+                    </div>
                 </div>
-
-                @yield('data-table')
-                <div>
-                    <table class="table table-bordered table-hover" id="dtOrderExample">
-                        <thead  >
-                            <tr>
-                                <th style="width: 3%;">
-                                    <b class = "text-white">ID</b>
-                                </th>
-                                <th style="width: 15%;">
-                                    <b class = "text-white">Event name</b>
-                                </th>
-                                <th style="width: 15%;">
-                                    <b class = "text-white">Host</b>
-                                </th>
-                                <th style="width: 17%;">
-                                    <b class = "text-white">Room name</b>
-                                </th>
-                                <th style="width: 15%;">
-                                    <b class = "text-white">Start time <i class="fas fa-sort" id="rl-start"></i></b>
-                                </th>
-                                <th style="width: 15%;">
-                                    <b class = "text-white">End time <i class="fas fa-sort" id="rl-end"></i></b>
-                                </th>
-                                <th style="width: 10%;">
-                                    <b class = "text-white">Note</b>
-                                </th>
-                                <th style="width: 1%;"><b class = "text-white">Operation</b></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($events as $key => $event)
-                                <tr>
-                                    <td>{{$event->id}}</td>
-                                    <td text-align:left>{{$event->name}}</td>
-                                    <td>{{$event->starting_time}}</td>
-                                    <td>{{$event->ending_time}}</td>
-                                    <td>{{$event->description}}</td>
-                                    <td>{{$event->file}}</td>
-                                    <td>{{$event->note}}</td>
-                                    <td style=" color: #6d9886; font-size: 18px;">
-                                        <a data-toggle="tooltip" title="View" href="{{ route('events.eventDetails', $event->id) }}">
-                                            <i style="margin-right: 10px;" class="fa fa-eye"></i></a>
-                                        <a data-toggle="tooltip" title="Delete" href="{{ route('events.delete', $event->id) }}">
-                                            <i class="fas fa-trash-alt"></i></a>
-                                    </td>
-                                </tr>
-                            @endforeach
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="/js/main.js"></script>
-    <script type="text/javascript">
-        // phần sort các trường lần lượt là start time , end time
-        document.getElementById('rl-start').addEventListener("click", function(){
-            sort_row_string("4", "dtOrderExample");
-        });
-        document.getElementById('rl-end').addEventListener("click", function(){
-            sort_row_string("5", "dtOrderExample");
-        });
-        // thêm class active khi chọn thẻ li
-        $(document).ready(function () {
-            $('ul > li').click(function (e) {
-                $('ul > li').removeClass('active');
-                $(this).addClass('active');
-            });
-        });
-    </script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="/js/main.js"></script>
 </body>
 </html>

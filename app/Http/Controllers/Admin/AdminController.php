@@ -77,13 +77,32 @@ class AdminController extends Controller
         ]);
     }
 
+    public function create()
+    {
+        //
+        return view('admin.roomView');
+    }
+
+    public function store(Request $request)
+    { }
+
     public function roomDetails($id)
     {
         //
         // dd($id);
         $room = Room::query()->where('id', $id)->first();
         // dd($room);
-        return view('admin.roomDetails', [
+        return view('admin.roomView', [
+            'room' => $room
+        ]);
+    }
+
+    public function roomEdit($id)
+    {
+        //
+        $room = Room::query()->where('id', $id)->first();
+        // dd($room);
+        return view('admin.roomView', [
             'room' => $room
         ]);
     }

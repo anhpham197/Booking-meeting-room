@@ -86,7 +86,8 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('/admin/event/{id}/show', [AdminController::class, 'eventDetails'])->name('events.eventDetails');
     Route::get('/admin/{id}/delete', [AdminController::class, 'deleteEvent'])->name('events.delete');
     Route::get('/admin/room', [AdminController::class, 'rooms'])->name('admin.rooms');
+    Route::get('/admin/room/create', [AdminController::class, 'create'])->name('admin.create');
     Route::get('/admin/room/{id}/show', [AdminController::class, 'roomDetails'])->name('rooms.roomDetails');
+    Route::get('/admin/room/{id}/edit', [AdminController::class, 'roomEdit'])->name('rooms.roomEdit');
     Route::get('/admin/room/{id}/delete', [AdminController::class, 'deleteRoom'])->name('rooms.delete');
-    Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
 });
