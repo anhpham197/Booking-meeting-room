@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class ChartJsController extends Controller
 {
     //
-    public function index()
+    public function userIndex()
     {
         // $months = User::select(
         //     \DB::raw("DATE_FORMAT(created_at,'%M %Y') as months"),

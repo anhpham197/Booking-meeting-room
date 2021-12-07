@@ -99,6 +99,6 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/facility/export', [MyController::class, 'exportFacilities'])->name('exportFacilities');
     Route::get('importExportView', [MyControlle::class, 'importExportView']);
 
-    Route::get('/admin/chart/users', [ChartJsController::class, 'index'])->name('chartjs.index');
-    Route::get('/admin/chart/rooms', [ChartJsController::class, 'roomIndex'])->name('room.chat');
+    Route::get('/admin/chart/users', [ChartJsController::class, 'userIndex'])->name('user.chart');
+    Route::get('/admin/chart/rooms', [ChartJsController::class, 'roomIndex'])->name('room.chart');
 });

@@ -126,6 +126,22 @@
                 KATH
             </div>
             <ul>
+                <li class="multilevel p-0">
+                    <div class="menu_parent py-2 pl-3">
+                        <i class="fas fa-chart-bar"></i>
+                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"
+                            class="dropdown-toggle text-white hover:no-underline pl-3">Statistic</a>
+                    </div>
+
+                    <ul class="collapse subnav pl-8" id="homeSubmenu">
+                        <li>
+                            <a href="{{ route('user.chart') }}" class="text-white hover:no-underline">Users</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('room.chart') }}" class="text-white hover:no-underline">Rooms</a>
+                        </li>
+                    </ul>
+                </li>
                 <li>
                     <i class="fa fa-user" aria-hidden="true"></i>
                     <a href="{{ route('admin.users') }}">Accounts</a>
