@@ -9,11 +9,12 @@
                         <i class="fas fa-angle-double-left text-2xl font-normal text-gray-400"></i>
                     </button>
                 </div>
-                <div class="text-black font-semibold flex gap-2 items-center py-2 px-3 rounded-md" style="background: #D9CAB3">
+                <div class="text-black font-semibold flex gap-2 items-center py-2 px-3 rounded-md"
+                    style="background: #D9CAB3">
                     <i class="far fa-clock text-lg"></i>
                     <span id="ct"></span>
                 </div>
-            </nav>               
+            </nav>
 
             <section class="row">
                 <div class="col-12">
@@ -26,8 +27,8 @@
                             <div class="card-header text-center uppercase text-xl font-semibold">Personal information</div>
                             <div class="card-body">
                                 @if (session()->has('msgUpdateSuccess'))
-                                    <div class="flex justify-center items-center text-green-700"
-                                        id="success-notification" style="display: none">
+                                    <div class="flex justify-center items-center text-green-700" id="success-notification"
+                                        style="display: none">
                                         <div slot="avatar">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none"
                                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
@@ -37,7 +38,8 @@
                                                 <polyline points="22 4 12 14.01 9 11.01"></polyline>
                                             </svg>
                                         </div>
-                                        <div class="font-semibold max-w-full text-lg">{{ session()->get('msgUpdateSuccess') }}</div>
+                                        <div class="font-semibold max-w-full text-lg">
+                                            {{ session()->get('msgUpdateSuccess') }}</div>
                                     </div>
                                 @endif
                                 <div class="text-center"></div>
@@ -70,8 +72,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="date" class="font-semibold">Date of birth</label>
-                                    <input type="date" class="form-control" name="date_of_birth" id="date_of_birth"
-                                        @if (!empty($user->date_of_birth)) value="{{ $user->date_of_birth }}" @endif>
+                                    <input type="date" class="form-control" name="date_of_birth" id="date_of_birth" @if (!empty($user->date_of_birth)) value="{{ $user->date_of_birth }}" @endif>
                                 </div>
                                 <div class="form-group">
                                     <label for="telephone" class="font-semibold">Phone
@@ -119,7 +120,7 @@
     </div>
     <script>
         $('#success-notification').fadeIn('100', function() {
-                $('#success-notification').delay(3000).fadeOut()
-            })
+            $('#success-notification').delay(3000).fadeOut()
+        })
     </script>
 @endsection

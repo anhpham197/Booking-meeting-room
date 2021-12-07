@@ -26,7 +26,7 @@
                 </div>
             </nav>
 
-            <div class="text-center py-3 font-semibold text-xl uppercase">{{ Auth::user()->company->name }}</div>
+            <div class="text-center py-3 font-semibold text-xl uppercase">{{ Auth::user()->company->name }} company</div>
             <div class="px-2 max-w-full overflow-x-auto relative table-responsive scroller">
                 <button class="float-right py-2 px-3 rounded-md text-white font-semibold mb-3" style="background: #1ED760">
                     <i class="far fa-file-excel"></i>                    
