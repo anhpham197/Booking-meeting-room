@@ -82,7 +82,7 @@ class UserController extends Controller
     }
 
     public function showUsers(){
-        $users = User::query()->where('company_id', Auth::user()->company_id)->paginate(2);
+        $users = User::query()->where('company_id', Auth::user()->company_id)->simplePaginate(10);
         return view('user.show_users', [
             'users' => $users
         ]);

@@ -4,7 +4,7 @@
     <div class="wrapper">
         @include('booking.sidebar')
         <div id="content" class="leading-snug">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 70px;">
+            <nav class="navbar navbar-light bg-light flex justify-between" style="height: 70px;">
                 <div class="flex gap-6">
                     <button type="button" id="sidebarCollapse" class="cursor-pointer rounded-md">
                         <i class="fas fa-angle-double-left text-2xl font-normal text-gray-400"></i>
@@ -18,6 +18,11 @@
                             placeholder="Search..."
                             style="font-family: 'Font Awesome 5 Free', 'system-ui'; border: 1px solid #4f4f4f">
                     </div>
+                </div>
+                <div class="text-black font-semibold flex gap-2 items-center py-2 px-3 rounded-md"
+                    style="background: #D9CAB3">
+                    <i class="far fa-clock text-lg"></i>
+                    <span id="ct"></span>
                 </div>
             </nav>
 
@@ -76,8 +81,10 @@
                                             @foreach ($user->events as $event)
                                                 <tr>
                                                     <td>{{ $event->name }}</td>
-                                                    <td>{{ date('d/m/Y H:i', strtotime($event->starting_time)) }}</td>
-                                                    <td>{{ date('d/m/Y H:i', strtotime($event->ending_time)) }}</td>
+                                                    <td>{{ date('H:i', strtotime($event->starting_time)) }} &bull;
+                                                        {{ date('d/m/Y', strtotime($event->starting_time)) }}</td>
+                                                    <td>{{ date('H:i', strtotime($event->ending_time)) }} &bull;
+                                                        {{ date('d/m/Y', strtotime($event->ending_time)) }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>

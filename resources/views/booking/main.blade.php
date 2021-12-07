@@ -3,20 +3,16 @@
     <div class="wrapper">
         @include('booking.sidebar')
         <div id="content">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 70px;" >
+            <nav class="navbar navbar-light bg-light flex justify-between" style="height: 70px;" >
                 <div class="flex gap-6">
                     <button type="button" id="sidebarCollapse" class="cursor-pointer rounded-md">
                         <i class="fas fa-angle-double-left text-2xl font-normal text-gray-400"></i>
                     </button>
-{{--                     <div class="relative flex w-full flex-wrap items-stretch">
-                        <span
-                          class="z-10 h-full leading-snug font-normal absolutetext-center text-gray-400 absolute bg-transparent rounded items-center justify-center pl-3 py-2">
-                          <i class="fas fa-search"></i>
-                        </span>
-                        <input type="search" id="search" name="search" class="form-input placeholder-gray-400 w-72 pl-10" placeholder="Tìm kiếm..."
-                                style="font-family: 'Font Awesome 5 Free', 'system-ui'; border: 1px solid #4f4f4f" >
-                    </div>
-                </div> --}}
+                </div>
+                <div class="text-black font-semibold flex gap-2 items-center py-2 px-3 rounded-md" style="background: #D9CAB3">
+                    <i class="far fa-clock text-lg"></i>
+                    <span id="ct"></span>
+                </div>
             </nav>
 
 
@@ -72,9 +68,13 @@
                             </svg>
                         </div>
 
-                        <div class="shadow w-full rounded-lg bg-white overflow-hidden w-full block p-8">
+                        <div class="shadow rounded-lg bg-white overflow-hidden w-full block p-8">
 
-                            <h2 class="font-bold text-2xl mb-6 text-gray-800 border-b pb-2">Event Details</h2>
+                            <h2 class="font-bold text-2xl mb-6 text-gray-800 border-b pb-2">Meetings</h2>
+
+                            <div id="modal-content">
+
+                            </div>
 
                             <div class="mt-8 text-right">
                                 <button type="button"
@@ -87,7 +87,7 @@
                     </div>
                 </div>
                 <!-- /Modal -->
-            </div>
+            </div>   
         </div>
     </div>
     <script src="{{asset('js/calendar.js')}}"></script>

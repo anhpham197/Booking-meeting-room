@@ -163,7 +163,7 @@ function init() {
     calendarController.getNoOfDays()
     updateMonthAndYearLabel()
 }
- // init calendar
+// init calendar
 init()
 
 // prev and next month button
@@ -197,7 +197,58 @@ nextMonthButton.onclick = function () {
     renderCalendar()
 }
 
-function toggleModal(date) {
+function formatDatetimeInModal(inputDate) {
+    let datetime = new Date(inputDate)
+    let time = datetime.toLocaleTimeString('en-GB', { hour: 'numeric', minute: 'numeric' });
+    let date = datetime.toLocaleDateString('en-GB');
+    return {
+        time,
+        date
+    }
+}
+
+function toggleModal({ date, month, year }) {
+    $('#modal-content').html('')
+    $.ajax({
+        type: 'get',
+        url: '/user/event',
+        data: {
+            date,
+            month: month + 1,
+            year
+        },
+        success: function ({ data }) {
+            let tds = ''
+            for (item of data) {
+                let startingTime = formatDatetimeInModal(item.starting_time)
+                let endingTime = formatDatetimeInModal(item.ending_time)
+                tds += `
+                <tr>
+                    <td>${item.name}</td>
+                    <td>${startingTime.time}</td>
+                    <td>${endingTime.time} &bull; ${endingTime.date}</td>
+                    <td>${item.room}</td>
+                </tr>
+                `
+            }
+            let html = `
+            <table class="table table-bordered table-sm text-center">
+            <thead>
+                <tr>
+                    <th class="font-semibold">Meeting name</th>
+                    <th class="font-semibold">Starting time</th>
+                    <th class="font-semibold">Ending time</th>
+                    <th class="font-semibold">Room</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${tds}
+            </tbody>
+        </table>
+            `
+            $('#modal-content').html(html)
+        }
+    });
     calendarController.showEventModal(date)
     calendarModal.style.display = 'block'
 }
@@ -243,7 +294,7 @@ function renderNoOfDays() {
         }
         html += `
             <div style="width: 14.28%; height: 120px" class="px-4 pt-2 border-r border-b relative">
-                <div onclick="toggleModal(${date})"
+                <div onclick="toggleModal({ date: ${date}, month: ${calendarController.month} , year: ${calendarController.year}})"
                     class="inline-flex w-6 h-6 items-center justify-center cursor-pointer text-center leading-none rounded-full transition ease-in-out duration-100 ${calendarController.isToday(date) ? 'bg-blue-500 text-white' : 'text-gray-700 hover:bg-blue-200'}">${date}</div>
                 <div style="height: 80px;" class="overflow-y-auto mt-1">
                     ${eventHtml}
