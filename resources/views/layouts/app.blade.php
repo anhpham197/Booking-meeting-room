@@ -26,6 +26,9 @@
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
+    <!-- MDBootstrap Datatables  -->
+    <link rel="stylesheet" href="{{ asset('MDB4/css/addons/datatables.min.css') }}">
+
     <!-- Font -->
     <link href="https://fonts.googleapis.com/css2?family=Jacques+Francois+Shadow&family=Londrina+Shadow&display=swap"
         rel="stylesheet">
@@ -41,6 +44,8 @@
     <link rel="stylesheet" href="{{ asset('bootstrap4/css/mdb.min.css') }}">
     <link rel="stylesheet" href="{{ asset('bootstrap4/css/bootstrap.min.css') }}">
     <script src="{{ asset('bootstrap4/js/bootstrap.min.js') }}"></script>
+    <!-- MDBootstrap Datatables  -->
+    <script src="{{ asset('MDB4/js/addons/datatables.min.js') }}"></script>
     {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet"> --}}
     {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">

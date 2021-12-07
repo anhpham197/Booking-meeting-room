@@ -140,7 +140,7 @@
                     <a href="{{ route('admin.events') }}">Meetings</a>
                 </li>
                 <li>
-                    <i class="fas fa-house-damage    "></i>
+                    <i class="fas fa-house-damage"></i>
                     <a href="{{ route('admin.rooms') }}">Rooms</a>
                 </li>
                 <li>

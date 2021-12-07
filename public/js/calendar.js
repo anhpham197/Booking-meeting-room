@@ -137,26 +137,26 @@ function updateMonthAndYearLabel() {
     monthLabel.innerHTML = MONTH_NAMES[calendarController.month]
     yearLabel.innerHTML = calendarController.year
 }
-function disablePrevMonthButton() {
-    prevMonthButton.disabled = true
-    prevMonthButton.classList.add('cursor-not-allowed')
-    prevMonthButton.classList.add('opacity-25')
-}
-function disableNextMonthButton() {
-    nextMonthButton.disabled = true
-    nextMonthButton.classList.add('cursor-not-allowed')
-    nextMonthButton.classList.add('opacity-25')
-}
-function enablePrevMonthButton() {
-    prevMonthButton.disabled = false
-    prevMonthButton.classList.remove('cursor-not-allowed')
-    prevMonthButton.classList.remove('opacity-25')
-}
-function enableNextMonthButton() {
-    nextMonthButton.disabled = false
-    nextMonthButton.classList.remove('cursor-not-allowed')
-    nextMonthButton.classList.remove('opacity-25')
-}
+// function disablePrevMonthButton() {
+//     prevMonthButton.disabled = true
+//     prevMonthButton.classList.add('cursor-not-allowed')
+//     prevMonthButton.classList.add('opacity-25')
+// }
+// function disableNextMonthButton() {
+//     nextMonthButton.disabled = true
+//     nextMonthButton.classList.add('cursor-not-allowed')
+//     nextMonthButton.classList.add('opacity-25')
+// }
+// function enablePrevMonthButton() {
+//     prevMonthButton.disabled = false
+//     prevMonthButton.classList.remove('cursor-not-allowed')
+//     prevMonthButton.classList.remove('opacity-25')
+// }
+// function enableNextMonthButton() {
+//     nextMonthButton.disabled = false
+//     nextMonthButton.classList.remove('cursor-not-allowed')
+//     nextMonthButton.classList.remove('opacity-25')
+// }
 // init function
 function init() {
     calendarController.initDate()
@@ -169,13 +169,14 @@ init()
 // prev and next month button
 prevMonthButton.onclick = function () {
     calendarController.month--
-    if (calendarController.month <= 0) {
-        calendarController.month = 0;
-        disablePrevMonthButton()
-        enableNextMonthButton()
-    } else {
-        enablePrevMonthButton()
-        enableNextMonthButton()
+    if (calendarController.month < 0) {
+        calendarController.year -= 1
+        calendarController.month = 12 + calendarController.month % 12;
+    //     disablePrevMonthButton()
+    //     enableNextMonthButton()
+    // } else {
+    //     enablePrevMonthButton()
+    //     enableNextMonthButton()
     }
     calendarController.getNoOfDays()
     updateMonthAndYearLabel()
@@ -184,13 +185,14 @@ prevMonthButton.onclick = function () {
 
 nextMonthButton.onclick = function () {
     calendarController.month++
-    if (calendarController.month >= 11) {
-        calendarController.month = 11;
-        disableNextMonthButton()
-        enablePrevMonthButton()
-    } else {
-        enableNextMonthButton()
-        enablePrevMonthButton()
+    if (calendarController.month > 11) {
+        calendarController.year += (calendarController.month - (calendarController.month % 12)) / 12;
+        calendarController.month = calendarController.month % 12;
+    //     disableNextMonthButton()
+    //     enablePrevMonthButton()
+    // } else {
+    //     enableNextMonthButton()
+    //     enablePrevMonthButton()
     }
     calendarController.getNoOfDays()
     updateMonthAndYearLabel()

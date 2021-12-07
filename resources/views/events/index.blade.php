@@ -34,26 +34,26 @@
                 <div class="font-semibold max-w-full flex-initial">Xóa thành công</div>
             </div>
 
-            <div class="px-2 max-w-full overflow-x-auto relative table-responsive">
-                <table class="table table-hover table-bordered table-sm" id="dtOrderExample">
+            <div class="px-2 max-w-full overflow-x-auto relative table-responsive scroller">          
+                <table class="table table-hover table-bordered">
                     <thead class="table-idea">
                         <tr>
-                            <th>
+                            <th class="th-sm">
                                 <span style="margin-right: 2px;" class="uppercase font-semibold">Meeting title</span>
                             </th>
-                            <th>
+                            <th class="th-sm">
                                 <span style="margin-right: 2px;" class="uppercase font-semibold">Starting time</span>
                             </th>
-                            <th>
+                            <th class="th-sm">
                                 <span style="margin-right: 2px;" class="uppercase font-semibold">Ending time</span>
                             </th>
-                            <th>
+                            <th class="th-sm">
                                 <span style="margin-right: 2px;" class="uppercase font-semibold">Room</span>
                             </th>
-                            <th>
+                            <th class="th-sm">
                                 <span style="margin-right: 2px;" class="uppercase font-semibold">File</span>
                             </th>
-                            <th class="uppercase font-semibold">
+                            <th class="th-sm">
                                 <span class="uppercase font-semibold">Action</span>
                             </th>
                         </tr>
@@ -96,8 +96,8 @@
                         @endforeach
                     </tbody>
                 </table>
-                <div class="pb-2">{{ $events->links() }}</div>
             </div>
+            {{-- <div class="pb-2">{{ $events->links() }}</div> --}}
         </div>
         {{-- <script>
             let eventsLinks = {!! json_encode($events) !!}

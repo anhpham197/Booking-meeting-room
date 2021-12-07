@@ -18,7 +18,7 @@
 
             <div class="py-3 text-center text-xl font-semibold uppercase">KATH'S MEETING ROOMS</div>
 
-            <div class="px-2 max-w-full overflow-x-auto relative table-responsive">
+            <div class="px-2 max-w-full overflow-x-auto relative table-responsive scroller">
                 <table class="table table-hover table-bordered table-sm" id="dtOrderExample">
                     <thead class="table-idea">
                         <tr>

@@ -28,7 +28,7 @@
 
             <div class="text-center py-3 font-semibold text-xl uppercase">{{ Auth::user()->company->name }}</div>
 
-            <div class="px-2 max-w-full overflow-x-auto relative table-responsive">
+            <div class="px-2 max-w-full overflow-x-auto relative table-responsive scroller">
                 <table id="dtOrderExample" class="table table-hover table-bordered table-sm" cellspacing="0" width="100%">
                     <thead class="table-idea">
                         <tr>

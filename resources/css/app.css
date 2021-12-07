@@ -102,6 +102,13 @@ li > a:hover{
 	top: 0;
 }
 
+.scroller {
+	position: relative;
+	overflow: auto;
+	display: block;
+	height: 500px !important;
+}
+
 tbody tr {
 	background-color: white;
 }
@@ -119,7 +126,6 @@ input[type=search]::-webkit-search-cancel-button {
 }
 
 tbody tr td {
-	filter: contrast(1);
 	font-size: medium;
 }
 
@@ -136,7 +142,7 @@ tbody tr td {
 /* Show users */
 .scroller{
 	position: relative;
-	height: 250px;
+	height: 200px;
 	overflow: auto;
 	display: block;
 }

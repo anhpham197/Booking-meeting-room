@@ -3,7 +3,7 @@
         <img src="{{ asset('img/logo.png') }}" alt="logo" width="60px" height="60px">
     </div>
     <ul id="menu">
-        <li class="p-0"> 
+        <li class="p-0">
             <div class="pl-3 py-2">
                 <i class="fas fa-home"></i>
                 <a href="/booking" aria-expanded="false" class="text-white hover:no-underline flex gap-3">My calendar</a>
@@ -66,6 +66,9 @@
         $(document).ready(function() {
             $('#sidebarCollapse').on('click', function() {
                 $('#sidebar').toggleClass('active');
+                $('table.dataTable').attr('style', '');
+                $('.dataTables_scrollHeadInner').attr('style',
+                    'box-sizing: content-box; padding-right: 17px;')
                 if ($('#sidebarCollapse i').hasClass('fa-angle-double-left')) {
                     $('#sidebarCollapse i').removeClass('fa-angle-double-left');
                     $('#sidebarCollapse i').addClass('fa-angle-double-right');
@@ -80,10 +83,12 @@
             let href = $(this).attr('href');
             if (window.location.href.includes(href)) {
                 $(this).parents('.multilevel').addClass('open');
-                if($(this).parent().parent().parent().hasClass('multilevel')) {
-                    $(this).parent().parent().prev().addClass('menu-active').addClass('border-red-700').removeClass('border-transparent');
+                if ($(this).parent().parent().parent().hasClass('multilevel')) {
+                    $(this).parent().parent().prev().addClass('menu-active').addClass('border-red-700').removeClass(
+                        'border-transparent');
                 } else {
-                    $(this).parent().addClass('menu-active').addClass('border-red-700').removeClass('border-transparent');
+                    $(this).parent().addClass('menu-active').addClass('border-red-700').removeClass(
+                        'border-transparent');
                 }
             }
         });
