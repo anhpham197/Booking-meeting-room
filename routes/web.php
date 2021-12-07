@@ -4,9 +4,10 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\EventsController;
 use App\Http\Controllers\User\HomeController;
+use App\Exports\ExportController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\MyController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,6 +26,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/export', [ExportController::class, 'export'])->name('export');
 
 Route::group(['middleware' => 'user'], function () {
     Route::get('/booking', [HomeController::class, 'show'])->name('show_booking');
@@ -86,4 +88,11 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('/admin/facility/{id}/delete', [AdminController::class, 'deleteFacility'])->name('facilities.delete');
 
     Route::get('/admin/company', [AdminController::class, 'companies'])->name('admin.companies');
+
+    Route::get('admin/event/export', [MyController::class, 'exportEvents'])->name('exportEvents');
+    Route::get('admin/user/export', [MyController::class, 'exportUsers'])->name('exportUsers');
+    Route::get('admin/room/export', [MyController::class, 'exportRooms'])->name('exportRooms');
+    Route::get('admin/company/export', [MyController::class, 'exportCompanies'])->name('exportCompanies');
+    Route::get('admin/facility/export', [MyController::class, 'exportFacilities'])->name('exportFacilities');
+    Route::get('importExportView', [MyControlle::class, 'importExportView']);
 });
