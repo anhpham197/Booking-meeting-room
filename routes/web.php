@@ -8,6 +8,7 @@ use App\Exports\ExportController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MyController;
+use App\Http\Controllers\ChartJsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -97,4 +98,6 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/company/export', [MyController::class, 'exportCompanies'])->name('exportCompanies');
     Route::get('admin/facility/export', [MyController::class, 'exportFacilities'])->name('exportFacilities');
     Route::get('importExportView', [MyControlle::class, 'importExportView']);
+
+    Route::get('/admin/chartjs', [ChartJsController::class, 'index'])->name('chartjs.index');
 });

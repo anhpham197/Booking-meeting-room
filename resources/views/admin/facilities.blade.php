@@ -179,7 +179,7 @@
                     <a style="height: 40px" class="btn btn-default" href="{{ route('facilities.create') }}">
                         ADD NEW
                     </a>
-                    <a class="btn btn-warning" href="{{ route('exportFacilities') }}">Export</a>
+                    {{-- <a class="btn btn-warning" href="{{ route('exportFacilities') }}">Export</a> --}}
                 </div>
 
                 @yield('data-table')

@@ -168,7 +168,7 @@
             <div class="admin-content-body">
                 <div class="card-header text-center uppercase text-xl font-semibold">EVENTS MANAGEMENT</div>
                 <div class="relative flex w-full flex-wrap items-stretch py-3">
-                    <a class="btn btn-warning" href="{{ route('exportEvents') }}">Export</a>
+                    {{-- <a class="btn btn-warning" href="{{ route('exportEvents') }}">Export</a> --}}
                     <span
                         class="z-10 h-full leading-snug font-normal absolutetext-center text-gray-400 absolute bg-transparent rounded items-center justify-center pl-3 py-2">
                         <i class="fas fa-search"></i>
