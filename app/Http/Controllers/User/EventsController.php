@@ -95,8 +95,9 @@ class EventsController extends Controller
             $data->description = $request->description;
             $data->note = $request->note;
             $data->save();
-            //dd($request->emails.push(Auth::id()));
-            $users = User::query()->whereIn('id', collect($request->emails)->push(Auth::id()))->get();
+
+            // $users = User::query()->whereIn('id', collect($request->emails)->push(Auth::id()))->get();
+            $users = User::query()->whereIn('id', $request->emails)->get();
 
             //dd($users);
             foreach ($users as $user) {

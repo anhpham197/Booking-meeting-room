@@ -6,7 +6,7 @@
                 <h6 class="text-uppercase font-weight-bold">About us</h6>
                 <hr class="footer-main-cl mb-4 mt-0 d-inline-block max-auto" style="width: 125px; height: 10px;border-radius: 10px;">
                 <p class="leading-normal">
-                    Sản phẩm giúp đặt phòng nhanh chóng, đảm bản uy tín chất lượng
+                    The product helps to book rooms quickly, ensuring quality reputation
                 </p>
             </div>
             <div class="col-md-2 mx-auto mb-4">
@@ -22,10 +22,10 @@
                 <h6 class="text-uppercase font-weight-bold">Contact</h6>
                 <hr class="footer-main-cl mb-4 mt-0 d-inline-block max-auto" style="width: 125px; height: 10px;border-radius: 10px;">
                 <ul class="list-unstyled">
-                    <li class="my-2"><a href="tel:+84123456789" class="hover:no-underline"><span class="fa fa-phone mr-2"></span>0123456789</a></li>
+                    <li class="my-2"><a href="tel:+84123456789" class="hover:no-underline"><span class="fa fa-phone mr-2"></span>0961 309 175</a></li>
                     <li class="my-2"><a href="https://github.com/anhpham197/Booking-meeting-room.git" class="hover:no-underline" target="_blank"><span class="fab fa-github mr-2"></span>KATH</a></li>
                     <li class="my-2"><a href="mailto:ngocanhpham197@gmail.com" class="hover:no-underline" target="_blank"><span class="fas fa-envelope-square mr-2"></span>support@kath.com</a></li>
-                    <li class="my-2"><a href="https://goo.gl/maps/CuRo6MEppExXCpuh8" class="hover:no-underline" target="_blank"><span class="fas fa-home mr-1"></span>144 Xuân Thủy, Cầu Giấy, Hà Nội</a></li>
+                    <li class="my-2"><a href="https://goo.gl/maps/CuRo6MEppExXCpuh8" class="hover:no-underline" target="_blank"><span class="fas fa-home mr-1"></span>144 Xuan Thuy, Cau Giay, Hanoi</a></li>
                 </ul>
             </div>
         </div>
