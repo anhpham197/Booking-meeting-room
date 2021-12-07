@@ -176,9 +176,10 @@
                     <input type="search" id="search" name="search" class="form-input placeholder-gray-400 w-72 pl-10"
                         placeholder="Search..."
                         style="font-family: 'Font Awesome 5 Free', 'system-ui'; border: 1px solid #4f4f4f">
-                        <a style="height: 40px" class="btn btn-default" href="{{ route('facilities.create') }}">
-                            ADD NEW
-                        </a>
+                    <a style="height: 40px" class="btn btn-default" href="{{ route('facilities.create') }}">
+                        ADD NEW
+                    </a>
+                    {{-- <a class="btn btn-warning" href="{{ route('exportFacilities') }}">Export</a> --}}
                 </div>
 
                 @yield('data-table')

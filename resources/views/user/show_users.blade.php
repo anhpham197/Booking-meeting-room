@@ -29,8 +29,8 @@
             <div class="text-center py-3 font-semibold text-xl uppercase">{{ Auth::user()->company->name }} company</div>
             <div class="px-2 max-w-full overflow-x-auto relative table-responsive scroller">
                 <button class="float-right py-2 px-3 rounded-md text-white font-semibold mb-3" style="background: #1ED760">
-                    <i class="far fa-file-excel"></i>                    
-                    Export CSV
+                    <i class="far fa-file-excel"></i>
+                    <a href="{{ route('kath.export')}}">Export CSV</a>
                 </button>
                 <table id="dtOrderExample" class="table table-hover table-bordered table-sm" cellspacing="0" width="100%">
                     <thead class="table-idea">

@@ -41,7 +41,8 @@ class Event extends Model
         return $this->belongsTo(Room::class);
     }
 
-    public function users() {
+    public function users()
+    {
         return $this->belongsToMany(User::class);
     }
 

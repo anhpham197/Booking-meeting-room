@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Symfony\Component\Console\Helper\Helper;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\UsersExport;
 
 class UserController extends Controller
 {
@@ -45,9 +47,9 @@ class UserController extends Controller
         $existedPhone = User::query()->where('phone', $request->phone);
 
         if (empty($existedPhone) != null) {
-            return redirect()->route('kath.edit', Auth::user()->id)->with('msgPhone', 'Số điện thoại đã tồn tại ! ');
+            return redirect()->route('kath.edit', Auth::user()->id)->with('msgPhone', 'Phone number already exists ! ');
         } else if (empty($existedEmail) != null) {
-            return redirect()->route('kath.edit', Auth::user()->id)->with('msgEmail', 'Email đã tồn tại ! ');
+            return redirect()->route('kath.edit', Auth::user()->id)->with('msgEmail', 'Email already exists ! ');
         } else {
             $user = User::where('id', $id)->update([
                 'name' => $request->name,
@@ -56,7 +58,7 @@ class UserController extends Controller
                 'email' => $request->email,
                 'date_of_birth' => $request->date_of_birth
             ]);
-            return redirect()->route('kath.edit', Auth::user()->id)->with('msgUpdateSuccess', "Cập nhập thông tin thành công !");
+            return redirect()->route('kath.edit', Auth::user()->id)->with('msgUpdateSuccess', "Successfully updated information !");
         }
     }
 
@@ -77,7 +79,7 @@ class UserController extends Controller
             ]);
             return redirect()->route('home');
         } else {
-            return Redirect::back()->with('message', 'Vui lòng xác nhận lại mật khẩu');
+            return Redirect::back()->with('message', 'Please confirm the password again');
         }
     }
 
@@ -97,5 +99,10 @@ class UserController extends Controller
             ])->get();
             return response()->json($users, 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
         }
+    }
+
+    public function exportUsers()
+    {
+        return Excel::download(new UsersExport, 'users.xlsx');
     }
 }

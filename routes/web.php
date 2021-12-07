@@ -4,9 +4,11 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\EventsController;
 use App\Http\Controllers\User\HomeController;
+use App\Exports\ExportController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\MyController;
+use App\Http\Controllers\ChartJsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -56,6 +58,9 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('/kath/users', [UserController::class, 'showUsers'])->name('kath.showUsers');
     Route::get('kath/users/search', [UserController::class, 'searchUsers'])->name('kath.searchUsers');
     Route::get('kath/rooms', [EventsController::class, 'showRooms'])->name('kath.showRooms');
+
+    Route::get('/event/export', [EventsController::class, 'exportEvents'])->name('event.export');
+    Route::get('/kath/export', [UserController::class, 'exportUsers'])->name('kath.export');
 });
 
 
@@ -86,4 +91,13 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('/admin/facility/{id}/delete', [AdminController::class, 'deleteFacility'])->name('facilities.delete');
 
     Route::get('/admin/company', [AdminController::class, 'companies'])->name('admin.companies');
+
+    Route::get('admin/event/export', [MyController::class, 'exportEvents'])->name('exportEvents');
+    Route::get('admin/user/export', [MyController::class, 'exportUsers'])->name('exportUsers');
+    Route::get('admin/room/export', [MyController::class, 'exportRooms'])->name('exportRooms');
+    Route::get('admin/company/export', [MyController::class, 'exportCompanies'])->name('exportCompanies');
+    Route::get('admin/facility/export', [MyController::class, 'exportFacilities'])->name('exportFacilities');
+    Route::get('importExportView', [MyControlle::class, 'importExportView']);
+
+    Route::get('/admin/chartjs', [ChartJsController::class, 'index'])->name('chartjs.index');
 });
