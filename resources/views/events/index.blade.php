@@ -37,7 +37,7 @@
             <div class="px-2 max-w-full overflow-x-auto relative table-responsive scroller">
                 <button class="float-right py-2 px-3 rounded-md text-white font-semibold mb-3" style="background: #1ED760">
                     <i class="far fa-file-excel"></i>
-                    <a href="{{ route('event.export')}}">Export CSV</a>
+                    <a href="{{ route('event.export')}}" class="text-white">Export</a>
                 </button>
                 <table class="table table-hover table-bordered">
                     <thead class="table-idea">
@@ -83,7 +83,7 @@
                                         @endif
                                     </div>
                                 </td>
-                                <td>@if ($event->host->id == Auth::user()->id)
+                                <td>@if ($event->user_id == Auth::user()->id)
                                     <span class="bg-red-400 rounded-md text-white py-1 px-2 font-semibold">Host</span>
                                 @else
                                     <span class="bg-gray-400 rounded-md text-white py-1 px-2 font-semibold">Member</span>

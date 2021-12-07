@@ -28,7 +28,6 @@ class AdminController extends Controller
     {
         //
         $user = User::query()->where('id', $id)->first();
-        // dd($event);
         return view('admin.user', [
             'user' => $user
         ]);
@@ -39,7 +38,7 @@ class AdminController extends Controller
         //
         $user = User::find($id);
         $user->delete();
-        return redirect()->back();
+        return redirect()->route('admin.users');
     }
 
     public function userEdit($id)
@@ -64,30 +63,11 @@ class AdminController extends Controller
 
     public function eventDetails($id)
     {
-        //
         $event = Event::find($id);
-        $rooms = Room::all();
-        $users = User::query()->where('company_id', Auth::user()->company_id)->get();
-        $minDate = date("Y-m-d\TH:i");
+        $users = $event->users;
         return view('admin.event', [
             'event' => $event,
-            'rooms' => $rooms,
-            'users' => $users,
-            'minDate' => $minDate
-        ]);
-    }
-
-    public function eventEdit($id)
-    {
-        $event = Event::find($id);
-        $rooms = Room::all();
-        $users = User::query()->where('company_id', Auth::user()->company_id)->get();
-        $minDate = date("Y-m-d\TH:i");
-        return view('admin.event', [
-            'event' => $event,
-            'rooms' => $rooms,
-            'users' => $users,
-            'minDate' => $minDate
+            'users' => $users
         ]);
     }
 
@@ -97,13 +77,12 @@ class AdminController extends Controller
 
         $event = event::find($id);
         $event->delete();
-        return redirect()->back();
+        return redirect()->route('admin.events');
     }
 
     public function rooms()
     {
-        $rooms = Room::paginate(10);
-        //dd($rooms);
+        $rooms = Room::all();
         return view('admin.rooms', [
             'rooms' => $rooms
         ]);
@@ -111,7 +90,6 @@ class AdminController extends Controller
 
     public function createRoom()
     {
-        //
         $room = Room::first();
         $facilities = Facility::all();
         // dd($facilities);
@@ -133,14 +111,24 @@ class AdminController extends Controller
         foreach ($facilities as $facilitiy) {
             $facilitiy->room()->attach($data->id);
         }
-        return redirect()->back();
+        return redirect()->route('admin.rooms');
+    }
+
+    public function updateRoom(Request $request, $id) {
+        $room = Room::find($id);
+        $room->update([
+            'name' => $request->name,
+            'capacity' => $request->capacity,
+            'area' => $request->area,
+            'status' => $request->status
+        ]);
+        $room->facilities()->sync($request->facilities);
+        return redirect()->route('admin.rooms');
     }
 
     public function roomEdit($id)
     {
-        //
         $room = Room::query()->where('id', $id)->first();
-        // dd($room);
         $facilities = Facility::all();
         return view('admin.room', [
             'room' => $room,
@@ -150,15 +138,14 @@ class AdminController extends Controller
 
     public function deleteRoom($id)
     {
-        //
-        $room = room::find($id);
+        $room = Room::find($id);
         $room->delete();
-        return redirect()->back();
+        return redirect()->route('admin.rooms');
     }
 
     public function facilities()
     {
-        $facilities = Facility::paginate(10);
+        $facilities = Facility::all();
         //dd($facilities);
         return view('admin.facilities', [
             'facilities' => $facilities
@@ -167,32 +154,19 @@ class AdminController extends Controller
 
     public function createFacility()
     {
-        //
-        $facility = Facility::first();
-        // dd($facilities);
-        return view('admin.facility', [
-            'facility' => $facility,
-        ]);
+        return view('admin.facility');
     }
 
     public function storeFacility(Request $request)
     {
-        $data = new Facility();
-        $data->name = $request->name;
-        $data->save();
-
-        return redirect()->back();
+        foreach ($request->facilities as $facility) {
+            Facility::firstOrCreate([
+                'name' => $facility
+            ]);
+        }
+        return redirect()->route('admin.facilities');
     }
 
-    public function facilityEdit($id)
-    {
-        //
-        $facility = Facility::query()->where('id', $id)->first();
-        // dd($facility);
-        return view('admin.facility', [
-            'facility' => $facility,
-        ]);
-    }
 
     public function deleteFacility($id)
     {
@@ -204,8 +178,7 @@ class AdminController extends Controller
 
     public function companies()
     {
-        $companies = Company::paginate(10);
-        //dd($facilities);
+        $companies = Company::all();
         return view('admin.companies', [
             'companies' => $companies
         ]);

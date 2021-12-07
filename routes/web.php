@@ -78,7 +78,8 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::get('/admin/room', [AdminController::class, 'rooms'])->name('admin.rooms');
     Route::get('/admin/room/create', [AdminController::class, 'createRoom'])->name('rooms.create');
-    Route::put('/admin/room/upload', [AdminController::class, 'storeRoom'])->name('rooms.upload');
+    Route::post('/admin/room/save', [AdminController::class, 'saveRoom'])->name('rooms.save');
+    Route::put('/admin/{id}/update', [AdminController::class, 'updateRoom'])->name('rooms.update');
     Route::get('/admin/room/{id}/show', [AdminController::class, 'roomDetails'])->name('rooms.details');
     Route::get('/admin/room/{id}/edit', [AdminController::class, 'roomEdit'])->name('rooms.edit');
     Route::get('/admin/room/{id}/delete', [AdminController::class, 'deleteRoom'])->name('rooms.delete');

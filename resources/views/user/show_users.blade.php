@@ -30,7 +30,7 @@
             <div class="px-2 max-w-full overflow-x-auto relative table-responsive scroller">
                 <button class="float-right py-2 px-3 rounded-md text-white font-semibold mb-3" style="background: #1ED760">
                     <i class="far fa-file-excel"></i>
-                    <a href="{{ route('kath.export')}}">Export CSV</a>
+                    <a href="{{ route('kath.export')}}" class="text-white">Export</a>
                 </button>
                 <table id="dtOrderExample" class="table table-hover table-bordered table-sm" cellspacing="0" width="100%">
                     <thead class="table-idea">
@@ -59,7 +59,7 @@
                     </tbody>
                 </table>
 
-                <div>{{ $users->links() }}</div>
+                {{-- <div>{{ $users->links() }}</div> --}}
 
                 @foreach ($users as $user)
                     <div class="modal fade" id="modal-{{ $user->id }}" tabindex="-1" role="dialog">

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>admin-user</title>
+    <title>KATH</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -11,6 +11,9 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
     <link rel="stylesheet" href={{ mix('css/app.css') }}>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Select 2 -->
+    <link rel="stylesheet" href="{{ asset('select2/css/select2.min.css') }}" />
+    <script src="{{ asset('select2/js/select2.min.js') }}"></script>
     <style>
         /* màu của thead */
         .admin-table thead {
@@ -104,13 +107,16 @@
         .admin-table thead :first-child {
             border-radius: 7px 0 0 0;
         }
+
         .admin-table thead :last-child {
             border-radius: 0 7px 0 0;
         }
-        .admin-table tbody tr:last-child td:first-child{
+
+        .admin-table tbody tr:last-child td:first-child {
             border-radius: 0 0 0 7px;
         }
-        .admin-table tbody tr:last-child td:last-child{
+
+        .admin-table tbody tr:last-child td:last-child {
             border-radius: 0 0 7px 0;
         }
 
@@ -179,7 +185,7 @@
             </nav>
 
             <div class="admin-content-body">
-                <div class="relative flex w-full flex-wrap items-stretch py-3">
+                {{-- <div class="relative flex w-full flex-wrap items-stretch py-3">
                     <span
                         class="z-10 h-full leading-snug font-normal absolutetext-center text-gray-400 absolute bg-transparent rounded items-center justify-center pl-3 py-2">
                         <i class="fas fa-search"></i>
@@ -187,7 +193,7 @@
                     <input type="search" id="search" name="search" class="form-input placeholder-gray-400 w-72 pl-10"
                         placeholder="Search..."
                         style="font-family: 'Font Awesome 5 Free', 'system-ui'; border: 1px solid #4f4f4f">
-                </div>
+                </div> --}}
 
                 @yield('data-table');
                 {{-- <div>
