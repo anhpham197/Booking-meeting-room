@@ -26,7 +26,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/export', [ExportController::class, 'export'])->name('export');
 
 Route::group(['middleware' => 'user'], function () {
     Route::get('/booking', [HomeController::class, 'show'])->name('show_booking');
@@ -58,6 +57,9 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('/kath/users', [UserController::class, 'showUsers'])->name('kath.showUsers');
     Route::get('kath/users/search', [UserController::class, 'searchUsers'])->name('kath.searchUsers');
     Route::get('kath/rooms', [EventsController::class, 'showRooms'])->name('kath.showRooms');
+
+    Route::get('/event/export', [EventsController::class, 'exportEvents'])->name('event.export');
+    Route::get('/kath/export', [UserController::class, 'exportUsers'])->name('kath.export');
 });
 
 

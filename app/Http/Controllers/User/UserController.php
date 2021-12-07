@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Symfony\Component\Console\Helper\Helper;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\UsersExport;
 
 class UserController extends Controller
 {
@@ -97,5 +99,10 @@ class UserController extends Controller
             ])->get();
             return response()->json($users, 200, ['Content-type'=> 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
         }
+    }
+
+    public function exportUsers()
+    {
+        return Excel::download(new UsersExport, 'users.xlsx');
     }
 }

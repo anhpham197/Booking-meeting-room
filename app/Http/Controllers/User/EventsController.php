@@ -15,6 +15,8 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\EventsExport;
 
 class EventsController extends Controller
 {
@@ -236,5 +238,10 @@ class EventsController extends Controller
         return view('events.rooms', [
             'rooms' => $rooms
         ]);
+    }
+
+    public function exportEvents()
+    {
+        return Excel::download(new EventsExport, 'events.xlsx');
     }
 }

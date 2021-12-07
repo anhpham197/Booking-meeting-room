@@ -2,8 +2,9 @@
 
 namespace App\Exports;
 
-use App\Models\Events;
+use App\Models\Event;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Illuminate\Support\Facades\Auth;
 
 class EventsExport implements FromCollection
 {
@@ -12,6 +13,7 @@ class EventsExport implements FromCollection
     */
     public function collection()
     {
-        return Events::all();
+        $events = Event::query()->where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
+        return collect($events);
     }
 }

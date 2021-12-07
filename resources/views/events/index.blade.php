@@ -31,14 +31,14 @@
                         <line x1="12" y1="16" x2="12.01" y2="16"></line>
                     </svg>
                 </div>
-                <div class="font-semibold max-w-full flex-initial">Xóa thành công</div>
+                <div class="font-semibold max-w-full flex-initial">Delete successfully</div>
             </div>
 
-            <div class="px-2 max-w-full overflow-x-auto relative table-responsive scroller">    
+            <div class="px-2 max-w-full overflow-x-auto relative table-responsive scroller">
                 <button class="float-right py-2 px-3 rounded-md text-white font-semibold mb-3" style="background: #1ED760">
-                    <i class="far fa-file-excel"></i>                    
-                    Export CSV
-                </button>      
+                    <i class="far fa-file-excel"></i>
+                    <a href="{{ route('event.export')}}">Export CSV</a>
+                </button>
                 <table class="table table-hover table-bordered">
                     <thead class="table-idea">
                         <tr>
