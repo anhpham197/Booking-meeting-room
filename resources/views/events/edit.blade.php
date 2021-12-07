@@ -26,7 +26,7 @@
 
                         <div class="card">
                             <div class="card-header text-center uppercase text-xl font-semibold">
-                                @if ($isOccured)
+                                @if ($isOccured || $event->host->id != Auth::user()->id)
                                     {{ $event->name }}
                                 @else
                                     EDIT YOUR MEETING
@@ -61,7 +61,7 @@
                                             class="text-red-600">*</span></label>
                                     <input type="tel" class="form-control" name="telephoneBooking" id="telephoneBooking"
                                         aria-describedby="telephoneBookingHid" required value="{{ Auth::user()->phone }}"
-                                        @if ($isOccured)
+                                        @if ($isOccured || $event->host->id != Auth::user()->id)
                                     readonly
                                     @endif>
                                 </div>
@@ -77,7 +77,7 @@
                                     <label for="title" class="font-semibold">Meeting name <span
                                             class="text-red-600">*</span></label>
                                     <input type="text" class="form-control" name="title" id="title"
-                                        value="{{ $event->name }}" required @if ($isOccured) readonly @endif>
+                                        value="{{ $event->name }}" required @if ($isOccured || $event->host->id != Auth::user()->id) readonly @endif>
                                 </div>
 
                                 <div class="form-group">
@@ -88,7 +88,7 @@
                                             <input type="datetime-local" min="{{ $minDate }}" class="form-control"
                                                 name="starting_time" id="starting_time"
                                                 value="{{ date('Y-m-d\TH:i', strtotime($event->starting_time)) }}"
-                                                required @if ($isOccured)
+                                                required @if ($isOccured || $event->host->id != Auth::user()->id)
                                             readonly
                                             @endif>
                                         </div>
@@ -98,7 +98,7 @@
                                             <input type="datetime-local" min="{{ $minDate }}" class="form-control"
                                                 name="ending_time" id="ending_time"
                                                 value="{{ date('Y-m-d\TH:i', strtotime($event->ending_time)) }}" required
-                                                @if ($isOccured)
+                                                @if ($isOccured || $event->host->id != Auth::user()->id)
                                             readonly
                                             @endif>
                                         </div>
@@ -109,7 +109,7 @@
                                 <div class="form-group">
                                     <label for="roomId" class="font-semibold">Room name <span
                                             class="text-red-600">*</span></label>
-                                    <select name="roomId" class="form-control" id="roomId" required @if ($isOccured)
+                                    <select name="roomId" class="form-control" id="roomId" required @if ($isOccured || $event->host->id != Auth::user()->id)
                                         disabled
                                         @endif>
                                         @foreach ($rooms as $room)
@@ -124,7 +124,7 @@
                                     <label for="email" class="font-semibold">Attendees' email <span
                                             class="text-red-600">*</span></label>
                                     <select class="form-control email" multiple="multiple" style="height: 40px"
-                                        name="emails[]" required @if ($isOccured)
+                                        name="emails[]" required @if ($isOccured || $event->host->id != Auth::user()->id)
                                         disabled
                                         @endif>
                                         @foreach ($users as $user)
@@ -137,7 +137,7 @@
                                     </select>
                                 </div>
 
-                                @if (!$isOccured)
+                                @if (!$isOccured && Auth::user()->id == $event->host->id)
                                     <div class="form-group">
                                         <label for="file" class="font-semibold">Attached file</label>
                                         <input type="file" name="file">
@@ -147,7 +147,7 @@
 
                                 <div class="form-group">
                                     <label for="textarea" class="font-semibold">Note for us</label>
-                                    <textarea id="textarea" name="note" class="form-control text-black" rows="5" @if ($isOccured) readonly @endif>@if (!empty($event->note)){{ $event->note }}@endif</textarea>
+                                    <textarea id="textarea" name="note" class="form-control text-black" rows="5" @if ($isOccured || $event->host->id != Auth::user()->id) readonly @endif>@if (!empty($event->note)){{ $event->note }}@endif</textarea>
                                 </div>
                             </div>
                             <div class="card-footer" style="text-align: center;">

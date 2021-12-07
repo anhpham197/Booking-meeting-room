@@ -58,6 +58,9 @@
                                 <span style="margin-right: 2px;" class="uppercase font-semibold">File</span>
                             </th>
                             <th class="th-sm">
+                                <span style="margin-right: 2px;" class="uppercase font-semibold">Role</span>
+                            </th>
+                            <th class="th-sm">
                                 <span class="uppercase font-semibold">Action</span>
                             </th>
                         </tr>
@@ -80,8 +83,13 @@
                                         @endif
                                     </div>
                                 </td>
+                                <td>@if ($event->host->id == Auth::user()->id)
+                                    <span class="bg-red-400 rounded-md text-white py-1 px-2 font-semibold">Host</span>
+                                @else
+                                    <span class="bg-gray-400 rounded-md text-white py-1 px-2 font-semibold">Member</span>
+                                @endif</td>
                                 <td>
-                                    @if (strtotime($event->starting_time) > strtotime($now))
+                                    @if ((strtotime($event->starting_time) > strtotime($now)) && ($event->host->id == Auth::user()->id))
                                         <div class="flex flex-wrap gap-2 justify-center">
                                             <a href="{{ route('event.edit', ['id' => $event->id]) }}" title="Edit"><i
                                                     class="fas fa-edit text-blue-600 cursor-pointer"></i></a>

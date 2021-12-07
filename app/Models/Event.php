@@ -46,9 +46,8 @@ class Event extends Model
         return $this->belongsToMany(User::class);
     }
 
-    public function host()
-    {
-        return $this->belongsTo(User::class);
+    public function host() {
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function setEmailListAttribute($value)
