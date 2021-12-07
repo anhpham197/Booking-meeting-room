@@ -34,7 +34,11 @@
                 <div class="font-semibold max-w-full flex-initial">Xóa thành công</div>
             </div>
 
-            <div class="px-2 max-w-full overflow-x-auto relative table-responsive scroller">          
+            <div class="px-2 max-w-full overflow-x-auto relative table-responsive scroller">    
+                <button class="float-right py-2 px-3 rounded-md text-white font-semibold mb-3" style="background: #1ED760">
+                    <i class="far fa-file-excel"></i>                    
+                    Export CSV
+                </button>      
                 <table class="table table-hover table-bordered">
                     <thead class="table-idea">
                         <tr>

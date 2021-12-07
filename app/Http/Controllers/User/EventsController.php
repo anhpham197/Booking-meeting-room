@@ -35,7 +35,7 @@ class EventsController extends Controller
     {
         $currentTime = new DateTime("now", new DateTimeZone('Asia/Ho_Chi_Minh'));
         $now = $currentTime->format('Y-m-d\TH:i');
-        $events = Event::query()->where('user_id', Auth::user()->id)->orderBy('starting_time', 'desc')->get();
+        $events = Event::query()->where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
         // $events = $this->paginate($data)->withPath('/event/view');
         return view('events.index', [
             'events' => $events,
