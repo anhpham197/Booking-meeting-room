@@ -27,7 +27,7 @@
                                         class="text-red-600">*</span></label>
                                 <select name="meetingId" id="meeting-id"
                                     class="border border-black py-2 px-3 rounded-md w-2/3" required>
-                                    @foreach (Auth::user()->events as $event)
+                                    @foreach ($events as $event)
                                         <option value="{{ $event->id }}" class="py-2">{{ $event->name }}</option>
                                     @endforeach
                                 </select>
