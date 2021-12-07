@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-
+use App\Jobs\SendEmail;
 use App\Models\Event;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -35,7 +35,7 @@ class EventsController extends Controller
     {
         $currentTime = new DateTime("now", new DateTimeZone('Asia/Ho_Chi_Minh'));
         $now = $currentTime->format('Y-m-d\TH:i');
-        $events = Event::query()->where('user_id', Auth::user()->id)->orderBy('starting_time', 'desc')->simplePaginate(10);
+        $events = Event::query()->where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
         // $events = $this->paginate($data)->withPath('/event/view');
         return view('events.index', [
             'events' => $events,
@@ -60,7 +60,7 @@ class EventsController extends Controller
     {
         $now = new DateTime("now", new DateTimeZone('Asia/Ho_Chi_Minh'));
         $minDate = $now->format('Y-m-d\TH:i');
-        $rooms = Room::all();
+        $rooms = Room::query()->where('status', 'Active')->get();
         $users = User::query()->where('company_id', Auth::user()->company_id)->get();
         return view('events.create', [
             'users' => $users,
@@ -110,6 +110,14 @@ class EventsController extends Controller
             foreach ($users as $user) {
                 $user->events()->attach($data->id);
             }
+            $message = [
+                'type' => Auth::user()->name.' has invited you participating in a new meeting',
+                'title' => $data->name,
+                'starting_time' => date('H:i d/m/Y', strtotime($data->starting_time)),
+                'ending_time' => date('H:i d/m/Y', strtotime($data->ending_time)),
+                'url' => 'http://127.0.0.1:8000/booking'
+            ];
+            SendEmail::dispatch($message, $data->users)->delay(now()->addMinute(1));
             return redirect()->route('event.edit', ['id' => $data->id])->with('successMessage', 'Created successfully');
         } else {
             return redirect()->route('event.create', ['id' => Auth::user()->id])->with('errorMessage', "There is another meeting booked. Please select time again")->withInput();
@@ -192,8 +200,8 @@ class EventsController extends Controller
         $event = Event::query()->where('id', $id)->get();
         $room = Room::query()->where('id', $event[0]->room_id)->get();
         return response()->json([
-            'startingTime' => $event[0]->starting_time,
-            'endingTime' => $event[0]->ending_time,
+            'startingTime' => date('H:i d/m/Y', strtotime($event[0]->starting_time)),
+            'endingTime' => date('H:i d/m/Y', strtotime($event[0]->ending_time)),
             'roomName' => $room[0]->name
         ], 200, ['Content-type' => 'application/json; charset=utf-8'], JSON_UNESCAPED_UNICODE);
     }
