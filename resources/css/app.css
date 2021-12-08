@@ -1,0 +1,268 @@
+@import "tailwindcss/base";
+
+@import "tailwindcss/components";
+
+@import "tailwindcss/utilities";
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.ml6 {
+    position: relative;
+}
+
+.ml6 .letter {
+    display: inline-block;
+    line-height: 1em;
+}
+
+.font-logo {
+    font-family: 'Londrina Shadow', cursive !important;
+    letter-spacing: 0.5rem;
+}
+
+.font-logo:hover {
+	color: #D9CAB3;
+	text-decoration: wavy;
+}
+
+.footer-main-cl{
+	background-color: #D9CAB3;
+}
+
+footer {
+	background: #212121;
+}
+
+
+/* Sidebar*/
+
+#sidebar.active {
+    margin-left: -250px;
+}
+.wrapper{
+	display: flex;
+	text-decoration: none;
+	transition: all 0.3s;
+	min-height: 100vh;
+}
+
+#sidebar{
+	min-width: 250px;
+	max-width: 250px;
+	background: #6D9886;
+	color: #fff;
+	transition: all 0.3s;
+}
+
+.menu-active {
+	background: #597d6e;
+}
+
+#sidebar ul p{
+	color: #fff;
+	padding: 10px;
+}
+
+#sidebar ul li {
+	padding: 10px;
+	font-weight: 400;
+	display: block;
+}
+
+#sidebar ul li a:hover {
+	cursor: pointer;
+}
+
+#sidebar ul li a{
+	padding: 10px;
+	font-weight: 400;
+	display: inline-block;
+}
+
+
+button#sidebarCollapse:focus {
+	outline: none;
+}
+
+.subnav li:hover a {
+    font-weight: 400;
+}
+
+li > a:hover{
+	font-weight: bolder !important;
+}
+
+
+.table-idea{
+	position: sticky;
+	top: 0;
+}
+
+.scroller {
+	position: relative;
+	overflow: auto;
+	display: block;
+	height: 500px !important;
+}
+
+tbody tr {
+	background-color: white;
+}
+
+thead{
+	background-color: #6D9886;
+}
+
+header {
+    background-color: #212121;
+}
+
+input[type=search]::-webkit-search-cancel-button {
+    -webkit-appearance: searchfield-cancel-button;
+}
+
+tbody tr td {
+	font-size: medium;
+}
+
+
+/* Edit profile */
+.form-group + .form-group{
+    margin-top: 12px;
+}
+
+.form-gender + .form-gender{
+    margin-left: 20px;
+}
+
+/* Show users */
+.scroller{
+	position: relative;
+	height: 200px;
+	overflow: auto;
+	display: block;
+}
+
+@media (max-width: 1024px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+    #sidebarCollapse span {
+        display: none;
+    }
+}
+@keyframes modalFadeIn {
+    from {
+        transform: translateY(-600);
+        opacity: 0.1;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+a[data-toggle="collapse"]{
+	position: relative;
+}
+
+#content{
+	width: 100%;
+	transition: all 0.3s;
+	position: relative;
+}
+
+/* code cho phần event-content */
+
+.event-content{
+	background-color: #e5e4e2;
+	padding-left: 12px;
+	padding-right: 12px;
+	padding-top: 18px;
+	padding-bottom: 18px;
+
+}
+.add-event-btn{
+	color: #fff;
+    background-color: #2eb85c;
+    border: none;
+	height: 32px;
+	border-radius: 5px;
+}
+.event-list-p{
+	line-height: 36px;
+	background-color: white;
+	padding-left: 12px;
+	border-style: none none solid none;
+	border-width: 1px;
+	margin-bottom: 0px;
+	margin-top: 12px;
+}
+.event-main-section{
+	background-color: white;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.select-event{
+	display: flex;
+	justify-content: space-between;
+}
+.left-content{
+	display: flex;
+	justify-content: space-evenly;
+	cursor: pointer;
+}
+.left-content>p{
+	padding: 0 6px;
+	margin-right: 5px;
+	background-color: #e5e4e2;
+	border-radius: 3px;
+}
+.content-table{
+	border-collapse: collapse;
+	width: 100%;
+}
+
+th, td{
+	text-align: center !important;
+}
+
+.tb-row{
+	background-color: #e3dac9;
+}
+
+#entities{
+	width: 56px;
+	height: 25px;
+	margin-right: 5px;
+}
+
+
+/* ADMIN */
+/* css cho form , cả admin và user */
+.form-group + .form-group{
+	margin-top: 15px;
+}
+
+/* css cho card , dùng cả admin và user */
+.card , .card-header{
+	border-radius: 0px;
+}
+
+/* dùng cho thẻ span cho trường status và operation của giao diện table trong admin */
+.label-info{
+	background-color: #6d9886;
+	padding: 6px;
+	border-radius: 4px;
+	margin-right: 5px;
+}

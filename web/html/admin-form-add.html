@@ -1,0 +1,126 @@
+<!-- Phần form thêm phòng mới cho admin -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>admin-form-add</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style_for_article.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <style>
+        /* css cho sidebar */
+        #sidebar {
+            background-color: #343a40;
+        }
+
+        #sidebar ul li:hover {
+            background-color: #1a202c;
+        }
+
+        #sidebar ul li:hover>a {
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <nav id="sidebar">
+            <div class="sidebar-header" style="background-color: #343a40;">
+                <h3>Booking</h3>
+            </div>
+            <ul class="lisst-unstyled components">
+                <li>
+                    <i class="fas fa-home"></i>
+                    <a href="#">Management page</a>
+
+                </li>
+                <li>
+                    <i class="fas fa-chevron-circle-down"></i>
+                    <a href="#">Work</a>
+                </li>
+                <li>
+                    <i class="far fa-file-alt"></i>
+                    <a>Category</a>
+                </li>
+                <li>
+                    <i class="fas fa-user"></i>
+                    <a href="#">Account</a>
+                </li>
+                <li>
+                    <i class="fas fa-cog"></i>
+                    <a href="#">Setting </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div id="content">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light " style="height: 81px;">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="footer-main-cl">
+                        <i class="fas fa-bars"></i>
+
+                    </button>
+                </div>
+            </nav>
+            <form autocomplete="on" action="" method="post">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <b>Add</b>
+                    </div>
+                    <div class="card-body" style="height: 415px;">
+                        <div class="form-group">
+                            <label for="room">Room name</label>
+                            <input type="text" class="form-control" name="room" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="sc">Capacity(people)</label>
+                            <input type="number" class="form-control" name="sc" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dt">Area</label>
+                            <input type="number" class="form-control" name="dt" required>
+                        </div>
+                        <div class="form-group d-flex justify-content-between">
+                            <div>
+                                <label for="tt">Status</label>
+                                <select style="width: 200px; height: 30px ;text-align: center;" name="tt" id=""
+                                    required>
+                                    <option value="hop">Họp</option>
+                                    <option value="ranh">Rảnh</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="ttb">Equipment</label>
+                                <select style="width: 400px ; height: 30px; text-align: center;" name="ttb" id=""
+                                    multiple="multiple" required>
+                                    <option value="ghe">ghế</option>
+                                    <option value="ban">bàn</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer" style="text-align: center;">
+                        <button type="button" class="btn btn-primary" style="height: 40px">Add</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="/js/main.js"></script>
+</body>
+
+</html>
