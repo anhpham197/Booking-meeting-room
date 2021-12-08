@@ -2,6 +2,8 @@
 
 ## How to use
 
+
+### Setup Project
 - You should also have Composer and XAMPP(optional) installed
 - Clone the repository with __git clone__
 - Copy __.env.example__ file to __.env__ and edit database credentials there
