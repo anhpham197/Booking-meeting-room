@@ -1,4 +1,4 @@
-# KATH Online Meeting Room Booking System
+# KATH Online Booking Meeting Room System
 
 ## How to use
 
