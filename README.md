@@ -12,6 +12,10 @@
 - Run __php artisan migrate__ 
 - Run __php artisan serve__ (after enabling Apache and MySQL on XAMPP Control Panel)
 
+### Import database
+- Find in the project : __database/booking_meeting_room.sql__
+- Import file __booking_meeting_room.sql__ in phpMyAdmin (or MySQL, etc...) 
+
 ### Install package to export data to Excel file
 
 - Run __composer require maatwebsite/excel__
