@@ -27,4 +27,4 @@ __'aliases' => [ ... 'Excel' => Maatwebsite\Excel\Facades\Excel::class, ]__
 
 ### View the Project
 - Launch the path that appears on the console screen: http://localhost:8000
-- Login to Admin panel with default credentials admin@kath.vn - 12345678 or register a new User account
+- Login to Admin panel with default credentials admin@kath.vn - 12345678 or register a new account
